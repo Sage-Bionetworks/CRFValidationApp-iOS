@@ -1,0 +1,728 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1391E89C76E00B123FA /* Assets.xcassets */; };
+		60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A13B1E89C76E00B123FA /* LaunchScreen.storyboard */; };
+		60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1DE1E89CAFB00B123FA /* BridgeInfo.plist */; };
+		60F7A20F1E89D0B200B123FA /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A20E1E89D0B200B123FA /* ResearchKit.framework */; };
+		60F7A2101E89D0B200B123FA /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A20E1E89D0B200B123FA /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		60F7A2121E89D0B200B123FA /* ResearchUXFactory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */; };
+		60F7A2131E89D0B200B123FA /* ResearchUXFactory.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		60F7A2151E89D0B200B123FA /* BridgeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2141E89D0B200B123FA /* BridgeSDK.framework */; };
+		60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2141E89D0B200B123FA /* BridgeSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
+		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752371F7093AF004925B8 /* SurveyFactory.swift */; };
+		FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */; };
+		FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF7752471F709D71004925B8 /* StudyOverview.storyboard */; };
+		FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF7752581F70A465004925B8 /* BridgeInfo-private.plist */; };
+		FF77525B1F70A475004925B8 /* crf-module.pem in Resources */ = {isa = PBXBuildFile; fileRef = FF77525A1F70A475004925B8 /* crf-module.pem */; };
+		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
+		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
+		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
+		FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */; };
+		FFA607AD1F707BFB0034A4C0 /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */; };
+		FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
+		FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */; };
+		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		60F7A1441E89C76E00B123FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1271E89C76E00B123FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60F7A12E1E89C76E00B123FA;
+			remoteInfo = CRFModuleValidation;
+		};
+		60F7A2041E89D01100B123FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 161479C01BD6CE8F0099A068;
+			remoteInfo = BridgeAppSDKSample;
+		};
+		60F7A2061E89D01100B123FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 801040B21C5A843D00D26E19;
+			remoteInfo = BridgeAppSDK;
+		};
+		60F7A2081E89D01100B123FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 801040BB1C5A843D00D26E19;
+			remoteInfo = BridgeAppSDKTests;
+		};
+		60F7A20A1E89D01100B123FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF86303F1E709C9D0077AC57;
+			remoteInfo = "Sage Cardio Challenge";
+		};
+		60F7A20C1E89D01100B123FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF86304B1E709C9E0077AC57;
+			remoteInfo = "Sage Cardio Challenge Extension";
+		};
+		60F7A2191E89D0B200B123FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 801040B11C5A843D00D26E19;
+			remoteInfo = BridgeAppSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		60F7A21B1E89D0B300B123FA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				60F7A2101E89D0B200B123FA /* ResearchKit.framework in Embed Frameworks */,
+				60F7A2131E89D0B200B123FA /* ResearchUXFactory.framework in Embed Frameworks */,
+				60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */,
+				60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFModuleValidation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60F7A1321E89C76E00B123FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		60F7A1391E89C76E00B123FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60F7A13C1E89C76E00B123FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		60F7A13E1E89C76E00B123FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CRFModuleValidationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60F7A1491E89C76E00B123FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60F7A1DE1E89CAFB00B123FA /* BridgeInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BridgeInfo.plist; sourceTree = "<group>"; };
+		60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BridgeAppSDK.xcodeproj; path = BridgeAppSDK/BridgeAppSDK.xcodeproj; sourceTree = "<group>"; };
+		60F7A20E1E89D0B200B123FA /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7752371F7093AF004925B8 /* SurveyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFactory.swift; sourceTree = "<group>"; };
+		FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyOverviewViewController.swift; sourceTree = "<group>"; };
+		FF7752471F709D71004925B8 /* StudyOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyOverview.storyboard; sourceTree = "<group>"; };
+		FF7752581F70A465004925B8 /* BridgeInfo-private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BridgeInfo-private.plist"; path = "../../iOSPrivateProjectInfo/CRFModuleValidation/BridgeInfo-private.plist"; sourceTree = "<group>"; };
+		FF77525A1F70A475004925B8 /* crf-module.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "crf-module.pem"; path = "../../iOSPrivateProjectInfo/CRFModuleValidation/crf-module.pem"; sourceTree = "<group>"; };
+		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
+		FFA6078D1F70745F0034A4C0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		FFA6079C1F7076270034A4C0 /* CRFModuleValidation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CRFModuleValidation-Bridging-Header.h"; sourceTree = "<group>"; };
+		FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
+		FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
+		FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartRate_Measurement.json; sourceTree = "<group>"; };
+		FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledActivityManager.swift; sourceTree = "<group>"; };
+		FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60F7A12C1E89C76E00B123FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60F7A20F1E89D0B200B123FA /* ResearchKit.framework in Frameworks */,
+				60F7A2121E89D0B200B123FA /* ResearchUXFactory.framework in Frameworks */,
+				60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */,
+				FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */,
+				60F7A2151E89D0B200B123FA /* BridgeSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60F7A1401E89C76E00B123FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		60F7A1261E89C76E00B123FA = {
+			isa = PBXGroup;
+			children = (
+				60F7A1311E89C76E00B123FA /* CRFModuleValidation */,
+				60F7A1461E89C76E00B123FA /* CRFModuleValidationTests */,
+				60F7A1F21E89CFEF00B123FA /* Frameworks */,
+				60F7A1301E89C76E00B123FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60F7A1301E89C76E00B123FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */,
+				60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60F7A1311E89C76E00B123FA /* CRFModuleValidation */ = {
+			isa = PBXGroup;
+			children = (
+				60F7A1321E89C76E00B123FA /* AppDelegate.swift */,
+				FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */,
+				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
+				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
+				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
+				60F7A1641E89C98800B123FA /* Resources */,
+				60F7A1611E89C93800B123FA /* Storyboards */,
+				60F7A1601E89C90700B123FA /* Supporting Files */,
+			);
+			path = CRFModuleValidation;
+			sourceTree = "<group>";
+		};
+		60F7A1461E89C76E00B123FA /* CRFModuleValidationTests */ = {
+			isa = PBXGroup;
+			children = (
+				60F7A1491E89C76E00B123FA /* Info.plist */,
+				FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */,
+			);
+			path = CRFModuleValidationTests;
+			sourceTree = "<group>";
+		};
+		60F7A1601E89C90700B123FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60F7A1DE1E89CAFB00B123FA /* BridgeInfo.plist */,
+				FF7752581F70A465004925B8 /* BridgeInfo-private.plist */,
+				60F7A13E1E89C76E00B123FA /* Info.plist */,
+				FF77525A1F70A475004925B8 /* crf-module.pem */,
+				FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */,
+				FFA6079C1F7076270034A4C0 /* CRFModuleValidation-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60F7A1611E89C93800B123FA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FFA6078A1F705ED20034A4C0 /* Main.storyboard */,
+				60F7A13B1E89C76E00B123FA /* LaunchScreen.storyboard */,
+				FF7752471F709D71004925B8 /* StudyOverview.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		60F7A1641E89C98800B123FA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FFA607AB1F707BB70034A4C0 /* JSON */,
+				60F7A1391E89C76E00B123FA /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		60F7A1F21E89CFEF00B123FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFA6078D1F70745F0034A4C0 /* HealthKit.framework */,
+				60F7A2141E89D0B200B123FA /* BridgeSDK.framework */,
+				60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */,
+				60F7A20E1E89D0B200B123FA /* ResearchKit.framework */,
+				60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60F7A1F61E89D00F00B123FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60F7A2051E89D01100B123FA /* BridgeAppSDKSample.app */,
+				60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */,
+				60F7A2091E89D01100B123FA /* BridgeAppSDKTests.xctest */,
+				60F7A20B1E89D01100B123FA /* Sage Cardio Challenge.app */,
+				60F7A20D1E89D01100B123FA /* Sage Cardio Challenge Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FFA607AB1F707BB70034A4C0 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */,
+				FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		60F7A12E1E89C76E00B123FA /* CRFModuleValidation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60F7A1571E89C76E00B123FA /* Build configuration list for PBXNativeTarget "CRFModuleValidation" */;
+			buildPhases = (
+				04AA6F591EB3A527000931D2 /* ShellScript */,
+				60F7A12B1E89C76E00B123FA /* Sources */,
+				60F7A12C1E89C76E00B123FA /* Frameworks */,
+				60F7A12D1E89C76E00B123FA /* Resources */,
+				60F7A21B1E89D0B300B123FA /* Embed Frameworks */,
+				8033560E1EC666A40095CDC1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60F7A21A1E89D0B200B123FA /* PBXTargetDependency */,
+			);
+			name = CRFModuleValidation;
+			productName = CRFModuleValidation;
+			productReference = 60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */;
+			productType = "com.apple.product-type.application";
+		};
+		60F7A1421E89C76E00B123FA /* CRFModuleValidationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60F7A15A1E89C76E00B123FA /* Build configuration list for PBXNativeTarget "CRFModuleValidationTests" */;
+			buildPhases = (
+				60F7A13F1E89C76E00B123FA /* Sources */,
+				60F7A1401E89C76E00B123FA /* Frameworks */,
+				60F7A1411E89C76E00B123FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60F7A1451E89C76E00B123FA /* PBXTargetDependency */,
+			);
+			name = CRFModuleValidationTests;
+			productName = CRFModuleValidationTests;
+			productReference = 60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60F7A1271E89C76E00B123FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Sage Bionetworks";
+				TargetAttributes = {
+					60F7A12E1E89C76E00B123FA = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					60F7A1421E89C76E00B123FA = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = KA9Z8R6M6K;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 60F7A12E1E89C76E00B123FA;
+					};
+				};
+			};
+			buildConfigurationList = 60F7A12A1E89C76E00B123FA /* Build configuration list for PBXProject "CRFModuleValidation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 60F7A1261E89C76E00B123FA;
+			productRefGroup = 60F7A1301E89C76E00B123FA /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 60F7A1F61E89D00F00B123FA /* Products */;
+					ProjectRef = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				60F7A12E1E89C76E00B123FA /* CRFModuleValidation */,
+				60F7A1421E89C76E00B123FA /* CRFModuleValidationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		60F7A2051E89D01100B123FA /* BridgeAppSDKSample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BridgeAppSDKSample.app;
+			remoteRef = 60F7A2041E89D01100B123FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BridgeAppSDK.framework;
+			remoteRef = 60F7A2061E89D01100B123FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60F7A2091E89D01100B123FA /* BridgeAppSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BridgeAppSDKTests.xctest;
+			remoteRef = 60F7A2081E89D01100B123FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60F7A20B1E89D01100B123FA /* Sage Cardio Challenge.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Sage Cardio Challenge.app";
+			remoteRef = 60F7A20A1E89D01100B123FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60F7A20D1E89D01100B123FA /* Sage Cardio Challenge Extension.appex */ = {
+			isa = PBXReferenceProxy;
+			fileType = "wrapper.app-extension";
+			path = "Sage Cardio Challenge Extension.appex";
+			remoteRef = 60F7A20C1E89D01100B123FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		60F7A12D1E89C76E00B123FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */,
+				FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */,
+				FFA607AD1F707BFB0034A4C0 /* Cardio_12MT.json in Resources */,
+				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,
+				FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */,
+				FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */,
+				FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */,
+				60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */,
+				60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60F7A1411E89C76E00B123FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04AA6F591EB3A527000931D2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+		8033560E1EC666A40095CDC1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\ndone\n\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60F7A12B1E89C76E00B123FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */,
+				FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */,
+				FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */,
+				FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */,
+				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60F7A13F1E89C76E00B123FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60F7A1451E89C76E00B123FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60F7A12E1E89C76E00B123FA /* CRFModuleValidation */;
+			targetProxy = 60F7A1441E89C76E00B123FA /* PBXContainerItemProxy */;
+		};
+		60F7A21A1E89D0B200B123FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BridgeAppSDK;
+			targetProxy = 60F7A2191E89D0B200B123FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		60F7A13B1E89C76E00B123FA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60F7A13C1E89C76E00B123FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		60F7A1551E89C76E00B123FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		60F7A1561E89C76E00B123FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		60F7A1581E89C76E00B123FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CRFModuleValidation.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 24;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CRFModuleValidation",
+					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
+				);
+				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleValidation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		60F7A1591E89C76E00B123FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CRFModuleValidation.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 24;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CRFModuleValidation",
+					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
+				);
+				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleValidation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		60F7A15B1E89C76E00B123FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CRFModuleValidation",
+				);
+				INFOPLIST_FILE = CRFModuleValidationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleValidationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidationTests/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRFModuleValidation.app/CRFModuleValidation";
+			};
+			name = Debug;
+		};
+		60F7A15C1E89C76E00B123FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CRFModuleValidation",
+				);
+				INFOPLIST_FILE = CRFModuleValidationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleValidationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidationTests/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRFModuleValidation.app/CRFModuleValidation";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60F7A12A1E89C76E00B123FA /* Build configuration list for PBXProject "CRFModuleValidation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60F7A1551E89C76E00B123FA /* Debug */,
+				60F7A1561E89C76E00B123FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60F7A1571E89C76E00B123FA /* Build configuration list for PBXNativeTarget "CRFModuleValidation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60F7A1581E89C76E00B123FA /* Debug */,
+				60F7A1591E89C76E00B123FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60F7A15A1E89C76E00B123FA /* Build configuration list for PBXNativeTarget "CRFModuleValidationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60F7A15B1E89C76E00B123FA /* Debug */,
+				60F7A15C1E89C76E00B123FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 60F7A1271E89C76E00B123FA /* Project object */;
+}

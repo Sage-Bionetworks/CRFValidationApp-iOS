@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dw0-pS-jk0">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Study Overview View Controller-->
+        <scene sceneID="mBI-uc-0ZB">
+            <objects>
+                <viewController id="Dw0-pS-jk0" customClass="StudyOverviewViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FUh-d2-IDE"/>
+                        <viewControllerLayoutGuide type="bottom" id="61D-yX-JMf"/>
+                    </layoutGuides>
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jOY-3M-fjd" customClass="SBACrosshatchView" customModule="BridgeAppSDK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="950" verticalCompressionResistancePriority="950" text="Welcome to the CRF Module" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="VEt-dk-wg0">
+                                <rect key="frame" x="40" y="82" width="240" height="84"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="introIcon" translatesAutoresizingMaskIntoConstraints="NO" id="QmZ-IU-JnV">
+                                <rect key="frame" x="115" y="204" width="90.5" height="90.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="900" constant="152" id="QcX-Yt-VMe"/>
+                                    <constraint firstAttribute="width" secondItem="QmZ-IU-JnV" secondAttribute="height" multiplier="1:1" id="Tq9-47-Eag"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="950" verticalCompressionResistancePriority="950" text="Let’s start the study" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqu-do-8gG">
+                                <rect key="frame" x="78" y="328.5" width="164.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="950" verticalCompressionResistancePriority="950" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Co8-Kg-dYT">
+                                <rect key="frame" x="36.5" y="365.5" width="247" height="101.5"/>
+                                <string key="text">Help us learn and test a new digital tool for Cardiorespiratory fitness by completing 2 clinic visits, and doing several runs and stairs steps.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldD-ug-D6a" customClass="SBARoundedButton" customModule="BridgeAppSDK">
+                                <rect key="frame" x="35" y="491" width="250" height="52"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="HlE-Qp-Snt"/>
+                                    <constraint firstAttribute="height" constant="52" id="uOn-hm-1RF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="Let's go!">
+                                    <color key="titleColor" red="0.36862745099999999" green="0.67843137249999996" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="corners">
+                                        <real key="value" value="26"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="externalIDTapped:" destination="Dw0-pS-jk0" eventType="touchUpInside" id="f0j-Y7-ACy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.36862745098039218" green="0.67843137254901964" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vqu-do-8gG" firstAttribute="centerX" secondItem="jOY-3M-fjd" secondAttribute="centerX" id="5Uy-Sh-dlZ"/>
+                            <constraint firstItem="ldD-ug-D6a" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Co8-Kg-dYT" secondAttribute="bottom" constant="24" id="IUN-5w-VDi"/>
+                            <constraint firstItem="vqu-do-8gG" firstAttribute="top" secondItem="QmZ-IU-JnV" secondAttribute="bottom" constant="34" id="NDA-8C-tn5"/>
+                            <constraint firstItem="Co8-Kg-dYT" firstAttribute="centerX" secondItem="jOY-3M-fjd" secondAttribute="centerX" id="Olb-zp-hNH"/>
+                            <constraint firstItem="ldD-ug-D6a" firstAttribute="centerX" secondItem="jOY-3M-fjd" secondAttribute="centerX" id="Zg9-C0-1Vb"/>
+                            <constraint firstItem="Co8-Kg-dYT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jOY-3M-fjd" secondAttribute="leading" constant="36" id="d2e-JE-MqL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VEt-dk-wg0" secondAttribute="trailing" constant="24" id="e1q-7i-ngc"/>
+                            <constraint firstItem="Co8-Kg-dYT" firstAttribute="leading" secondItem="jOY-3M-fjd" secondAttribute="leading" priority="900" constant="50" id="eMh-dx-gKo"/>
+                            <constraint firstItem="QmZ-IU-JnV" firstAttribute="top" secondItem="VEt-dk-wg0" secondAttribute="bottom" constant="38" id="eiJ-iP-KaF"/>
+                            <constraint firstItem="VEt-dk-wg0" firstAttribute="top" secondItem="FUh-d2-IDE" secondAttribute="bottom" constant="62" id="nDT-U4-smC"/>
+                            <constraint firstItem="Co8-Kg-dYT" firstAttribute="top" secondItem="vqu-do-8gG" secondAttribute="bottom" constant="16" id="pRB-Rm-wd4"/>
+                            <constraint firstItem="VEt-dk-wg0" firstAttribute="leading" secondItem="jOY-3M-fjd" secondAttribute="leadingMargin" constant="24" id="vkQ-Ih-jKD"/>
+                            <constraint firstItem="61D-yX-JMf" firstAttribute="top" secondItem="ldD-ug-D6a" secondAttribute="bottom" constant="25" id="wCM-xP-cxN"/>
+                            <constraint firstItem="QmZ-IU-JnV" firstAttribute="centerX" secondItem="jOY-3M-fjd" secondAttribute="centerX" id="ywe-eL-AVu"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="crosshatchColor">
+                                <color key="value" red="0.40784313725490196" green="0.74901960784313726" blue="0.37647058823529411" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="ldD-ug-D6a" id="His-jV-Qif"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kqE-m8-Lys" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304.80000000000001" y="356.67166416791605"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="introIcon" width="152" height="152"/>
+    </resources>
+</document>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>studyIdentifier</key>
+	<string>null</string>
+	<key>certificateName</key>
+	<string>null</string>
+	<key>emailForLoginViaExternalId</key>
+	<string>nobody@null.org</string>
+	<key>cacheDaysAhead</key>
+	<integer>7</integer>
+	<key>cacheDaysBehind</key>
+	<integer>365</integer>
+	<key>schemaMapping</key>
+	<array>
+		<dict>
+			<key>schemaIdentifier</key>
+			<string>HeartRate Measurement</string>
+			<key>schemaRevision</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>schemaIdentifier</key>
+			<string>Cardio 12MT</string>
+			<key>schemaRevision</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>schemaIdentifier</key>
+			<string>Cardio Stair Step</string>
+			<key>schemaRevision</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>taskMapping</key>
+	<array>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>HeartRate Measurement</string>
+			<key>resourceName</key>
+			<string>HeartRate_Measurement</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>Cardio 12MT</string>
+			<key>resourceName</key>
+			<string>Cardio_12MT</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>Cardio Stair Step</string>
+			<key>resourceName</key>
+			<string>Cardio_Stair_Step</string>
+		</dict>
+	</array>
+</dict>
+</plist>

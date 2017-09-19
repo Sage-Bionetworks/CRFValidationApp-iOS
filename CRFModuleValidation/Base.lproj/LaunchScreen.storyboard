@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uAS-JJ-X9n">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="uLb-yH-FQ3">
+            <objects>
+                <viewController id="uAS-JJ-X9n" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ufg-3v-ASi"/>
+                        <viewControllerLayoutGuide type="bottom" id="muD-YU-U0b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="reR-q5-8fK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the CRF Module" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="v7r-Eg-syk">
+                                <rect key="frame" x="40" y="82" width="295" height="84"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="introIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kdX-vD-2Ne">
+                                <rect key="frame" x="111" y="208" width="152" height="152"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kdX-vD-2Ne" secondAttribute="height" multiplier="1:1" id="9Mh-wI-7u0"/>
+                                    <constraint firstAttribute="height" constant="152" id="rEJ-3k-1cT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.36862745098039218" green="0.67843137254901964" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="v7r-Eg-syk" secondAttribute="trailing" constant="24" id="0Sa-Tm-KDw"/>
+                            <constraint firstItem="kdX-vD-2Ne" firstAttribute="centerX" secondItem="reR-q5-8fK" secondAttribute="centerX" id="0bc-9F-74e"/>
+                            <constraint firstItem="kdX-vD-2Ne" firstAttribute="top" secondItem="v7r-Eg-syk" secondAttribute="bottom" constant="42" id="VrS-hF-lYQ"/>
+                            <constraint firstItem="v7r-Eg-syk" firstAttribute="leading" secondItem="reR-q5-8fK" secondAttribute="leadingMargin" constant="24" id="qaZ-6s-wa8"/>
+                            <constraint firstItem="v7r-Eg-syk" firstAttribute="top" secondItem="Ufg-3v-ASi" secondAttribute="bottom" constant="62" id="vig-mi-Sie"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dQ2-eI-tdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="introIcon" width="152" height="152"/>
+    </resources>
+</document>

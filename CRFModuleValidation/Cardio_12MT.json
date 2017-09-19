@@ -1,0 +1,8 @@
+{
+     "taskIdentifier"            : "Cardio 12MT",
+     "schemaIdentifier"          : "Cardio 12MT",
+     "taskType"                  : "cardio",
+     "predefinedExclusions"      : 3,
+     "taskOptions"               : { "walkDuration" : 12.0 }
+     "localizedSteps"            : [],
+}

@@ -1,0 +1,11 @@
+{
+    "taskIdentifier"            : "HeartRate Measurement",
+    "schemaIdentifier"          : "HeartRate Measurement",
+    "steps":
+    [
+     {
+     "identifier"       : "heartRate",
+     "type"             : "heartRate",
+     }
+     ],
+}
