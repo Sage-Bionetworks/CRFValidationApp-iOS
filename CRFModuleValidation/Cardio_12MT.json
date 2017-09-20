@@ -22,6 +22,24 @@
     "insertAfter"               : "heartRisk",
     "insertSteps"               : [
                                    {
+                                   "identifier"   : "healthKit",
+                                   "type"         : "permissions",
+                                   "title"        : "12-Minute Run",
+                                   "text"         : "CRF Module  would like to access HealthKit.",
+                                   "buttonTitle"  : "Enable HealthKit",
+                                   "items"        : [{
+                                                     "identifier" : "healthKit",
+                                                     "detail" : "HealthKit allows CRF Module to understand various aspects of your health. Enable HealthKit to tell your story.",
+                                                     "healthKitTypes" : ["HKQuantityTypeIdentifierActiveEnergyBurned",
+                                                                         "HKQuantityTypeIdentifierHeartRate",
+                                                                         "HKQuantityTypeIdentifierDistanceWalkingRunning",
+                                                                         "HKWorkoutTypeIdentifier",
+                                                                         "HKQuantityTypeIdentifierStepCount"
+                                                                         ]
+                                                     }],
+                                   "optional"     : true,
+                                   },
+                                   {
                                    "identifier"   : "location",
                                    "type"         : "permissions",
                                    "title"        : "12-Minute Run",

@@ -18,19 +18,19 @@
 			<key>schemaIdentifier</key>
 			<string>HeartRate Measurement</string>
 			<key>schemaRevision</key>
-			<integer>1</integer>
+			<integer>4</integer>
 		</dict>
 		<dict>
 			<key>schemaIdentifier</key>
 			<string>Cardio 12MT</string>
 			<key>schemaRevision</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>schemaIdentifier</key>
 			<string>Cardio Stair Step</string>
 			<key>schemaRevision</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>taskMapping</key>

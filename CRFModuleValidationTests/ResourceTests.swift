@@ -47,7 +47,6 @@ class ResourceTests: XCTestCase {
         super.tearDown()
     }
     
-    
     func testHeartRateMeasurement() {
         
         let json = jsonForResource("HeartRate_Measurement")
@@ -70,14 +69,10 @@ class ResourceTests: XCTestCase {
         let task = json?.createORKTask(with: SurveyFactory())
         XCTAssertNotNil(task)
         
-        guard let orderedTask = task as? SBANavigableOrderedTask else {
+        guard let _ = task as? SBANavigableOrderedTask else {
             XCTFail("\(String(describing: task)) nil or not expected type")
             return
         }
-        
-        let steps = orderedTask.steps
-        print(steps)
-        
     }
 
     

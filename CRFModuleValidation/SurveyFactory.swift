@@ -65,14 +65,21 @@ class SurveyFactory: SBASurveyFactory {
         }
         switch (subtype) {
         case .heartRate:
-            return ORKWorkoutStep(identifier: inputItem.identifier,
-                                  motionSteps: [],
-                                  restStep: nil,
-                                  relativeDistanceOnly: true,
-                                  options: [.excludeAccelerometer,
-                                            .excludeDeviceMotion,
-                                            .excludeLocation,
-                                            .excludePedometer])
+            // Use the workout to create the steps
+            let workoutStep =  ORKWorkoutStep(identifier: inputItem.identifier,
+                                      motionSteps: [],
+                                      restStep: nil,
+                                      relativeDistanceOnly: true,
+                                      options: [.excludeAccelerometer,
+                                                .excludeDeviceMotion,
+                                                .excludeLocation,
+                                                .excludePedometer,
+                                                .excludeHeartRate])
+            if let captureStep = workoutStep.steps.last as? ORKHeartRateCaptureStep {
+                captureStep.stepDuration = 30
+                captureStep.minimumDuration = 30
+            }
+            return ORKPageStep(identifier: inputItem.identifier, steps: workoutStep.steps)
             
         case .review:
             return ORKReviewStep(identifier: inputItem.identifier)
