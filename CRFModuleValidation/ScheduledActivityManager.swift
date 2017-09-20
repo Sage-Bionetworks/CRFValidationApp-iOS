@@ -74,6 +74,7 @@ class ScheduledActivityManager: SBAScheduledActivityManager {
             let stepResult = result.result(forIdentifier: "Cardio 12MT.workout") as? ORKStepResult,
             let distanceResult = stepResult.result(forIdentifier: "fitness.walk.distance") as? ORKNumericQuestionResult,
             let distance = distanceResult.numericAnswer {
+            step.title = "Great job!"
             step.text = "You just ran \(Int(distance.doubleValue * 3.28084)) feet in 12 minutes."
         }
         

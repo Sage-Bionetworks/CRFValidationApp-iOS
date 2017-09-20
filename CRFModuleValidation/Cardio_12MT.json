@@ -2,7 +2,7 @@
     "taskIdentifier"            : "Cardio 12MT",
     "schemaIdentifier"          : "Cardio 12MT",
     "taskType"                  : "cardio",
-    "taskOptions"               : { "walkDuration" : 30.0, "restDuration" : 60.0 },
+    "taskOptions"               : { "walkDuration" : 720.0, "restDuration" : 60.0 },
     "localizedSteps"            : [
                                    {
                                    "identifier"   : "heartRisk",
@@ -17,10 +17,6 @@
                                    "identifier"   : "workoutInstruction2",
                                    "title"        : "Heart rate measurement",
                                    "text"         : "Start by standing still to measure your resting heart rate before you run for 12 minutes."
-                                   },
-                                   {
-                                   "identifier"       : "completion",
-                                    "title"            : "Great job!"
                                    }
                                    ],
     "insertAfter"               : "heartRisk",

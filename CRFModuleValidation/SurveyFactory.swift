@@ -108,7 +108,26 @@ class SurveyFactory: SBASurveyFactory {
                     steps.remove(at: idx)
                 }
             }
-            steps = steps.map { activeTask.replaceCardioStepIfNeeded($0) }
+            steps = steps.map {
+                if let workoutStep = $0 as? ORKWorkoutStep {
+                    var workoutSteps = workoutStep.steps
+                    if let idx = workoutSteps.index(where: { $0.identifier == BridgeCardioChallengeStepIdentifier.walkInstruction.rawValue }) {
+                        workoutSteps.remove(at: idx)
+                    }
+                    if let runStep = workoutStep.step(withIdentifier: "fitness.walk") as? ORKFitnessStep {
+                        runStep.title = "Run as fast as you can for 12 minutes."
+                        runStep.spokenInstruction = runStep.title
+                    }
+                    let workoutTask = ORKOrderedTask(identifier: "workout", steps: workoutSteps)
+                    return ORKWorkoutStep(identifier: workoutTask.identifier,
+                                                     pageTask: workoutTask,
+                                                     relativeDistanceOnly: !SBAInfoManager.shared.currentParticipant.isTestUser,
+                                                     options: [])
+                }
+                else {
+                    return activeTask.replaceCardioStepIfNeeded($0)
+                }
+            }
             
             return task.copy(with: steps)
     }
