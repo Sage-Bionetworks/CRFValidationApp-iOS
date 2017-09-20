@@ -1,6 +1,6 @@
 //
-//  UIColor+CMAdditions.swift
-//  CRFModuleValidation
+//  Bridging-Header.h
+//  CRFModuleValidationTests
 //
 //  Copyright © 2017 Sage Bionetworks. All rights reserved.
 //
@@ -31,22 +31,3 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-import UIKit
-
-extension UIColor {
-	@nonobjc class var cmSoftGreen30: UIColor {
-		return UIColor(red: 104.0 / 255.0, green: 191.0 / 255.0, blue: 96.0 / 255.0, alpha: 0.3)
-	}
-
-	@nonobjc class var cmDarkPastelGreen: UIColor {
-		return UIColor(red: 94.0 / 255.0, green: 173.0 / 255.0, blue: 87.0 / 255.0, alpha: 1.0)
-	}
-
-	@nonobjc class var cmWhiteButtonShadow: UIColor { 
-		return UIColor(white: 245.0 / 255.0, alpha: 1.0)
-	}
-
-	@nonobjc class var cmWhite: UIColor { 
-		return UIColor(white: 255.0 / 255.0, alpha: 1.0)
-	}
-}

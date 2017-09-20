@@ -4,8 +4,25 @@
     "steps":
     [
      {
+     "identifier"   : "cameraPermission",
+     "type"         : "permissions",
+     "title"        : "Heart Rate Measurement",
+     "text"         : "Enable your phone’s camera.",
+     "buttonTitle"  : "Enable camera",
+     "items"        : [{
+                       "identifier" : "camera",
+                       "detail" : "CRF Module would like to access your your camera to easily and quickly gather heart rate data."
+                       }],
+     "optional"     : false,
+     },
+     {
      "identifier"       : "heartRate",
      "type"             : "heartRate",
+     },
+     {
+     "identifier"       : "completion",
+     "type"             : "completion",
+     "title"            : "Great job!"
      }
      ],
 }

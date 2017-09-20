@@ -45,25 +45,39 @@ class ScheduledActivityManager: SBAScheduledActivityManager {
         return true
     }
     
-    override func setupNotifications(for scheduledActivities: [SBBScheduledActivity]) {
-        // Do nothing
+    override func createFactory(for schedule: SBBScheduledActivity, taskRef: SBATaskReference) -> SBASurveyFactory {
+        return SurveyFactory()
     }
-
-    override func createTask(for schedule: SBBScheduledActivity) -> (task: ORKTask?, taskRef: SBATaskReference?) {
-        let (task, taskRef) = super.createTask(for: schedule)
-        
-        // Add a review step
-        if let orderedTask = task as? ORKOrderedTask {
-            let reviewStep = ORKReviewStep(identifier: "review")
-            reviewStep.title = "Great Job!"
-            let steps = orderedTask.steps.appending(reviewStep)
-            orderedTask.copy(with: steps)
-        }
-        
-        return (task, taskRef)
+    
+    override func setupNotifications(for scheduledActivities: [SBBScheduledActivity]) {
+        // Do nothing - This isn't used for this module
     }
 
     override func title(for section: Int) -> String? {
         return nil
     }
+    
+    override func instantiateActivityIntroductionStepViewController(for schedule: SBBScheduledActivity, step: ORKStep, taskRef: SBATaskReference) -> SBAActivityInstructionStepViewController? {
+        // Do not use the activity instruction for the first step
+        return nil
+    }
+    
+    override func instantiateCompletionStepViewController(for step: ORKStep, task: ORKTask, result: ORKTaskResult) -> ORKStepViewController? {
+        
+        if task.identifier == TaskIdentifier.heartRateMeasurement.rawValue,
+            let stepResult = result.result(forIdentifier: "heartRate") as? ORKStepResult,
+            let heartRateResult = stepResult.result(forIdentifier: "heartRate.after.heartRateMeasurement") as? ORKNumericQuestionResult,
+            let heartRate = heartRateResult.numericAnswer?.intValue {
+            step.text = "Your heart rate is \(heartRate) bpm."
+        }
+        else if task.identifier == TaskIdentifier.cardio12MT.rawValue,
+            let stepResult = result.result(forIdentifier: "Cardio 12MT.workout") as? ORKStepResult,
+            let distanceResult = stepResult.result(forIdentifier: "fitness.walk.distance") as? ORKNumericQuestionResult,
+            let distance = distanceResult.numericAnswer {
+            step.text = "You just ran \(Int(distance.doubleValue * 3.28084)) feet in 12 minutes."
+        }
+        
+        return super.instantiateCompletionStepViewController(for: step, task: task, result: result)
+    }
+
 }

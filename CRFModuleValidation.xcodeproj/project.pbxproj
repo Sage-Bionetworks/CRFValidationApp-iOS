@@ -23,6 +23,8 @@
 		FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF7752471F709D71004925B8 /* StudyOverview.storyboard */; };
 		FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF7752581F70A465004925B8 /* BridgeInfo-private.plist */; };
 		FF77525B1F70A475004925B8 /* crf-module.pem in Resources */ = {isa = PBXBuildFile; fileRef = FF77525A1F70A475004925B8 /* crf-module.pem */; };
+		FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752831F722C95004925B8 /* UIColor+CMAdditions.swift */; };
+		FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752851F722CB4004925B8 /* UIColor+BridgeMapping.swift */; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
@@ -120,6 +122,9 @@
 		FF7752471F709D71004925B8 /* StudyOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyOverview.storyboard; sourceTree = "<group>"; };
 		FF7752581F70A465004925B8 /* BridgeInfo-private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BridgeInfo-private.plist"; path = "../../iOSPrivateProjectInfo/CRFModuleValidation/BridgeInfo-private.plist"; sourceTree = "<group>"; };
 		FF77525A1F70A475004925B8 /* crf-module.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "crf-module.pem"; path = "../../iOSPrivateProjectInfo/CRFModuleValidation/crf-module.pem"; sourceTree = "<group>"; };
+		FF7752831F722C95004925B8 /* UIColor+CMAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CMAdditions.swift"; sourceTree = "<group>"; };
+		FF7752851F722CB4004925B8 /* UIColor+BridgeMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+BridgeMapping.swift"; sourceTree = "<group>"; };
+		FF77528F1F7230DC004925B8 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
 		FFA6078D1F70745F0034A4C0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -183,6 +188,7 @@
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
 				60F7A1641E89C98800B123FA /* Resources */,
 				60F7A1611E89C93800B123FA /* Storyboards */,
+				FF77527E1F722C60004925B8 /* Style Guide */,
 				60F7A1601E89C90700B123FA /* Supporting Files */,
 			);
 			path = CRFModuleValidation;
@@ -193,6 +199,7 @@
 			children = (
 				60F7A1491E89C76E00B123FA /* Info.plist */,
 				FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */,
+				FF77528F1F7230DC004925B8 /* Bridging-Header.h */,
 			);
 			path = CRFModuleValidationTests;
 			sourceTree = "<group>";
@@ -251,6 +258,15 @@
 				60F7A20D1E89D01100B123FA /* Sage Cardio Challenge Extension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF77527E1F722C60004925B8 /* Style Guide */ = {
+			isa = PBXGroup;
+			children = (
+				FF7752851F722CB4004925B8 /* UIColor+BridgeMapping.swift */,
+				FF7752831F722C95004925B8 /* UIColor+CMAdditions.swift */,
+			);
+			name = "Style Guide";
 			sourceTree = "<group>";
 		};
 		FFA607AB1F707BB70034A4C0 /* JSON */ = {
@@ -465,7 +481,9 @@
 				FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */,
 				FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */,
 				FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */,
+				FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */,
 				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
+				FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

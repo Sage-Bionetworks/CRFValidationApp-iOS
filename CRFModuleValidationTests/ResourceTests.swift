@@ -32,7 +32,7 @@
 //
 
 import XCTest
-@testable import elevateMS
+@testable import CRFModuleValidation
 import BridgeAppSDK
 
 class ResourceTests: XCTestCase {
@@ -45,6 +45,39 @@ class ResourceTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    
+    func testHeartRateMeasurement() {
+        
+        let json = jsonForResource("HeartRate_Measurement")
+        XCTAssertNotNil(json)
+        
+        let task = json?.createORKTask(with: SurveyFactory())
+        XCTAssertNotNil(task)
+        
+        guard let _ = task as? SBANavigableOrderedTask else {
+            XCTFail("\(String(describing: task)) nil or not expected type")
+            return
+        }
+    }
+    
+    func test12MT() {
+        
+        let json = jsonForResource("Cardio_12MT")
+        XCTAssertNotNil(json)
+        
+        let task = json?.createORKTask(with: SurveyFactory())
+        XCTAssertNotNil(task)
+        
+        guard let orderedTask = task as? SBANavigableOrderedTask else {
+            XCTFail("\(String(describing: task)) nil or not expected type")
+            return
+        }
+        
+        let steps = orderedTask.steps
+        print(steps)
+        
     }
 
     

@@ -33,7 +33,14 @@
 
 import UIKit
 import BridgeAppSDK
+import ResearchUXFactory
 import ResearchKit
+
+enum TaskIdentifier: String {
+    case heartRateMeasurement = "HeartRate Measurement"
+    case cardio12MT = "Cardio 12MT"
+    case cardioStairStep = "Cardio Stair Step"
+}
 
 enum CustomSurveyItemSubtype: String {
     case heartRate
@@ -72,4 +79,37 @@ class SurveyFactory: SBASurveyFactory {
         }
     }
 
+    override func createTaskWithActiveTask(_ activeTask: SBAActiveTask, taskOptions: ORKPredefinedTaskOption) ->
+        (ORKTask & NSCopying & NSSecureCoding)? {
+            // If not a cardio task then call super
+            guard activeTask.taskType == .activeTask(.cardio)
+                else {
+                    return super.createTaskWithActiveTask(activeTask, taskOptions: taskOptions)
+            }
+            // If the task fails to return an ordered task, then return nil
+            guard let task = activeTask.createDefaultORKActiveTask(taskOptions)
+            else {
+                return nil
+            }
+            
+            // Remove some of the steps before and after
+            // syoung 09/19/2017 There's some weirdness going on here where the camera permission is added twice
+            // so remove that as well.
+            let rkIdentifiers: [BridgeCardioChallengeStepIdentifier] = [.instruction,
+                                                                        .breathingBefore,
+                                                                        .tiredBefore,
+                                                                        .breathingAfter,
+                                                                        .tiredAfter]
+            let removeStepIdentifers = rkIdentifiers.map({ $0.rawValue }).appending("SBAPermissionsStep")
+            
+            var steps: [ORKStep] = task.steps
+            for stepIdentifier in removeStepIdentifers {
+                if let idx = steps.index(where: { $0.identifier == stepIdentifier }) {
+                    steps.remove(at: idx)
+                }
+            }
+            steps = steps.map { activeTask.replaceCardioStepIfNeeded($0) }
+            
+            return task.copy(with: steps)
+    }
 }
