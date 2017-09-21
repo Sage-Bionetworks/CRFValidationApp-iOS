@@ -64,13 +64,7 @@ class ScheduledActivityManager: SBAScheduledActivityManager {
     
     override func instantiateCompletionStepViewController(for step: ORKStep, task: ORKTask, result: ORKTaskResult) -> ORKStepViewController? {
         
-        if task.identifier == TaskIdentifier.heartRateMeasurement.rawValue,
-            let stepResult = result.result(forIdentifier: "heartRate") as? ORKStepResult,
-            let heartRateResult = stepResult.result(forIdentifier: "heartRate.after.heartRateMeasurement") as? ORKNumericQuestionResult,
-            let heartRate = heartRateResult.numericAnswer?.intValue {
-            step.text = "Your heart rate is \(heartRate) bpm."
-        }
-        else if task.identifier == TaskIdentifier.cardio12MT.rawValue,
+        if task.identifier == TaskIdentifier.cardio12MT.rawValue,
             let stepResult = result.result(forIdentifier: "Cardio 12MT.workout") as? ORKStepResult,
             let distanceResult = stepResult.result(forIdentifier: "fitness.walk.distance") as? ORKNumericQuestionResult,
             let distance = distanceResult.numericAnswer {
