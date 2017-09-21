@@ -18,7 +18,7 @@
 			<key>schemaIdentifier</key>
 			<string>HeartRate Measurement</string>
 			<key>schemaRevision</key>
-			<integer>4</integer>
+			<integer>6</integer>
 		</dict>
 		<dict>
 			<key>schemaIdentifier</key>

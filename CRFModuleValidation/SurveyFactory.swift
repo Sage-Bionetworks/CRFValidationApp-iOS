@@ -65,21 +65,38 @@ class SurveyFactory: SBASurveyFactory {
         }
         switch (subtype) {
         case .heartRate:
-            // Use the workout to create the steps
-            let workoutStep =  ORKWorkoutStep(identifier: inputItem.identifier,
-                                      motionSteps: [],
-                                      restStep: nil,
-                                      relativeDistanceOnly: true,
-                                      options: [.excludeAccelerometer,
-                                                .excludeDeviceMotion,
-                                                .excludeLocation,
-                                                .excludePedometer,
-                                                .excludeHeartRate])
-            if let captureStep = workoutStep.steps.last as? ORKHeartRateCaptureStep {
-                captureStep.stepDuration = 30
-                captureStep.minimumDuration = 30
-            }
-            return ORKPageStep(identifier: inputItem.identifier, steps: workoutStep.steps)
+            
+            // Setup for camera
+            let cameraInstruction = ORKInstructionStep(identifier: "cameraInstruction")
+            cameraInstruction.title = "Using camera"
+            cameraInstruction.text = "Use your camera to capture your heart rate by placing your finger over the lens and flash."
+            
+            let camera = ORKHeartRateCaptureStep(identifier: "camera")
+            camera.stepDuration = 40
+            camera.minimumDuration = 40
+            
+            // Setup for accelerometer
+            let motionSensorInstruction = ORKInstructionStep(identifier: "motionSensorInstruction")
+            motionSensorInstruction.title = "Using motion sensors"
+            motionSensorInstruction.text = "Use your motion sensors to capture your heart rate by holding your phone against your heart."
+            
+            let motionSensor = ORKActiveStep(identifier: "motionSensor")
+            motionSensor.recorderConfigurations = [
+                ORKAccelerometerRecorderConfiguration(identifier: "accelerometer", frequency: 100),
+                ORKDeviceMotionRecorderConfiguration(identifier: "deviceMotion", frequency: 100)]
+            motionSensor.shouldContinueOnFinish = true
+            motionSensor.shouldSpeakCountDown = true
+            motionSensor.shouldStartTimerAutomatically = true
+            motionSensor.stepDuration = 20
+            motionSensor.text = "Hold your phone against your heart for 20 seconds."
+            motionSensor.finishedSpokenInstruction = "Motion sensor measurement is complete."
+            motionSensor.shouldPlaySoundOnFinish = true
+            motionSensor.shouldVibrateOnFinish = true
+            
+            // Setup question for cross reference step
+            let bpmCrossRefStep = ORKQuestionStep(identifier: "oximeter", title: "What is your heart rate using the oximeter?", answer: ORKNumericAnswerFormat(style: .integer, unit: "bpm"))
+            
+            return ORKPageStep(identifier: inputItem.identifier, steps:[cameraInstruction, camera, motionSensorInstruction, motionSensor, bpmCrossRefStep])
             
         case .review:
             return ORKReviewStep(identifier: inputItem.identifier)

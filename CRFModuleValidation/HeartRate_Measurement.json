@@ -16,13 +16,26 @@
      "optional"     : false,
      },
      {
+     "identifier"   : "coremotion",
+     "type"         : "permissions",
+     "title"        : "Heart Rate Measurement",
+     "text"         : "CRF Module would like to access motion sensors.",
+     "buttonTitle"  : "Enable motion sensors",
+     "items"        : [{
+                       "identifier" : "coremotion",
+                       "detail" : "The Heart Rate Measurement needs access to your phone’s motion sensor is needed for this activity."
+                       }],
+     "optional"     : false,
+     },
+     {
      "identifier"       : "heartRate",
      "type"             : "heartRate",
      },
      {
      "identifier"       : "completion",
      "type"             : "completion",
-     "title"            : "Great job!"
+     "title"            : "Great job!",
+     "text"             : "Your results will be uploaded for analysis."
      }
      ],
 }
