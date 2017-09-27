@@ -1,0 +1,17 @@
+language: objective-c
+osx_image: xcode8.3
+xcode_project: CRFModuleValidation.xcodeproj
+xcode_scheme: CRFModuleValidation
+cache:
+- bundler
+before_install:
+- echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
+install:
+- gem install bundler
+- bundle install
+script:
+- travis_wait 60 ./travis/build.sh
+branches:
+  only:
+  - master
+  - /^stable-.*$/
