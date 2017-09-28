@@ -10,7 +10,7 @@ install:
 - gem install bundler
 - bundle install
 script:
-- travis_wait 60 ./travis/build.sh
+- travis_wait 75 ./travis/build.sh
 branches:
   only:
   - master
