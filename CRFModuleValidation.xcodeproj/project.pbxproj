@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */; };
 		60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1391E89C76E00B123FA /* Assets.xcassets */; };
 		60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A13B1E89C76E00B123FA /* LaunchScreen.storyboard */; };
 		60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1DE1E89CAFB00B123FA /* BridgeInfo.plist */; };
@@ -105,6 +106,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFModuleValidation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A1321E89C76E00B123FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F7A1391E89C76E00B123FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */,
 				60F7A20F1E89D0B200B123FA /* ResearchKit.framework in Frameworks */,
 				60F7A2121E89D0B200B123FA /* ResearchUXFactory.framework in Frameworks */,
 				60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */,
@@ -239,6 +242,7 @@
 		60F7A1F21E89CFEF00B123FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */,
 				FFA6078D1F70745F0034A4C0 /* HealthKit.framework */,
 				60F7A2141E89D0B200B123FA /* BridgeSDK.framework */,
 				60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */,
@@ -566,7 +570,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -609,7 +612,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -633,7 +635,6 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -662,7 +663,6 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
