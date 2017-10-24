@@ -666,8 +666,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "859e989d-f740-4844-b424-721f77405886";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: org.sagebase.crfModuleApp";
+				PROVISIONING_PROFILE = "9059c83e-ff2e-4a3a-8207-50f3b3cccb8f";
+				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.crfModuleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
