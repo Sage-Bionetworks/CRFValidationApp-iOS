@@ -36,6 +36,11 @@ import BridgeAppSDK
 
 class ActivityTableViewController: SBAActivityTableViewController {
     
+    @IBAction func fitbitButtonTapped(_ sender: Any) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.connectToFitbit()
+    }
+
     override var scheduledActivityDataSource: SBAScheduledActivityDataSource {
         return scheduledActivityManager
     }
