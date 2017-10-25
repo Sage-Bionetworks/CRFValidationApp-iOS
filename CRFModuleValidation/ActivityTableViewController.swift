@@ -33,28 +33,12 @@
 
 import UIKit
 import BridgeAppSDK
-import SafariServices
 
 class ActivityTableViewController: SBAActivityTableViewController {
     
-    var authSession: SFAuthenticationSession?
-    
     @IBAction func fitbitButtonTapped(_ sender: Any) {
-        let handler:SFAuthenticationSession.CompletionHandler = { (callBack:URL?, error:Error? ) in
-            guard error == nil, let successURL = callBack else {
-                return
-            }
-            let authCode = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
-            
-            debugPrint("auth code: \(String(describing: authCode))")
-        }
-
-        // Fitbit Authorization Code Grant Flow URL
-        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=https%3A%2F%2Fdocs.sagebridge.org%2Fcrf-module%2F&scope=heartrate&expires_in=604800") else { return }
-        
-        debugPrint("Starting Safari auth session: \(authURL)")
-        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: nil, completionHandler: handler)
-        authSession!.start()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.connectToFitbit()
     }
 
     override var scheduledActivityDataSource: SBAScheduledActivityDataSource {

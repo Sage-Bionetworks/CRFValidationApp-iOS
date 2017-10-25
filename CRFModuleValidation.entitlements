@@ -4,7 +4,8 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:*.sagebridge.org</string>
+		<string>applinks:docs.sagebridge.org</string>
+		<string>applinks:webservices.sagebridge.org</string>
 	</array>
 	<key>com.apple.developer.default-data-protection</key>
 	<string>NSFileProtectionComplete</string>

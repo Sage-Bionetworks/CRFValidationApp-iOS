@@ -33,9 +33,12 @@
 
 import UIKit
 import BridgeAppSDK
+import SafariServices
 
 @UIApplicationMain
 class AppDelegate: SBAAppDelegate {
+    
+    var authSession: SFAuthenticationSession?
     
     override func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -49,6 +52,37 @@ class AppDelegate: SBAAppDelegate {
         }
         
         return super.application(application, willFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        debugPrint("\(String(describing: userActivity.webpageURL))")
+        guard let successURL = userActivity.webpageURL else { return false }
+        let codeArg = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
+        let authCode = codeArg?.value
+        debugPrint("auth code: \(String(describing: authCode))")
+        // TODO emm 2017-10-25 when Bridge API for this is implemented and supported in BridgeSDK, call it with authCode and do something with the returned access token
+
+        // Close the auth session. This unfortunately ends up calling its completion handler with an error.
+        self.authSession?.cancel()
+        self.authSession = nil
+        debugPrint("Safari auth session ended")
+        
+        return true
+    }
+    
+    func connectToFitbit() {
+        // Fitbit Authorization Code Grant Flow URL
+        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=https%3A%2F%2Fdocs.sagebridge.org%2Fcrf-module%2F&scope=heartrate&expires_in=604800") else { return }
+        
+        debugPrint("Starting Safari auth session: \(authURL)")
+        
+        // Fitbit only lets us give one callback URL per app, so if we want to use the same Fitbit app for both iOS and Android (and potentially web clients)
+        // we need to *not* use a custom URL scheme. But SFAuthenticationSession's completion handler requires it to be a custom URL scheme. So instead we will
+        // handle the callback in the place that Universal Links are handled, i.e., application(_:, continue:, restorationHandler:), and close the
+        // SFAuthenticationSession from there. Also note that the only way to close the auth session without crashing is to cancel it, which calls
+        // the completion handler with the same error as if the user canceled the login, rendering the completion handler pretty much useless to us. emm 2017-10-25
+        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: nil, completionHandler: {_,_ in })
+        authSession!.start()
     }
     
 }
