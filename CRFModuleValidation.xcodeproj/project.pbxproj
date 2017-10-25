@@ -352,6 +352,9 @@
 							com.apple.Keychain = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					60F7A1421E89C76E00B123FA = {

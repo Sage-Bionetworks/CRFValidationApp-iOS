@@ -50,10 +50,10 @@ class ActivityTableViewController: SBAActivityTableViewController {
         }
 
         // Fitbit Authorization Code Grant Flow URL
-        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=https%3A%2F%2Fsagebridge.org%2F&scope=heartrate&expires_in=604800") else { return }
+        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=https%3A%2F%2Fdocs.sagebridge.org%2Fcrf-module%2F&scope=heartrate&expires_in=604800") else { return }
         
         debugPrint("Starting Safari auth session: \(authURL)")
-        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: "https://sagebridge.org/", completionHandler: handler)
+        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: nil, completionHandler: handler)
         authSession!.start()
     }
 
