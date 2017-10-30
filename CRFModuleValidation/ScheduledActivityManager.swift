@@ -38,8 +38,6 @@ import ResearchSuiteUI
 
 class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControllerDelegate {
 
-    
-    
     override init(delegate: SBAScheduledActivityManagerDelegate?) {
         super.init(delegate: delegate)
         self.sections = [.keepGoing]
@@ -82,10 +80,41 @@ class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControll
     // MARK: ResearchSuite Implementation
     
     override func didSelectRow(at indexPath: IndexPath) {
-        // TODO: Get replacement
+       
+        // Only if the task was created should something be done.
+        guard let schedule = scheduledActivity(at: indexPath),
+            let taskRef = bridgeInfo.taskReferenceForSchedule(schedule),
+            let identifier = schedule.activityIdentifier
+            else {
+                assertionFailure("Could not find schedule or task reference")
+                return
+        }
         
+        let taskInfo: RSDTaskInfoStep = (taskRef as? RSDTaskInfoStep) ?? {
+            guard let dictionary = taskRef as? NSDictionary,
+                let resourceName = dictionary["resourceName"] as? String else {
+                fatalError("Cannot create task info")
+            }
+            
+            var taskInfo = RSDTaskInfoStepObject(with: identifier)
+            
+            taskInfo.estimatedMinutes = taskRef.activityMinutes
+            taskInfo.taskTransformer = RSDTaskResourceTransformerObject(resourceName: resourceName)
+            if let imageName = dictionary["backgroundImage"] as? String,
+                let wrapper = try? RSDImageWrapper(imageName: imageName) {
+                taskInfo.icon = wrapper
+            }
+            taskInfo.title = dictionary["title"] as? String
+            taskInfo.subtitle = dictionary["subtitle"] as? String
+            
+            return taskInfo
+        }()
         
+        let taskViewController = RSDTaskViewController(taskInfo: taskInfo)
+        taskViewController.taskPath.scheduleIdentifier = schedule.scheduleIdentifier
+        taskViewController.delegate = self
         
+        self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
     }
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), didFinishWith reason: RSDTaskFinishReason, error: Error?) {
@@ -125,6 +154,7 @@ class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControll
         return nil  // TODO: build replacement view controllers
     }
 }
+
 
 extension RSDTaskResultObject : SBAScheduledActivityResult {
     

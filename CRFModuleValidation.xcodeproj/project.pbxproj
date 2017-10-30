@@ -30,11 +30,13 @@
 		FF78FC6B1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF78FC6E1FA3FE9400B8D42C /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; };
 		FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
+		FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
 		FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */; };
-		FFA607AD1F707BFB0034A4C0 /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */; };
+		FFA607AD1F707BFB0034A4C0 /* Cardio_12MT_ORKTask.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AC1F707BFB0034A4C0 /* Cardio_12MT_ORKTask.json */; };
 		FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
 		FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */; };
 		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
@@ -177,12 +179,14 @@
 		FF77528F1F7230DC004925B8 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchSuiteUI.xcodeproj; path = ResearchSuite/ResearchSuiteUI/ResearchSuiteUI.xcodeproj; sourceTree = "<group>"; };
 		FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchSuite.xcodeproj; path = ResearchSuite/ResearchSuite/ResearchSuite.xcodeproj; sourceTree = "<group>"; };
+		FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
+		FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartrateStep.json; sourceTree = "<group>"; };
 		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
 		FFA6078D1F70745F0034A4C0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		FFA6079C1F7076270034A4C0 /* CRFModuleValidation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CRFModuleValidation-Bridging-Header.h"; sourceTree = "<group>"; };
 		FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
-		FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
+		FFA607AC1F707BFB0034A4C0 /* Cardio_12MT_ORKTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT_ORKTask.json; sourceTree = "<group>"; };
 		FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartRate_Measurement.json; sourceTree = "<group>"; };
 		FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledActivityManager.swift; sourceTree = "<group>"; };
 		FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
@@ -348,8 +352,10 @@
 		FFA607AB1F707BB70034A4C0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */,
+				FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */,
 				FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */,
-				FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */,
+				FFA607AC1F707BFB0034A4C0 /* Cardio_12MT_ORKTask.json */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -545,13 +551,15 @@
 			files = (
 				60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */,
 				FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */,
-				FFA607AD1F707BFB0034A4C0 /* Cardio_12MT.json in Resources */,
+				FFA607AD1F707BFB0034A4C0 /* Cardio_12MT_ORKTask.json in Resources */,
 				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,
 				FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */,
+				FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */,
 				FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */,
 				FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */,
 				60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */,
 				60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */,
+				FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
