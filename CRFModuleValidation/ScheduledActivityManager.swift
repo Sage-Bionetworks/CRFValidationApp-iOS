@@ -36,29 +36,49 @@ import BridgeAppSDK
 import ResearchSuite
 import ResearchSuiteUI
 
-class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControllerDelegate {
-
-    override init(delegate: SBAScheduledActivityManagerDelegate?) {
-        super.init(delegate: delegate)
-        self.sections = [.keepGoing]
+class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledActivityDataSource, RSDTaskViewControllerDelegate {
+    
+    private let heartRateMeasurementGuid = "fa1058e7-8df2-41b9-aaf4-376049ab66a7"
+    private let heartRateTaskIdentifier = "HeartRate Measurement"
+    
+    override func filteredSchedules(scheduledActivities: [SBBScheduledActivity]) -> [SBBScheduledActivity] {
+        
+        var schedules = super.filteredSchedules(scheduledActivities: scheduledActivities)
+        
+        // IA-591 If this is the test user then force the display of the heart rate measurement task
+        // syoung 10/30/2017 This is a work-around for the tasks disappearing until we have time to
+        // try and repro.
+        if self.user.isTestUser, !schedules.contains(where: { $0.scheduleIdentifier == heartRateMeasurementGuid }) {
+            let schedule = SBBScheduledActivity()
+            schedule.guid = heartRateMeasurementGuid
+            schedule.persistentValue = true
+            schedule.scheduledOn = Date().startOfDay()
+            let activity = SBBActivity()
+            schedule.activity = activity
+            activity.guid = UUID().uuidString
+            let taskReference = SBBTaskReference()
+            taskReference.identifier = heartRateTaskIdentifier
+            activity.task = taskReference
+            schedules.append(schedule)
+        }
+        
+        return schedules
     }
     
     override func isAvailable(schedule: SBBScheduledActivity) -> Bool {
         return true
     }
+
+    override func setupNotifications(for scheduledActivities: [SBBScheduledActivity]) {
+        // Do nothing - This isn't used for this module
+    }
+    
+    // MARK: ORKTask management
     
     override func createFactory(for schedule: SBBScheduledActivity, taskRef: SBATaskReference) -> SBASurveyFactory {
         return SurveyFactory()
     }
-    
-    override func setupNotifications(for scheduledActivities: [SBBScheduledActivity]) {
-        // Do nothing - This isn't used for this module
-    }
 
-    override func title(for section: Int) -> String? {
-        return nil
-    }
-    
     override func instantiateActivityIntroductionStepViewController(for schedule: SBBScheduledActivity, step: ORKStep, taskRef: SBATaskReference) -> SBAActivityInstructionStepViewController? {
         // Do not use the activity instruction for the first step
         return nil
@@ -77,9 +97,29 @@ class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControll
         return super.instantiateCompletionStepViewController(for: step, task: task, result: result)
     }
 
-    // MARK: ResearchSuite Implementation
+    // MARK: Data source
     
-    override func didSelectRow(at indexPath: IndexPath) {
+    func numberOfSections() -> Int {
+        return 1
+    }
+    
+    func numberOfRows(for section: Int) -> Int {
+        return self.activities.count
+    }
+    
+    func scheduledActivity(at indexPath: IndexPath) -> SBBScheduledActivity? {
+        return self.activities[indexPath.row]
+    }
+    
+    func shouldShowTask(for indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func title(for section: Int) -> String? {
+        return nil
+    }
+    
+    func didSelectRow(at indexPath: IndexPath) {
        
         // Only if the task was created should something be done.
         guard let schedule = scheduledActivity(at: indexPath),
@@ -90,32 +130,50 @@ class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControll
                 return
         }
         
-        let taskInfo: RSDTaskInfoStep = (taskRef as? RSDTaskInfoStep) ?? {
-            guard let dictionary = taskRef as? NSDictionary,
-                let resourceName = dictionary["resourceName"] as? String else {
-                fatalError("Cannot create task info")
+        // For the HeartRate Measurement, use the ORKTask so that the schema stays consistent.
+        if identifier == heartRateTaskIdentifier {
+            
+            // If this is a valid schedule then create the task view controller
+            guard let taskViewController = createTaskViewController(for: schedule)
+                else {
+                    assertionFailure("Failed to create task view controller for \(schedule)")
+                    return
             }
             
-            var taskInfo = RSDTaskInfoStepObject(with: identifier)
+            self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
+        }
+        else {
             
-            taskInfo.estimatedMinutes = taskRef.activityMinutes
-            taskInfo.taskTransformer = RSDTaskResourceTransformerObject(resourceName: resourceName)
-            if let imageName = dictionary["backgroundImage"] as? String,
-                let wrapper = try? RSDImageWrapper(imageName: imageName) {
-                taskInfo.icon = wrapper
-            }
-            taskInfo.title = dictionary["title"] as? String
-            taskInfo.subtitle = dictionary["subtitle"] as? String
+            // Otherwise, This is a task that should run using ResearchSuite
+            let taskInfo: RSDTaskInfoStep = (taskRef as? RSDTaskInfoStep) ?? {
+                guard let dictionary = taskRef as? NSDictionary,
+                    let resourceName = dictionary["resourceName"] as? String else {
+                    fatalError("Cannot create task info")
+                }
+                
+                var taskInfo = RSDTaskInfoStepObject(with: identifier)
+                
+                taskInfo.estimatedMinutes = taskRef.activityMinutes
+                taskInfo.taskTransformer = RSDTaskResourceTransformerObject(resourceName: resourceName)
+                if let imageName = dictionary["backgroundImage"] as? String,
+                    let wrapper = try? RSDImageWrapper(imageName: imageName) {
+                    taskInfo.icon = wrapper
+                }
+                taskInfo.title = dictionary["title"] as? String
+                taskInfo.subtitle = dictionary["subtitle"] as? String
+                
+                return taskInfo
+            }()
             
-            return taskInfo
-        }()
-        
-        let taskViewController = RSDTaskViewController(taskInfo: taskInfo)
-        taskViewController.taskPath.scheduleIdentifier = schedule.scheduleIdentifier
-        taskViewController.delegate = self
-        
-        self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
+            let taskViewController = RSDTaskViewController(taskInfo: taskInfo)
+            taskViewController.taskPath.scheduleIdentifier = schedule.scheduleIdentifier
+            taskViewController.delegate = self
+            
+            self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
+        }
     }
+    
+    // MARK: RSDTaskViewControllerDelegate
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), didFinishWith reason: RSDTaskFinishReason, error: Error?) {
         // dismiss the view controller
@@ -131,6 +189,7 @@ class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControll
         }
         
         // TODO: syoung 10/30/2017 Handle subresults that point at a different schedule and schema
+        // NOTE: Should not be required for this app.
         let didExitEarly = taskPath.didExitEarly
         let taskResult = taskPath.result as! SBAScheduledActivityResult
         schedule.startedOn = taskResult.startDate
@@ -143,18 +202,19 @@ class ScheduledActivityManager: SBAScheduledActivityManager, RSDTaskViewControll
                 SBBDataArchive.encryptAndUploadArchives([archive])
             }
             
-            // Send updates if not early exit
-            if !didExitEarly {
-                self.sendUpdated(scheduledActivities: [schedule])
+            DispatchQueue.main.async {
+                // Send updates if not early exit
+                if !didExitEarly {
+                    self.sendUpdated(scheduledActivities: [schedule])
+                }
             }
         }
     }
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), viewControllerFor step: RSDStep) -> (UIViewController & RSDStepController)? {
-        return nil  // TODO: build replacement view controllers
+        return nil  // TODO: syoung 10/30/2017 build replacement view controllers
     }
 }
-
 
 extension RSDTaskResultObject : SBAScheduledActivityResult {
     
@@ -171,46 +231,59 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
         var archivableResults: [(String, SBAArchivableResult)] = []
         var answerMap: [String : Any] = [:]
         
-        var recursiveAddFunc: ((String, [RSDResult]) -> Void)!
+        var recursiveAddFunc: ((String?, String, [RSDResult]) -> Void)!
         
-        recursiveAddFunc = { (stepIdentifier: String, results: [RSDResult]) in
+        recursiveAddFunc = { (sectionIdentifier: String?, stepIdentifier: String, results: [RSDResult]) in
             for result in results {
-                
-                if let answerResult = result as? RSDAnswerResult,
-                    let answer = (answerResult.value as? RSDJSONValue)?.jsonObject() {
-                    answerMap[answerResult.identifier] = answer
-                    if let unit = answerResult.answerType.unit {
-                        answerMap["\(answerResult.identifier)Unit"] = unit
-                    }
-                }
-                
+
                 if let archivableResult = result as? SBAArchivableResult {
                     archivableResults.append((stepIdentifier, archivableResult))
                 }
                 else if let stepCollection = result as? RSDStepCollectionResult {
-                    recursiveAddFunc(stepCollection.identifier, stepCollection.inputResults)
+                    recursiveAddFunc(sectionIdentifier, stepCollection.identifier, stepCollection.inputResults)
                 }
                 else if let taskResult = result as? RSDTaskResult {
-                    recursiveAddFunc(taskResult.identifier, taskResult.stepHistory)
+                    recursiveAddFunc(taskResult.identifier, taskResult.identifier, taskResult.stepHistory)
                     if let asyncResults = taskResult.asyncResults {
-                        recursiveAddFunc(taskResult.identifier, asyncResults)
+                        recursiveAddFunc(taskResult.identifier, taskResult.identifier, asyncResults)
                     }
+                }
+                else if let answerResult = result as? RSDAnswerResult {
+                    
+                    let archivableResult = RSDAnswerResultWrapper(sectionIdentifier: sectionIdentifier, result: answerResult)
+                    archivableResults.append((stepIdentifier, archivableResult))
+                    
+                    if let answer = (answerResult.value as? RSDJSONValue)?.jsonObject() {
+                        answerMap[archivableResult.identifier] = answer
+                        if let unit = answerResult.answerType.unit {
+                            answerMap["\(archivableResult.identifier)Unit"] = unit
+                        }
+                    }
+                }
+                else if let fileResult = result as? RSDFileResult {
+                    let archivableResult = RSDFileResultWrapper(sectionIdentifier: sectionIdentifier, result: fileResult)
+                    archivableResults.append((stepIdentifier, archivableResult))
                 }
             }
         }
         
-        recursiveAddFunc(identifier, stepHistory)
+        recursiveAddFunc(nil, identifier, stepHistory)
         if let asyncResults = self.asyncResults {
-            recursiveAddFunc(identifier, asyncResults)
+            recursiveAddFunc(nil, identifier, asyncResults)
         }
+        
         if answerMap.count > 0 {
-            let archiveAnswers = RSDAnswerMap(identifier: identifier, startDate: startDate, endDate: endDate, answerMap: answerMap)
+            let archiveAnswers = RSDConsolidatedResult(identifier: identifier, startDate: startDate, endDate: endDate, filename: "answerMap", json: answerMap)
             archivableResults.append((identifier, archiveAnswers))
+        }
+        
+        if stepHistory.count > 0 {
+            let archiveStepHistory = RSDJSONEncodedResult(taskResult: self, filename: "taskResult")
+            archivableResults.append((identifier, archiveStepHistory))
         }
 
         return archivableResults.count > 0 ? archivableResults : nil
     }
-    
 }
 
 func bridgifyFilename(_ filename: String) -> String {
@@ -225,30 +298,47 @@ private let QuestionResultQuestionTextKey = "questionText"
 private let QuestionResultQuestionTypeKey = "questionType"
 private let QuestionResultQuestionTypeNameKey = "questionTypeName"
 private let QuestionResultSurveyAnswerKey = "answer"
-
 private let NumericResultUnitKey = "unit"
-private let DateAndTimeResultTimeZoneKey = "timeZone"
 
-extension RSDAnswerResultObject : SBAArchivableResult {
+public struct RSDAnswerResultWrapper : SBAArchivableResult {
+    public let sectionIdentifier : String?
+    public let result : RSDAnswerResult
+    
+    public var identifier: String {
+        if let section = sectionIdentifier {
+            return "\(section).\(result.identifier)"
+        } else {
+            return result.identifier
+        }
+    }
+    
+    public var startDate: Date {
+        return result.startDate
+    }
+    
+    public var endDate: Date {
+        return result.endDate
+    }
+
     public func bridgeData(_ stepIdentifier: String) -> ArchiveableResult? {
         
         var json: [String : Any] = [:]
 
-        json[kIdentifierKey] = self.identifier
-        json[kStartDateKey]  = self.startDate
-        json[kEndDateKey]    = self.endDate
-        json[kItemKey] = self.identifier
-        if let answer = (self.value as? RSDJSONValue)?.jsonObject() {
-            json[self.answerType.bridgeAnswerKey] = answer
+        json[kIdentifierKey] = result.identifier
+        json[kStartDateKey]  = result.startDate
+        json[kEndDateKey]    = result.endDate
+        json[kItemKey] = result.identifier
+        if let answer = (result.value as? RSDJSONValue)?.jsonObject() {
+            json[result.answerType.bridgeAnswerKey] = answer
             json[QuestionResultSurveyAnswerKey] = answer
-            json[QuestionResultQuestionTypeNameKey] = self.answerType.bridgeAnswerType
-            if let unit = self.answerType.unit {
+            json[QuestionResultQuestionTypeNameKey] = result.answerType.bridgeAnswerType
+            if let unit = result.answerType.unit {
                 json[NumericResultUnitKey] = unit
             }
         }
         
         let filename = bridgifyFilename(self.identifier) + ".json"
-        return ArchiveableResult(result: json as NSDictionary, filename: filename)
+        return ArchiveableResult(result: (json as NSDictionary).jsonObject(), filename: filename)
     }
 }
 
@@ -300,27 +390,75 @@ extension RSDAnswerResultType {
     }
 }
 
-extension RSDFileResultObject : SBAArchivableResult {
+public struct RSDFileResultWrapper : SBAArchivableResult {
+    public let sectionIdentifier : String?
+    public let result : RSDFileResult
+    
+    public var identifier: String {
+        return "\(sectionIdentifier ?? "").\(result.identifier)"
+    }
+    
+    public var startDate: Date {
+        return result.startDate
+    }
+    
+    public var endDate: Date {
+        return result.endDate
+    }
+    
     public func bridgeData(_ stepIdentifier: String) -> ArchiveableResult? {
-        guard let url = self.url else {
+        guard let url = result.url else {
             return nil
         }
         var ext = url.pathExtension
         if ext == "" {
             ext = "json"
         }
-        let filename = bridgifyFilename(self.identifier + "_" + stepIdentifier) + "." + ext
+        let filename = bridgifyFilename(self.identifier) + "." + ext
         return ArchiveableResult(result: url as AnyObject, filename: filename)
     }
 }
 
-public struct RSDAnswerMap : SBAArchivableResult {
+public struct RSDJSONEncodedResult : SBAArchivableResult, Encodable {
+    public let taskResult: RSDTaskResult
+    public let filename: String
+    
+    public var identifier: String {
+        return taskResult.identifier
+    }
+    
+    public var startDate: Date {
+        return taskResult.startDate
+    }
+    
+    public var endDate: Date {
+        return taskResult.endDate
+    }
+    
+    public func bridgeData(_ stepIdentifier: String) -> ArchiveableResult? {
+        do {
+            let encoder = RSDFactory.shared.createJSONEncoder()
+            let data = try encoder.encode(self)
+            return ArchiveableResult(result: data as NSData, filename: filename)
+        } catch let err {
+            debugPrint("Error encoding resule: \(err)")
+            return nil
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        try taskResult.encode(to: encoder)
+    }
+}
+
+public struct RSDConsolidatedResult : SBAArchivableResult {
     public let identifier: String
     public let startDate: Date
     public let endDate: Date
-    public let answerMap: [String : Any]
+    public let filename: String
+    public let json: [String : Any]
     
     public func bridgeData(_ stepIdentifier: String) -> ArchiveableResult? {
-        return ArchiveableResult(result: answerMap as NSDictionary, filename: "answerMap")
+        return ArchiveableResult(result: (json as NSDictionary).jsonObject(), filename: filename)
     }
 }

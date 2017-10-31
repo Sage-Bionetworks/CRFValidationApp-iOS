@@ -40,6 +40,8 @@
                            {
                            "identifier"         : "heartRate.before",
                            "type"               : "taskInfo",
+                           "title"              : "Capture heart rate",
+                           "subtitle"           : "Use your finger to cover the camera and flash on the back of your phone.",
                            "detail"             : "Your pre run heart rate is",
                            "taskTransformer"    : { "resourceName": "HeartrateStep.json"}
                            },
@@ -52,7 +54,7 @@
                                                "type"         : "instruction",
                                                "title"        : "Take your phone with you",
                                                "imageBefore"  : "12MinSmall1",
-                                               "text"         : "Cover as much distance on a flat course in 12 minutes by running or walking.",
+                                               "text"         : "Cover as much distance as you can on a flat course in 12 minutes by running or walking.",
                                                "actions"           : { "goForward": { "buttonTitle": "Press to start", "iconName": "captureStartButton" }}
                                                },
                                                {
@@ -76,13 +78,15 @@
                            {
                            "identifier"         : "heartRate.after",
                            "type"               : "taskInfo",
-                           "detail"             : "Your heart rate went up to",
+                           "title"              : "Stand still for 1 minute",
+                           "subtitle"           : "Almost done! Stand still for a minute to measure your heart rate recovery.",
+                           "detail"             : "Your heart rate changed to",
                            "taskTransformer"    : { "resourceName": "HeartrateStep.json"}
                            },
                            {
                            "identifier"     : "surveyAfter",
                            "type"           : "form",
-                           "text"           : "What if anything kept you from going further?",
+                           "text"           : "What, if anything, kept you from going further?",
                            "dataType"       : "singleChoice",
                            "choices"        : ["Nothing, was my best effort",
                                                "Feeling tired",

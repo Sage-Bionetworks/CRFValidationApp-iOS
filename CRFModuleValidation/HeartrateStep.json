@@ -1,7 +1,7 @@
 {
     "steps"             : [
                            {
-                           "identifier"   : "heartRate.instruction",
+                           "identifier"   : "instruction",
                            "type"         : "instruction",
                            "imageBefore"  : "heartRateMeasurement1",
                            "title"        : "Capture heart rate",
@@ -24,7 +24,7 @@
                                }
                            },
                            {
-                           "identifier"   : "heartRate.finished",
+                           "identifier"   : "finished",
                            "type"         : "instruction",
                            "title"        : "You’re all done!"
                            }
