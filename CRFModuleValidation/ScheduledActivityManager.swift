@@ -144,6 +144,8 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         }
         else {
             
+            RSDFactory.shared = CRFTaskFactory()
+            
             // Otherwise, This is a task that should run using ResearchSuite
             let taskInfo: RSDTaskInfoStep = (taskRef as? RSDTaskInfoStep) ?? {
                 guard let dictionary = taskRef as? NSDictionary,
@@ -178,6 +180,10 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), didFinishWith reason: RSDTaskFinishReason, error: Error?) {
         // dismiss the view controller
         taskViewController.dismiss(animated: true, completion: nil)
+        
+        if let err = error {
+            debugPrint(err)
+        }
     }
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), readyToSave taskPath: RSDTaskPath) {

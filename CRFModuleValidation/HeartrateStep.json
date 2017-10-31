@@ -1,12 +1,17 @@
 {
     "steps"             : [
                            {
-                           "identifier"   : "instruction",
-                           "type"         : "instruction",
-                           "imageBefore"  : "heartRateMeasurement1",
-                           "title"        : "Capture heart rate",
-                           "text"         : "Use your finger to cover the camera and flash on the back of your phone.",
-                           "actions"           : { "goForward": { "buttonTitle": "Press to start", "iconName": "captureStartButton" }}
+                           "identifier"     : "instruction",
+                           "type"           : "instruction",
+                           "animatedImage"  : {
+                                               "imageNames" : ["heartRateMeasurement1", "heartRateMeasurement2", "heartRateMeasurement3"],
+                                               "animationDuration" : 2,
+                                               "backgroundColorName" : "macaroniAndCheese"
+                                               },
+                           "title"          : "Capture heart rate",
+                           "text"           : "Use your finger to cover the camera and flash on the back of your phone.",
+                           "actions"        : { "goForward": { "iconName": "captureStartButton" }},
+                           "viewInfo"       : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"   : "heartRate",
