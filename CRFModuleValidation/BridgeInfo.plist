@@ -24,7 +24,7 @@
 			<key>schemaIdentifier</key>
 			<string>Cardio 12MT</string>
 			<key>schemaRevision</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>schemaIdentifier</key>
@@ -44,6 +44,16 @@
 		<dict>
 			<key>taskIdentifier</key>
 			<string>Cardio 12MT</string>
+			<key>estimatedMinutes</key>
+			<string>15</string>
+			<key>title</key>
+			<string>12 minute test</string>
+			<key>subtitle</key>
+			<string>15 minutes</string>
+			<key>icon</key>
+			<string>active12MinuteRun</string>
+			<key>backgroundImage</key>
+			<string>12MinFullScreen</string>
 			<key>resourceName</key>
 			<string>Cardio_12MT</string>
 		</dict>

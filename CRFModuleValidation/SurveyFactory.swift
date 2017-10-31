@@ -35,6 +35,7 @@ import UIKit
 import BridgeAppSDK
 import ResearchUXFactory
 import ResearchKit
+import ResearchSuite
 
 enum TaskIdentifier: String {
     case heartRateMeasurement = "HeartRate Measurement"
@@ -124,7 +125,8 @@ class SurveyFactory: SBASurveyFactory {
                                                                         .tiredBefore,
                                                                         .breathingAfter,
                                                                         .tiredAfter]
-            let removeStepIdentifers = rkIdentifiers.map({ $0.rawValue }).appending("SBAPermissionsStep")
+            var removeStepIdentifers = rkIdentifiers.map({ $0.rawValue })
+            removeStepIdentifers.append("SBAPermissionsStep")
             
             var steps: [ORKStep] = task.steps
             for stepIdentifier in removeStepIdentifers {

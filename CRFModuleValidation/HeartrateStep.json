@@ -1,0 +1,32 @@
+{
+    "steps"             : [
+                           {
+                           "identifier"   : "instruction",
+                           "type"         : "instruction",
+                           "imageBefore"  : "heartRateMeasurement1",
+                           "title"        : "Capture heart rate",
+                           "text"         : "Use your finger to cover the camera and flash on the back of your phone.",
+                           "actions"           : { "goForward": { "buttonTitle": "Press to start", "iconName": "captureStartButton" }}
+                           },
+                           {
+                           "identifier"   : "heartRate",
+                           "type"         : "active",
+                           "text"         : "Gently cover both the camera and flash with your finger.",
+                           "shouldHideActions": ["goBackward", "goForward"],
+                           "duration": 60,
+                           "commands": ["playSound", "transitionAutomatically"],
+                           "spokenInstructions": {
+                               "0": "Please keep still",
+                               "halfway": "You’re half way there!",
+                               "40": "Doing a great job keeping your finger still on the camera!",
+                               "45": "Just 15 seconds left",
+                               "end": "You’re all done!"
+                               }
+                           },
+                           {
+                           "identifier"   : "finished",
+                           "type"         : "instruction",
+                           "title"        : "You’re all done!"
+                           }
+                           ]
+}

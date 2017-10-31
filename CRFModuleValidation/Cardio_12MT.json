@@ -1,79 +1,104 @@
 {
-    "taskIdentifier"            : "Cardio 12MT",
-    "schemaIdentifier"          : "Cardio 12MT",
-    "taskType"                  : "cardio",
-    "taskOptions"               : { "walkDuration" : 720.0, "restDuration" : 60.0 },
-    "localizedSteps"            : [
-                                   {
-                                   "identifier"   : "heartRisk",
-                                   "text"         : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that walking for a mile will be a challenge for you."
-                                   },
-                                   {
-                                   "identifier"   : "workoutInstruction1",
-                                   "title"        : "Running Instructions",
-                                   "text"         : "For this test you will need a flat and uncrowded area outdoors where you can run for 12 minutes at a comfortable pace without interruption. Your goal is to run as fast as you can in 12 minutes."
-                                   },
-                                   {
-                                   "identifier"   : "workoutInstruction2",
-                                   "title"        : "Heart rate measurement",
-                                   "text"         : "Start by standing still to measure your resting heart rate before you run for 12 minutes."
-                                   }
-                                   ],
-    "insertAfter"               : "heartRisk",
-    "insertSteps"               : [
-                                   {
-                                   "identifier"   : "healthKit",
-                                   "type"         : "permissions",
-                                   "title"        : "12-Minute Run",
-                                   "text"         : "CRF Module  would like to access HealthKit.",
-                                   "buttonTitle"  : "Enable HealthKit",
-                                   "items"        : [{
-                                                     "identifier" : "healthKit",
-                                                     "detail" : "HealthKit allows CRF Module to understand various aspects of your health. Enable HealthKit to tell your story.",
-                                                     "healthKitTypes" : ["HKQuantityTypeIdentifierActiveEnergyBurned",
-                                                                         "HKQuantityTypeIdentifierHeartRate",
-                                                                         "HKQuantityTypeIdentifierDistanceWalkingRunning",
-                                                                         "HKWorkoutTypeIdentifier",
-                                                                         "HKQuantityTypeIdentifierStepCount"
-                                                                         ]
-                                                     }],
-                                   "optional"     : true,
-                                   },
-                                   {
-                                   "identifier"   : "location",
-                                   "type"         : "permissions",
-                                   "title"        : "12-Minute Run",
-                                   "text"         : "CRF Module would like to access your phone’s GPS.",
-                                   "buttonTitle"  : "Enable GPS",
-                                   "items"        : [{
-                                                     "identifier" : "location",
-                                                     "detail" : "The 12-Minute Run is about learning how far you ran and access to your phone’s GPS is needed to run this activity."
-                                                     }],
-                                   "optional"     : false,
-                                   },
-                                   {
-                                   "identifier"   : "coremotion",
-                                   "type"         : "permissions",
-                                   "title"        : "12-Minute Run",
-                                   "text"         : "CRF Module would like to access motion sensors.",
-                                   "buttonTitle"  : "Enable motion sensors",
-                                   "items"        : [{
-                                                     "identifier" : "coremotion",
-                                                     "detail" : "The 12-Minute Run also compares how many steps you did and access to your phone’s motion sensor is needed for this activity."
-                                                     }],
-                                   "optional"     : false,
-                                   },
-                                   {
-                                   "identifier"   : "camera",
-                                   "type"         : "permissions",
-                                   "title"        : "12-Minute Run",
-                                   "text"         : "Enable your phone’s camera.",
-                                   "buttonTitle"  : "Enable camera",
-                                   "items"        : [{
-                                                     "identifier" : "camera",
-                                                     "detail" : "CRF Module would like to access your your camera to easily and quickly gather heart rate data."
-                                                     }],
-                                   "optional"     : false,
-                                   }
-                                   ]
+    "identifier"        : "Cardio 12MT",
+    
+    "actions"           : { "cancel": { "iconName": "closeActivity" }},
+    "shouldHideActions" : ["goBackward", "skip"],
+    "progressMarkers"   : ["wearingFitbit", "volumeUp", "goOutside", "heartRate.before", "run", "heartRate.after", "surveyAfter"],
+    "steps"             : [
+                           {
+                           "identifier"   : "heartRisk",
+                           "type"         : "instruction",
+                           "imageBefore"  : "healthRiskIcon",
+                           "title"        : "Potential heart risk",
+                           "text"         : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
+                           "actions"           : { "goForward": { "buttonTitle": "Got it" }}
+                           },
+                           {
+                           "identifier"   : "wearingFitbit",
+                           "type"         : "instruction",
+                           "title"        : "Wearing your fitbit?",
+                           "imageBefore"  : "fitbitCheckIcon",
+                           "text"         : "Before continuing on with the 12 minute test, please make sure you have your fitbit on your wrist.",
+                           "actions"           : { "goForward": { "buttonTitle": "It’s on" }}
+                           },
+                           {
+                           "identifier"   : "volumeUp",
+                           "type"         : "instruction",
+                           "title"        : "Volume turned up?",
+                           "imageBefore"  : "volumeCheckIcon",
+                           "text"         : "Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving.",
+                           "actions"           : { "goForward": { "buttonTitle": "It’s turned on" }}
+                           },
+                           {
+                           "identifier"   : "goOutside",
+                           "type"         : "instruction",
+                           "title"        : "Go outside",
+                           "imageBefore"  : "goOutsideIcon",
+                           "text"         : "Start by going oustide and standing still to measure your resting heart rate before you start moving.",
+                           "actions"           : { "goForward": { "buttonTitle": "I am outside" }}
+                           },
+                           {
+                           "identifier"         : "heartRate.before",
+                           "type"               : "taskInfo",
+                           "title"              : "Capture heart rate",
+                           "subtitle"           : "Use your finger to cover the camera and flash on the back of your phone.",
+                           "detail"             : "Your pre run heart rate is",
+                           "taskTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           },
+                           {
+                           "identifier"     : "run",
+                           "type"           : "section",
+                           "steps"          : [
+                                               {
+                                               "identifier"   : "bringPhone",
+                                               "type"         : "instruction",
+                                               "title"        : "Take your phone with you",
+                                               "imageBefore"  : "12MinSmall1",
+                                               "text"         : "Cover as much distance as you can on a flat course in 12 minutes by running or walking.",
+                                               "actions"           : { "goForward": { "buttonTitle": "Press to start", "iconName": "captureStartButton" }}
+                                               },
+                                               {
+                                               "identifier"   : "countdown",
+                                               "type"         : "active",
+                                               "text"         : "Start in",
+                                               "shouldHideActions": ["goBackward", "goForward"],
+                                               "duration": 5,
+                                               "commands": ["playSound", "transitionAutomatically"]
+                                               },
+                                               {
+                                               "identifier"   : "run",
+                                               "type"         : "active",
+                                               "imageBefore"  : "12MinFullScreen",
+                                               "shouldHideActions": ["goBackward", "goForward"],
+                                               "duration": 12,
+                                               "commands": ["playSound", "transitionAutomatically"]
+                                               }
+                                               ]
+                           },
+                           {
+                           "identifier"         : "heartRate.after",
+                           "type"               : "taskInfo",
+                           "title"              : "Stand still for 1 minute",
+                           "subtitle"           : "Almost done! Stand still for a minute to measure your heart rate recovery.",
+                           "detail"             : "Your heart rate changed to",
+                           "taskTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           },
+                           {
+                           "identifier"     : "surveyAfter",
+                           "type"           : "form",
+                           "text"           : "What, if anything, kept you from going further?",
+                           "dataType"       : "singleChoice",
+                           "choices"        : ["Nothing, was my best effort",
+                                               "Feeling tired",
+                                               "Pain or physical discomfort",
+                                               "Interrupted"]
+                           },
+                           {
+                           "identifier"   : "completion",
+                           "type"         : "completion",
+                           "title"        : "Great Job!",
+                           "imageBefore"  : "completed",
+                           "text"         : "You just went <run.distance> in 12 minutes"
+                           }
+                           ]
 }
