@@ -56,7 +56,8 @@ open class CRFTaskFactory: RSDFactory {
     
     private func buildHeartRateStep(from decoder: Decoder) throws -> RSDStep {
         let taskInfo = try RSDTaskInfoStepObject(from: decoder)
-        let task = try self.decodeTask(with: taskInfo)
+        let task = try self.decodeTask(with: taskInfo.taskTransformer as!
+            RSDResourceTransformer, taskInfo: taskInfo)
         var steps = (task.stepNavigator as! RSDConditionalStepNavigator).steps
         
         // Replace the title and text with the task info title and subtitle
