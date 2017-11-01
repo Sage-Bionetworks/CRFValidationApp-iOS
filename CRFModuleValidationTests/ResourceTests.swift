@@ -33,6 +33,7 @@
 
 import XCTest
 @testable import CRFModuleValidation
+import ResearchSuite
 import BridgeAppSDK
 
 class ResourceTests: XCTestCase {
@@ -63,15 +64,63 @@ class ResourceTests: XCTestCase {
     
     func test12MT() {
         
-        let json = jsonForResource("Cardio_12MT")
-        XCTAssertNotNil(json)
+        var taskInfo = RSDTaskInfoStepObject(with: "Cardio 12MT")
+        let transformer = RSDResourceTransformerObject(resourceName: "Cardio_12MT")
+        taskInfo.taskTransformer = transformer
+        let factory = CRFTaskFactory()
         
-        let task = json?.createORKTask(with: SurveyFactory())
-        XCTAssertNotNil(task)
+        do {
+            let task = try factory.decodeTask(with: transformer, taskInfo: taskInfo)
+            
+            guard let navigator = task.stepNavigator as? RSDConditionalStepNavigator else {
+                XCTFail("Task navigator not of expected type.")
+                return
+            }
+            
+            if let heartRateBefore = navigator.step(with: "heartRate.after") as? RSDSectionStep {
+                if let instructionStep = heartRateBefore.steps.first as? RSDUIStep {
+                    XCTAssertEqual(instructionStep.title, "Stand still for 1 minute")
+                    XCTAssertEqual(instructionStep.text, "Almost done! Stand still for a minute to measure your heart rate recovery.")
+                    if let action = instructionStep.action(for: .navigation(.goForward), on: instructionStep) {
+                        XCTAssertNotNil(action.buttonIcon)
+                    } else {
+                        XCTFail("Missing custom expected action")
+                    }
+                } else {
+                    XCTFail("Step not of expected type")
+                }
+            } else {
+                XCTFail("Couldn't find step")
+            }
         
-        guard let _ = task as? SBANavigableOrderedTask else {
-            XCTFail("\(String(describing: task)) nil or not expected type")
-            return
+        } catch let err {
+            XCTFail("Failed to decode task \(err)")
+        }
+    }
+    
+    func testHeartRateSteps() {
+        
+        // Get the transformer and it's steps
+        let factory = CRFTaskFactory()
+        
+        do {
+            let transform = RSDResourceTransformerObject(resourceName: "HeartrateStep") as RSDSectionStepResourceTransformer
+            let steps: [RSDStep] = try transform.transformSteps(with: factory)
+            
+            if let instructionStep = steps.first as? RSDUIStep {
+                XCTAssertEqual(instructionStep.title, "Capture heart rate")
+                XCTAssertEqual(instructionStep.text, "Use your finger to cover the camera and flash on the back of your phone.")
+                if let action = instructionStep.action(for: .navigation(.goForward), on: instructionStep) {
+                    XCTAssertNotNil(action.buttonIcon)
+                } else {
+                    XCTFail("Missing custom expected action")
+                }
+            } else {
+                XCTFail("Step not of expected type")
+            }
+            
+        } catch let err {
+            XCTFail("Failed to decode task \(err)")
         }
     }
 

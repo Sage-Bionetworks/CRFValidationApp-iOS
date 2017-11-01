@@ -156,11 +156,7 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
                 var taskInfo = RSDTaskInfoStepObject(with: identifier)
                 
                 taskInfo.estimatedMinutes = taskRef.activityMinutes
-                taskInfo.taskTransformer = RSDTaskResourceTransformerObject(resourceName: resourceName)
-                if let imageName = dictionary["backgroundImage"] as? String,
-                    let wrapper = try? RSDImageWrapper(imageName: imageName) {
-                    taskInfo.icon = wrapper
-                }
+                taskInfo.taskTransformer = RSDResourceTransformerObject(resourceName: resourceName)
                 taskInfo.title = dictionary["title"] as? String
                 taskInfo.subtitle = dictionary["subtitle"] as? String
                 

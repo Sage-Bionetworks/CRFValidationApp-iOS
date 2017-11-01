@@ -3,15 +3,16 @@
                            {
                            "identifier"     : "instruction",
                            "type"           : "instruction",
-                           "animatedImage"  : {
+                           "image"          : {
                                                "imageNames" : ["heartRateMeasurement1", "heartRateMeasurement2", "heartRateMeasurement3"],
-                                               "animationDuration" : 2,
-                                               "backgroundColorName" : "macaroniAndCheese"
+                                               "placementType" : "topBackground",
+                                               "animationDuration" : 2
                                                },
+                           "colorTheme"     : { "backgroundColor" : "macaroniAndCheese", "usesLightStyle" : true },
                            "title"          : "Capture heart rate",
                            "text"           : "Use your finger to cover the camera and flash on the back of your phone.",
                            "actions"        : { "goForward": { "iconName": "captureStartButton" }},
-                           "viewInfo"       : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                           "viewTheme"      : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"   : "heartRate",
@@ -29,9 +30,10 @@
                                }
                            },
                            {
-                           "identifier"   : "finished",
+                           "identifier"   : "feedback",
                            "type"         : "instruction",
-                           "title"        : "You’re all done!"
+                           "title"        : "You’re all done!",
+                           "text"         : "Your heart rate is"
                            }
                            ]
 }

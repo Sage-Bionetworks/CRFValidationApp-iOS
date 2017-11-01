@@ -35,43 +35,4 @@ import ResearchSuite
 
 open class CRFTaskFactory: RSDFactory {
     
-    public enum CRFStepType: String {
-        case heartRate
-    }
-    
-    open override func decodeStep(from decoder:Decoder, with typeName: String) throws -> RSDStep? {
-        if let type = CRFStepType(rawValue: typeName) {
-            return try decodeStep(from: decoder, with: type)
-        } else {
-            return try super.decodeStep(from: decoder, with: typeName)
-        }
-    }
-    
-    open func decodeStep(from decoder: Decoder, with type: CRFTaskFactory.CRFStepType) throws -> RSDStep? {
-        switch type {
-        case .heartRate:
-            return try buildHeartRateStep(from: decoder)
-        }
-    }
-    
-    private func buildHeartRateStep(from decoder: Decoder) throws -> RSDStep {
-        let taskInfo = try RSDTaskInfoStepObject(from: decoder)
-        let task = try self.decodeTask(with: taskInfo.taskTransformer as!
-            RSDResourceTransformer, taskInfo: taskInfo)
-        var steps = (task.stepNavigator as! RSDConditionalStepNavigator).steps
-        
-        // Replace the title and text with the task info title and subtitle
-        let firstStep = steps.first as! RSDUIStepObject
-        firstStep.title = taskInfo.title ?? firstStep.title
-        firstStep.text = taskInfo.text ?? firstStep.text
-        steps.remove(at: 0)
-        steps.insert(firstStep, at: 0)
-        
-        // Replace the detail the last step with the detail from the task info
-        let lastStep = steps.popLast() as! RSDUIStepObject
-        lastStep.detail = taskInfo.detail ?? lastStep.detail
-        steps.append(lastStep)
-        
-        return RSDSectionStepObject(identifier: taskInfo.identifier, steps: steps)
-    }
 }
