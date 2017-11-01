@@ -19,6 +19,7 @@
 		60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2141E89D0B200B123FA /* BridgeSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
 		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
 		FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752371F7093AF004925B8 /* SurveyFactory.swift */; };
 		FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */; };
 		FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF7752471F709D71004925B8 /* StudyOverview.storyboard */; };
@@ -32,6 +33,7 @@
 		FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
 		FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
+		FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
@@ -168,6 +170,7 @@
 		60F7A20E1E89D0B200B123FA /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
 		FF7752371F7093AF004925B8 /* SurveyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFactory.swift; sourceTree = "<group>"; };
 		FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyOverviewViewController.swift; sourceTree = "<group>"; };
 		FF7752471F709D71004925B8 /* StudyOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyOverview.storyboard; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 		FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchSuite.xcodeproj; path = ResearchSuite/ResearchSuite/ResearchSuite.xcodeproj; sourceTree = "<group>"; };
 		FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
 		FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartrateStep.json; sourceTree = "<group>"; };
+		FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActiveTaskSteps.storyboard; sourceTree = "<group>"; };
 		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
 		FFA6078D1F70745F0034A4C0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -243,6 +247,7 @@
 				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
+				FF9D7F591FA8DEB8008506DB /* Step Customization */,
 				60F7A1641E89C98800B123FA /* Resources */,
 				60F7A1611E89C93800B123FA /* Storyboards */,
 				FF77527E1F722C60004925B8 /* Style Guide */,
@@ -345,6 +350,15 @@
 				FF78FC691FA3FE1E00B8D42C /* ResearchSuiteTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF9D7F591FA8DEB8008506DB /* Step Customization */ = {
+			isa = PBXGroup;
+			children = (
+				FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */,
+				FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */,
+			);
+			name = "Step Customization";
 			sourceTree = "<group>";
 		};
 		FFA607AB1F707BB70034A4C0 /* JSON */ = {
@@ -553,6 +567,7 @@
 				FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */,
 				FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */,
 				FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */,
+				FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */,
 				60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */,
 				60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */,
 				FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */,
@@ -609,6 +624,7 @@
 				FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */,
 				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
 				FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */,
+				FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
