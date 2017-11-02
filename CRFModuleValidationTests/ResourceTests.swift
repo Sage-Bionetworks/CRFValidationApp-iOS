@@ -100,7 +100,6 @@ class ResourceTests: XCTestCase {
     
     func testHeartRateSteps() {
         
-        // Get the transformer and it's steps
         let factory = CRFTaskFactory()
         
         do {
