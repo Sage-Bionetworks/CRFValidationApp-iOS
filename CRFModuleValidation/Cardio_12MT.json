@@ -101,7 +101,8 @@
                                                "text"         : "Start in",
                                                "shouldHideActions": ["goBackward", "goForward"],
                                                "duration": 5,
-                                               "commands": ["playSound", "transitionAutomatically"]
+                                               "commands": ["transitionAutomatically"],
+                                               "viewTheme"      : { "viewIdentifier": "Countdown", "storyboardIdentifier": "ActiveTaskSteps" }
                                                },
                                                {
                                                "identifier"   : "run",
@@ -109,7 +110,7 @@
                                                "image"        : "12MinFullScreen",
                                                "shouldHideActions": ["goBackward", "goForward"],
                                                "duration": 12,
-                                               "commands": ["playSound", "transitionAutomatically"]
+                                               "commands": ["playSound", "vibrate", "transitionAutomatically"]
                                                }
                                                ]
                            },

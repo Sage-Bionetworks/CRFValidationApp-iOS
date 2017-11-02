@@ -19,7 +19,7 @@
                            "type"         : "active",
                            "text"         : "Gently cover both the camera and flash with your finger.",
                            "shouldHideActions": ["goBackward", "goForward"],
-                           "duration": 60,
+                           "duration": 6,
                            "commands": ["playSound", "transitionAutomatically"],
                            "spokenInstructions": {
                                "0": "Please keep still",
