@@ -20,6 +20,9 @@
 		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
 		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
+		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
+		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
+		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
 		FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752371F7093AF004925B8 /* SurveyFactory.swift */; };
 		FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */; };
 		FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF7752471F709D71004925B8 /* StudyOverview.storyboard */; };
@@ -171,6 +174,9 @@
 		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
+		FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Stair_Step.html; sourceTree = "<group>"; };
+		FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Cardio_12MT.html; sourceTree = "<group>"; };
+		FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntroductionStepViewController.swift; sourceTree = "<group>"; };
 		FF7752371F7093AF004925B8 /* SurveyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFactory.swift; sourceTree = "<group>"; };
 		FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyOverviewViewController.swift; sourceTree = "<group>"; };
 		FF7752471F709D71004925B8 /* StudyOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyOverview.storyboard; sourceTree = "<group>"; };
@@ -247,6 +253,7 @@
 				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
+				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
 				FF9D7F591FA8DEB8008506DB /* Step Customization */,
 				60F7A1641E89C98800B123FA /* Resources */,
 				60F7A1611E89C93800B123FA /* Storyboards */,
@@ -292,6 +299,7 @@
 		60F7A1641E89C98800B123FA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FF55C4121FAAD993004EDB59 /* HTML */,
 				FFA607AB1F707BB70034A4C0 /* JSON */,
 				60F7A1391E89C76E00B123FA /* Assets.xcassets */,
 			);
@@ -323,6 +331,15 @@
 				60F7A20D1E89D01100B123FA /* Sage Cardio Challenge Extension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF55C4121FAAD993004EDB59 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */,
+				FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */,
+			);
+			name = HTML;
 			sourceTree = "<group>";
 		};
 		FF77527E1F722C60004925B8 /* Style Guide */ = {
@@ -564,12 +581,14 @@
 				FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */,
 				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,
 				FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */,
+				FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */,
 				FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */,
 				FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */,
 				FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */,
 				FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */,
 				60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */,
 				60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */,
+				FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */,
 				FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */,
 				FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */,
 				FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */,
 				FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */,

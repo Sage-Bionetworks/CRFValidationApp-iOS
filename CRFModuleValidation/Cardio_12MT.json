@@ -1,10 +1,28 @@
 {
     "identifier"        : "Cardio 12MT",
-    
     "actions"           : { "cancel": { "iconName": "closeActivity" }},
     "shouldHideActions" : ["goBackward", "skip"],
     "progressMarkers"   : ["wearingFitbit", "volumeUp", "goOutside", "heartRate.before", "run", "heartRate.after", "surveyAfter"],
     "steps"             : [
+                           {
+                           "identifier"   : "introduction",
+                           "type"         : "instruction",
+                           "title"        : "12 minute test",
+                           "text"         : "15 minutes",
+                           "image"  : {
+                                           "imageNames" : ["12MinLarge1", "12MinLarge2", "12MinLarge3", "12MinLarge4"],
+                                           "placementType" : "topBackground",
+                                           "animationDuration" : 2,
+                                           },
+                           "colorTheme"     : { "backgroundColor" : "sky", "usesLightStyle" : true },
+                           "actions"      : {
+                                               "goForward":  { "buttonTitle": "Start" },
+                                               "cancel":     { "iconName": "backArrowHeader" },
+                                               "skip":       { "buttonTitle": "Remind me later" },
+                                               "learnMore":  { "iconName": "infoIcon", "url": "Cardio_12MT.html" }
+                                            },
+                           "viewTheme"    : { "viewIdentifier": "TaskIntroduction", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
                            {
                            "identifier"             : "heartRisk",
                            "type"                   : "instruction",
@@ -22,25 +40,31 @@
                            "identifier"   : "wearingFitbit",
                            "type"         : "instruction",
                            "title"        : "Wearing your fitbit?",
-                           "image"        : { "imageName": "fitbitCheckIcon", "placementType": "topBackground" },
                            "text"         : "Before continuing on with the 12 minute test, please make sure you have your fitbit on your wrist.",
-                           "actions"           : { "goForward": { "buttonTitle": "It’s on" }}
+                           "image"        : { "imageName": "fitbitCheckIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "It’s on" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"   : "volumeUp",
                            "type"         : "instruction",
                            "title"        : "Volume turned up?",
-                           "image"        : { "imageName": "volumeCheckIcon", "placementType": "topBackground" },
                            "text"         : "Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving.",
-                           "actions"           : { "goForward": { "buttonTitle": "It’s turned on" }}
+                           "image"        : { "imageName": "volumeCheckIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "It’s turned on" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"   : "goOutside",
                            "type"         : "instruction",
                            "title"        : "Go outside",
-                           "image"        : { "imageName": "goOutsideIcon", "placementType": "topBackground" },
                            "text"         : "Start by going oustide and standing still to measure your resting heart rate before you start moving.",
-                           "actions"           : { "goForward": { "buttonTitle": "I am outside" }}
+                           "image"        : { "imageName": "goOutsideIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "robinsEggBlue", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "I am outside" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"         : "heartRate.before",
@@ -61,13 +85,13 @@
                                                "identifier"   : "bringPhone",
                                                "type"         : "instruction",
                                                "title"        : "Take your phone with you",
+                                               "text"         : "Cover as much distance as you can on a flat course in 12 minutes by running or walking.",
                                                "image"  : {
                                                                    "imageNames" : ["12MinSmall1", "12MinSmall2", "12MinSmall3", "12MinSmall4"],
                                                                    "placementType" : "topBackground",
                                                                    "animationDuration" : 2,
                                                                    },
                                                "colorTheme"     : { "backgroundColor" : "sky", "usesLightStyle" : true },
-                                               "text"           : "Cover as much distance as you can on a flat course in 12 minutes by running or walking.",
                                                "actions"        : { "goForward": { "iconName": "runStartButton" }},
                                                "viewTheme"      : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
                                                },

@@ -37,7 +37,7 @@ import ResearchSuite
 import ResearchSuiteUI
 
 class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledActivityDataSource, RSDTaskViewControllerDelegate {
-    
+
     private let heartRateMeasurementGuid = "fa1058e7-8df2-41b9-aaf4-376049ab66a7"
     private let heartRateTaskIdentifier = "HeartRate Measurement"
     
@@ -215,6 +215,10 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), viewControllerFor step: RSDStep) -> (UIViewController & RSDStepController)? {
         return nil  // TODO: syoung 10/30/2017 build replacement view controllers
+    }
+    
+    func taskViewControllerShouldAutomaticallyForward(_ taskViewController: (UIViewController & RSDTaskController)) -> Bool {
+        return true
     }
 }
 

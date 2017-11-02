@@ -51,6 +51,8 @@ class AppDelegate: SBAAppDelegate {
             UINavigationBar.appearance().tintColor = tintColor
         }
         
+        self.window?.tintColor = UIColor.appButtonTintBlue
+        
         return super.application(application, willFinishLaunchingWithOptions: launchOptions)
     }
     
