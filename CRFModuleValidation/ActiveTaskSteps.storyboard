@@ -292,6 +292,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6A-bN-8V9" customClass="RSDGenericNavigationFooterView" customModule="ResearchSuiteUI">
                                 <rect key="frame" x="0.0" y="578" width="375" height="89"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="89" placeholder="YES" id="Obm-4E-aHw"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isBackHidden" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkipHidden" value="YES"/>
@@ -536,10 +539,10 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWD-q3-Lwp" userLabel="Footer">
-                                <rect key="frame" x="0.0" y="584.5" width="375" height="82.5"/>
+                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Se-aq-ra7" customClass="RSDUnderlinedButton" customModule="ResearchSuiteUI">
-                                        <rect key="frame" x="163.5" y="0.0" width="47" height="32.5"/>
+                                        <rect key="frame" x="166" y="0.0" width="42" height="30"/>
                                         <color key="tintColor" name="buttonTintBlue"/>
                                         <state key="normal" title="Pause"/>
                                         <connections>
@@ -555,13 +558,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fm-Y3-S1y">
-                                <rect key="frame" x="0.0" y="410" width="375" height="174"/>
+                                <rect key="frame" x="0.0" y="411.5" width="375" height="175"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYh-KA-7xH">
-                                <rect key="frame" x="0.0" y="236.5" width="375" height="174"/>
+                                <rect key="frame" x="0.0" y="236.5" width="375" height="175.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9a-Ny-c3s">
-                                        <rect key="frame" x="149.5" y="9.5" width="75.5" height="155.5"/>
+                                        <rect key="frame" x="149.5" y="10" width="75.5" height="155.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="130"/>
                                         <color key="textColor" name="textGreen"/>
                                         <nil key="highlightedColor"/>
@@ -755,9 +758,6 @@
         <namedColor name="buttonTintBlue">
             <color red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="buttonTintBlue">
-            <color red="0.12941176470588237" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="gunmetal">
             <color red="0.25490196079999999" green="0.28235294119999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -767,14 +767,8 @@
         <namedColor name="sky">
             <color red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="sky">
-            <color red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="textGreen">
             <color red="0.41960784313725491" green="0.71372549019607845" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="white">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
