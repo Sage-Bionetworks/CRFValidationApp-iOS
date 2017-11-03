@@ -1,17 +1,36 @@
 {
     "identifier"        : "Cardio 12MT",
-    
     "actions"           : { "cancel": { "iconName": "closeActivity" }},
     "shouldHideActions" : ["goBackward", "skip"],
     "progressMarkers"   : ["wearingFitbit", "volumeUp", "goOutside", "heartRate.before", "run", "heartRate.after", "surveyAfter"],
     "steps"             : [
                            {
+                           "identifier"   : "introduction",
+                           "type"         : "instruction",
+                           "title"        : "12 minute test",
+                           "text"         : "15 minutes",
+                           "image"  : {
+                                           "imageNames" : ["12MinLarge1", "12MinLarge2", "12MinLarge3", "12MinLarge4"],
+                                           "placementType" : "topBackground",
+                                           "animationDuration" : 2,
+                                           },
+                           "colorTheme"     : { "backgroundColor" : "sky", "usesLightStyle" : true },
+                           "actions"      : {
+                                               "goForward":  { "buttonTitle": "Start" },
+                                               "cancel":     { "iconName": "backArrowHeader" },
+                                               "skip":       { "buttonTitle": "Remind me later" },
+                                               "learnMore":  { "iconName": "infoIcon", "url": "Cardio_12MT.html" }
+                                            },
+                           "viewTheme"    : { "viewIdentifier": "TaskIntroduction", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
+                           {
                            "identifier"             : "heartRisk",
                            "type"                   : "instruction",
-                           "backgroundColorName"    : "salmon",
-                           "foregroundColorName"    : "white",
-                           "usesLightStyle"         : true,
-                           "imageBefore"            : "healthRiskIcon",
+                           "colorTheme"             : {
+                                                       "backgroundColor"        : "salmon",
+                                                       "foregroundColor"        : "white",
+                                                       "usesLightStyle"         : true },
+                           "image"                  : "healthRiskIcon",
                            "title"                  : "Potential heart risk",
                            "text"                   : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
                            "actions"                : { "goForward": { "buttonTitle": "Got it" },
@@ -21,33 +40,42 @@
                            "identifier"   : "wearingFitbit",
                            "type"         : "instruction",
                            "title"        : "Wearing your fitbit?",
-                           "imageBefore"  : "fitbitCheckIcon",
                            "text"         : "Before continuing on with the 12 minute test, please make sure you have your fitbit on your wrist.",
-                           "actions"           : { "goForward": { "buttonTitle": "It’s on" }}
+                           "image"        : { "imageName": "fitbitCheckIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "It’s on" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"   : "volumeUp",
                            "type"         : "instruction",
                            "title"        : "Volume turned up?",
-                           "imageBefore"  : "volumeCheckIcon",
                            "text"         : "Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving.",
-                           "actions"           : { "goForward": { "buttonTitle": "It’s turned on" }}
+                           "image"        : { "imageName": "volumeCheckIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "It’s turned on" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"   : "goOutside",
                            "type"         : "instruction",
                            "title"        : "Go outside",
-                           "imageBefore"  : "goOutsideIcon",
                            "text"         : "Start by going oustide and standing still to measure your resting heart rate before you start moving.",
-                           "actions"           : { "goForward": { "buttonTitle": "I am outside" }}
+                           "image"        : { "imageName": "goOutsideIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "robinsEggBlue", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "I am outside" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"         : "heartRate.before",
-                           "type"               : "heartRate",
-                           "title"              : "Capture heart rate",
-                           "subtitle"           : "Use your finger to cover the camera and flash on the back of your phone.",
-                           "detail"             : "Your pre run heart rate is",
-                           "taskTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           "type"               : "transform",
+                           "replacementSteps"   : [{ "identifier"   : "instruction",
+                                                     "title"        : "Capture heart rate",
+                                                     "text"         : "Use your finger to cover the camera and flash on the back of your phone." },
+                                                   { "identifier"   : "feedback",
+                                                     "text"         : "Your pre run heart rate is" }
+                                                   ],
+                           "sectionTransformer"    : { "resourceName": "HeartrateStep.json"}
                            },
                            {
                            "identifier"     : "run",
@@ -57,15 +85,15 @@
                                                "identifier"   : "bringPhone",
                                                "type"         : "instruction",
                                                "title"        : "Take your phone with you",
-                                               "animatedImage"  : {
+                                               "text"         : "Cover as much distance as you can on a flat course in 12 minutes by running or walking.",
+                                               "image"  : {
                                                                    "imageNames" : ["12MinSmall1", "12MinSmall2", "12MinSmall3", "12MinSmall4"],
+                                                                   "placementType" : "topBackground",
                                                                    "animationDuration" : 2,
-                                                                   "backgroundColorName" : "sky"
                                                                    },
-
-                                               "text"           : "Cover as much distance as you can on a flat course in 12 minutes by running or walking.",
-                                               "actions"        : { "goForward": { "iconName": "captureStartButton" }},
-                                               "viewInfo"       : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                                               "colorTheme"     : { "backgroundColor" : "sky", "usesLightStyle" : true },
+                                               "actions"        : { "goForward": { "iconName": "runStartButton" }},
+                                               "viewTheme"      : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
                                                },
                                                {
                                                "identifier"   : "countdown",
@@ -73,25 +101,29 @@
                                                "text"         : "Start in",
                                                "shouldHideActions": ["goBackward", "goForward"],
                                                "duration": 5,
-                                               "commands": ["playSound", "transitionAutomatically"]
+                                               "commands": ["transitionAutomatically"],
+                                               "viewTheme"      : { "viewIdentifier": "Countdown", "storyboardIdentifier": "ActiveTaskSteps" }
                                                },
                                                {
                                                "identifier"   : "run",
                                                "type"         : "active",
-                                               "imageBefore"  : "12MinFullScreen",
+                                               "image"        : "12MinFullScreen",
                                                "shouldHideActions": ["goBackward", "goForward"],
                                                "duration": 12,
-                                               "commands": ["playSound", "transitionAutomatically"]
+                                               "commands": ["playSound", "vibrate", "transitionAutomatically"]
                                                }
                                                ]
                            },
                            {
                            "identifier"         : "heartRate.after",
-                           "type"               : "heartRate",
-                           "title"              : "Stand still for 1 minute",
-                           "subtitle"           : "Almost done! Stand still for a minute to measure your heart rate recovery.",
-                           "detail"             : "Your heart rate changed to",
-                           "taskTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           "type"               : "transform",
+                           "replacementSteps"   : [{ "identifier"   : "instruction",
+                                                   "title"        : "Stand still for 1 minute",
+                                                   "text"         : "Almost done! Stand still for a minute to measure your heart rate recovery." },
+                                                   { "identifier"   : "feedback",
+                                                     "text"         : "Your heart rate changed to" }
+                                                   ],
+                           "sectionTransformer"    : { "resourceName": "HeartrateStep.json"}
                            },
                            {
                            "identifier"     : "surveyAfter",
@@ -107,7 +139,7 @@
                            "identifier"   : "completion",
                            "type"         : "completion",
                            "title"        : "Great Job!",
-                           "imageBefore"  : "completed",
+                           "image"        : "completed",
                            "text"         : "You just went <run.distance> in 12 minutes"
                            }
                            ]

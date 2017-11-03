@@ -1,5 +1,5 @@
 //
-//  CRFTaskFactory.swift
+//  CountdownStepViewController.swift
 //  CRFModuleValidation
 //
 //  Copyright © 2017 Sage Bionetworks. All rights reserved.
@@ -31,8 +31,30 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+import UIKit
+import ResearchSuiteUI
 import ResearchSuite
 
-open class CRFTaskFactory: RSDFactory {
+class CountdownStepViewController: RSDStepViewController {
     
+    @IBOutlet var countdownLabel: UILabel!
+    @IBOutlet var pauseButton: UIButton!
+    
+    override var countdown: Int {
+        didSet {
+            countdownLabel.text = "\(countdown)"
+        }
+    }
+
+    @IBAction func pauseTimer() {
+        // TODO: syoung 11/02/2017 Localize
+        if self.pauseUptime == nil {
+            self.pause()
+            self.pauseButton.setTitle("Resume", for: .normal)
+        }
+        else {
+            self.resume()
+            self.pauseButton.setTitle("Pause", for: .normal)
+        }
+    }
 }

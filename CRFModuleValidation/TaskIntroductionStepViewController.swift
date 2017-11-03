@@ -1,5 +1,5 @@
 //
-//  CRFTaskFactory.swift
+//  TaskIntroductionStepViewController.swift
 //  CRFModuleValidation
 //
 //  Copyright © 2017 Sage Bionetworks. All rights reserved.
@@ -31,8 +31,45 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+import UIKit
+import ResearchSuiteUI
 import ResearchSuite
+import ResearchUXFactory
 
-open class CRFTaskFactory: RSDFactory {
+class TaskIntroductionStepViewController: RSDStepViewController {
     
+    override func shouldUseGlobalButtonVisibility() -> Bool {
+        return false
+    }
+    
+    override func showLearnMore() {
+        guard let action = self.action(for: .navigation(.learnMore)) as? RSDResourceTransformer
+            else {
+            self.presentAlertWithOk(title: nil, message: "Missing learn more action for this task", actionHandler: nil)
+            return
+        }
+        
+        do {
+            // TODO: syoung 11/01/2017 Replace BridgeAppSDK implementation of a webview with one that can load html from an embedded resource.
+            let (data, _) = try action.resourceData()
+            let html = String(data: data, encoding: String.Encoding.utf8)
+            let webVC = SBAWebViewController()
+            webVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(_dismissChildViewController))
+            webVC.html = html
+            let navVC = UINavigationController(rootViewController: webVC)
+            self.present(navVC, animated: true, completion: nil)
+            
+        } catch let err {
+            self.presentAlertWithOk(title: nil, message: "Cannot load learn more for this task. \(err)", actionHandler: nil)
+        }
+    }
+    
+    @objc func _dismissChildViewController() {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+
+    override func skipForward() {
+        // TODO: Implement remind me later
+        self.presentAlertWithOk(title: nil, message: "Not yet implemented", actionHandler: nil)
+    }
 }
