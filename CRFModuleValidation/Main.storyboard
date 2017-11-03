@@ -20,25 +20,7 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="iEd-w2-tre">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6t-Jz-YFE">
-                                    <rect key="frame" x="240" y="16" width="127" height="30"/>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="127" id="4ZG-f5-F3u"/>
-                                        <constraint firstAttribute="height" constant="30" id="TkO-v5-Omv"/>
-                                    </constraints>
-                                    <state key="normal" title="Fit ALL the bits"/>
-                                    <connections>
-                                        <action selector="fitbitButtonTapped:" destination="U7f-QO-6Bj" eventType="touchUpInside" id="fk9-0g-6Ex"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" red="0.36862745099999999" green="0.67843137249999996" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="X6t-Jz-YFE" secondAttribute="trailing" constant="8" id="fcc-R9-4lN"/>
-                                <constraint firstItem="X6t-Jz-YFE" firstAttribute="centerY" secondItem="iEd-w2-tre" secondAttribute="centerY" id="wUA-w8-FXK"/>
-                            </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="pTG-2u-cyF">
                             <rect key="frame" x="0.0" y="162" width="375" height="44"/>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */; };
+		601ADB081FACDEDD00B6D975 /* OnboardingSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */; };
 		60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1391E89C76E00B123FA /* Assets.xcassets */; };
 		60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A13B1E89C76E00B123FA /* LaunchScreen.storyboard */; };
 		60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1DE1E89CAFB00B123FA /* BridgeInfo.plist */; };
@@ -162,6 +163,7 @@
 
 /* Begin PBXFileReference section */
 		60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingSteps.storyboard; sourceTree = "<group>"; };
 		60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFModuleValidation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A1321E89C76E00B123FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F7A1391E89C76E00B123FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 			children = (
 				FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */,
 				FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */,
+				601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */,
 			);
 			name = "Step Customization";
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601ADB081FACDEDD00B6D975 /* OnboardingSteps.storyboard in Resources */,
 				60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */,
 				FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */,
 				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,

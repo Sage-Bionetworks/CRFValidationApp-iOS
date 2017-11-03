@@ -614,14 +614,8 @@
         <namedColor name="buttonTintBlue">
             <color red="0.12941176470588237" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="buttonTintBlue">
-            <color red="0.12941176470588237" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="gunmetal">
             <color red="0.25490196079999999" green="0.28235294119999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="gunmetal">
-            <color red="0.25490196078431371" green="0.28235294117647058" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textGreen">
             <color red="0.41960784313725491" green="0.71372549019607845" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
