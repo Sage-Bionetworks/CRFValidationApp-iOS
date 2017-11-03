@@ -21,22 +21,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KJ-RD-0rg" userLabel="Status Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="sky"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7v-vl-gTt" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="32" width="375" height="454"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="461.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="950" text="Use your finger to cover the camera and flash on the back of your phone." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-gu-RJG">
-                                        <rect key="frame" x="24" y="388" width="327" height="48"/>
+                                        <rect key="frame" x="24" y="395.5" width="327" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fu-he-7eu" userLabel="Image Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="329"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="336.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="12MinSmall1" translatesAutoresizingMaskIntoConstraints="NO" id="XnQ-38-fPg">
-                                                <rect key="frame" x="4.5" y="0.0" width="367" height="328.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="800" constant="336" id="8AE-sH-gTu"/>
                                                     <constraint firstAttribute="width" secondItem="XnQ-38-fPg" secondAttribute="height" multiplier="125:112" id="lGg-sy-5bw"/>
@@ -78,7 +78,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="sky"/>
                                         <color key="tintColor" name="white"/>
                                         <constraints>
                                             <constraint firstItem="TnK-i0-f2n" firstAttribute="centerY" secondItem="yVO-Z2-39V" secondAttribute="centerY" id="6RX-0e-SxD"/>
@@ -88,13 +88,15 @@
                                             <constraint firstItem="TnK-i0-f2n" firstAttribute="leading" secondItem="yVO-Z2-39V" secondAttribute="trailing" constant="16" id="PgL-WG-xgp"/>
                                             <constraint firstItem="XnQ-38-fPg" firstAttribute="centerX" secondItem="6Fu-he-7eu" secondAttribute="centerX" id="Q68-ja-QlY"/>
                                             <constraint firstItem="XnQ-38-fPg" firstAttribute="top" secondItem="6Fu-he-7eu" secondAttribute="top" id="UKg-6a-SaW"/>
+                                            <constraint firstItem="XnQ-38-fPg" firstAttribute="leading" secondItem="6Fu-he-7eu" secondAttribute="leading" priority="800" id="VMO-cP-ZBs"/>
+                                            <constraint firstAttribute="trailing" secondItem="XnQ-38-fPg" secondAttribute="trailing" priority="800" id="doP-2M-kqC"/>
                                             <constraint firstItem="1Km-F7-GbV" firstAttribute="centerX" secondItem="6Fu-he-7eu" secondAttribute="centerX" id="fYW-hg-K2n"/>
                                             <constraint firstItem="1Km-F7-GbV" firstAttribute="top" secondItem="yVO-Z2-39V" secondAttribute="bottom" constant="-4" id="wSB-cz-d2Z"/>
                                             <constraint firstItem="yVO-Z2-39V" firstAttribute="top" secondItem="6Fu-he-7eu" secondAttribute="top" id="zSW-LC-8aN"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Capture heart rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-i5-1xB">
-                                        <rect key="frame" x="20" y="347" width="335" height="29"/>
+                                        <rect key="frame" x="20" y="354.5" width="335" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
@@ -123,18 +125,19 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ko-EV-hHf" userLabel="Footer" customClass="RSDNavigationFooterView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="486" width="375" height="181"/>
+                                <rect key="frame" x="0.0" y="493.5" width="375" height="173.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6H-Hm-IgM">
-                                        <rect key="frame" x="119.5" y="8" width="136" height="136"/>
+                                        <rect key="frame" x="123.5" y="8" width="129" height="128.5"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" priority="900" constant="136" id="lZE-X5-oEh"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="Znn-wr-ES5"/>
+                                            <constraint firstAttribute="height" priority="750" constant="136" id="lZE-X5-oEh"/>
                                             <constraint firstAttribute="width" secondItem="x6H-Hm-IgM" secondAttribute="height" multiplier="1:1" id="xkC-lp-tjD"/>
                                         </constraints>
                                         <state key="normal" image="captureStartButton"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Press to Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssZ-jq-IVo">
-                                        <rect key="frame" x="144.5" y="152" width="87" height="17"/>
+                                        <rect key="frame" x="144.5" y="144.5" width="87" height="17"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <color key="textColor" white="0.37" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -188,19 +191,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-I5-qW8" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="32" width="375" height="507"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="528.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="950" text="Start by going oustide and standing still to measure your resting heart rate before you start moving." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZj-tp-j9A">
-                                        <rect key="frame" x="24" y="417" width="327" height="72"/>
+                                        <rect key="frame" x="24" y="438.5" width="327" height="72"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FB0-QG-3wZ" userLabel="Image Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="379.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="goOutsideIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Thv-f8-10O">
-                                                <rect key="frame" x="0.5" y="45" width="375" height="312.5"/>
+                                                <rect key="frame" x="0.5" y="45" width="375" height="334"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5r-qp-jJ9">
                                                 <rect key="frame" x="16" y="0.0" width="32" height="32"/>
@@ -238,7 +241,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="robinsEggBlue"/>
                                         <color key="tintColor" name="white"/>
                                         <constraints>
                                             <constraint firstItem="xIK-lt-PtL" firstAttribute="centerX" secondItem="FB0-QG-3wZ" secondAttribute="centerX" id="7g9-Gf-KDI"/>
@@ -254,7 +257,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Go Outside" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDr-qr-MOl">
-                                        <rect key="frame" x="20" y="376" width="335" height="29"/>
+                                        <rect key="frame" x="20" y="397.5" width="335" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
@@ -283,14 +286,11 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SuP-g5-NUe" userLabel="Status Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="robinsEggBlue"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6A-bN-8V9" customClass="RSDGenericNavigationFooterView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="539" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="578" width="375" height="89"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" placeholder="YES" id="RCs-aL-eaG"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isBackHidden" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkipHidden" value="YES"/>
@@ -616,6 +616,12 @@
         </namedColor>
         <namedColor name="gunmetal">
             <color red="0.25490196079999999" green="0.28235294119999998" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="robinsEggBlue">
+            <color red="0.50196078431372548" green="0.90980392156862744" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sky">
+            <color red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textGreen">
             <color red="0.41960784313725491" green="0.71372549019607845" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
