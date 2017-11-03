@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,27 +17,27 @@
             <objects>
                 <viewController storyboardIdentifier="ActiveInstruction" id="e0w-Jd-7Wh" userLabel="Active Instruction Step" customClass="RSDStepViewController" customModule="ResearchSuiteUI" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5pt-gc-bZv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KJ-RD-0rg" userLabel="Status Background">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                 <color key="backgroundColor" name="sky"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7v-vl-gTt" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="32" width="320" height="411"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="461.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="950" text="Use your finger to cover the camera and flash on the back of your phone." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-gu-RJG">
-                                        <rect key="frame" x="24" y="321" width="272" height="72"/>
+                                        <rect key="frame" x="24" y="395.5" width="327" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fu-he-7eu" userLabel="Image Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="262"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="336.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="12MinSmall1" translatesAutoresizingMaskIntoConstraints="NO" id="XnQ-38-fPg">
-                                                <rect key="frame" x="14" y="0.0" width="292" height="261.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="800" constant="336" id="8AE-sH-gTu"/>
                                                     <constraint firstAttribute="width" secondItem="XnQ-38-fPg" secondAttribute="height" multiplier="125:112" id="lGg-sy-5bw"/>
@@ -52,7 +53,7 @@
                                                 <state key="normal" image="closeActivity"/>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TnK-i0-f2n" customClass="RSDStepProgressView" customModule="ResearchSuiteUI">
-                                                <rect key="frame" x="64" y="12" width="240" height="8"/>
+                                                <rect key="frame" x="64" y="12" width="295" height="8"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="8" placeholder="YES" id="lOb-id-cn8"/>
@@ -72,7 +73,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Km-F7-GbV">
-                                                <rect key="frame" x="122" y="28" width="76" height="17"/>
+                                                <rect key="frame" x="149.5" y="28" width="76" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" name="white"/>
                                                 <nil key="highlightedColor"/>
@@ -96,7 +97,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Capture heart rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-i5-1xB">
-                                        <rect key="frame" x="20" y="280" width="280" height="29"/>
+                                        <rect key="frame" x="20" y="354.5" width="335" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
@@ -125,10 +126,10 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ko-EV-hHf" userLabel="Footer" customClass="RSDNavigationFooterView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="443" width="320" height="125"/>
+                                <rect key="frame" x="0.0" y="493.5" width="375" height="173.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6H-Hm-IgM">
-                                        <rect key="frame" x="120.5" y="8" width="80.5" height="80"/>
+                                        <rect key="frame" x="124" y="8" width="128.5" height="128.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="Znn-wr-ES5"/>
                                             <constraint firstAttribute="height" priority="750" constant="136" id="lZE-X5-oEh"/>
@@ -137,7 +138,7 @@
                                         <state key="normal" image="captureStartButton"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Press to Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssZ-jq-IVo">
-                                        <rect key="frame" x="117" y="96" width="87" height="17"/>
+                                        <rect key="frame" x="144.5" y="144.5" width="87" height="17"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <color key="textColor" white="0.37" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -187,23 +188,23 @@
             <objects>
                 <viewController storyboardIdentifier="Instruction" id="13S-pR-cGQ" userLabel="Instruction Step" customClass="RSDStepViewController" customModule="ResearchSuiteUI" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uP4-T5-O37">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-I5-qW8" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="32" width="320" height="450"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="528.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="950" text="Start by going oustide and standing still to measure your resting heart rate before you start moving." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZj-tp-j9A">
-                                        <rect key="frame" x="24" y="336.5" width="272" height="95.5"/>
+                                        <rect key="frame" x="24" y="438.5" width="327" height="72"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FB0-QG-3wZ" userLabel="Image Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="277.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="379.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="goOutsideIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Thv-f8-10O">
-                                                <rect key="frame" x="-27" y="45" width="375" height="232"/>
+                                                <rect key="frame" x="0.5" y="45" width="375" height="334"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5r-qp-jJ9">
                                                 <rect key="frame" x="16" y="0.0" width="32" height="32"/>
@@ -215,7 +216,7 @@
                                                 <state key="normal" image="closeActivity"/>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFZ-Xu-AKG" customClass="RSDStepProgressView" customModule="ResearchSuiteUI">
-                                                <rect key="frame" x="64" y="12" width="240" height="8"/>
+                                                <rect key="frame" x="64" y="12" width="295" height="8"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="8" placeholder="YES" id="zrq-ez-2er"/>
@@ -235,7 +236,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIK-lt-PtL">
-                                                <rect key="frame" x="122" y="28" width="76" height="17"/>
+                                                <rect key="frame" x="149.5" y="28" width="76" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" name="white"/>
                                                 <nil key="highlightedColor"/>
@@ -257,7 +258,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Go Outside" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDr-qr-MOl">
-                                        <rect key="frame" x="20" y="295.5" width="280" height="29"/>
+                                        <rect key="frame" x="20" y="397.5" width="335" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <color key="highlightedColor" name="black54"/>
@@ -285,11 +286,11 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SuP-g5-NUe" userLabel="Status Background">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                 <color key="backgroundColor" name="robinsEggBlue"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6A-bN-8V9" customClass="RSDGenericNavigationFooterView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="482" width="320" height="86"/>
+                                <rect key="frame" x="0.0" y="578" width="375" height="89"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isBackHidden" value="YES"/>
@@ -328,17 +329,17 @@
             <objects>
                 <viewController storyboardIdentifier="TaskIntroduction" id="vQC-w0-27l" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6si-CK-Fg1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnh-H8-rEJ" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="32" width="320" height="399.5"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="498.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJt-4L-bOy" userLabel="Image Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="399.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="498.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="12MinLarge1" translatesAutoresizingMaskIntoConstraints="NO" id="nXw-Ax-WNP">
-                                                <rect key="frame" x="0.0" y="82" width="320" height="317.5"/>
+                                                <rect key="frame" x="0.0" y="126.5" width="375" height="372"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="nXw-Ax-WNP" secondAttribute="height" multiplier="375:372" id="I9i-U6-uLB"/>
                                                 </constraints>
@@ -353,19 +354,19 @@
                                                 <state key="normal" image="backArrowHeader"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 minute test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5e-Vr-sXo">
-                                                <rect key="frame" x="77" y="63" width="165.5" height="30"/>
+                                                <rect key="frame" x="104.5" y="63" width="165.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <color key="textColor" name="white"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eR0-4Q-owt">
-                                                <rect key="frame" x="118" y="101" width="83" height="21"/>
+                                                <rect key="frame" x="145.5" y="101" width="83" height="21"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irm-qq-kft">
-                                                <rect key="frame" x="272" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="327" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="irm-qq-kft" secondAttribute="height" multiplier="1:1" id="1Jr-dM-SX9"/>
                                                     <constraint firstAttribute="height" constant="32" id="ZBc-BG-O4u"/>
@@ -409,11 +410,11 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bx-MI-ypF" userLabel="Status Background">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                 <color key="backgroundColor" name="sky"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOe-6c-yjA" customClass="RSDGenericNavigationFooterView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="431.5" width="320" height="136.5"/>
+                                <rect key="frame" x="0.0" y="530.5" width="375" height="136.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" name="buttonTintBlue"/>
                                 <constraints>
@@ -456,14 +457,14 @@
             <objects>
                 <viewController storyboardIdentifier="Countdown" id="uMM-Y3-Hhn" userLabel="Countdown Step" customClass="CountdownStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NFo-QJ-Pj1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cV2-bN-beu" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="32" width="320" height="204.5"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="204.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkE-ZW-twW" userLabel="Navigation Header">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZ6-to-HN7">
                                                 <rect key="frame" x="16" y="0.0" width="32" height="32"/>
@@ -474,7 +475,7 @@
                                                 <state key="normal" image="closeActivity"/>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cb8-6v-elx" customClass="RSDStepProgressView" customModule="ResearchSuiteUI">
-                                                <rect key="frame" x="64" y="12" width="240" height="8"/>
+                                                <rect key="frame" x="64" y="12" width="295" height="8"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="8" placeholder="YES" id="l4m-kS-bGn"/>
@@ -494,7 +495,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLb-Nm-tvv">
-                                                <rect key="frame" x="122" y="28" width="76" height="17"/>
+                                                <rect key="frame" x="149.5" y="28" width="76" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" name="gunmetal"/>
                                                 <nil key="highlightedColor"/>
@@ -513,7 +514,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5o-B4-WBp">
-                                        <rect key="frame" x="126" y="101" width="67.5" height="26.5"/>
+                                        <rect key="frame" x="153.5" y="101" width="67.5" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" name="gunmetal"/>
                                         <nil key="highlightedColor"/>
@@ -535,10 +536,10 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWD-q3-Lwp" userLabel="Footer">
-                                <rect key="frame" x="0.0" y="485.5" width="320" height="82.5"/>
+                                <rect key="frame" x="0.0" y="584.5" width="375" height="82.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Se-aq-ra7" customClass="RSDUnderlinedButton" customModule="ResearchSuiteUI">
-                                        <rect key="frame" x="136" y="0.0" width="47" height="32.5"/>
+                                        <rect key="frame" x="163.5" y="0.0" width="47" height="32.5"/>
                                         <color key="tintColor" name="buttonTintBlue"/>
                                         <state key="normal" title="Pause"/>
                                         <connections>
@@ -554,13 +555,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fm-Y3-S1y">
-                                <rect key="frame" x="0.0" y="360.5" width="320" height="124.5"/>
+                                <rect key="frame" x="0.0" y="410" width="375" height="174"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYh-KA-7xH">
-                                <rect key="frame" x="0.0" y="236.5" width="320" height="124.5"/>
+                                <rect key="frame" x="0.0" y="236.5" width="375" height="174"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9a-Ny-c3s">
-                                        <rect key="frame" x="122" y="-15.5" width="75.5" height="155.5"/>
+                                        <rect key="frame" x="149.5" y="9.5" width="75.5" height="155.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="130"/>
                                         <color key="textColor" name="textGreen"/>
                                         <nil key="highlightedColor"/>
@@ -601,8 +602,146 @@
             </objects>
             <point key="canvasLocation" x="580" y="206.44677661169416"/>
         </scene>
+        <!--Run Distance Step View Controller-->
+        <scene sceneID="4iU-6i-pqf">
+            <objects>
+                <viewController storyboardIdentifier="RunDistance" id="9tn-dn-sHC" customClass="RunDistanceStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7PO-3V-yb7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12MinFullScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Jg6-vr-R4W">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" name="sky"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXK-Gl-hUk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JwS-r2-VNH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="tintColor" name="white"/>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIG-wX-Fhe" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
+                                <rect key="frame" x="0.0" y="32" width="375" height="45"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcO-5n-h5l" userLabel="Navigation Header">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87i-Vf-OpR">
+                                                <rect key="frame" x="16" y="0.0" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="87i-Vf-OpR" secondAttribute="height" multiplier="1:1" id="Cs1-Qh-Fei"/>
+                                                    <constraint firstAttribute="width" constant="32" id="keB-Ai-p0g"/>
+                                                </constraints>
+                                                <color key="tintColor" name="white"/>
+                                                <state key="normal" image="closeActivity"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4y-3I-qwe" customClass="RSDStepProgressView" customModule="ResearchSuiteUI">
+                                                <rect key="frame" x="64" y="12" width="295" height="8"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="8" placeholder="YES" id="RMf-4j-QKo"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasRoundedEnds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="usesLightStyle" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="currentStep">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="totalSteps">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="progressLineHeight">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCV-62-L3J">
+                                                <rect key="frame" x="149.5" y="28" width="76" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="white"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="tintColor" name="buttonTintBlue"/>
+                                        <constraints>
+                                            <constraint firstItem="h4y-3I-qwe" firstAttribute="leading" secondItem="87i-Vf-OpR" secondAttribute="trailing" constant="16" id="5EI-Ui-jJv"/>
+                                            <constraint firstItem="cCV-62-L3J" firstAttribute="centerX" secondItem="HcO-5n-h5l" secondAttribute="centerX" id="5LV-Im-8f4"/>
+                                            <constraint firstItem="h4y-3I-qwe" firstAttribute="centerY" secondItem="87i-Vf-OpR" secondAttribute="centerY" id="Olh-Wz-a1W"/>
+                                            <constraint firstItem="87i-Vf-OpR" firstAttribute="top" secondItem="HcO-5n-h5l" secondAttribute="top" id="V4A-EA-FGR"/>
+                                            <constraint firstItem="cCV-62-L3J" firstAttribute="top" secondItem="87i-Vf-OpR" secondAttribute="bottom" constant="-4" id="a40-i2-tz7"/>
+                                            <constraint firstAttribute="trailing" secondItem="h4y-3I-qwe" secondAttribute="trailing" constant="16" id="ez9-7A-m71"/>
+                                            <constraint firstItem="87i-Vf-OpR" firstAttribute="leading" secondItem="HcO-5n-h5l" secondAttribute="leading" constant="16" id="viE-hD-gSq"/>
+                                            <constraint firstAttribute="bottom" secondItem="cCV-62-L3J" secondAttribute="bottom" id="wfA-w1-ARf"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="HcO-5n-h5l" secondAttribute="bottom" id="FI7-Ox-REr"/>
+                                    <constraint firstAttribute="trailing" secondItem="HcO-5n-h5l" secondAttribute="trailing" id="Nqo-b2-fjA"/>
+                                    <constraint firstItem="HcO-5n-h5l" firstAttribute="leading" secondItem="jIG-wX-Fhe" secondAttribute="leading" id="dhD-Ah-ZNv"/>
+                                    <constraint firstItem="HcO-5n-h5l" firstAttribute="top" secondItem="jIG-wX-Fhe" secondAttribute="top" id="pV6-Kw-9Ez"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isStepLabelHidden" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="cancelButton" destination="87i-Vf-OpR" id="mOE-ix-XUR"/>
+                                    <outlet property="progressView" destination="h4y-3I-qwe" id="rKR-VV-kVP"/>
+                                    <outlet property="stepCountLabel" destination="cCV-62-L3J" id="1yQ-Vb-sr2"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKo-16-3h2">
+                                <rect key="frame" x="0.0" y="77" width="375" height="160"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nll-PU-zj7">
+                                        <rect key="frame" x="162.5" y="67.5" width="49" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="nll-PU-zj7" firstAttribute="centerX" secondItem="CKo-16-3h2" secondAttribute="centerX" id="9al-39-Wl8"/>
+                                    <constraint firstItem="nll-PU-zj7" firstAttribute="centerY" secondItem="CKo-16-3h2" secondAttribute="centerY" id="EsD-n6-sJQ"/>
+                                    <constraint firstAttribute="height" constant="160" id="Gwx-cR-8fM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jg6-vr-R4W" firstAttribute="bottom" secondItem="lJ5-0D-35s" secondAttribute="bottom" id="2tR-A8-1yN"/>
+                            <constraint firstItem="Jg6-vr-R4W" firstAttribute="top" secondItem="7PO-3V-yb7" secondAttribute="top" id="Ahh-n5-doo"/>
+                            <constraint firstItem="WXK-Gl-hUk" firstAttribute="leading" secondItem="lJ5-0D-35s" secondAttribute="leading" id="Bg6-Zn-fVX"/>
+                            <constraint firstItem="lJ5-0D-35s" firstAttribute="trailing" secondItem="CKo-16-3h2" secondAttribute="trailing" id="Odc-8W-MVQ"/>
+                            <constraint firstItem="jIG-wX-Fhe" firstAttribute="top" secondItem="7PO-3V-yb7" secondAttribute="topMargin" constant="12" id="Tn9-Fo-BJg"/>
+                            <constraint firstItem="jIG-wX-Fhe" firstAttribute="leading" secondItem="lJ5-0D-35s" secondAttribute="leading" id="XQL-QX-CZd"/>
+                            <constraint firstItem="WXK-Gl-hUk" firstAttribute="top" secondItem="7PO-3V-yb7" secondAttribute="top" id="b5a-qM-iWg"/>
+                            <constraint firstAttribute="trailing" secondItem="jIG-wX-Fhe" secondAttribute="trailing" id="cIU-I2-vpx"/>
+                            <constraint firstItem="CKo-16-3h2" firstAttribute="top" secondItem="jIG-wX-Fhe" secondAttribute="bottom" id="dWG-tr-APy"/>
+                            <constraint firstItem="WXK-Gl-hUk" firstAttribute="trailing" secondItem="lJ5-0D-35s" secondAttribute="trailing" id="e16-LR-yg6"/>
+                            <constraint firstItem="Jg6-vr-R4W" firstAttribute="leading" secondItem="lJ5-0D-35s" secondAttribute="leading" id="gML-Lb-FpB"/>
+                            <constraint firstItem="Jg6-vr-R4W" firstAttribute="trailing" secondItem="lJ5-0D-35s" secondAttribute="trailing" id="lt3-OU-0xP"/>
+                            <constraint firstItem="WXK-Gl-hUk" firstAttribute="bottom" secondItem="lJ5-0D-35s" secondAttribute="bottom" id="uX7-os-ndH"/>
+                            <constraint firstItem="CKo-16-3h2" firstAttribute="leading" secondItem="lJ5-0D-35s" secondAttribute="leading" id="ulr-L2-ete"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lJ5-0D-35s"/>
+                    </view>
+                    <connections>
+                        <outlet property="countdownLabel" destination="nll-PU-zj7" id="2kV-c2-I3d"/>
+                        <outlet property="navigationHeader" destination="jIG-wX-Fhe" id="xFp-zN-TS3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jnq-UX-9KG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1372" y="205.54722638680661"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="12MinFullScreen" width="375" height="667"/>
         <image name="12MinLarge1" width="375" height="372"/>
         <image name="12MinSmall1" width="375" height="336"/>
         <image name="backArrowHeader" width="32" height="32"/>
@@ -612,6 +751,9 @@
         <image name="infoIcon" width="32" height="32"/>
         <namedColor name="black54">
             <color white="0.0" alpha="0.54000002150000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="buttonTintBlue">
+            <color red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="buttonTintBlue">
             <color red="0.12941176470588237" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -625,8 +767,14 @@
         <namedColor name="sky">
             <color red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="sky">
+            <color red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="textGreen">
             <color red="0.41960784313725491" green="0.71372549019607845" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

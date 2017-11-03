@@ -17,6 +17,7 @@
                            {
                            "identifier"   : "heartRate",
                            "type"         : "active",
+                           "title"        : "NOT YET IMPLEMENTED. This will countdown for 6 seconds.",
                            "text"         : "Gently cover both the camera and flash with your finger.",
                            "shouldHideActions": ["goBackward", "goForward"],
                            "duration": 6,
