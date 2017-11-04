@@ -107,10 +107,12 @@
                                                {
                                                "identifier"   : "run",
                                                "type"         : "active",
-                                               "image"        : "12MinFullScreen",
+                                               "title"        : "NOT YET IMPLEMENTED: This will count down for 12 seconds.",
                                                "shouldHideActions": ["goBackward", "goForward"],
                                                "duration": 12,
-                                               "commands": ["playSound", "vibrate", "transitionAutomatically"]
+                                               "commands": ["playSound", "vibrate", "transitionAutomatically"],
+                                               "colorTheme"     : { "usesLightStyle" : true },
+                                               "viewTheme"      : { "viewIdentifier": "RunDistance", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }
                                                ]
                            },
@@ -140,7 +142,8 @@
                            "type"         : "completion",
                            "title"        : "Great Job!",
                            "image"        : "completed",
-                           "text"         : "You just went <run.distance> in 12 minutes"
+                           "text"         : "You just went <run.distance> in 12 minutes",
+                           "colorTheme"   : { "backgroundColor" : "darkPastelGreenTwo", "usesLightStyle" : true },
                            }
                            ]
 }
