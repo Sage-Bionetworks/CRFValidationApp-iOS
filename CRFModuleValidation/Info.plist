@@ -32,13 +32,13 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>This app would like to access Bluetooth peripherals.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app would like to access your camera.</string>
+	<string>This app would like to access your camera to measure your heart rate.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>This app would like to read your heath data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>This app would like to write to your health data.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app would like to access your location.</string>
+	<string>This app would like to access your location to track how far you run.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app would like to access your microphone.</string>
 	<key>NSMotionUsageDescription</key>

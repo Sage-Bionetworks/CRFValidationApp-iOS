@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Enter Code Step 1 (of 2)-->
+        <scene sceneID="LDr-f2-LtE">
+            <objects>
+                <viewController storyboardIdentifier="EnterCodeStep1" id="WKn-E5-qib" userLabel="Enter Code Step 1 (of 2)" customClass="RSDStepViewController" customModule="ResearchSuiteUI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mNi-gS-TYP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="gBk-W3-0KZ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6h7-TX-7iW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-305" y="166"/>
+        </scene>
+        <!--Fitbit Step-->
+        <scene sceneID="jZ0-Si-zc5">
+            <objects>
+                <viewController storyboardIdentifier="FitbitStep" id="658-6B-czW" userLabel="Fitbit Step" customClass="RSDStepViewController" customModule="ResearchSuiteUI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QUV-LQ-g1b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fitbitLogo" translatesAutoresizingMaskIntoConstraints="NO" id="YiC-ep-qbg">
+                                <rect key="frame" x="98.5" y="109.5" width="178" height="178"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect your Fitbit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyg-0g-vqM">
+                                <rect key="frame" x="91.5" y="377.5" width="192" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <color key="textColor" name="black54"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppA-jZ-rDP">
+                                <rect key="frame" x="36" y="416" width="303" height="81.5"/>
+                                <string key="text">Connecting to your Fitbit data allows the CRF module to understand the various aspects of your health such as your heart rate and daily movement.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="black54"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yi0-h8-VQq" customClass="SBARoundedButton" customModule="BridgeAppSDK">
+                                <rect key="frame" x="42" y="587" width="291" height="56"/>
+                                <color key="backgroundColor" name="salmon"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="It1-x0-NB1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="corners">
+                                        <real key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mz-xb-Pbm">
+                                <rect key="frame" x="67.5" y="20" width="240" height="89.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="iSx-hT-xZK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-D8-BiV">
+                                <rect key="frame" x="67.5" y="287.5" width="240" height="90"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="484-Xd-NtB"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIZ-BI-mxn">
+                                <rect key="frame" x="67.5" y="497.5" width="240" height="89.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="WqC-GW-4zZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YiC-ep-qbg" firstAttribute="centerX" secondItem="QUV-LQ-g1b" secondAttribute="centerX" id="1Nk-h8-pOr"/>
+                            <constraint firstItem="lLe-7a-IPa" firstAttribute="bottom" secondItem="Yi0-h8-VQq" secondAttribute="bottom" constant="24" id="9fQ-wN-eys"/>
+                            <constraint firstItem="ppA-jZ-rDP" firstAttribute="centerX" secondItem="QUV-LQ-g1b" secondAttribute="centerX" id="Jkq-dv-pYD"/>
+                            <constraint firstItem="vyg-0g-vqM" firstAttribute="centerX" secondItem="QUV-LQ-g1b" secondAttribute="centerX" id="Jwv-ye-f4Q"/>
+                            <constraint firstItem="9mz-xb-Pbm" firstAttribute="centerX" secondItem="QUV-LQ-g1b" secondAttribute="centerX" id="MEU-4k-j3X"/>
+                            <constraint firstItem="xIZ-BI-mxn" firstAttribute="top" secondItem="ppA-jZ-rDP" secondAttribute="bottom" id="MRm-GY-3QV"/>
+                            <constraint firstItem="Yi0-h8-VQq" firstAttribute="top" secondItem="xIZ-BI-mxn" secondAttribute="bottom" id="OOW-VI-KtX"/>
+                            <constraint firstItem="jiM-D8-BiV" firstAttribute="height" secondItem="9mz-xb-Pbm" secondAttribute="height" id="TqC-O7-f8Q"/>
+                            <constraint firstItem="xIZ-BI-mxn" firstAttribute="centerX" secondItem="QUV-LQ-g1b" secondAttribute="centerX" id="UzX-fe-woe"/>
+                            <constraint firstItem="ppA-jZ-rDP" firstAttribute="leading" secondItem="lLe-7a-IPa" secondAttribute="leading" constant="36" id="Vmc-TB-WHD"/>
+                            <constraint firstItem="YiC-ep-qbg" firstAttribute="top" secondItem="9mz-xb-Pbm" secondAttribute="bottom" id="Xv3-S1-GVy"/>
+                            <constraint firstItem="lLe-7a-IPa" firstAttribute="trailing" secondItem="Yi0-h8-VQq" secondAttribute="trailing" constant="42" id="ZRB-aQ-yLB"/>
+                            <constraint firstItem="jiM-D8-BiV" firstAttribute="centerX" secondItem="QUV-LQ-g1b" secondAttribute="centerX" id="a7D-ed-vaA"/>
+                            <constraint firstItem="xIZ-BI-mxn" firstAttribute="height" secondItem="9mz-xb-Pbm" secondAttribute="height" id="cvv-We-dQt"/>
+                            <constraint firstItem="vyg-0g-vqM" firstAttribute="top" secondItem="jiM-D8-BiV" secondAttribute="bottom" id="dXf-9g-VWQ"/>
+                            <constraint firstItem="ppA-jZ-rDP" firstAttribute="top" secondItem="vyg-0g-vqM" secondAttribute="bottom" constant="12" id="hag-I2-dW7"/>
+                            <constraint firstItem="Yi0-h8-VQq" firstAttribute="leading" secondItem="lLe-7a-IPa" secondAttribute="leading" constant="42" id="lGm-3F-Sx5"/>
+                            <constraint firstItem="lLe-7a-IPa" firstAttribute="trailing" secondItem="ppA-jZ-rDP" secondAttribute="trailing" constant="36" id="oFP-3J-ER0"/>
+                            <constraint firstItem="jiM-D8-BiV" firstAttribute="top" secondItem="YiC-ep-qbg" secondAttribute="bottom" id="ozE-Eb-Ai3"/>
+                            <constraint firstItem="jiM-D8-BiV" firstAttribute="top" secondItem="YiC-ep-qbg" secondAttribute="bottom" id="rI7-Lo-EdX"/>
+                            <constraint firstItem="9mz-xb-Pbm" firstAttribute="top" secondItem="lLe-7a-IPa" secondAttribute="top" id="rIu-Ru-XGC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lLe-7a-IPa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M8i-RS-cbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1100" y="165.06746626686657"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="fitbitLogo" width="178" height="178"/>
+        <namedColor name="black54">
+            <color white="0.0" alpha="0.54000002145767212" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="salmon">
+            <color red="1" green="0.53333333333333333" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */; };
+		601ADB081FACDEDD00B6D975 /* OnboardingSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */; };
 		60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1391E89C76E00B123FA /* Assets.xcassets */; };
 		60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A13B1E89C76E00B123FA /* LaunchScreen.storyboard */; };
 		60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1DE1E89CAFB00B123FA /* BridgeInfo.plist */; };
@@ -18,6 +20,11 @@
 		60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2141E89D0B200B123FA /* BridgeSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
 		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
+		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
+		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
+		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
+		FF55C42E1FAB0189004EDB59 /* CountdownStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C42D1FAB0189004EDB59 /* CountdownStepViewController.swift */; };
 		FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752371F7093AF004925B8 /* SurveyFactory.swift */; };
 		FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */; };
 		FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF7752471F709D71004925B8 /* StudyOverview.storyboard */; };
@@ -25,14 +32,21 @@
 		FF77525B1F70A475004925B8 /* crf-module.pem in Resources */ = {isa = PBXBuildFile; fileRef = FF77525A1F70A475004925B8 /* crf-module.pem */; };
 		FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752831F722C95004925B8 /* UIColor+CMAdditions.swift */; };
 		FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752851F722CB4004925B8 /* UIColor+BridgeMapping.swift */; };
+		FF78FC6A1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; };
+		FF78FC6B1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF78FC6E1FA3FE9400B8D42C /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; };
+		FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
+		FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
+		FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
 		FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */; };
-		FFA607AD1F707BFB0034A4C0 /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */; };
 		FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
 		FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */; };
 		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
+		FFDD77F81FAD30900024BDD1 /* RunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +99,48 @@
 			remoteGlobalIDString = 801040B11C5A843D00D26E19;
 			remoteInfo = BridgeAppSDK;
 		};
+		FF78FC5D1FA3FE0200B8D42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF443E161F7AC21900F43BE7;
+			remoteInfo = ResearchSuiteUI;
+		};
+		FF78FC5F1FA3FE0200B8D42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF443E1F1F7AC21900F43BE7;
+			remoteInfo = ResearchSuiteUITests;
+		};
+		FF78FC661FA3FE1E00B8D42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF72B2311F6859D3004C6F15;
+			remoteInfo = ResearchSuite;
+		};
+		FF78FC681FA3FE1E00B8D42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF72B23A1F6859D3004C6F15;
+			remoteInfo = ResearchSuiteTests;
+		};
+		FF78FC6C1FA3FE9400B8D42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FF443E151F7AC21900F43BE7;
+			remoteInfo = ResearchSuiteUI;
+		};
+		FF78FC701FA3FE9400B8D42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FF72B2301F6859D3004C6F15;
+			remoteInfo = ResearchSuite;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,7 +152,9 @@
 			files = (
 				60F7A2101E89D0B200B123FA /* ResearchKit.framework in Embed Frameworks */,
 				60F7A2131E89D0B200B123FA /* ResearchUXFactory.framework in Embed Frameworks */,
+				FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */,
 				60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */,
+				FF78FC6B1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Embed Frameworks */,
 				60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -105,6 +163,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingSteps.storyboard; sourceTree = "<group>"; };
 		60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFModuleValidation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A1321E89C76E00B123FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F7A1391E89C76E00B123FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,6 +177,11 @@
 		60F7A20E1E89D0B200B123FA /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
+		FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Stair_Step.html; sourceTree = "<group>"; };
+		FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Cardio_12MT.html; sourceTree = "<group>"; };
+		FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntroductionStepViewController.swift; sourceTree = "<group>"; };
+		FF55C42D1FAB0189004EDB59 /* CountdownStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownStepViewController.swift; sourceTree = "<group>"; };
 		FF7752371F7093AF004925B8 /* SurveyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFactory.swift; sourceTree = "<group>"; };
 		FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyOverviewViewController.swift; sourceTree = "<group>"; };
 		FF7752471F709D71004925B8 /* StudyOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyOverview.storyboard; sourceTree = "<group>"; };
@@ -125,15 +190,20 @@
 		FF7752831F722C95004925B8 /* UIColor+CMAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CMAdditions.swift"; sourceTree = "<group>"; };
 		FF7752851F722CB4004925B8 /* UIColor+BridgeMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+BridgeMapping.swift"; sourceTree = "<group>"; };
 		FF77528F1F7230DC004925B8 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchSuiteUI.xcodeproj; path = ResearchSuite/ResearchSuiteUI/ResearchSuiteUI.xcodeproj; sourceTree = "<group>"; };
+		FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchSuite.xcodeproj; path = ResearchSuite/ResearchSuite/ResearchSuite.xcodeproj; sourceTree = "<group>"; };
+		FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
+		FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartrateStep.json; sourceTree = "<group>"; };
+		FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActiveTaskSteps.storyboard; sourceTree = "<group>"; };
 		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
 		FFA6078D1F70745F0034A4C0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		FFA6079C1F7076270034A4C0 /* CRFModuleValidation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CRFModuleValidation-Bridging-Header.h"; sourceTree = "<group>"; };
 		FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
-		FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
 		FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartRate_Measurement.json; sourceTree = "<group>"; };
 		FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledActivityManager.swift; sourceTree = "<group>"; };
 		FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
+		FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDistanceStepViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +211,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */,
 				60F7A20F1E89D0B200B123FA /* ResearchKit.framework in Frameworks */,
+				FF78FC6E1FA3FE9400B8D42C /* ResearchSuite.framework in Frameworks */,
 				60F7A2121E89D0B200B123FA /* ResearchUXFactory.framework in Frameworks */,
 				60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */,
+				FF78FC6A1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Frameworks */,
 				FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */,
 				60F7A2151E89D0B200B123FA /* BridgeSDK.framework in Frameworks */,
 			);
@@ -186,6 +259,10 @@
 				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
+				FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */,
+				FF55C42D1FAB0189004EDB59 /* CountdownStepViewController.swift */,
+				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
+				FF9D7F591FA8DEB8008506DB /* Step Customization */,
 				60F7A1641E89C98800B123FA /* Resources */,
 				60F7A1611E89C93800B123FA /* Storyboards */,
 				FF77527E1F722C60004925B8 /* Style Guide */,
@@ -230,6 +307,7 @@
 		60F7A1641E89C98800B123FA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FF55C4121FAAD993004EDB59 /* HTML */,
 				FFA607AB1F707BB70034A4C0 /* JSON */,
 				60F7A1391E89C76E00B123FA /* Assets.xcassets */,
 			);
@@ -239,11 +317,14 @@
 		60F7A1F21E89CFEF00B123FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */,
 				FFA6078D1F70745F0034A4C0 /* HealthKit.framework */,
 				60F7A2141E89D0B200B123FA /* BridgeSDK.framework */,
 				60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */,
 				60F7A20E1E89D0B200B123FA /* ResearchKit.framework */,
 				60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */,
+				FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */,
+				FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -260,6 +341,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FF55C4121FAAD993004EDB59 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */,
+				FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */,
+			);
+			name = HTML;
+			sourceTree = "<group>";
+		};
 		FF77527E1F722C60004925B8 /* Style Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,11 +359,40 @@
 			name = "Style Guide";
 			sourceTree = "<group>";
 		};
+		FF78FC551FA3FE0200B8D42C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */,
+				FF78FC601FA3FE0200B8D42C /* ResearchSuiteUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF78FC621FA3FE1E00B8D42C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */,
+				FF78FC691FA3FE1E00B8D42C /* ResearchSuiteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF9D7F591FA8DEB8008506DB /* Step Customization */ = {
+			isa = PBXGroup;
+			children = (
+				FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */,
+				FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */,
+				601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */,
+			);
+			name = "Step Customization";
+			sourceTree = "<group>";
+		};
 		FFA607AB1F707BB70034A4C0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */,
+				FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */,
 				FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */,
-				FFA607AC1F707BFB0034A4C0 /* Cardio_12MT.json */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -296,6 +415,8 @@
 			);
 			dependencies = (
 				60F7A21A1E89D0B200B123FA /* PBXTargetDependency */,
+				FF78FC6D1FA3FE9400B8D42C /* PBXTargetDependency */,
+				FF78FC711FA3FE9400B8D42C /* PBXTargetDependency */,
 			);
 			name = CRFModuleValidation;
 			productName = CRFModuleValidation;
@@ -348,6 +469,9 @@
 							com.apple.Keychain = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					60F7A1421E89C76E00B123FA = {
@@ -373,6 +497,14 @@
 				{
 					ProductGroup = 60F7A1F61E89D00F00B123FA /* Products */;
 					ProjectRef = 60F7A1F51E89D00F00B123FA /* BridgeAppSDK.xcodeproj */;
+				},
+				{
+					ProductGroup = FF78FC621FA3FE1E00B8D42C /* Products */;
+					ProjectRef = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+				},
+				{
+					ProductGroup = FF78FC551FA3FE0200B8D42C /* Products */;
+					ProjectRef = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -419,6 +551,34 @@
 			remoteRef = 60F7A20C1E89D01100B123FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuiteUI.framework;
+			remoteRef = FF78FC5D1FA3FE0200B8D42C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FF78FC601FA3FE0200B8D42C /* ResearchSuiteUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchSuiteUITests.xctest;
+			remoteRef = FF78FC5F1FA3FE0200B8D42C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuite.framework;
+			remoteRef = FF78FC661FA3FE1E00B8D42C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FF78FC691FA3FE1E00B8D42C /* ResearchSuiteTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchSuiteTests.xctest;
+			remoteRef = FF78FC681FA3FE1E00B8D42C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -426,15 +586,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601ADB081FACDEDD00B6D975 /* OnboardingSteps.storyboard in Resources */,
 				60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */,
 				FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */,
-				FFA607AD1F707BFB0034A4C0 /* Cardio_12MT.json in Resources */,
 				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,
 				FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */,
+				FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */,
+				FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */,
 				FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */,
 				FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */,
+				FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */,
 				60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */,
 				60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */,
+				FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */,
+				FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,13 +646,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */,
 				FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */,
 				FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */,
 				FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */,
 				FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */,
 				FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */,
+				FFDD77F81FAD30900024BDD1 /* RunDistanceStepViewController.swift in Sources */,
 				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
 				FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */,
+				FF55C42E1FAB0189004EDB59 /* CountdownStepViewController.swift in Sources */,
+				FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +680,16 @@
 			isa = PBXTargetDependency;
 			name = BridgeAppSDK;
 			targetProxy = 60F7A2191E89D0B200B123FA /* PBXContainerItemProxy */;
+		};
+		FF78FC6D1FA3FE9400B8D42C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResearchSuiteUI;
+			targetProxy = FF78FC6C1FA3FE9400B8D42C /* PBXContainerItemProxy */;
+		};
+		FF78FC711FA3FE9400B8D42C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResearchSuite;
+			targetProxy = FF78FC701FA3FE9400B8D42C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -566,7 +745,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -609,7 +787,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -633,7 +810,6 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -662,12 +838,11 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "859e989d-f740-4844-b424-721f77405886";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: org.sagebase.crfModuleApp";
+				PROVISIONING_PROFILE = "9059c83e-ff2e-4a3a-8207-50f3b3cccb8f";
+				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.crfModuleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
