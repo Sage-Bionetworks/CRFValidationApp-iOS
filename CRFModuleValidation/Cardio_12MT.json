@@ -99,18 +99,14 @@
                                                "identifier"   : "countdown",
                                                "type"         : "active",
                                                "text"         : "Start in",
-                                               "shouldHideActions": ["goBackward", "goForward"],
                                                "duration": 5,
                                                "commands": ["transitionAutomatically"],
-                                               "viewTheme"      : { "viewIdentifier": "Countdown", "storyboardIdentifier": "ActiveTaskSteps" }
                                                },
                                                {
-                                               "identifier"   : "run",
-                                               "type"         : "active",
-                                               "title"        : "NOT YET IMPLEMENTED: This will count down for 12 seconds.",
-                                               "shouldHideActions": ["goBackward", "goForward"],
-                                               "duration": 12,
-                                               "commands": ["playSound", "vibrate", "transitionAutomatically"],
+                                               "identifier"     : "run",
+                                               "type"           : "active",
+                                               "duration"       : 12,
+                                               "commands"       : ["vibrate", "transitionAutomatically"],
                                                "colorTheme"     : { "usesLightStyle" : true },
                                                "viewTheme"      : { "viewIdentifier": "RunDistance", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }

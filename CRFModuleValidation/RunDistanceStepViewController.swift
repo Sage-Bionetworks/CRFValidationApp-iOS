@@ -35,22 +35,7 @@ import UIKit
 import ResearchSuiteUI
 import ResearchSuite
 
-class RunDistanceStepViewController: RSDStepViewController {
+class RunDistanceStepViewController: RSDActiveStepViewController {
     
-    @IBOutlet var countdownLabel: UILabel!
-    
-    let countdownFormatter : DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.minute, .second]
-        formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = [ .pad ]
-        return formatter
-    }()
-
-    override var countdown: Int {
-        didSet {
-            countdownLabel.text = countdownFormatter.string(from: TimeInterval(countdown))
-        }
-    }
 
 }
