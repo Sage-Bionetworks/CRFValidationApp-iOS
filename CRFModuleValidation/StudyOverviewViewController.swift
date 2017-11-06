@@ -57,6 +57,13 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
         // Create a task with an external ID and permissions steps and display the view controller
         let externalIDStep = SBAExternalIDLoginStep(identifier: "externalID")
         let permissionsStep = SBAPermissionsStep(identifier: "permissions", permissions:[.camera, .coremotion, .location, .notifications])
+        // Replace the location permission with a permission that always requests the permission.
+        permissionsStep.permissionTypes = permissionsStep.permissionTypes.map{ (input) -> SBAPermissionObjectType in
+            guard input.permissionType == .location else { return input }
+            let permission = SBALocationPermissionObjectType(permissionType: .location)
+            permission.always = true
+            return permission
+        }
         let fitbitStep = SBAInstructionStep(identifier: "fitbit")
         fitbitStep.title = "Connect your Fitbit"
         fitbitStep.detailText = "Connecting to your Fitbit data allows the CRF module to understand the various aspects of your health such as your heart rate and daily movement."

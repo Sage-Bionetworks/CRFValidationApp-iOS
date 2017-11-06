@@ -214,11 +214,15 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     }
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), viewControllerFor step: RSDStep) -> (UIViewController & RSDStepController)? {
-        return nil  // TODO: syoung 10/30/2017 build replacement view controllers
+        return nil
     }
     
     func taskViewControllerShouldAutomaticallyForward(_ taskViewController: (UIViewController & RSDTaskController)) -> Bool {
         return true
+    }
+    
+    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), asyncActionControllerFor configuration: RSDAsyncActionConfiguration) -> RSDAsyncActionController? {
+        return nil
     }
 }
 
@@ -245,8 +249,8 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
                 if let archivableResult = result as? SBAArchivableResult {
                     archivableResults.append((stepIdentifier, archivableResult))
                 }
-                else if let stepCollection = result as? RSDStepCollectionResult {
-                    recursiveAddFunc(sectionIdentifier, stepCollection.identifier, stepCollection.inputResults)
+                else if let collection = result as? RSDCollectionResult {
+                    recursiveAddFunc(sectionIdentifier, collection.identifier, collection.inputResults)
                 }
                 else if let taskResult = result as? RSDTaskResult {
                     recursiveAddFunc(taskResult.identifier, taskResult.identifier, taskResult.stepHistory)

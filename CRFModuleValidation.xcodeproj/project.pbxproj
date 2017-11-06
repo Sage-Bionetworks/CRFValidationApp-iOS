@@ -21,6 +21,8 @@
 		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
 		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
+		FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
+		FF2A1D5A1FB176BC0095044A /* CRFLocationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */; };
 		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
 		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
 		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
@@ -45,7 +47,7 @@
 		FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
 		FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */; };
 		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
-		FFDD77F81FAD30900024BDD1 /* RunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */; };
+		FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +179,8 @@
 		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
+		FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateRecorder.swift; sourceTree = "<group>"; };
+		FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFLocationRecorder.swift; sourceTree = "<group>"; };
 		FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Stair_Step.html; sourceTree = "<group>"; };
 		FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Cardio_12MT.html; sourceTree = "<group>"; };
 		FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntroductionStepViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +205,7 @@
 		FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartRate_Measurement.json; sourceTree = "<group>"; };
 		FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledActivityManager.swift; sourceTree = "<group>"; };
 		FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
-		FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDistanceStepViewController.swift; sourceTree = "<group>"; };
+		FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFRunDistanceStepViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +261,6 @@
 				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
-				FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */,
 				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
 				FF9D7F591FA8DEB8008506DB /* Step Customization */,
 				60F7A1641E89C98800B123FA /* Resources */,
@@ -338,6 +341,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FF2A1D581FB176340095044A /* Recorders */ = {
+			isa = PBXGroup;
+			children = (
+				FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */,
+				FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */,
+			);
+			name = Recorders;
+			sourceTree = "<group>";
+		};
+		FF2A1D5B1FB177750095044A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		FF55C4121FAAD993004EDB59 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +397,8 @@
 		FF9D7F591FA8DEB8008506DB /* Step Customization */ = {
 			isa = PBXGroup;
 			children = (
+				FF2A1D5B1FB177750095044A /* View Controllers */,
+				FF2A1D581FB176340095044A /* Recorders */,
 				FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */,
 				FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */,
 				601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */,
@@ -643,14 +665,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF2A1D5A1FB176BC0095044A /* CRFLocationRecorder.swift in Sources */,
 				FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */,
 				FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */,
 				FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */,
 				FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */,
 				FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */,
 				FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */,
-				FFDD77F81FAD30900024BDD1 /* RunDistanceStepViewController.swift in Sources */,
+				FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */,
 				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
+				FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */,
 				FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */,
 				FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */,
 			);
@@ -806,6 +830,7 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -834,6 +859,7 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
