@@ -37,8 +37,7 @@ import ResearchSuite
 
 public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
     
-    var observation: NSKeyValueObservation?
-    let usesMetricSystem: Bool = Locale.current.usesMetricSystem
+    private var _distanceObserver: NSKeyValueObservation?
     
     public var locationRecorder: CRFLocationRecorder? {
         return self.taskController.currentAsyncControllers.first(where: { $0 is CRFLocationRecorder }) as? CRFLocationRecorder
@@ -47,6 +46,10 @@ public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
     override public func start() {
         super.start()
         
+        // TODO: syoung 11/07/2017 Improve messaging to the user in the case where the GPS failed to start or
+        // isn't authorized to get updates in the background. (The permission for requesting alway on location
+        // is confusing and I suspect this will be a problem.)
+        
         // Setup a listener for changes to the location
         if let locationRecorder = self.locationRecorder {
             
@@ -54,15 +57,15 @@ public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
             self._updateDistanceLabelOnMainQueue(locationRecorder.totalDistance)
             
             // Add an observer
-            observation = locationRecorder.observe(\.totalDistance) { [weak self] (recorder, change) in
+            _distanceObserver = locationRecorder.observe(\.totalDistance) { [weak self] (recorder, change) in
                 self?._updateDistanceLabelOnMainQueue(recorder.totalDistance)
             }
         }
     }
     
     override public func stop() {
-        observation?.invalidate()
-        observation = nil
+        _distanceObserver?.invalidate()
+        _distanceObserver = nil
         
         // Add the total distance as a result for display to the user
         var distanceResult = RSDAnswerResultObject(identifier: self.step.identifier, answerType: RSDAnswerResultType(baseType: .decimal))
@@ -71,6 +74,14 @@ public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
         
         super.stop()
     }
+    
+    func _updateDistanceLabelOnMainQueue(_ distance: Double) {
+        DispatchQueue.main.async {
+            self._updateDistanceLabel(distance)
+        }
+    }
+    
+    let usesMetricSystem: Bool = Locale.current.usesMetricSystem
     
     let numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -85,13 +96,9 @@ public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
         return unitFormatter
     }()
     
-    func _updateDistanceLabelOnMainQueue(_ distance: Double) {
-        DispatchQueue.main.async {
-            self._updateDistanceLabel(distance)
-        }
-    }
-    
     func _updateDistanceLabel(_ distance: Double) {
+        
+        // update the label
         if usesMetricSystem {
             self.progressLabel?.text = numberFormatter.string(from: NSNumber(value: distance))
             self.unitLabel?.text = unitFormatter.unitString(fromValue: 100, unit: .meter).localizedUppercase
@@ -99,5 +106,8 @@ public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
             self.progressLabel?.text = numberFormatter.string(from: NSNumber(value: distance * 3.28084))
             self.unitLabel?.text = unitFormatter.unitString(fromValue: 100, unit: .foot).localizedUppercase
         }
+        
+        // fire the timer
+        self.timerFired()
     }
 }

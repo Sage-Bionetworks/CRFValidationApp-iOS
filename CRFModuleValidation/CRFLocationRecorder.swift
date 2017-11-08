@@ -257,6 +257,8 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
         super.moveTo(step: step, taskPath: taskPath)
     }
     
+    // MARK: CLLocationManagerDelegate
+    
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.didFail(with: error)
     }
@@ -271,10 +273,7 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard locations.count > 0, let startUptime = self.startUptime
-            else {
-                return
-        }
+        guard locations.count > 0 else { return }
         
         self.processingQueue.async {
             
@@ -282,7 +281,7 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
             
                 // Calculate time interval since start time
                 let timeInterval = location.timestamp.timeIntervalSince(self.startDate)
-                let timestamp = startUptime + timeInterval
+                let timestamp = self.startUptime + timeInterval
 
                 // Update the total distance
                 self._updateTotalDistance(location)
@@ -344,29 +343,36 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     
     private func _updateTotalDistance(_ location: CLLocation) {
 
-        // Only include total distance traveled if the user is not supposed to be standing still
-        // and the horizontal accuracy indicates that the user is outdoors
-        let isOutdoors = location.horizontalAccuracy > 0 && location.horizontalAccuracy <= kLocationRequiredAccuracy
         let timestamp = location.timestamp
-        guard isOutdoors || isSimulator, timestamp >= self.startTotalDistance.addingTimeInterval(-60)
+        guard timestamp >= self.startTotalDistance.addingTimeInterval(-60)
             else {
                 return
         }
 
+        // Determine if this location is accurat enough to use in calculations
+        let isOutdoors = location.horizontalAccuracy > 0 && location.horizontalAccuracy <= kLocationRequiredAccuracy
+        
         if let lastLocation = _lastAccurateLocation, timestamp >= self.startTotalDistance, timestamp <= self.endTotalDistance {
             if isSimulator {
                 // If running in the simulator then have the simulator run a 12 minute mile.
                 totalDistance += timestamp.timeIntervalSince(lastLocation.timestamp) * 2.2352
-            } else {
+            } else if isOutdoors {
                 // If the time is after the start time, then add the distance traveled to the total distance.
                 // This is a rough measurement and does not (at this time) include any spline drawing to measure the
-                // actual curve of the distance traveled.
+                // actual curve of the distance traveled. It also does not check for bearing to see if the user
+                // is actually standing still.
                 totalDistance += lastLocation.distance(from: location)
+            } else {
+                // If the user is indoors then don't calculate a change in distance, but still
+                // update any KVO observers.
+                totalDistance += 0
             }
         }
         
         // Save the previous location as the last accurate location
-        _lastAccurateLocation = location
+        if isOutdoors || isSimulator {
+            _lastAccurateLocation = location
+        }
     }
 
     private func _updateMostRecent(_ location: CLLocation, timeInterval: TimeInterval) {
