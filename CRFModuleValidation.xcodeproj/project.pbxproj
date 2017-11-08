@@ -23,6 +23,9 @@
 		80B3FB531FB51EC900B81B6E /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */; };
 		80E8D1BC1FB5460A00A695C5 /* OnboardingSurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */; };
 		FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
+		80D529091FB26A17007B9B26 /* MyJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D529021FB26A17007B9B26 /* MyJourneyViewController.swift */; };
+		80D5290C1FB26C2E007B9B26 /* TaskGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */; };
+		80D5290D1FB26C2E007B9B26 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5290B1FB26C2D007B9B26 /* Schedule.swift */; };
 		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
 		FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
 		FF2A1D5A1FB176BC0095044A /* CRFLocationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */; };
@@ -199,6 +202,9 @@
 		80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitStep.swift; sourceTree = "<group>"; };
 		80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OnboardingSurvey.json; sourceTree = "<group>"; };
 		FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateStepViewController.swift; sourceTree = "<group>"; };
+		80D529021FB26A17007B9B26 /* MyJourneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJourneyViewController.swift; sourceTree = "<group>"; };
+		80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroup.swift; sourceTree = "<group>"; };
+		80D5290B1FB26C2D007B9B26 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
 		FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateRecorder.swift; sourceTree = "<group>"; };
 		FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFLocationRecorder.swift; sourceTree = "<group>"; };
@@ -300,6 +306,9 @@
 				FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */,
 				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
+				80D529021FB26A17007B9B26 /* MyJourneyViewController.swift */,
+				80D5290B1FB26C2D007B9B26 /* Schedule.swift */,
+				80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
 				80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */,
 				FF9D7F591FA8DEB8008506DB /* Step Customization */,
@@ -756,6 +765,7 @@
 			files = (
 				FF5D8B811FB535340003B0FC /* CRFStairStepViewController.swift in Sources */,
 				FF2A1D5A1FB176BC0095044A /* CRFLocationRecorder.swift in Sources */,
+				80D5290C1FB26C2E007B9B26 /* TaskGroup.swift in Sources */,
 				FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */,
 				FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */,
 				FFAA2D951FB571BF00B63CBA /* CRFCoreMotionRecorder.swift in Sources */,
@@ -772,6 +782,8 @@
 				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
 				FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */,
 				FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */,
+				80D529091FB26A17007B9B26 /* MyJourneyViewController.swift in Sources */,
+				80D5290D1FB26C2E007B9B26 /* Schedule.swift in Sources */,
 				FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */,
 				FFF159F51FB4E31F0061BA93 /* CRFHeartRateProcessor.m in Sources */,
 			);
