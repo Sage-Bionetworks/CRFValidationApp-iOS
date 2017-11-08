@@ -34,6 +34,8 @@
 import Foundation
 import ResearchSuite
 
+// TODO: syoung 11/07/2017 Implement
+
 //public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, Codable {
 //    
 //    public let identifier: String
