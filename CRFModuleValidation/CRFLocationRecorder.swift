@@ -73,22 +73,22 @@ public struct CRFLocationRecorderConfiguration : RSDRecorderConfiguration, RSDAs
 public struct CRFLocationRecord: RSDSampleRecord {
 
     public let uptime: TimeInterval
-    public let date: Date
     public let stepPath: String
+    public let date: Date?
     
     public let horizontalAccuracy: Double?
     public let relativeDistance: Double?
     public let latitude: Double?
     public let longitude: Double?
-    public let totalDistance: Double?
     
     public let verticalAccuracy: Double?
     public let altitude: Double?
     
+    public let totalDistance: Double?
     public let course: Double?
     public let speed: Double?
   
-    public init(uptime: TimeInterval, stepPath: String, location: CLLocation, previousLocation: CLLocation?, totalDistance: Double, relativeDistanceOnly: Bool) {
+    public init(uptime: TimeInterval, stepPath: String, location: CLLocation, previousLocation: CLLocation?, totalDistance: Double?, relativeDistanceOnly: Bool) {
         self.uptime = uptime
         self.stepPath = stepPath
         self.totalDistance = totalDistance
@@ -245,16 +245,21 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     }
     
     override public func moveTo(step: RSDStep, taskPath: RSDTaskPath) {
+        
+        // Call super. This will update the step path and add a step change marker.
+        super.moveTo(step: step, taskPath: taskPath)
+        
+        // Look to see if the configuration has a motion step and update state accordingly.
         if let motionStepId = self.locationConfiguration?.motionStepIdentifier {
             let newState = (step.identifier != motionStepId)
             if newState != isStandingStill {
                 isStandingStill = newState
                 if isStandingStill {
+                    // If changed from moving to standing still then add the pedometer data
                     _addPedometerData()
                 }
             }
         }
-        super.moveTo(step: step, taskPath: taskPath)
     }
     
     // MARK: CLLocationManagerDelegate
@@ -284,10 +289,10 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
                 let timestamp = self.startUptime + timeInterval
 
                 // Update the total distance
-                self._updateTotalDistance(location)
+                let distance = self._updateTotalDistance(location)
                 
                 // Create the sample
-                let sample = CRFLocationRecord(uptime: timestamp, stepPath: self.currentStepPath, location: location, previousLocation: self.mostRecentLocation, totalDistance: self.totalDistance, relativeDistanceOnly: self.relativeDistanceOnly)
+                let sample = CRFLocationRecord(uptime: timestamp, stepPath: self.currentStepPath, location: location, previousLocation: self.mostRecentLocation, totalDistance: distance, relativeDistanceOnly: self.relativeDistanceOnly)
                 
                 // If this is a valid location then store as the previous location
                 self._updateMostRecent(location, timeInterval: timeInterval)
@@ -301,6 +306,7 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     
     // MARK: Data management
     
+    private var _stepStartLocation : CLLocation?
     private var _lastAccurateLocation : CLLocation?
     private var _recentLocations : [CLLocation] = []
     private let kLocationRequiredAccuracy : CLLocationAccuracy = 20.0
@@ -341,16 +347,17 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
         self.appendResults(gpsDistanceResult)
     }
     
-    private func _updateTotalDistance(_ location: CLLocation) {
+    private func _updateTotalDistance(_ location: CLLocation) -> Double? {
 
         let timestamp = location.timestamp
-        guard timestamp >= self.startTotalDistance.addingTimeInterval(-60)
+        guard timestamp >= self.startDate.addingTimeInterval(-60)
             else {
-                return
+                return nil
         }
 
         // Determine if this location is accurat enough to use in calculations
         let isOutdoors = location.horizontalAccuracy > 0 && location.horizontalAccuracy <= kLocationRequiredAccuracy
+        var distance: Double?
         
         if let lastLocation = _lastAccurateLocation, timestamp >= self.startTotalDistance, timestamp <= self.endTotalDistance {
             if isSimulator {
@@ -367,12 +374,18 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
                 // update any KVO observers.
                 totalDistance += 0
             }
-        }
+            distance = totalDistance
+        } 
         
         // Save the previous location as the last accurate location
         if isOutdoors || isSimulator {
             _lastAccurateLocation = location
+            if _stepStartLocation == nil {
+                _stepStartLocation = _lastAccurateLocation
+            }
         }
+        
+        return distance
     }
 
     private func _updateMostRecent(_ location: CLLocation, timeInterval: TimeInterval) {
