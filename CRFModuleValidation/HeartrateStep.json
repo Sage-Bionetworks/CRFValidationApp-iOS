@@ -17,18 +17,19 @@
                            {
                            "identifier"   : "heartRate",
                            "type"         : "active",
-                           "title"        : "NOT YET IMPLEMENTED. This will countdown for 6 seconds.",
                            "text"         : "Gently cover both the camera and flash with your finger.",
                            "shouldHideActions": ["goBackward", "goForward"],
-                           "duration": 6,
-                           "commands": ["playSound", "transitionAutomatically"],
+                           "duration": 60,
+                           "commands": ["playSound", "continueOnFinish"],
                            "spokenInstructions": {
-                               "0": "Please keep still",
-                               "halfway": "You’re half way there!",
-                               "40": "Doing a great job keeping your finger still on the camera!",
-                               "45": "Just 15 seconds left",
-                               "end": "You’re all done!"
-                               }
+                                "0" : "Gently cover both the camera and flash with your finger.",
+                                "5": "Please keep still",
+                                "halfway": "You’re half way there!",
+                                "40": "Doing a great job of keeping your finger on the camera!",
+                                "45": "Just 15 seconds left",
+                                "end": "You’re all done!"
+                           },
+                            "viewTheme"   : { "viewIdentifier": "HeartRate", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
                            {
                            "identifier"   : "feedback",

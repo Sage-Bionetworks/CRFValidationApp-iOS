@@ -73,6 +73,7 @@ public struct CRFLocationRecorderConfiguration : RSDRecorderConfiguration, RSDAs
 public struct CRFLocationRecord: RSDSampleRecord {
 
     public let uptime: TimeInterval
+    public let timestamp: TimeInterval
     public let stepPath: String
     public let date: Date?
     
@@ -88,8 +89,9 @@ public struct CRFLocationRecord: RSDSampleRecord {
     public let course: Double?
     public let speed: Double?
   
-    public init(uptime: TimeInterval, stepPath: String, location: CLLocation, previousLocation: CLLocation?, totalDistance: Double?, relativeDistanceOnly: Bool) {
+    public init(uptime: TimeInterval, timestamp: TimeInterval, stepPath: String, location: CLLocation, previousLocation: CLLocation?, totalDistance: Double?, relativeDistanceOnly: Bool) {
         self.uptime = uptime
+        self.timestamp = timestamp
         self.stepPath = stepPath
         self.totalDistance = totalDistance
         self.date = location.timestamp
@@ -286,13 +288,13 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
             
                 // Calculate time interval since start time
                 let timeInterval = location.timestamp.timeIntervalSince(self.startDate)
-                let timestamp = self.startUptime + timeInterval
+                let uptime = self.startUptime + timeInterval
 
                 // Update the total distance
                 let distance = self._updateTotalDistance(location)
                 
                 // Create the sample
-                let sample = CRFLocationRecord(uptime: timestamp, stepPath: self.currentStepPath, location: location, previousLocation: self.mostRecentLocation, totalDistance: distance, relativeDistanceOnly: self.relativeDistanceOnly)
+                let sample = CRFLocationRecord(uptime: uptime, timestamp: timeInterval, stepPath: self.currentStepPath, location: location, previousLocation: self.mostRecentLocation, totalDistance: distance, relativeDistanceOnly: self.relativeDistanceOnly)
                 
                 // If this is a valid location then store as the previous location
                 self._updateMostRecent(location, timeInterval: timeInterval)
