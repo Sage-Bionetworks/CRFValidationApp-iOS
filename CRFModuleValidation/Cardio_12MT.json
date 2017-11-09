@@ -146,10 +146,7 @@
                            {
                            "identifier"   : "completion",
                            "type"         : "completion",
-                           "title"        : "Great Job!",
-                           "image"        : "completed",
-                           "text"         : "You just went <run.distance> in 12 minutes",
-                           "colorTheme"   : { "backgroundColor" : "darkPastelGreenTwo", "usesLightStyle" : true },
+                           "viewTheme"    : { "viewIdentifier": "Completed12MT", "storyboardIdentifier": "ActiveTaskSteps" }
                            }
                            ]
 }

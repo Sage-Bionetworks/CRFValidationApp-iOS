@@ -46,10 +46,15 @@ open class CRFResultStepViewController: RSDStepViewController {
         
         self.textLabel?.text = self.uiStep?.text
         self.resultLabel.text = resultText
+        self.unitLabel?.text = unitText
+    }
+    
+    open var unitText: String? {
+        return self.unitLabel?.text
     }
     
     open var resultText: String? {
-        return nil
+        return self.resultLabel.text
     }
     
     open var numberFormatter: NumberFormatter = {
@@ -82,6 +87,60 @@ public class CRFHeartRateResultStepViewController: CRFResultStepViewController {
         }
         
         return numberFormatter.string(from: NSNumber(value: answer))
+    }
+}
+
+public class CRFRunDistanceResultStepViewController : CRFResultStepViewController {
+    
+    @IBOutlet var doneButton: RSDRoundedButton?
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        doneButton?.shadowColor = UIColor.rsd_roundedButtonShadowLight
+    }
+    
+    let usesMetricSystem: Bool = Locale.current.usesMetricSystem
+    
+    let unitFormatter: LengthFormatter = {
+        let unitFormatter = LengthFormatter()
+        unitFormatter.unitStyle = .long
+        return unitFormatter
+    }()
+    
+    override public var unitText: String? {
+        guard let distance = resultAnswer else { return nil }
+        if usesMetricSystem {
+            return unitFormatter.unitString(fromValue: distance.doubleValue, unit: .meter).localizedUppercase
+        } else {
+            return unitFormatter.unitString(fromValue: distance.doubleValue, unit: .foot).localizedUppercase
+        }
+    }
+    
+    override public var resultText: String? {
+        guard let distance = resultAnswer else { return nil }
+        return numberFormatter.string(from: distance)
+    }
+    
+    public var resultAnswer : NSNumber? {
+        
+        let resultStepIdentifier = "run"
+        let taskPath = self.taskController.taskPath!
+        let secResult = taskPath.result.stepHistory.first { $0.identifier == resultStepIdentifier}
+        guard let sectionResult = secResult as? RSDTaskResult
+            else {
+                return nil
+        }
+        
+        let resultIdentifier = "runDistance"
+        let aResult = sectionResult.stepHistory.first { $0.identifier == resultIdentifier }
+        guard let result = aResult as? RSDAnswerResult,
+            let answer = result.value as? Double
+            else {
+                return nil
+        }
+        
+        return usesMetricSystem ? NSNumber(value: answer) : NSNumber(value: answer *  3.28084)
     }
 }
 
