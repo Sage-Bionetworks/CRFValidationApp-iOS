@@ -52,6 +52,7 @@
 		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
 		FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
 		FFF159F51FB4E31F0061BA93 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
+		FFFDAFBC1FB50091001C59BD /* CRFResultStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +216,7 @@
 		FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFRunDistanceStepViewController.swift; sourceTree = "<group>"; };
 		FFF159ED1FB4E31F0061BA93 /* CRFHeartRateProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFHeartRateProcessor.h; sourceTree = "<group>"; };
 		FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFHeartRateProcessor.m; sourceTree = "<group>"; };
+		FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFResultStepViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +369,7 @@
 			children = (
 				FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */,
 				FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */,
+				FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */,
 				FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */,
 				FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */,
+				FFFDAFBC1FB50091001C59BD /* CRFResultStepViewController.swift in Sources */,
 				FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */,
 				FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */,
 				FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */,
