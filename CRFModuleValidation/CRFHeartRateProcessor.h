@@ -1,5 +1,5 @@
 //
-//  CRFModuleValidation-Bridging-Header.h
+//  CRFHeartRateProcessor.h
 //  CRFModuleValidation
 //
 //  Copyright © 2017 Sage Bionetworks. All rights reserved.
@@ -31,4 +31,32 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "CRFHeartRateProcessor.h"
+#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+struct CRFPixelSample {
+    double red;
+    double green;
+    double blue;
+    double uptime;
+};
+
+@class CRFHeartRateProcessor;
+
+@protocol CRFHeartRateProcessorDelegate <NSObject>
+
+- (void)processor:(CRFHeartRateProcessor *)processor didCaptureSample:(struct CRFPixelSample)sample;
+
+@end
+
+@interface CRFHeartRateProcessor : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate>
+
+@property (nonatomic) __weak _Nullable id <CRFHeartRateProcessorDelegate> delegate;
+
+- (NSInteger)calculateBPMWithDataPoints:(NSArray *)dataPoints NS_SWIFT_NAME(calculateBPM(with:));
+
+@end
+
+NS_ASSUME_NONNULL_END

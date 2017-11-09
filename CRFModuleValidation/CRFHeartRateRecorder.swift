@@ -114,7 +114,7 @@ fileprivate let kHeartRateSettleSeconds: Int = 3
 fileprivate let kHeartRateWindowSeconds: Int = 10
 fileprivate let kHeartRateMinFrameCount: Int = (kHeartRateSettleSeconds + kHeartRateWindowSeconds) * kHeartRateFramesPerSecond
 
-public class CRFHeartRateRecorder : RSDSampleRecorder, AVCaptureVideoDataOutputSampleBufferDelegate {
+public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDelegate {
 
     public enum CRFHeartRateRecorderError : Error {
         case noBackCamera
@@ -160,6 +160,12 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, AVCaptureVideoDataOutputS
     var _session: AVCaptureSession?
     var _dataPointsHue: [Double] = []
     var _loggingSamples: [CRFHeartRateSample] = []
+    
+    lazy var sampleProcessor: CRFHeartRateProcessor! = {
+        let processor = CRFHeartRateProcessor()
+        processor.delegate = self
+        return processor
+    }()
     
     deinit {
         _session?.stopRunning()
@@ -225,7 +231,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, AVCaptureVideoDataOutputS
         
         // create a queue to run the capture on
         let captureQueue = DispatchQueue(label: "org.sagebase.ResearchSuite.heartrate.capture.\(configuration.identifier)")
-        videoOutput.setSampleBufferDelegate(self, queue: captureQueue)
+        videoOutput.setSampleBufferDelegate(sampleProcessor, queue: captureQueue)
         
         // configure the pixel format
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey : kCVPixelFormatType_32BGRA]
@@ -251,65 +257,17 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, AVCaptureVideoDataOutputS
         self.writeSample(sample)
     }
 
-    // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
-
-    public func captureOutput(_ output: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        guard let cvimgRef = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        
-        // Lock the image buffer
-        CVPixelBufferLockBaseAddress(cvimgRef, [])
-
-        var success: Bool = false
-        var r: Double = 0
-        var g: Double = 0
-        var b: Double = 0
-        
-        // access the data
-        if let baseAddress = CVPixelBufferGetBaseAddress(cvimgRef) {
-            success = true
-            var buf = baseAddress.assumingMemoryBound(to: UInt8.self)
-            
-            let width = CVPixelBufferGetWidth(cvimgRef)
-            let height = CVPixelBufferGetHeight(cvimgRef)
-            let bprow = CVPixelBufferGetBytesPerRow(cvimgRef)
-            
-            // TODO: syoung 11/08/2017 Not sure what the scale factor is for? I think it is used to
-            // downsample the buffer and *not* every single pixel value because that would take too
-            // long to procress, but this is code adapted from elsewhere so I'm not sure.
-            let widthScaleFactor = width / 192
-            let heightScaleFactor = height / 144
-
-            // Get the average rgb values for the entire image.
-            for _ in stride(from: 0, to: height, by: heightScaleFactor) {
-                for x in stride(from: 0, through: 4 * width, by: 4 * widthScaleFactor) {
-                    r += Double(buf[x + 2])
-                    g += Double(buf[x + 1])
-                    b += Double(buf[x])
-                }
-                buf += bprow
-            }
-            
-            r /= 255 * Double(width * height) / Double(widthScaleFactor * heightScaleFactor)
-            g /= 255 * Double(width * height) / Double(widthScaleFactor * heightScaleFactor)
-            b /= 255 * Double(width * height) / Double(widthScaleFactor * heightScaleFactor)
-        }
-
-        // Unlock the image buffer
-        CVPixelBufferUnlockBaseAddress(cvimgRef, [])
-        
-        // If not successful then return and do not record the sample
-        guard success else { return }
-
-        // record the color
-        let pts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-        let sample = ColorSample(red: r, green: g, blue: b)
+    // MARK: CRFHeartRateProcessorDelegate
+    
+    public func processor(_ processor: CRFHeartRateProcessor, didCapture sample: CRFPixelSample) {
         self.processingQueue.async { [weak self] in
-            self?._recordColor(sample, pts)
+            self?._recordColor(sample)
         }
     }
     
-    private func _recordColor(_ color: ColorSample, _ pts: CMTime) {
+    private func _recordColor(_ sample: CRFPixelSample) {
 
+        let color = CRFColor(red: sample.red, green: sample.green, blue: sample.blue)
         let hsv = color.getHSV()
         
         // mark a change in whether or not the lens is covered
@@ -333,9 +291,8 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, AVCaptureVideoDataOutputS
             _dataPointsHue.removeAll()
         }
         
-        let uptime: TimeInterval = TimeInterval(pts.value) / TimeInterval(pts.timescale)
-        var sample = CRFHeartRateSample(uptime: uptime,
-                                        timestamp: uptime - startUptime,
+        var sample = CRFHeartRateSample(uptime: sample.uptime,
+                                        timestamp: sample.uptime - startUptime,
                                         stepPath: currentStepPath,
                                         bpm: nil,
                                         hue: hsv?.hue,
@@ -369,62 +326,111 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, AVCaptureVideoDataOutputS
         _loggingSamples.removeAll()
         self.writeSamples(samples)
     }
-    
-    // MARK: Data processing
-    
-    // Algorithms adapted from: https://github.com/lehn0058/ATHeartRate (March 19, 2015)
-    // with additional modifications by: https://github.com/Litekey/heartbeat-cordova-plugin (July 30, 2015)
-    // and modifications by Shannon Young (February, 2017)
-    
-    private struct ColorSample {
-        let red: Double
-        let green: Double
-        let blue: Double
-        
-        func getHSV() -> (hue: Double, saturation: Double, brightness: Double)? {
-            let minValue = min(red, min(green, blue))
-            let maxValue = max(red, max(green, blue))
-            let delta = maxValue - minValue
-            guard round(delta * 1000) > 0 else { return nil }
-            
-            // Calculate the hue
-            var hue: Double
-            if (red == maxValue) {
-                hue = (green - blue) / delta
-            } else if (green == maxValue) {
-                hue = 2 + (blue - red) / delta
-            } else {
-                hue = 4 + (red - green) / delta
-            }
-            hue *= 60
-            if (hue < 0) {
-                hue += 360
-            }
-            
-            return (hue, delta / maxValue, maxValue)
-        }
-    }
 
     func calculateBPM() -> Int? {
         // If a valid heart rate cannot be calculated then return nil as an invalid marker.
         guard _dataPointsHue.count > kHeartRateMinFrameCount else { return nil }
-
-        // Get a window of data points that is the length of the window we are looking at.
-        let len = kHeartRateWindowSeconds * kHeartRateFramesPerSecond
-        let dataPoints = Array(_dataPointsHue.suffix(len))
-        
-        // If we have enough data points then remove from beginning
-        if _dataPointsHue.count > len {
-            _dataPointsHue.removeFirst(_dataPointsHue.count - len)
-        }
         
         // calculate the bpm using the range of data points
-        let bpm = calculateBPM(with: dataPoints)
+        let processor = CRFHeartRateProcessor()
+        let bpm = processor.calculateBPM(with: _dataPointsHue)
         
         // If the heart rate calculated is too low, then it isn't valid
         return bpm >= 40 ? bpm : nil
     }
+}
 
+// MARK: Data processing
+
+// Algorithms adapted from: https://github.com/lehn0058/ATHeartRate (March 19, 2015)
+// with additional modifications by: https://github.com/Litekey/heartbeat-cordova-plugin (July 30, 2015)
+// and modifications by Shannon Young (February, 2017)
+
+struct CRFColor {
+    let red: Double
+    let green: Double
+    let blue: Double
+    
+    func getHSV() -> (hue: Double, saturation: Double, brightness: Double)? {
+        let minValue = min(red, min(green, blue))
+        let maxValue = max(red, max(green, blue))
+        let delta = maxValue - minValue
+        guard round(delta * 1000) > 0 else { return nil }
+        
+        // Calculate the hue
+        var hue: Double
+        if (red == maxValue) {
+            hue = (green - blue) / delta
+        } else if (green == maxValue) {
+            hue = 2 + (blue - red) / delta
+        } else {
+            hue = 4 + (red - green) / delta
+        }
+        hue *= 60
+        if (hue < 0) {
+            hue += 360
+        }
+        
+        return (hue, delta / maxValue, maxValue)
+    }
+}
+
+/**
+ 
+ // TODO: syoung 11/09/2017 Debug porting the algorithm to Swift
+ 
+struct CRFHeartRateProcessor {
+ 
+    func pixelColor(from sampleBuffer: CMSampleBuffer!) {
+ 
+ //        guard let cvimgRef = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+ //
+ //        // Lock the image buffer
+ //        CVPixelBufferLockBaseAddress(cvimgRef, [])
+ //
+ //        var success: Bool = false
+ //        var r: Double = 0
+ //        var g: Double = 0
+ //        var b: Double = 0
+ //
+ //        // access the data
+ //        if let baseAddress = CVPixelBufferGetBaseAddress(cvimgRef) {
+ //            success = true
+ //            var buf = baseAddress.assumingMemoryBound(to: UInt8.self)
+ //
+ //            let width = CVPixelBufferGetWidth(cvimgRef)
+ //            let height = CVPixelBufferGetHeight(cvimgRef)
+ //            let bprow = CVPixelBufferGetBytesPerRow(cvimgRef)
+ //
+ //            // TODO: syoung 11/08/2017 Not sure what the scale factor is for? I think it is used to
+ //            // downsample the buffer and *not* every single pixel value because that would take too
+ //            // long to procress, but this is code adapted from elsewhere so I'm not sure.
+ //            let widthScaleFactor = width / 192
+ //            let heightScaleFactor = height / 144
+ //
+ //            // Get the average rgb values for the entire image.
+ //            for _ in stride(from: 0, to: height, by: heightScaleFactor) {
+ //                for x in stride(from: 0, through: 4 * width, by: 4 * widthScaleFactor) {
+ //                    r += Double(buf[x + 2])
+ //                    g += Double(buf[x + 1])
+ //                    b += Double(buf[x])
+ //                }
+ //                buf += bprow
+ //            }
+ //
+ //            r /= 255 * Double(width * height) / Double(widthScaleFactor * heightScaleFactor)
+ //            g /= 255 * Double(width * height) / Double(widthScaleFactor * heightScaleFactor)
+ //            b /= 255 * Double(width * height) / Double(widthScaleFactor * heightScaleFactor)
+ //        }
+ //
+ //        // Unlock the image buffer
+ //        CVPixelBufferUnlockBaseAddress(cvimgRef, [])
+ //
+ //        // If not successful then return and do not record the sample
+ //        guard success else { return }
+
+ }
+ 
     func calculateBPM(with dataPoints:[Double]) -> Int {
         let bandpassFilteredItems = butterworthBandpassFilter(dataPoints)
         let smoothedBandpassItems = medianSmoothing(bandpassFilteredItems)
@@ -517,3 +523,4 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, AVCaptureVideoDataOutputS
         return outputData;
     }
 }
+*/

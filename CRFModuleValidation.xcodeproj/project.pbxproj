@@ -27,6 +27,8 @@
 		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
 		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
 		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
+		FF7707611FB43D8000658074 /* heartrate.json in Resources */ = {isa = PBXBuildFile; fileRef = FF77075A1FB43D7F00658074 /* heartrate.json */; };
+		FF7707641FB43E1200658074 /* HeartRateRecorderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7707631FB43E1200658074 /* HeartRateRecorderTests.swift */; };
 		FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752371F7093AF004925B8 /* SurveyFactory.swift */; };
 		FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */; };
 		FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF7752471F709D71004925B8 /* StudyOverview.storyboard */; };
@@ -49,6 +51,7 @@
 		FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */; };
 		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
 		FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
+		FFF159F51FB4E31F0061BA93 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +189,8 @@
 		FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Stair_Step.html; sourceTree = "<group>"; };
 		FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Cardio_12MT.html; sourceTree = "<group>"; };
 		FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntroductionStepViewController.swift; sourceTree = "<group>"; };
+		FF77075A1FB43D7F00658074 /* heartrate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heartrate.json; sourceTree = "<group>"; };
+		FF7707631FB43E1200658074 /* HeartRateRecorderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateRecorderTests.swift; sourceTree = "<group>"; };
 		FF7752371F7093AF004925B8 /* SurveyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFactory.swift; sourceTree = "<group>"; };
 		FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyOverviewViewController.swift; sourceTree = "<group>"; };
 		FF7752471F709D71004925B8 /* StudyOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyOverview.storyboard; sourceTree = "<group>"; };
@@ -208,6 +213,8 @@
 		FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledActivityManager.swift; sourceTree = "<group>"; };
 		FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
 		FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFRunDistanceStepViewController.swift; sourceTree = "<group>"; };
+		FFF159ED1FB4E31F0061BA93 /* CRFHeartRateProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFHeartRateProcessor.h; sourceTree = "<group>"; };
+		FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFHeartRateProcessor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,9 +283,10 @@
 		60F7A1461E89C76E00B123FA /* CRFModuleValidationTests */ = {
 			isa = PBXGroup;
 			children = (
-				60F7A1491E89C76E00B123FA /* Info.plist */,
+				FF7707651FB43E1C00658074 /* Supporting Files */,
+				FF7707621FB43D8900658074 /* test files */,
+				FF7707631FB43E1200658074 /* HeartRateRecorderTests.swift */,
 				FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */,
-				FF77528F1F7230DC004925B8 /* Bridging-Header.h */,
 			);
 			path = CRFModuleValidationTests;
 			sourceTree = "<group>";
@@ -346,6 +354,8 @@
 		FF2A1D581FB176340095044A /* Recorders */ = {
 			isa = PBXGroup;
 			children = (
+				FFF159ED1FB4E31F0061BA93 /* CRFHeartRateProcessor.h */,
+				FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */,
 				FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */,
 				FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */,
 			);
@@ -368,6 +378,23 @@
 				FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		FF7707621FB43D8900658074 /* test files */ = {
+			isa = PBXGroup;
+			children = (
+				FF77075A1FB43D7F00658074 /* heartrate.json */,
+			);
+			path = "test files";
+			sourceTree = "<group>";
+		};
+		FF7707651FB43E1C00658074 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FF77528F1F7230DC004925B8 /* Bridging-Header.h */,
+				60F7A1491E89C76E00B123FA /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		FF77527E1F722C60004925B8 /* Style Guide */ = {
@@ -629,6 +656,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7707611FB43D8000658074 /* heartrate.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +709,7 @@
 				FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */,
 				FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */,
 				FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */,
+				FFF159F51FB4E31F0061BA93 /* CRFHeartRateProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +717,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7707641FB43E1200658074 /* HeartRateRecorderTests.swift in Sources */,
 				FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
