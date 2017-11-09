@@ -35,4 +35,15 @@ import ResearchSuite
 
 open class CRFTaskFactory: RSDFactory {
     
+    open override func decodeAsyncActionConfiguration(from decoder:Decoder, with typeName: String) throws -> RSDAsyncActionConfiguration? {
+        if let permissionType = RSDStandardPermissionType(rawValue: typeName) {
+            switch permissionType {
+            case .location:
+                return try CRFLocationRecorderConfiguration(from: decoder)
+            default:
+                break
+            }
+        }
+        return try super.decodeAsyncActionConfiguration(from: decoder, with: typeName)
+    }
 }

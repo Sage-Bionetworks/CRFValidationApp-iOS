@@ -3,6 +3,15 @@
     "actions"           : { "cancel": { "iconName": "closeActivity" }},
     "shouldHideActions" : ["goBackward", "skip"],
     "progressMarkers"   : ["wearingFitbit", "volumeUp", "goOutside", "heartRate.before", "run", "heartRate.after", "surveyAfter"],
+    "asyncActions"      : [
+                           {
+                           "identifier"             : "location",
+                           "type"                   : "location",
+                           "startStepIdentifier"    : "heartRate.before",
+                           "stopStepIdentifier"     : "heartRate.after",
+                           "motionStepIdentifier"   : "runDistance"
+                           }
+                           ],
     "steps"             : [
                            {
                            "identifier"   : "introduction",
@@ -96,19 +105,20 @@
                                                "viewTheme"      : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
                                                },
                                                {
-                                               "identifier"   : "countdown",
-                                               "type"         : "active",
-                                               "text"         : "Start in",
-                                               "duration": 5,
-                                               "commands": ["transitionAutomatically"],
+                                               "identifier"     : "countdown",
+                                               "type"           : "active",
+                                               "text"           : "Start in",
+                                               "duration"       : 5,
+                                               "commands"       : ["playSoundOnStart", "transitionAutomatically"],
                                                },
                                                {
-                                               "identifier"     : "run",
-                                               "type"           : "active",
-                                               "duration"       : 12,
-                                               "commands"       : ["vibrate", "transitionAutomatically"],
-                                               "colorTheme"     : { "usesLightStyle" : true },
-                                               "viewTheme"      : { "viewIdentifier": "RunDistance", "storyboardIdentifier": "ActiveTaskSteps" }
+                                               "identifier"         : "runDistance",
+                                               "type"               : "active",
+                                               "duration"           : 720,
+                                               "commands"           : ["vibrate", "playSound", "transitionAutomatically"],
+                                               "spokenInstructions" : {"0": "Start running", "end": "Stop running"},
+                                               "colorTheme"         : { "usesLightStyle" : true },
+                                               "viewTheme"          : { "viewIdentifier": "RunDistance", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }
                                                ]
                            },

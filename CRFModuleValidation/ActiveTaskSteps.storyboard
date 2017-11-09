@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -247,9 +248,10 @@
                                         <constraints>
                                             <constraint firstItem="xIK-lt-PtL" firstAttribute="centerX" secondItem="FB0-QG-3wZ" secondAttribute="centerX" id="7g9-Gf-KDI"/>
                                             <constraint firstItem="FFZ-Xu-AKG" firstAttribute="centerY" secondItem="H5r-qp-jJ9" secondAttribute="centerY" id="DsE-cb-KQ3"/>
-                                            <constraint firstItem="Thv-f8-10O" firstAttribute="centerX" secondItem="FB0-QG-3wZ" secondAttribute="centerX" id="LBl-jf-8zC"/>
+                                            <constraint firstAttribute="trailing" secondItem="Thv-f8-10O" secondAttribute="trailing" id="Gi1-MR-vsF"/>
                                             <constraint firstAttribute="bottom" secondItem="Thv-f8-10O" secondAttribute="bottom" id="Q2m-gi-fhq"/>
                                             <constraint firstItem="Thv-f8-10O" firstAttribute="top" secondItem="xIK-lt-PtL" secondAttribute="bottom" id="Sca-hH-qcC"/>
+                                            <constraint firstItem="Thv-f8-10O" firstAttribute="leading" secondItem="FB0-QG-3wZ" secondAttribute="leading" id="VUb-4c-zzw"/>
                                             <constraint firstItem="xIK-lt-PtL" firstAttribute="top" secondItem="H5r-qp-jJ9" secondAttribute="bottom" constant="-4" id="cib-Ri-iNc"/>
                                             <constraint firstItem="H5r-qp-jJ9" firstAttribute="top" secondItem="FB0-QG-3wZ" secondAttribute="top" id="lPK-AM-Q1f"/>
                                             <constraint firstItem="H5r-qp-jJ9" firstAttribute="leading" secondItem="FB0-QG-3wZ" secondAttribute="leading" constant="16" id="rUR-3p-lxW"/>
@@ -458,7 +460,7 @@
         <!--Run Distance Step View Controller-->
         <scene sceneID="4iU-6i-pqf">
             <objects>
-                <viewController storyboardIdentifier="RunDistance" id="9tn-dn-sHC" customClass="RunDistanceStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RunDistance" id="9tn-dn-sHC" customClass="CRFRunDistanceStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7PO-3V-yb7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -613,7 +615,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="12MinFullScreen" width="270" height="480"/>
+        <image name="12MinFullScreen" width="375" height="667"/>
         <image name="12MinLarge1" width="375" height="372"/>
         <image name="12MinSmall1" width="375" height="336"/>
         <image name="backArrowHeader" width="32" height="32"/>
@@ -635,9 +637,6 @@
         </namedColor>
         <namedColor name="tealGreen">
             <color red="0.23921568627450981" green="0.74901960784313726" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="white">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
