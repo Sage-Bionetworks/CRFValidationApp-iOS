@@ -36,21 +36,19 @@ import BridgeSDK
 import BridgeAppSDK
 import ResearchUXFactory
 
+
 extension SBBScheduledActivity {
+    
+    var taskId: TaskIdentifier? {
+        guard let identifier = (self.taskIdentifier ?? self.surveyIdentifier) else { return nil }
+        return TaskIdentifier(rawValue: identifier)
+    }
     
     var taskGroup: TaskGroup? {
         guard let taskId = self.taskId else { return nil }
         return ScheduleSection.scheduleGroups.first(where: {
             $0.scheduleTaskIdentifier == taskId || $0.contains(taskId.rawValue)
         })
-    }
-    
-    var isTimingSchedule: Bool {
-        guard let scheduleTaskIdentifier = self.taskGroup?.scheduleTaskIdentifier
-        else {
-            return false
-        }
-        return scheduleTaskIdentifier == self.taskId!
     }
 }
 
@@ -61,70 +59,72 @@ struct TaskGroup {
     let title: String
     let journeyTitle: String
     let iconImage: UIImage?
-    let scheduleTaskIdentifier: TaskIdentifier?
     let taskIdentifiers: [TaskIdentifier]
     
     // task identifiers to exclude from list of all tasks
-    let excludedTaskIdentifiers: [TaskIdentifier] = [.scheduleCheckIn,
-                                                     .scheduleWeeklyChallenge,
-                                                     .scheduleTreatmentDetails,
-                                                     .passiveData,
-                                                     ]
+    let excludedTaskIdentifiers: [TaskIdentifier] = []
     
     /**
-     The "Weekly Challenge" activities.
+     The "Clinic Visit 1" activities.
      */
-    static let weeklyChallenge = TaskGroup(identifier: "Weekly Challenge",
-                                           title: Localization.localizedString("JP_TASK_GROUP_WEEKLY_CHALLENGE"),
-                                           journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_WEEKLY_CHALLENGE"),
-                                           iconImage: #imageLiteral(resourceName: "activeChallengeIcon"),
-                                           scheduleTaskIdentifier: .scheduleWeeklyChallenge,
-                                           taskIdentifiers: [.healthSurveyWeekly,
-                                                             .visualMemory,
-                                                             .reactionTime,
-                                                             .attention,
-                                                             .cardioChallenge])
+    static let clinic1 = TaskGroup(identifier: "clinic1",
+                                   title: Localization.localizedString("JP_TASK_GROUP_WEEKLY_CHALLENGE"),
+                                   journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_WEEKLY_CHALLENGE"),
+                                   iconImage: #imageLiteral(resourceName: "activeChallengeIcon"),
+                                   taskIdentifiers: [.backgroundHealthSurvey,
+                                                     .cardiovascularStressTest])
+    
+    static let clinic1alt = TaskGroup(identifier: "clinic1alt",
+                                   title: Localization.localizedString("JP_TASK_GROUP_WEEKLY_CHALLENGE"),
+                                   journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_WEEKLY_CHALLENGE"),
+                                   iconImage: #imageLiteral(resourceName: "activeChallengeIcon"),
+                                   taskIdentifiers: [.cardioStairStep,
+                                                     .backgroundHealthSurvey,
+                                                     .cardio12MT])
     /**
-     The "Daily Check-in" Activities
+     The "Clinic Visit 2" Activities
      */
-    static let dailyCheckIn = TaskGroup(identifier: "Quick Check-In",
-                                        title: Localization.localizedString("JP_TASK_GROUP_DAILY_CHECK_IN"),
-                                        journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_DAILY_CHECK_IN"),
-                                        iconImage: #imageLiteral(resourceName: "checkInIcon"),
-                                        scheduleTaskIdentifier: .scheduleCheckIn,
-                                        taskIdentifiers: [.checkIn])
+    static let clinic2 = TaskGroup(identifier: "clinic2",
+                                   title: Localization.localizedString("JP_TASK_GROUP_TREATMENT_DETAILS"),
+                                   journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_TREATMENT_DETAILS"),
+                                   iconImage: #imageLiteral(resourceName: "anemiaLabMedTransfusionIcon"),
+                                   taskIdentifiers: [.cardioStairStep,
+                                                     .usabilitySurveys,
+                                                     .cardio12MT])
+    
+    static let clinic2alt = TaskGroup(identifier: "clinic2alt",
+                                   title: Localization.localizedString("JP_TASK_GROUP_TREATMENT_DETAILS"),
+                                   journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_TREATMENT_DETAILS"),
+                                   iconImage: #imageLiteral(resourceName: "anemiaLabMedTransfusionIcon"),
+                                   taskIdentifiers: [.usabilitySurveys,
+                                                     .cardiovascularStressTest])
     
     /**
-     The "Treatment Details" Activities
+     The Heartrate Measurement
      */
-    static let treatmentDetails = TaskGroup(identifier: "Treatment Check-In",
-                                        title: Localization.localizedString("JP_TASK_GROUP_TREATMENT_DETAILS"),
-                                        journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_TREATMENT_DETAILS"),
-                                        iconImage: #imageLiteral(resourceName: "anemiaLabMedTransfusionIcon"),
-                                        scheduleTaskIdentifier: .scheduleTreatmentDetails,
-                                        taskIdentifiers: [.labDetails,
-                                                          .transfusionDetails,
-                                                          .anemiaPrescription])
-    
-    /**
-     The Demographics survey
-     */
-    static let demographic = TaskGroup(identifier: "Demographics",
+    static let heartRateMeasurement = TaskGroup(identifier: "HeartRate Measurement",
                                        title: Localization.localizedString("JP_TASK_GROUP_DEMOGRAPHICS"),
                                        journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_DEMOGRAPHICS"),
                                        iconImage: #imageLiteral(resourceName: "demographicIcon"),
-                                       scheduleTaskIdentifier: nil,
-                                       taskIdentifiers: [.demographics])
+                                       taskIdentifiers: [.heartRateMeasurement])
     
     /**
-     The Monthly Health Survey
+     The Cardio 12 Minute Run Test
      */
-    static let monthlyHealth = TaskGroup(identifier: "Monthly Surveys",
-                                       title: Localization.localizedString("JP_TASK_GROUP_MONTHLY_SURVEY"),
-                                       journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_MONTHLY_SURVEY"),
-                                       iconImage: #imageLiteral(resourceName: "healthSurveyIcon"),
-                                       scheduleTaskIdentifier: nil,
-                                       taskIdentifiers: [.healthSurveyMonthly])
+    static let cardio12MT = TaskGroup(identifier: "Cardio 12MT",
+                                      title: Localization.localizedString("JP_TASK_GROUP_MONTHLY_SURVEY"),
+                                      journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_MONTHLY_SURVEY"),
+                                      iconImage: #imageLiteral(resourceName: "healthSurveyIcon"),
+                                      taskIdentifiers: [.cardio12MT])
+    
+    /**
+     The Cardio Stair Step Test
+     */
+    static let cardioStairStep = TaskGroup(identifier: "Cardio Stair Step",
+                                      title: Localization.localizedString("JP_TASK_GROUP_MONTHLY_SURVEY"),
+                                      journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_MONTHLY_SURVEY"),
+                                      iconImage: #imageLiteral(resourceName: "healthSurveyIcon"),
+                                      taskIdentifiers: [.cardioStairStep])
     
     /**
      List of all activities
@@ -133,14 +133,12 @@ struct TaskGroup {
                                          title: Localization.localizedString("JP_ACTIVITIES_TITLE"),
                                          journeyTitle: Localization.localizedString("JP_ACTIVITIES_TITLE"),
                                          iconImage: #imageLiteral(resourceName: "activeChallengeIcon"),
-                                         scheduleTaskIdentifier: nil,
-                                         taskIdentifiers: [.labDetails,
-                                                           .transfusionDetails,
-                                                           .anemiaPrescription,
-                                                           .visualMemory,
-                                                           .reactionTime,
-                                                           .attention,
-                                                           .cardioChallenge])
+                                         taskIdentifiers: [.backgroundHealthSurvey,
+                                                           .cardiovascularStressTest,
+                                                           .usabilitySurveys,
+                                                           .heartRateMeasurement,
+                                                           .cardio12MT,
+                                                           .cardioStairStep])
     
     /**
      List of all activities
@@ -149,11 +147,19 @@ struct TaskGroup {
                                          title: Localization.localizedString("JP_ACTIVITIES_TITLE"),
                                          journeyTitle: Localization.localizedString("JP_ACTIVITIES_TITLE"),
                                          iconImage: #imageLiteral(resourceName: "activeChallengeIcon"),
-                                         scheduleTaskIdentifier: nil,
-                                         taskIdentifiers: [])
+                                         taskIdentifiers: [.backgroundHealthSurvey,
+                                                           .cardiovascularStressTest,
+                                                           .usabilitySurveys,
+                                                           .heartRateMeasurement,
+                                                           .cardio12MT,
+                                                           .cardioStairStep])
     
     static func allTaskGroups() -> [TaskGroup] {
-        return [weeklyChallenge, dailyCheckIn, treatmentDetails, demographic, monthlyHealth, addActivities, allActivities]
+        if SBAUser.shared.containsDataGroup("clinic1") {
+            return [clinic1, heartRateMeasurement, cardio12MT, cardioStairStep, clinic2, allActivities]
+        } else {
+            return [clinic1alt, heartRateMeasurement, cardio12MT, cardioStairStep, clinic2alt, allActivities]
+        }
     }
     
     func contains(_ taskIdentifier: String) -> Bool {
@@ -236,12 +242,6 @@ struct TaskGroup {
         minutesFormatter.allowedUnits = [.minute]
         
         return minutesFormatter.string(from: TimeInterval(minutesTotal * 60))!.lowercased()
-    }
-    
-    func timingSchedule(from activities:[SBBScheduledActivity]) -> SBBScheduledActivity? {
-        guard let scheduleId = self.scheduleTaskIdentifier else { return nil }
-        let filteredList = activities.reversed().filter({ $0.taskId == scheduleId })
-        return filteredList.first(where: { $0.finishedOn == nil }) ?? filteredList.last
     }
 }
 

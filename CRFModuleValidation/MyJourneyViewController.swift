@@ -53,11 +53,10 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
     @IBOutlet var tableView: UITableView!
     @IBOutlet var footerView: MyJourneyFooterView!
     
-    lazy var scheduledActivityManager: MasterScheduledActivityManager = {
-        MasterScheduledActivityManager.shared.delegate = self
-        return MasterScheduledActivityManager.shared
+    lazy var scheduledActivityManager : ScheduledActivityManager = {
+        return ScheduledActivityManager(delegate: self)
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,7 +84,7 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         self.reloadFinished(nil)
         
         // Fire request to update the schedules (this will be ignored if already running)
-        MasterScheduledActivityManager.shared.reloadData()
+        scheduledActivityManager.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,12 +95,12 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             scrollToTodayIfNeeded()
         }
         
-        if let deepLinkTaskGroup = MasterScheduledActivityManager.shared.deepLinkTaskGroup,
+        if let deepLinkTaskGroup = scheduledActivityManager.deepLinkTaskGroup,
             let deepLinkTaskId = deepLinkTaskGroup.taskIdentifiers.first {
             // We should show a loading dialog to convey to the user that we are
             // automatically sending them somewhere after everything has loaded
             self.showLoadingView()
-            MasterScheduledActivityManager.shared.notifyWhenTaskIsAvailable(taskId: deepLinkTaskId.rawValue, callback: { [weak self] (taskId) in
+            scheduledActivityManager.notifyWhenTaskIsAvailable(taskId: deepLinkTaskId.rawValue, callback: { [weak self] (taskId) in
                 self?.hideLoadingView()
                 self?.sendUserToDeepLinkTasGroup()
             })
@@ -443,15 +442,15 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             if let scheduleSection = self.scheduleSection(at: IndexPath(item: 0, section: adjustSectionIndex)),
                 isYesterdayCell || button.tag < scheduleSection.items.count {
                 
-                // If this is yesterday's schedule section, always return quick check-in
-                if isYesterdayCell {
-                    if scheduleSection.items.contains(where: { (item) -> Bool in
-                        item.taskGroup == TaskGroup.dailyCheckIn
-                    }) {
-                        return (TaskGroup.dailyCheckIn, scheduleSection.date)
-                    }
-                    return nil
-                }
+//                // If this is yesterday's schedule section, always return quick check-in
+//                if isYesterdayCell {
+//                    if scheduleSection.items.contains(where: { (item) -> Bool in
+//                        item.taskGroup == TaskGroup.dailyCheckIn
+//                    }) {
+//                        return (TaskGroup.dailyCheckIn, scheduleSection.date)
+//                    }
+//                    return nil
+//                }
                 
                 return (scheduleSection.items[button.tag].taskGroup, scheduleSection.date)
             }
@@ -467,10 +466,10 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
                 // If there is only one task and its today then show that and cancel the segue
                 self.presentTaskViewController(for: taskGroup.taskIdentifiers[0], sender: sender)
                 return false
-            } else {
-                // If there is only one task and its today then show that and cancel the segue
-                self.presentYesterdaysTaskViewController(for: taskGroup.taskIdentifiers[0], sender: sender)
-                return false
+//            } else {
+//                // If there is only one task and its today then show that and cancel the segue
+//                self.presentYesterdaysTaskViewController(for: taskGroup.taskIdentifiers[0], sender: sender)
+//                return false
             }
         }
         
@@ -500,25 +499,16 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             return
         }
         
-        if taskIdentifier == .checkIn {
-            MasterScheduledActivityManager.shared.scheduleDateForMostRecentQuickCheckIn = Date()
-        }
-        
         taskVC.modalTransitionStyle = .crossDissolve
         present(taskVC, animated: true, completion: nil)
     }
     
-    func presentYesterdaysTaskViewController(for taskIdentifier: TaskIdentifier, sender: Any?) {
-        guard let taskVC = scheduledActivityManager.createYesterdaysTaskViewController(for: taskIdentifier) else { return }
-        
-        if taskIdentifier == .checkIn {
-            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-            MasterScheduledActivityManager.shared.scheduleDateForMostRecentQuickCheckIn = yesterday
-        }
-        
-        taskVC.modalTransitionStyle = .crossDissolve
-        present(taskVC, animated: true, completion: nil)
-    }
+//    func presentYesterdaysTaskViewController(for taskIdentifier: TaskIdentifier, sender: Any?) {
+//        guard let taskVC = scheduledActivityManager.createYesterdaysTaskViewController(for: taskIdentifier) else { return }
+//
+//        taskVC.modalTransitionStyle = .crossDissolve
+//        present(taskVC, animated: true, completion: nil)
+//    }
     
     func presentTaskViewController(for scheduledActivity: SBBScheduledActivity, sender: Any?) {
         guard let taskVC = scheduledActivityManager.createTaskViewController(for: scheduledActivity)
@@ -526,28 +516,28 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
                 return
         }
         
-        if scheduledActivity.surveyIdentifier == TaskIdentifier.checkIn.rawValue {
-            MasterScheduledActivityManager.shared.scheduleDateForMostRecentQuickCheckIn = Date()
-        }
+//        if scheduledActivity.surveyIdentifier == TaskIdentifier.checkIn.rawValue {
+//            MasterScheduledActivityManager.shared.scheduleDateForMostRecentQuickCheckIn = Date()
+//        }
         
         taskVC.modalTransitionStyle = .crossDissolve
         present(taskVC, animated: true, completion: nil)
     }
     
-    func sendUserToDeepLinkTasGroup() {
-        guard let deepLink = MasterScheduledActivityManager.shared.deepLinkTaskGroup else { return }
-        MasterScheduledActivityManager.shared.deepLinkTaskGroup = nil
-        
-        if deepLink.taskIdentifiers.count == 1 {
-            debugPrint("Only one task in group, go directly to it")
-            // If there is only one task then show that and cancel the segue
-            self.presentTaskViewController(for: deepLink.taskIdentifiers[0], sender: self)
-        } else if let viewController = TaskGroupTableViewController.instantiate(taskGroup: deepLink, date: Date(), activities: MasterScheduledActivityManager.shared.activities) {
-            self.navigationController?.show(viewController, sender: self)
-        } else {
-            debugPrint("failed to instantiate task group table vc")
-        }
-    }
+//    func sendUserToDeepLinkTasGroup() {
+//        guard let deepLink = scheduledActivityManager.deepLinkTaskGroup else { return }
+//        scheduledActivityManager.deepLinkTaskGroup = nil
+//
+//        if deepLink.taskIdentifiers.count == 1 {
+//            debugPrint("Only one task in group, go directly to it")
+//            // If there is only one task then show that and cancel the segue
+//            self.presentTaskViewController(for: deepLink.taskIdentifiers[0], sender: self)
+//        } else if let viewController = TaskGroupTableViewController.instantiate(taskGroup: deepLink, date: Date(), activities: MasterScheduledActivityManager.shared.activities) {
+//            self.navigationController?.show(viewController, sender: self)
+//        } else {
+//            debugPrint("failed to instantiate task group table vc")
+//        }
+//    }
 }
 
 class MyJourneyTodayHeaderView: UITableViewCell {
@@ -561,8 +551,8 @@ class MyJourneyTodayHeaderView: UITableViewCell {
     
     func configureHeader(with detailText: String) {
         
-        self.titleLabel.textColor = UIColor.appGunmetal
-        self.detailLabel.textColor = UIColor.appGunmetal
+        self.titleLabel.textColor = UIColor(named: "darkGrayText")
+        self.detailLabel.textColor = UIColor(named: "darkGrayText")
         
         self.detailLabel.text = detailText
         
@@ -576,7 +566,7 @@ class MyJourneyDateCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.dateLabel.textColor = UIColor.appCoolGrey
+        self.dateLabel.textColor = UIColor(named: "blueyGrey")
     }
     
     func adjustInsets() {
@@ -592,7 +582,7 @@ class MyJourneySeparatorCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        separatorLine.backgroundColor = UIColor.appCoolGrey
+        separatorLine.backgroundColor = UIColor(named: "blueyGrey")
     }
 }
 
@@ -707,8 +697,8 @@ class MyJourneyActivityViewCell: UIView {
             self.button.tag = (self.button.tag / MyJourneyActivityViewCell.isYesterdayButtonTagFactor) - 1
         }
         
-        self.titleLabel.textColor = UIColor.appGunmetal
-        self.detailLabel.textColor = UIColor.appCoolGrey
+        self.titleLabel.textColor = UIColor(named: "darkGrayText")
+        self.detailLabel.textColor = UIColor(named: "blueyGrey")
         
         self.checkmark.isHidden = !self.isComplete
         self.titleLabel.alpha = self.isFullSize ? 1 : 0
@@ -721,13 +711,13 @@ class MyJourneyActivityViewCell: UIView {
         self.borderView.isHidden = isFullSize || isComplete
         self.borderView.layer.cornerRadius = self.imageSizeConstraint.constant / 2.0
         self.borderView.layer.borderWidth = 2
-        self.borderView.layer.borderColor = isPast ? UIColor.appBlueyGrey.cgColor : UIColor.appSalmon.cgColor
+        self.borderView.layer.borderColor = isPast ? UIColor(named: "blueyGrey")?.cgColor : UIColor(named: "salmon")?.cgColor
         
         let renderingMode: UIImageRenderingMode = isComplete || !isPast ? .alwaysOriginal : .alwaysTemplate
         if let currentImage = imageView.image, currentImage.renderingMode != renderingMode {
             let newImage = (renderingMode == .alwaysTemplate) ? currentImage.imageWithWhiteTransparency() : currentImage
             imageView.image = newImage.withRenderingMode(renderingMode)
-            imageView.tintColor = UIColor.appBlueyGrey
+            imageView.tintColor = UIColor(named: "blueyGrey")
         }
         
         self.setNeedsLayout()

@@ -41,6 +41,9 @@ enum TaskIdentifier: String {
     case heartRateMeasurement = "HeartRate Measurement"
     case cardio12MT = "Cardio 12MT"
     case cardioStairStep = "Cardio Stair Step"
+    case backgroundHealthSurvey = "Background and Health Survey"
+    case usabilitySurveys = "Usability Surveys"
+    case cardiovascularStressTest = "Cardiovascular Stress Test"
 }
 
 enum CustomSurveyItemSubtype: String {
