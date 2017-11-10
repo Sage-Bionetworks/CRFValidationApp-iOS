@@ -21,6 +21,7 @@
 		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
 		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		80B3FB531FB51EC900B81B6E /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */; };
+		80E8D1BC1FB5460A00A695C5 /* OnboardingSurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */; };
 		FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
 		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
 		FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
@@ -190,6 +191,7 @@
 		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitStep.swift; sourceTree = "<group>"; };
+		80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OnboardingSurvey.json; sourceTree = "<group>"; };
 		FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateStepViewController.swift; sourceTree = "<group>"; };
 		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
 		FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateRecorder.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */,
 				FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */,
 				FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */,
+				80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */,
 				FF5D8B771FB522F70003B0FC /* Cardio_Stair_Step.json in Resources */,
 				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,
+				80E8D1BC1FB5460A00A695C5 /* OnboardingSurvey.json in Resources */,
 				FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */,
 				FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */,
 				FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */,
