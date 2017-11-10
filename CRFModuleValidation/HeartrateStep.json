@@ -35,7 +35,8 @@
                            "identifier"   : "feedback",
                            "type"         : "instruction",
                            "title"        : "You’re all done!",
-                           "text"         : "Your heart rate is"
+                           "text"         : "Your heart rate is",
+                           "viewTheme"   : { "viewIdentifier": "HeartRateResult", "storyboardIdentifier": "ActiveTaskSteps" }
                            }
                            ]
 }

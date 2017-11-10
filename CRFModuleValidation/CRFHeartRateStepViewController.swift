@@ -67,6 +67,17 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Use a delay to let the page view controller finish its animation
+        // and for the user to put their finger on the lens.
+        let delay = DispatchTime.now() + .milliseconds(500)
+        DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
+            self?._startCamera()
+        }
+    }
+    
+    private func _startCamera() {
+        guard isVisible else { return }
+        
         // Create a recorder that runs only during this step
         let taskPath = self.taskController.taskPath!
         let config = CRFHeartRateRecorderConfiguration(identifier: "\(self.step.identifier)_recorder")

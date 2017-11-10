@@ -114,7 +114,7 @@
                                                {
                                                "identifier"         : "runDistance",
                                                "type"               : "active",
-                                               "duration"           : 120,
+                                               "duration"           : 720,
                                                "commands"           : ["vibrate", "playSound", "transitionAutomatically"],
                                                "spokenInstructions" : {"0": "Start running", "end": "Stop running"},
                                                "colorTheme"         : { "usesLightStyle" : true },
@@ -146,10 +146,7 @@
                            {
                            "identifier"   : "completion",
                            "type"         : "completion",
-                           "title"        : "Great Job!",
-                           "image"        : "completed",
-                           "text"         : "You just went <run.distance> in 12 minutes",
-                           "colorTheme"   : { "backgroundColor" : "darkPastelGreenTwo", "usesLightStyle" : true },
+                           "viewTheme"    : { "viewIdentifier": "Completed12MT", "storyboardIdentifier": "ActiveTaskSteps" }
                            }
                            ]
 }
