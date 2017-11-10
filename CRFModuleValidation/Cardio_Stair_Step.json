@@ -1,0 +1,143 @@
+{
+    "identifier"        : "Cardio Stair Step",
+    "actions"           : { "cancel": { "iconName": "closeActivity" }},
+    "shouldHideActions" : ["goBackward", "skip"],
+    "progressMarkers"   : ["takePhotoInstruction", "wearingFitbit", "volumeUp", "heartRate.before", "stairStep", "heartRate.after"],
+    "steps"             : [
+                           {
+                           "identifier"   : "introduction",
+                           "type"         : "instruction",
+                           "title"        : "Stair Step",
+                           "text"         : "5 minutes",
+                           "image"  : {
+                                           "imageNames" : ["stairStepLarge1", "stairStepLarge2", "stairStepLarge3", "stairStepLarge4"],
+                                           "placementType" : "topBackground",
+                                           "animationDuration" : 2,
+                                           },
+                           "colorTheme"     : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
+                           "actions"      : {
+                                               "goForward":  { "buttonTitle": "Start" },
+                                               "cancel":     { "iconName": "backArrowHeader" },
+                                               "skip":       { "buttonTitle": "Remind me later" },
+                                               "learnMore":  { "iconName": "infoIcon", "url": "Stair_Step.html" }
+                                            },
+                           "viewTheme"    : { "viewIdentifier": "TaskIntroduction", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
+                           {
+                           "identifier"             : "heartRisk",
+                           "type"                   : "instruction",
+                           "colorTheme"             : {
+                                                       "backgroundColor"        : "salmon",
+                                                       "foregroundColor"        : "white",
+                                                       "usesLightStyle"         : true },
+                           "image"                  : "healthRiskIcon",
+                           "title"                  : "Potential heart risk",
+                           "text"                   : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
+                           "actions"                : { "goForward": { "buttonTitle": "Got it" },
+                                                        "cancel": { "iconName": "closeActivityWhite" }}
+                           },
+                           {
+                           "identifier"   : "takePhotoInstruction",
+                           "type"         : "instruction",
+                           "title"        : "Take a picture of your step",
+                           "text"         : "Start by taking a picture with your phone of the step with your fitibit inext to the step that you will be using.",
+                           "image"        : { "imageName": "snapStepWithFitbit", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "Capture picture" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
+                           {
+                           "identifier"   : "stairPhoto",
+                           "type"         : "instruction",
+                           "viewTheme"    : { "viewIdentifier": "TakePhoto", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
+                           {
+                           "identifier"   : "wearingFitbit",
+                           "type"         : "instruction",
+                           "title"        : "Wearing your fitbit?",
+                           "text"         : "Before continuing on with the Stair Step test, please make sure you have your fitbit on your wrist.",
+                           "image"        : { "imageName": "fitbitCheckIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "It’s on" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
+                           {
+                           "identifier"   : "volumeUp",
+                           "type"         : "instruction",
+                           "title"        : "Volume turned up?",
+                           "text"         : "Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving.",
+                           "image"        : { "imageName": "volumeCheckIcon", "placementType": "topBackground" },
+                           "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
+                           "actions"      : { "goForward": { "buttonTitle": "It’s turned on" }},
+                           "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
+                           {
+                           "identifier"         : "heartRate.before",
+                           "type"               : "transform",
+                           "replacementSteps"   : [{ "identifier"   : "instruction",
+                                                     "title"        : "Capture heart rate",
+                                                     "text"         : "Use your finger to cover the camera and flash on the back of your phone." },
+                                                   { "identifier"   : "feedback",
+                                                     "text"         : "Your heart rate is" }
+                                                   ],
+                           "sectionTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           },
+                           {
+                           "identifier"     : "stairStep",
+                           "type"           : "section",
+                           "steps"          : [
+                                               {
+                                               "identifier"   : "bringPhone",
+                                               "type"         : "instruction",
+                                               "title"        : "Please step with your phone",
+                                               "text"         : "You will step up and down for 3 minutes. Try to step with the pace.",
+                                               "image"  : {
+                                                                   "imageNames" : ["stairStepSmall1", "stairStepSmall2", "stairStepSmall3", "stairStepSmall4"],
+                                                                   "placementType" : "topBackground",
+                                                                   "animationDuration" : 2,
+                                                                   },
+                                               "colorTheme"     : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
+                                               "actions"        : { "goForward": { "iconName": "stairStepButton" }},
+                                               "viewTheme"      : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                                               },
+                                               {
+                                               "identifier"     : "countdown",
+                                               "type"           : "active",
+                                               "text"           : "Start in",
+                                               "duration"       : 5,
+                                               "commands"       : ["playSoundOnStart", "transitionAutomatically"],
+                                               },
+                                               {
+                                               "identifier"         : "motion",
+                                               "type"               : "active",
+                                               "duration"           : 185,
+                                               "image"  : {
+                                                                   "imageNames" : ["stairStepLarge1", "stairStepLarge2", "stairStepLarge3", "stairStepLarge4"],
+                                                                   "placementType" : "topBackground",
+                                                                   "animationDuration" : 0.625,
+                                                                   },
+                                               "commands"           : ["vibrate", "playSound", "transitionAutomatically"],
+                                               "spokenInstructions" : {"0": "Up", "1.25": "Down", "end": "Stand still"},
+                                               "colorTheme"         : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
+                                               "viewTheme"          : { "viewIdentifier": "StairStep", "storyboardIdentifier": "ActiveTaskSteps" }
+                                               }
+                                               ]
+                           },
+                           {
+                           "identifier"         : "heartRate.after",
+                           "type"               : "transform",
+                           "replacementSteps"   : [{ "identifier"   : "instruction",
+                                                   "title"        : "Stand still for 1 minute",
+                                                   "text"         : "Almost done! Stand still for a minute to measure your heart rate recovery." },
+                                                   { "identifier"   : "feedback",
+                                                     "text"         : "Your heart rate changed to" }
+                                                   ],
+                           "sectionTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           },
+                           {
+                           "identifier"   : "completion",
+                           "type"         : "completion",
+                           "viewTheme"    : { "viewIdentifier": "CompletedStairStep", "storyboardIdentifier": "ActiveTaskSteps" }
+                           }
+                           ]
+}

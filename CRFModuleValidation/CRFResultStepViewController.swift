@@ -37,9 +37,9 @@ import ResearchSuite
 
 open class CRFResultStepViewController: RSDStepViewController {
     
-    @IBOutlet var textLabel: UILabel?
-    @IBOutlet var resultLabel: UILabel!
-    @IBOutlet var unitLabel: UILabel?
+    @IBOutlet public var textLabel: UILabel?
+    @IBOutlet public var resultLabel: UILabel!
+    @IBOutlet public var unitLabel: UILabel?
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -90,15 +90,18 @@ public class CRFHeartRateResultStepViewController: CRFResultStepViewController {
     }
 }
 
-public class CRFRunDistanceResultStepViewController : CRFResultStepViewController {
+public class CRFCompletionResultStepViewController : CRFResultStepViewController {
     
-    @IBOutlet var doneButton: RSDRoundedButton?
+    @IBOutlet public var doneButton: RSDRoundedButton?
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         doneButton?.shadowColor = UIColor.rsd_roundedButtonShadowLight
     }
+}
+
+public class CRFRunDistanceResultStepViewController : CRFCompletionResultStepViewController {
     
     let usesMetricSystem: Bool = Locale.current.usesMetricSystem
     
@@ -141,6 +144,47 @@ public class CRFRunDistanceResultStepViewController : CRFResultStepViewControlle
         }
         
         return usesMetricSystem ? NSNumber(value: answer) : NSNumber(value: answer *  3.28084)
+    }
+}
+
+public class CRFStairStepResultStepViewController : CRFCompletionResultStepViewController {
+    
+    override public var resultText: String? {
+        guard let before = result(with: "heartRate.before"), let after = result(with: "heartRate.after")
+            else {
+                return nil
+        }
+        
+        let difference = after - before
+        return numberFormatter.string(from: NSNumber(value: difference))
+    }
+    
+    func result(with identifier:String) -> Int? {
+        
+        let taskPath = self.taskController.taskPath!
+        let secResult = taskPath.result.stepHistory.first { $0.identifier == identifier}
+        guard let sectionResult = secResult as? RSDTaskResult
+            else {
+                return nil
+        }
+        
+        let resultStepIdentifier = "heartRate"
+        let sResult = sectionResult.stepHistory.first { $0.identifier == resultStepIdentifier}
+        guard let stepResult = sResult as? RSDCollectionResult
+            else {
+                return nil
+        }
+        
+        let isAfter = (identifier == "heartRate.after")
+        let resultIdentifier = isAfter ? "\(resultStepIdentifier)_start" : "\(resultStepIdentifier)_end"
+        let aResult = stepResult.inputResults.first { $0.identifier == resultIdentifier }
+        guard let result = aResult as? RSDAnswerResult,
+            let answer = result.value as? Int
+            else {
+                return nil
+        }
+        
+        return answer
     }
 }
 

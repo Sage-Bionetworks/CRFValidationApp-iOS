@@ -44,6 +44,8 @@
 		<dict>
 			<key>taskIdentifier</key>
 			<string>Cardio 12MT</string>
+			<key>resourceName</key>
+			<string>Cardio_12MT</string>
 			<key>estimatedMinutes</key>
 			<string>15</string>
 			<key>title</key>
@@ -52,16 +54,20 @@
 			<string>15 minutes</string>
 			<key>icon</key>
 			<string>active12MinuteRun</string>
-			<key>backgroundImage</key>
-			<string>12MinFullScreen</string>
-			<key>resourceName</key>
-			<string>Cardio_12MT</string>
 		</dict>
 		<dict>
 			<key>taskIdentifier</key>
 			<string>Cardio Stair Step</string>
 			<key>resourceName</key>
 			<string>Cardio_Stair_Step</string>
+			<key>estimatedMinutes</key>
+			<string>5</string>
+			<key>title</key>
+			<string>Stair Step</string>
+			<key>subtitle</key>
+			<string>5 minutes</string>
+			<key>icon</key>
+			<string>stairStepClinicIcon</string>
 		</dict>
 	</array>
 </dict>
