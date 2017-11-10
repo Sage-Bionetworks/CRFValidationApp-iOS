@@ -37,11 +37,18 @@ import ResearchSuite
 
 public class CRFStairStepViewController: RSDActiveStepViewController {
     
+    public var imageView: UIImageView! {
+        return (self.navigationHeader as? RSDStepHeaderView)?.imageView
+    }
+    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // TODO: syoung 11/09/2017 Replace the idle timer with sound files for up/down
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        // stop the stair step animation until the accelerometers are ready
+        imageView.stopAnimating()
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
@@ -58,17 +65,21 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
         self.instructionLabel?.text = self.uiStep?.text
         
         self.taskController.startAsyncActions(with: [accelerometerConfig, deviceMotionConfig]) { [weak self] in
-            self?._finishStart()
+            DispatchQueue.main.async {
+                self?._finishStart()
+            }
         }
     }
     
     private func _finishStart() {
         guard self.isVisible else { return }
         super.performStartCommands()
+        imageView.startAnimating()
     }
     
     public override func stop() {
         super.stop()
+        imageView.stopAnimating()
         let controllers = taskController.currentAsyncControllers
         taskController.stopAsyncActions(for: controllers) {
             // do nothing
@@ -83,11 +94,17 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     }
 
     lazy public var firstInstruction: (TimeInterval, String)? = {
-        return (self.step as? RSDActiveUIStepObject)?.spokenInstructions?.first
+        return self.spokenInstructions.first
     }()
     
     lazy public var secondInstruction: (TimeInterval, String)? = {
-        return (self.step as? RSDActiveUIStepObject)?.spokenInstructions?.first(where: { $0.key > 0 })
+        return self.spokenInstructions.last
+    }()
+    
+    lazy public var spokenInstructions: [(TimeInterval, String)] = {
+        guard let instructions = (self.step as? RSDActiveUIStepObject)?.spokenInstructions else { return [] }
+        let sorted = instructions.sorted(by: { $0.key < $1.key })
+        return Array(sorted.prefix(2))
     }()
     
     private var _toggle = false

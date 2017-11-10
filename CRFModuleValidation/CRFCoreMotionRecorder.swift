@@ -74,7 +74,7 @@ public struct CRFCoreMotionRecorderConfiguration : RSDRecorderConfiguration, RSD
         case .accelerometer:
             return CRFAccelerometerRecorder(configuration: self, outputDirectory: taskPath.outputDirectory)
         case .deviceMotion:
-            return nil
+            return CRFDeviceMotionRecorder(configuration: self, outputDirectory: taskPath.outputDirectory)
         }
     }
 }

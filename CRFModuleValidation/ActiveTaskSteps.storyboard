@@ -616,7 +616,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stairStepLarge4" translatesAutoresizingMaskIntoConstraints="NO" id="bFK-2n-tXR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stairStepLarge1" translatesAutoresizingMaskIntoConstraints="NO" id="bFK-2n-tXR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="567"/>
                                 <color key="backgroundColor" name="perrywinkleTwo"/>
                             </imageView>
@@ -686,7 +686,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="cancelButton" destination="2Nh-th-QlZ" id="Ild-wt-PMj"/>
-                                    <outlet property="imageView" destination="bFK-2n-tXR" id="Qfh-5b-BNI"/>
+                                    <outlet property="imageView" destination="bFK-2n-tXR" id="DQr-cb-Y3R"/>
                                     <outlet property="progressView" destination="xtU-RF-RcH" id="5Rv-P0-9OY"/>
                                     <outlet property="stepCountLabel" destination="ZC5-bR-tbv" id="nkY-TS-bh6"/>
                                 </connections>
@@ -1329,31 +1329,27 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4a-QU-LmI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL8-5Y-LjM" customClass="CRFCameraShutterButton" customModule="CRFModuleValidation" customModuleProvider="target">
-                                        <rect key="frame" x="154.5" y="546" width="65" height="65"/>
-                                        <color key="backgroundColor" name="white"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="65" placeholder="YES" id="CLq-dg-qFK"/>
-                                            <constraint firstAttribute="height" constant="65" id="ZeB-nd-YR6"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="goForward" destination="40z-TP-I3S" eventType="touchUpInside" id="KKp-sn-tTP"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="lL8-5Y-LjM" firstAttribute="centerX" secondItem="j4a-QU-LmI" secondAttribute="centerX" id="Srz-kd-HiF"/>
-                                    <constraint firstAttribute="bottom" secondItem="lL8-5Y-LjM" secondAttribute="bottom" constant="56" id="TMT-vf-Lkf"/>
-                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL8-5Y-LjM" customClass="CRFCameraShutterButton" customModule="CRFModuleValidation" customModuleProvider="target">
+                                <rect key="frame" x="155" y="522" width="65" height="65"/>
+                                <color key="backgroundColor" name="white"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" placeholder="YES" id="CLq-dg-qFK"/>
+                                    <constraint firstAttribute="height" constant="65" id="ZeB-nd-YR6"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="goForward" destination="40z-TP-I3S" eventType="touchUpInside" id="KKp-sn-tTP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="j4a-QU-LmI" firstAttribute="top" secondItem="30u-nx-BEj" secondAttribute="top" id="4HZ-0H-lH0"/>
+                            <constraint firstItem="Ite-Ie-XIr" firstAttribute="bottom" secondItem="lL8-5Y-LjM" secondAttribute="bottom" constant="80" id="DC6-3y-fhi"/>
                             <constraint firstItem="j4a-QU-LmI" firstAttribute="leading" secondItem="Ite-Ie-XIr" secondAttribute="leading" id="ggn-Lf-sfF"/>
                             <constraint firstItem="j4a-QU-LmI" firstAttribute="bottom" secondItem="Ite-Ie-XIr" secondAttribute="bottom" id="jGE-qc-dY3"/>
+                            <constraint firstItem="lL8-5Y-LjM" firstAttribute="centerX" secondItem="30u-nx-BEj" secondAttribute="centerX" id="nO6-8C-Y5D"/>
                             <constraint firstItem="j4a-QU-LmI" firstAttribute="trailing" secondItem="Ite-Ie-XIr" secondAttribute="trailing" id="qzP-jz-JSk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ite-Ie-XIr"/>
@@ -1378,7 +1374,6 @@
         <image name="heartRateIconCapturing" width="64" height="58"/>
         <image name="infoIcon" width="32" height="32"/>
         <image name="stairStepLarge1" width="375" height="501"/>
-        <image name="stairStepLarge4" width="375" height="501"/>
         <namedColor name="black54">
             <color white="0.0" alpha="0.54000002150000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
