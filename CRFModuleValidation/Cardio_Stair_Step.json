@@ -40,7 +40,7 @@
                            "identifier"   : "takePhotoInstruction",
                            "type"         : "instruction",
                            "title"        : "Take a picture of your step",
-                           "text"         : "Start by taking a picture with your phone of the step with your fitibit inext to the step that you will be using.",
+                           "text"         : "Start by taking a picture with your phone of the step with your fitibit next to the step that you will be using.",
                            "image"        : { "imageName": "snapStepWithFitbit", "placementType": "topBackground" },
                            "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
                            "actions"      : { "goForward": { "buttonTitle": "Capture picture" }},
