@@ -111,12 +111,13 @@
                                                "identifier"         : "motion",
                                                "type"               : "active",
                                                "duration"           : 185,
+                                               "text"               : "Stand still",
                                                "image"  : {
                                                                    "imageNames" : ["stairStepLarge1", "stairStepLarge2", "stairStepLarge3", "stairStepLarge4"],
                                                                    "placementType" : "topBackground",
                                                                    "animationDuration" : 0.625,
                                                                    },
-                                               "commands"           : ["vibrate", "playSound", "transitionAutomatically"],
+                                               "commands"           : ["transitionAutomatically"],
                                                "spokenInstructions" : {"0": "Up", "1.25": "Down", "end": "Stand still"},
                                                "colorTheme"         : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
                                                "viewTheme"          : { "viewIdentifier": "StairStep", "storyboardIdentifier": "ActiveTaskSteps" }

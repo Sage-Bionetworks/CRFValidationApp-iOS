@@ -37,5 +37,83 @@ import ResearchSuite
 
 public class CRFStairStepViewController: RSDActiveStepViewController {
     
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // TODO: syoung 11/09/2017 Replace the idle timer with sound files for up/down
+        UIApplication.shared.isIdleTimerDisabled = true
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // TODO: syoung 11/09/2017 Replace the idle timer with sound files for up/down
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
+    
+    public override func performStartCommands() {
+        let accelerometerConfig = CRFCoreMotionRecorderConfiguration(recorderType: .accelerometer)
+        let deviceMotionConfig = CRFCoreMotionRecorderConfiguration(recorderType: .deviceMotion)
+        
+        self.instructionLabel?.text = self.uiStep?.text
+        
+        self.taskController.startAsyncActions(with: [accelerometerConfig, deviceMotionConfig]) { [weak self] in
+            self?._finishStart()
+        }
+    }
+    
+    private func _finishStart() {
+        guard self.isVisible else { return }
+        super.performStartCommands()
+    }
+    
+    public override func stop() {
+        super.stop()
+        let controllers = taskController.currentAsyncControllers
+        taskController.stopAsyncActions(for: controllers) {
+            // do nothing
+        }
+    }
+    
+    public override var timerInterval: TimeInterval {
+        guard let (timeInterval,_) = self.secondInstruction else {
+            return 1
+        }
+        return timeInterval
+    }
 
+    lazy public var firstInstruction: (TimeInterval, String)? = {
+        return (self.step as? RSDActiveUIStepObject)?.spokenInstructions?.first
+    }()
+    
+    lazy public var secondInstruction: (TimeInterval, String)? = {
+        return (self.step as? RSDActiveUIStepObject)?.spokenInstructions?.first(where: { $0.key > 0 })
+    }()
+    
+    private var _toggle = false
+    
+    public override func speakInstruction(at duration: TimeInterval) {
+        guard let stepDuration = self.activeStep?.duration else { return }
+        if duration >= stepDuration {
+            super.speakInstruction(at: duration)
+        } else if duration == 0 || !_toggle {
+            _speakFirstInstruction(at: duration)
+        } else {
+            _speakSecondInstruction(at: duration)
+        }
+    }
+    
+    private func _speakFirstInstruction(at duration: TimeInterval) {
+        guard let instruction = self.firstInstruction else { return }
+        _toggle = true
+        self.vibrateDevice()
+        self.speakInstruction(instruction.1, at: duration, completion: nil)
+    }
+
+    private func _speakSecondInstruction(at duration: TimeInterval) {
+        guard let instruction = self.secondInstruction else { return }
+        _toggle = false
+        self.vibrateDevice()
+        self.speakInstruction(instruction.1, at: duration, completion: nil)
+    }
 }
