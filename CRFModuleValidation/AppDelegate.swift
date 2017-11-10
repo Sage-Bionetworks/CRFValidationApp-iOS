@@ -66,11 +66,41 @@ class AppDelegate: SBAAppDelegate {
         guard fitbitCompletionURL != nil else { return false }
         
         // Close the auth session. This ends up calling its completion handler with an error.
+        // emm 2017-11-09 As of iOS SDK 11.1 that behavior no longer applies, so now we call it explicitly.
         self.authSession?.cancel()
         self.authSession = nil
+        self.fitbitAuthCompletionHandler(url: fitbitCompletionURL, error: nil)
         debugPrint("Safari auth session ended")
         
         return true
+    }
+    
+    func fitbitAuthCompletionHandler (url: URL?, error: Error?) -> () {
+        guard let completion = self.fitbitCompletionHandler else {
+            // if we weren't given a completion handler, just ignore any results and reset in case we get called again
+            self.fitbitCompletionURL = nil
+            return
+        }
+        
+        // reset it in case there's a next time
+        self.fitbitCompletionHandler = nil
+        
+        guard let successURL = self.fitbitCompletionURL else {
+            completion(nil, error)
+            return
+        }
+        
+        // again, reset it for hypothetical next times
+        self.fitbitCompletionURL = nil
+        
+        let codeArg = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
+        let authCode = codeArg?.value
+        debugPrint("auth code: \(String(describing: authCode))")
+        // TODO emm 2017-10-25 when Bridge API for this is implemented and supported in BridgeSDK, call it with authCode and use the returned access token
+        // in the call to the completion handler instead of this placeholder.
+        let accessToken = (authCode ?? "") + "not-really-an-access-token"
+        
+        completion(accessToken, nil)
     }
     
     func connectToFitbit(completionHandler: FitbitCompletionHandler? = nil) {
@@ -84,35 +114,8 @@ class AppDelegate: SBAAppDelegate {
         // Fitbit only lets us give one callback URL per app, so if we want to use the same Fitbit app for both iOS and Android (and potentially web clients)
         // we need to *not* use a custom URL scheme. But SFAuthenticationSession's completion handler requires it to be a custom URL scheme. So instead we will
         // handle the callback in the place that Universal Links are handled, i.e., application(_:, continue:, restorationHandler:), and close the
-        // SFAuthenticationSession from there. Also note that canceling the auth session from code calls the completion handler with the same error as if
-        // the user canceled the login, so instead we check for success by looking at whether or not we got a fitbitCompletionURL. emm 2017-11-03
-        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: nil, completionHandler: { url, error  in
-            guard let completion = self.fitbitCompletionHandler else {
-                // if we weren't given a completion handler, just ignore any results and reset in case we get called again
-                self.fitbitCompletionURL = nil
-                return
-            }
-            
-            // reset it in case there's a next time
-            self.fitbitCompletionHandler = nil
-            
-            guard let successURL = self.fitbitCompletionURL else {
-                completion(nil, error)
-                return
-            }
-            
-            // again, reset it for hypothetical next times
-            self.fitbitCompletionURL = nil
-            
-            let codeArg = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
-            let authCode = codeArg?.value
-            debugPrint("auth code: \(String(describing: authCode))")
-            // TODO emm 2017-10-25 when Bridge API for this is implemented and supported in BridgeSDK, call it with authCode and use the returned access token
-            // in the call to the completion handler instead of this placeholder.
-            let accessToken = (authCode ?? "") + "not-really-an-access-token"
-            
-            completion(accessToken, nil)
-        })
+        // SFAuthenticationSession from there. emm 2017-11-03
+        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: nil, completionHandler: self.fitbitAuthCompletionHandler)
         authSession!.start()
     }
     

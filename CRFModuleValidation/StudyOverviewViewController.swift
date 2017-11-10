@@ -64,7 +64,7 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
             permission.always = true
             return permission
         }
-        let fitbitStep = SBAInstructionStep(identifier: "fitbit")
+        let fitbitStep = FitbitStep(identifier: "fitbit")
         fitbitStep.title = "Connect your Fitbit"
         fitbitStep.detailText = "Connecting to your Fitbit data allows the CRF module to understand the various aspects of your health such as your heart rate and daily movement."
         fitbitStep.continueButtonTitle = "Connect"
@@ -81,10 +81,8 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
         taskViewController.dismiss(animated: true) { 
             if (reason == .completed), let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.connectToFitbit(completionHandler: { (_, _) in
-                    // Show the appropriate view controller
-                    appDelegate.showAppropriateViewController(animated: false)
-                })
+                // Show the appropriate view controller
+                appDelegate.showAppropriateViewController(animated: false)
             }
             else {
                 // Discard the registration information that has been gathered so far

@@ -20,6 +20,7 @@
 		60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2141E89D0B200B123FA /* BridgeSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
 		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		80B3FB531FB51EC900B81B6E /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */; };
 		FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
 		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
 		FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
@@ -183,6 +184,7 @@
 		60F7A20E1E89D0B200B123FA /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitStep.swift; sourceTree = "<group>"; };
 		FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateStepViewController.swift; sourceTree = "<group>"; };
 		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
 		FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateRecorder.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
+				80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */,
 				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
 				FF9D7F591FA8DEB8008506DB /* Step Customization */,
 				60F7A1641E89C98800B123FA /* Resources */,
@@ -708,6 +711,7 @@
 				FFFDAFBC1FB50091001C59BD /* CRFResultStepViewController.swift in Sources */,
 				FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */,
 				FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */,
+				80B3FB531FB51EC900B81B6E /* FitbitStep.swift in Sources */,
 				FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */,
 				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
 				FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */,
