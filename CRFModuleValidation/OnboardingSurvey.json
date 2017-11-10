@@ -1,0 +1,37 @@
+{
+    "steps" : [
+               {
+               "identifier": "testerOrParticipant",
+               "title": "I am a:",
+               "type": "dataGroups.singleChoiceText",
+               "items":[
+                        {"text" :"Tester", "value" : "tester", "dataGroup" : "test_user"},
+                        {"text" :"Participant", "value": "participant", "dataGroup" : ""},
+                        ],
+               "expectedAnswer": ["tester"],
+               "skipIdentifier": "clinicChoices",
+               "optional": false,
+               },
+               {
+               "identifier": "testerChoices",
+               "title": "How do you want to experience the app while testing?",
+               "type": "dataGroups.singleChoiceText",
+               "items":[
+                        {"text" :"Activities always available", "value" : "activityTester", "dataGroup" : "activity_tester"},
+                        {"text" :"As a participant would see it", "value": "uxTester", "dataGroup" : ""},
+                        ],
+               "optional": false,
+               },
+               {
+               "identifier": "clinicChoices",
+               "title": "In which order are you doing the clinic visits?",
+               "type": "dataGroups.singleChoiceText",
+               "items":[
+                        {"text" :"Cardiorespiratory stress test first visit, step and 12 minute run last visit", "value" : "clinic1", "dataGroup" : "clinic1"},
+                        {"text" :"Step and 12 minute run first visit, cardiorespiratory stress test last visit", "value": "clinic2", "dataGroup" : "clinic2"},
+                        ],
+               "optional": false,
+               },
+               ]
+}
+
