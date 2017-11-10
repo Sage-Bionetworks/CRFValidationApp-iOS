@@ -59,12 +59,10 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     }
     
     public override func performStartCommands() {
-        let accelerometerConfig = CRFCoreMotionRecorderConfiguration(recorderType: .accelerometer)
-        let deviceMotionConfig = CRFCoreMotionRecorderConfiguration(recorderType: .deviceMotion)
-        
         self.instructionLabel?.text = self.uiStep?.text
         
-        self.taskController.startAsyncActions(with: [accelerometerConfig, deviceMotionConfig]) { [weak self] in
+        let config = CRFCoreMotionRecorderConfiguration(identifier: self.step.identifier)
+        self.taskController.startAsyncActions(with: [config]) { [weak self] in
             DispatchQueue.main.async {
                 self?._finishStart()
             }

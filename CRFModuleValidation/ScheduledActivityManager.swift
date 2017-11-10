@@ -173,9 +173,25 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     
     // MARK: RSDTaskViewControllerDelegate
     
+    open func deleteOutputDirectory(_ outputDirectory: URL?) {
+        guard let outputDirectory = outputDirectory else { return }
+        do {
+            try FileManager.default.removeItem(at: outputDirectory)
+        } catch let error {
+            print("Error removing ResearchKit output directory: \(error.localizedDescription)")
+            debugPrint("\tat: \(outputDirectory)")
+        }
+    }
+    
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), didFinishWith reason: RSDTaskFinishReason, error: Error?) {
+        
         // dismiss the view controller
-        taskViewController.dismiss(animated: true, completion: nil)
+        let outputDirectory = taskViewController.taskPath.outputDirectory
+        taskViewController.dismiss(animated: true) {
+            self.offMainQueue.async {
+                self.deleteOutputDirectory(outputDirectory)
+            }
+        }
         
         if let err = error {
             debugPrint(err)
