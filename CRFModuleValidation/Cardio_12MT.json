@@ -42,8 +42,7 @@
                            "image"                  : "healthRiskIcon",
                            "title"                  : "Potential heart risk",
                            "text"                   : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
-                           "actions"                : { "goForward": { "buttonTitle": "Got it" },
-                                                        "cancel": { "iconName": "closeActivityWhite" }}
+                           "actions"                : { "goForward": { "buttonTitle": "Got it" }}
                            },
                            {
                            "identifier"   : "wearingFitbit",

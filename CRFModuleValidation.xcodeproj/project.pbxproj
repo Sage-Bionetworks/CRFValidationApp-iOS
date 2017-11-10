@@ -28,6 +28,8 @@
 		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
 		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
 		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
+		FF569BF41FB63CFA005F525A /* Cardio_Stress.json in Resources */ = {isa = PBXBuildFile; fileRef = FF569BED1FB63CF9005F525A /* Cardio_Stress.json */; };
+		FF569BF61FB63FCA005F525A /* Stress_Test.html in Resources */ = {isa = PBXBuildFile; fileRef = FF569BF51FB63FCA005F525A /* Stress_Test.html */; };
 		FF5D8B771FB522F70003B0FC /* Cardio_Stair_Step.json in Resources */ = {isa = PBXBuildFile; fileRef = FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */; };
 		FF5D8B7D1FB526F80003B0FC /* CRFCameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */; };
 		FF5D8B7F1FB528BC0003B0FC /* CRFCameraStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */; };
@@ -197,6 +199,8 @@
 		FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Stair_Step.html; sourceTree = "<group>"; };
 		FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Cardio_12MT.html; sourceTree = "<group>"; };
 		FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntroductionStepViewController.swift; sourceTree = "<group>"; };
+		FF569BED1FB63CF9005F525A /* Cardio_Stress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_Stress.json; sourceTree = "<group>"; };
+		FF569BF51FB63FCA005F525A /* Stress_Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Stress_Test.html; sourceTree = "<group>"; };
 		FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_Stair_Step.json; sourceTree = "<group>"; };
 		FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFCameraShutterButton.swift; sourceTree = "<group>"; };
 		FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFCameraStepViewController.swift; sourceTree = "<group>"; };
@@ -285,7 +289,6 @@
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
 				80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */,
-				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
 				FF9D7F591FA8DEB8008506DB /* Step Customization */,
 				60F7A1641E89C98800B123FA /* Resources */,
 				60F7A1611E89C93800B123FA /* Storyboards */,
@@ -381,6 +384,7 @@
 		FF2A1D5B1FB177750095044A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
 				FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */,
 				FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */,
 				FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */,
@@ -393,6 +397,7 @@
 		FF55C4121FAAD993004EDB59 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				FF569BF51FB63FCA005F525A /* Stress_Test.html */,
 				FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */,
 				FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */,
 			);
@@ -470,6 +475,7 @@
 				FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */,
 				FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */,
 				FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */,
+				FF569BED1FB63CF9005F525A /* Cardio_Stress.json */,
 				FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */,
 			);
 			name = JSON;
@@ -678,7 +684,9 @@
 				60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */,
 				60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */,
 				FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */,
+				FF569BF61FB63FCA005F525A /* Stress_Test.html in Resources */,
 				FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */,
+				FF569BF41FB63CFA005F525A /* Cardio_Stress.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

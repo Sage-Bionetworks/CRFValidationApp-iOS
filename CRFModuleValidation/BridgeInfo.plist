@@ -43,6 +43,20 @@
 		</dict>
 		<dict>
 			<key>taskIdentifier</key>
+			<string>Cardio Stress Test</string>
+			<key>resourceName</key>
+			<string>Cardio_Stress</string>
+			<key>estimatedMinutes</key>
+			<string>20</string>
+			<key>title</key>
+			<string>Cardiovascular stress test</string>
+			<key>subtitle</key>
+			<string>20 minutes</string>
+			<key>icon</key>
+			<string>cardioStressTestIcon</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
 			<string>Cardio 12MT</string>
 			<key>resourceName</key>
 			<string>Cardio_12MT</string>

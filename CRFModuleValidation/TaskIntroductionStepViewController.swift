@@ -39,7 +39,7 @@ import ResearchUXFactory
 class TaskIntroductionStepViewController: RSDStepViewController {
     
     override func shouldUseGlobalButtonVisibility() -> Bool {
-        return false
+        return self.shouldHideAction(for: .navigation(.skip))
     }
     
     override func showLearnMore() {
