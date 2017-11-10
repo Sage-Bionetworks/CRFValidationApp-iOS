@@ -122,6 +122,30 @@ class ResourceTests: XCTestCase {
             XCTFail("Failed to decode task \(err)")
         }
     }
+    
+    func testStairSteps() {
+        let factory = CRFTaskFactory()
+        
+        do {
+            let transform = RSDResourceTransformerObject(resourceName: "Cardio_Stair_Step") as RSDSectionStepResourceTransformer
+            let steps: [RSDStep] = try transform.transformSteps(with: factory)
+            
+            if let instructionStep = steps.first as? RSDUIStep {
+                XCTAssertEqual(instructionStep.title, "Capture heart rate")
+                XCTAssertEqual(instructionStep.text, "Use your finger to cover the camera and flash on the back of your phone.")
+                if let action = instructionStep.action(for: .navigation(.goForward), on: instructionStep) {
+                    XCTAssertNotNil(action.buttonIcon)
+                } else {
+                    XCTFail("Missing custom expected action")
+                }
+            } else {
+                XCTFail("Step not of expected type")
+            }
+            
+        } catch let err {
+            XCTFail("Failed to decode task \(err)")
+        }
+    }
 
     
     // MARK: Helper methods

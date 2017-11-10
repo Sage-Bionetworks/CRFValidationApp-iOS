@@ -73,12 +73,6 @@ class HeartRateRecorderTests: XCTestCase {
 
     func testHueConvertion() {
         
-//        let paths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
-//        let path = paths.last!
-//        let outputDirectory = URL(fileURLWithPath: path, isDirectory: true)
-//        let config = CRFHeartRateRecorderConfiguration(identifier: "test")
-//        let recorder = CRFHeartRateRecorder(configuration: config, outputDirectory: outputDirectory)
-        
         for sample in sampleLog.items {
             let color = CRFColor(red: sample.red, green: sample.green, blue: sample.blue)
             if sample.hue >= 0 {
