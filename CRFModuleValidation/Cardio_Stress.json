@@ -39,7 +39,7 @@
                                    "identifier"   : "instructions",
                                    "type"         : "instruction",
                                    "title"        : "Ready to run on the treadmill?",
-                                   "text"         : "You’ll start off slowly and speed and will be increased through the test duration.",
+                                   "text"         : "You’ll start off slowly, and speed and grade will be increased through the test duration.",
                                    "image"        : { "imageName" : "treadmillMan", "placementType" : "topBackground" },
                                    "colorTheme"     : { "backgroundColor" : "offWhite", "usesLightStyle" : false },
                                    "actions"        : { "goForward": { "iconName": "treadmillStartButton" }},
