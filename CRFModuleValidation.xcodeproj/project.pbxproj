@@ -50,6 +50,7 @@
 		FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
 		FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
+		FF88D5051FB66D0D003BB844 /* Background_Survey.json in Resources */ = {isa = PBXBuildFile; fileRef = FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */; };
 		FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
@@ -221,6 +222,7 @@
 		FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchSuite.xcodeproj; path = ResearchSuite/ResearchSuite/ResearchSuite.xcodeproj; sourceTree = "<group>"; };
 		FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
 		FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartrateStep.json; sourceTree = "<group>"; };
+		FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Background_Survey.json; sourceTree = "<group>"; };
 		FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActiveTaskSteps.storyboard; sourceTree = "<group>"; };
 		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
@@ -474,6 +476,7 @@
 		FFA607AB1F707BB70034A4C0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */,
 				FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */,
 				FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */,
 				FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */,
@@ -679,6 +682,7 @@
 				FF5D8B771FB522F70003B0FC /* Cardio_Stair_Step.json in Resources */,
 				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,
 				80E8D1BC1FB5460A00A695C5 /* OnboardingSurvey.json in Resources */,
+				FF88D5051FB66D0D003BB844 /* Background_Survey.json in Resources */,
 				FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */,
 				FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */,
 				FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */,

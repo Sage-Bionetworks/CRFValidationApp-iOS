@@ -1,0 +1,98 @@
+{
+    "identifier": "Background Survey",
+    "schemaInfo": {
+        "identifier": "Background Survey",
+        "revision": 2
+    },
+    "actions": {
+        "cancel": {
+            "iconName": "closeActivity"
+        }
+    },
+    "shouldHideActions": ["skip"],
+    "steps": [{
+              "identifier": "birthdate",
+              "type": "form",
+              "title": "What is your birthdate?",
+              "inputFields": [{
+                              "identifier": "birthdate_year",
+                              "dataType": "year",
+                              "prompt": "Year",
+                              "uiHint": "textfield",
+                              "range": {
+                              "allowFuture": false
+                              }
+                              },
+                              {
+                              "identifier": "birthdate_month",
+                              "dataType": "integer",
+                              "prompt": "Month",
+                              "uiHint": "textfield",
+                              "range": {
+                              "minimumValue": 1,
+                              "maximumValue": 12
+                              }
+                              }
+                              ]
+              },
+              {
+              "identifier": "sex",
+              "type": "form",
+              "title": "What is your sex?",
+              "dataType": "singleChoice",
+              "choices": ["Male", "Female"]
+              },
+              {
+              "identifier": "hispanicOrLatino",
+              "type": "form",
+              "title": "Are you of Hispanic or Latino origin?",
+              "dataType": "singleChoice.boolean",
+              "choices": [{"text": "Yes", "value": true }, {"text": "No", "value": false }]
+              },
+              {
+              "identifier": "ethnicity",
+              "type": "form",
+              "title": "Which race best describes you?",
+              "detail": "(select all that apply)",
+              "dataType": "multipleChoice",
+              "choices": ["White or Caucasian",
+                          "Black or African American",
+                          "Native Hawaiian or other Pacific Islander",
+                          "Asian",
+                          "Other"
+                          ]
+              },
+              {
+              "identifier": "education",
+              "type": "form",
+              "title": "What is the highest grade in school you have finished?",
+              "detail": "(select one)",
+              "dataType": "singleChoice",
+              "choices": [{
+                          "text": "Did not finish elementary school",
+                          "value": "elementary school"
+                          }, {
+                          "text": "Finished middle school (8th grade)",
+                          "value": "middle school"
+                          }, {
+                          "text": "Finished some high school",
+                          "value": "some high school"
+                          }, {
+                          "text": "High school graduate or G.E.D",
+                          "value": "high school graduate"
+                          }, {
+                          "text": "Vocational or training school after high school",
+                          "value": "vocational school"
+                          }, {
+                          "text": "Some College or Associate degree",
+                          "value": "some college or associate"
+                          }, {
+                          "text": "College graduate or Baccalaureate Degree",
+                          "value": "college graduate"
+                          }, {
+                          "text": "Masters or Doctoral Degree (PhD, MD, JD, etc)",
+                          "value": "masters or doctoral"
+                          }]
+              }
+              ]
+}

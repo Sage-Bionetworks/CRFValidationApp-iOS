@@ -299,7 +299,7 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
         }
         
         if answerMap.count > 0 {
-            let archiveAnswers = RSDConsolidatedResult(identifier: identifier, startDate: startDate, endDate: endDate, filename: "answerMap", json: answerMap)
+            let archiveAnswers = RSDConsolidatedResult(identifier: identifier, startDate: startDate, endDate: endDate, filename: "answers", json: answerMap)
             archivableResults.append((identifier, archiveAnswers))
         }
         

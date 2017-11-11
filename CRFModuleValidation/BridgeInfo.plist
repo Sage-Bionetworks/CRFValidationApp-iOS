@@ -83,6 +83,18 @@
 			<key>icon</key>
 			<string>stairStepClinicIcon</string>
 		</dict>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>Background Survey</string>
+			<key>resourceName</key>
+			<string>Background_Survey</string>
+			<key>estimatedMinutes</key>
+			<string>3</string>
+			<key>title</key>
+			<string>Background and health survey</string>
+			<key>icon</key>
+			<string>demographicIcon</string>
+		</dict>
 	</array>
 </dict>
 </plist>
