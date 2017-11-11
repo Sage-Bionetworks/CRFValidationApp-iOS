@@ -115,6 +115,7 @@ public class CRFCoreMotionRecorder : RSDSampleRecorder {
                 try self._startMotionManager()
                 super.startRecorder(completion)
             } catch let err {
+                debugPrint("Failed to start core motion detection. \(err)")
                 completion?(self, nil, err)
             }
         }

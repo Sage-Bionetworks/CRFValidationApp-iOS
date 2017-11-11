@@ -35,7 +35,7 @@ import UIKit
 import ResearchSuiteUI
 import ResearchSuite
 
-public class CRFHeartRateStepViewController: RSDActiveStepViewController {
+public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsyncActionControllerDelegate {
     
     /**
      */
@@ -80,8 +80,10 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController {
         
         // Create a recorder that runs only during this step
         let taskPath = self.taskController.taskPath!
-        let config = CRFHeartRateRecorderConfiguration(identifier: "\(self.step.identifier)_recorder")
+        let pathIdentifier = taskPath.parentPath?.currentStep?.identifier ?? self.step.identifier
+        let config = CRFHeartRateRecorderConfiguration(identifier: "\(pathIdentifier)_recorder")
         bpmRecorder = CRFHeartRateRecorder(configuration: config, outputDirectory: taskPath.outputDirectory)
+        bpmRecorder?.delegate = self
         
         // add an observer for changes in the bpm
         _bpmObserver = bpmRecorder!.observe(\.bpm, changeHandler: { [weak self] (recorder, _) in
@@ -98,7 +100,7 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController {
         }
         
         // start the recorder
-        bpmRecorder!.startRecorder(nil)
+        bpmRecorder!.start(at: self.taskController.taskPath, completion: nil)
     }
     
     override public func cancel() {
@@ -141,6 +143,11 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController {
         addResult(bpmResult)
         
         super.stop()
+    }
+    
+    public func asyncActionController(_ controller: RSDAsyncActionController, didFailWith error: Error) {
+        debugPrint("Camera recorder failed. \(error)")
+        // TODO: syoung 11/10/2017 Handle errors
     }
     
     private var _bpmObserver: NSKeyValueObservation?
