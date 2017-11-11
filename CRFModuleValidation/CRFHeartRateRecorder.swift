@@ -136,6 +136,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
                 try self._startSampling()
                 super.startRecorder(completion)
             } catch let err {
+                debugPrint("Failed to start camera: \(err)")
                 completion?(self, nil, err)
             }
         }
