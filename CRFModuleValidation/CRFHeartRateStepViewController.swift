@@ -80,8 +80,7 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         
         // Create a recorder that runs only during this step
         let taskPath = self.taskController.taskPath!
-        let pathIdentifier = taskPath.parentPath?.currentStep?.identifier ?? self.step.identifier
-        let config = CRFHeartRateRecorderConfiguration(identifier: "\(pathIdentifier)_recorder")
+        let config = CRFHeartRateRecorderConfiguration(identifier: "recorder")
         bpmRecorder = CRFHeartRateRecorder(configuration: config, outputDirectory: taskPath.outputDirectory)
         bpmRecorder?.delegate = self
         
