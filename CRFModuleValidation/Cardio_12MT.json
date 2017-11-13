@@ -1,5 +1,9 @@
 {
     "identifier"        : "Cardio 12MT",
+    "schemaInfo": {
+        "identifier": "Cardio 12MT",
+        "revision": 5
+    },
     "actions"           : { "cancel": { "iconName": "closeActivity" }},
     "shouldHideActions" : ["goBackward", "skip"],
     "progressMarkers"   : ["wearingFitbit", "volumeUp", "goOutside", "heartRate.before", "run", "heartRate.after", "surveyAfter"],
