@@ -43,14 +43,7 @@
 			<key>estimatedMinutes</key>
 			<integer>5</integer>
 			<key>title</key>
-			<string>System Usability Scale Survey
-Save
-Editor
-Schema
-History &amp; Publication
-9/29/2017, 3:02:27 PM
- Published
-System Usability Scale Survey</string>
+			<string>User Burden Scale Survey</string>
 			<key>icon</key>
 			<string>usabilitySurveyIcon</string>
 		</dict>
@@ -62,14 +55,7 @@ System Usability Scale Survey</string>
 			<key>estimatedMinutes</key>
 			<integer>5</integer>
 			<key>title</key>
-			<string>System Usability Scale Survey
-Save
-Editor
-Schema
-History &amp; Publication
-9/29/2017, 3:02:27 PM
- Published
-System Usability Scale Survey</string>
+			<string>System Usability Scale Survey</string>
 			<key>icon</key>
 			<string>usabilitySurveyIcon</string>
 		</dict>
