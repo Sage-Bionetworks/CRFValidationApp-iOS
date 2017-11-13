@@ -123,15 +123,16 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
        
         // Only if the task was created should something be done.
         guard let schedule = scheduledActivity(at: indexPath),
-            let taskRef = bridgeInfo.taskReferenceForSchedule(schedule),
+            let taskRef = bridgeInfo.taskReferenceForSchedule(schedule) as? TaskReferenceExtension,
             let identifier = schedule.activityIdentifier
             else {
                 assertionFailure("Could not find schedule or task reference")
                 return
         }
+
         
         // For the HeartRate Measurement, use the ORKTask so that the schema stays consistent.
-        if identifier == heartRateTaskIdentifier {
+        if taskRef.usesResearchKit {
             
             // If this is a valid schedule then create the task view controller
             guard let taskViewController = createTaskViewController(for: schedule)
@@ -239,6 +240,22 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), asyncActionControllerFor configuration: RSDAsyncActionConfiguration) -> RSDAsyncActionController? {
         return nil
+    }
+}
+
+protocol TaskReferenceExtension : SBATaskReference {
+    var usesResearchKit: Bool { get }
+}
+
+extension NSDictionary : TaskReferenceExtension {
+    var usesResearchKit: Bool {
+        return self["bridgeSurvey"] as? Bool ?? false
+    }
+}
+
+extension SBBSurveyReference : TaskReferenceExtension {
+    var usesResearchKit: Bool {
+        return true
     }
 }
 
