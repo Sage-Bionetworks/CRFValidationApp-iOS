@@ -2,7 +2,7 @@
     "identifier": "Background Survey",
     "schemaInfo": {
         "identifier": "Background Survey",
-        "revision": 2
+        "revision": 4
     },
     "actions": {
         "cancel": {
