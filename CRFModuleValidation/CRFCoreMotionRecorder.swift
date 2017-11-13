@@ -201,9 +201,9 @@ public struct CRFAccelerometerRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
     public let timestamp: TimeInterval
-    public let stepPath: String
-    public let date: Date?
-    public let sensorType: CRFCoreMotionRecorderType
+    public let step_path: String
+    public let timestamp_date: Date?
+    public let sensor_type: CRFCoreMotionRecorderType
     
     public let x: Double?
     public let y: Double?
@@ -212,9 +212,9 @@ public struct CRFAccelerometerRecord: RSDSampleRecord {
     public init(startUptime: TimeInterval, stepPath: String, data: CMAccelerometerData) {
         self.uptime = data.timestamp
         self.timestamp = data.timestamp - startUptime
-        self.stepPath = stepPath
-        self.date = nil
-        self.sensorType = CRFCoreMotionRecorderType.accelerometer
+        self.step_path = stepPath
+        self.timestamp_date = nil
+        self.sensor_type = CRFCoreMotionRecorderType.accelerometer
         self.x = data.acceleration.x
         self.y = data.acceleration.y
         self.z = data.acceleration.z
@@ -228,13 +228,14 @@ public struct CRFDeviceMotionRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
     public let timestamp: TimeInterval
-    public let stepPath: String
-    public let date: Date?
-    public let sensorType: CRFCoreMotionRecorderType
+    public let step_path: String
+    public let timestamp_date: Date?
+    public let sensor_type: CRFCoreMotionRecorderType
     
-    public let attitude_pitch: Double?
-    public let attitude_roll: Double?
-    public let attitude_yaw: Double?
+    public let attitude_x: Double?
+    public let attitude_y: Double?
+    public let attitude_z: Double?
+    public let attitude_w: Double?
     public let rotationRate_x: Double?
     public let rotationRate_y: Double?
     public let rotationRate_z: Double?
@@ -253,13 +254,14 @@ public struct CRFDeviceMotionRecord: RSDSampleRecord {
     public init(startUptime: TimeInterval, stepPath: String, data: CMDeviceMotion) {
         self.uptime = data.timestamp
         self.timestamp = data.timestamp - startUptime
-        self.stepPath = stepPath
-        self.date = nil
-        self.sensorType = CRFCoreMotionRecorderType.deviceMotion
+        self.step_path = stepPath
+        self.timestamp_date = nil
+        self.sensor_type = CRFCoreMotionRecorderType.deviceMotion
 
-        self.attitude_pitch = data.attitude.pitch
-        self.attitude_roll = data.attitude.roll
-        self.attitude_yaw = data.attitude.yaw
+        self.attitude_x = data.attitude.quaternion.x
+        self.attitude_y = data.attitude.quaternion.y
+        self.attitude_z = data.attitude.quaternion.z
+        self.attitude_w = data.attitude.quaternion.w
         self.rotationRate_x = data.rotationRate.x
         self.rotationRate_y = data.rotationRate.y
         self.rotationRate_z = data.rotationRate.z
