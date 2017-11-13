@@ -1,5 +1,9 @@
 {
     "identifier"        : "Cardio Stair Step",
+    "schemaInfo": {
+        "identifier": "Cardio Stair Step",
+        "revision": 1
+    },
     "actions"           : { "cancel": { "iconName": "closeActivity" }},
     "shouldHideActions" : ["goBackward", "skip"],
     "progressMarkers"   : ["takePhotoInstruction", "wearingFitbit", "volumeUp", "heartRate.before", "stairStep", "heartRate.after"],

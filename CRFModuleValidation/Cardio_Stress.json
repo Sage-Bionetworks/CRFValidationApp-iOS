@@ -1,5 +1,9 @@
 {
-    "identifier"        : "Cardio Stair Step",
+    "identifier"        : "Cardio Stress Test",
+    "schemaInfo": {
+        "identifier": "Cardio Stress Test",
+        "revision": 1
+    },
     "actions"           : { "cancel": { "iconName": "closeActivity" }},
     "shouldHideActions" : ["goBackward", "skip"],
     "progressMarkers"   : ["heartRate.before", "stressTest", "heartRate.after"],

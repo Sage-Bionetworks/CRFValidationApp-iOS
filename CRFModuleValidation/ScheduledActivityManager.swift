@@ -421,7 +421,11 @@ public struct RSDFileResultWrapper : SBAArchivableResult {
     public let result : RSDFileResult
     
     public var identifier: String {
-        return "\(sectionIdentifier ?? "").\(result.identifier)"
+        if let sectionId = sectionIdentifier {
+            return "\(sectionId).\(result.identifier)"
+        } else {
+            return result.identifier
+        }
     }
     
     public var startDate: Date {
