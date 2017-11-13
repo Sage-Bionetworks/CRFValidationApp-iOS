@@ -224,6 +224,7 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
     @IBOutlet weak var tableFooterView: UIView!
     @IBOutlet weak var tableFooterButton: SBAUnderlinedButton?
     @IBOutlet weak var doneButton: SBARoundedButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     var isFirstAppearance: Bool = true
     var isCompletedOnFirstLoad = false

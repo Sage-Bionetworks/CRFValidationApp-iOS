@@ -588,6 +588,17 @@
                                     <color key="textColor" name="black54"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8E9-eL-mEw">
+                                    <rect key="frame" x="16" y="16" width="32" height="32"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="32" id="ZPY-fm-fkD"/>
+                                        <constraint firstAttribute="width" constant="32" id="w0k-pZ-6C9"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="closeActivity"/>
+                                    <connections>
+                                        <action selector="doneTapped:" destination="9Jf-Ki-4s5" eventType="touchUpInside" id="j9r-xg-ngr"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -597,6 +608,8 @@
                                 <constraint firstAttribute="trailing" secondItem="dha-I5-dXU" secondAttribute="trailing" id="9SF-Mg-eke"/>
                                 <constraint firstItem="dha-I5-dXU" firstAttribute="leading" secondItem="7Lb-H3-Imk" secondAttribute="leading" id="Air-AN-7rM"/>
                                 <constraint firstAttribute="trailing" secondItem="g0h-gf-raO" secondAttribute="trailing" id="GbT-0A-7oZ"/>
+                                <constraint firstItem="8E9-eL-mEw" firstAttribute="top" secondItem="7Lb-H3-Imk" secondAttribute="top" constant="16" id="MCt-Ri-rPv"/>
+                                <constraint firstItem="8E9-eL-mEw" firstAttribute="leading" secondItem="7Lb-H3-Imk" secondAttribute="leading" constant="16" id="N79-GB-F7u"/>
                                 <constraint firstAttribute="trailing" secondItem="gtn-Bh-XS3" secondAttribute="trailing" constant="24" id="O7n-5Q-0gI"/>
                                 <constraint firstItem="g0h-gf-raO" firstAttribute="leading" secondItem="7Lb-H3-Imk" secondAttribute="leading" id="ao5-8Y-HNt"/>
                                 <constraint firstItem="gtn-Bh-XS3" firstAttribute="top" secondItem="g0h-gf-raO" secondAttribute="bottom" constant="24" id="gEf-5b-bhj"/>
@@ -744,6 +757,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="DN9-kN-iYV"/>
                     <connections>
+                        <outlet property="closeButton" destination="8E9-eL-mEw" id="IEW-sH-gis"/>
                         <outlet property="doneButton" destination="Jva-h7-Gmt" id="z6A-ZT-Jcf"/>
                         <outlet property="headerDescriptionLabel" destination="gtn-Bh-XS3" id="V3N-7y-9tj"/>
                         <outlet property="headerDetailLabel" destination="g0h-gf-raO" id="WdA-7A-LHm"/>
@@ -756,12 +770,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7y2-P8-Hdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1392.8" y="-1072.7136431784108"/>
+            <point key="canvasLocation" x="1391.25" y="-1073.75"/>
         </scene>
     </scenes>
     <resources>
         <image name="activeChallengeIcon" width="16" height="16"/>
         <image name="add" width="16" height="16"/>
+        <image name="closeActivity" width="32" height="32"/>
         <image name="completeCheckActivityCard" width="16" height="16"/>
         <namedColor name="black54">
             <color white="0.0" alpha="0.54000002145767212" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
