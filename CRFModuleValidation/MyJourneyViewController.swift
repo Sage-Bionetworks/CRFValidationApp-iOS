@@ -53,8 +53,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
     @IBOutlet var tableView: UITableView!
     @IBOutlet var footerView: MyJourneyFooterView!
     
-    lazy var scheduledActivityManager : ScheduledActivityManager = {
-        return ScheduledActivityManager(delegate: self)
+    lazy var scheduledActivityManager : MasterScheduledActivityManager = {
+        return MasterScheduledActivityManager(delegate: self)
     }()
 
     override func viewDidLoad() {
@@ -95,16 +95,17 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             scrollToTodayIfNeeded()
         }
         
-        if let deepLinkTaskGroup = scheduledActivityManager.deepLinkTaskGroup,
-            let deepLinkTaskId = deepLinkTaskGroup.taskIdentifiers.first {
-            // We should show a loading dialog to convey to the user that we are
-            // automatically sending them somewhere after everything has loaded
-            self.showLoadingView()
-            scheduledActivityManager.notifyWhenTaskIsAvailable(taskId: deepLinkTaskId.rawValue, callback: { [weak self] (taskId) in
-                self?.hideLoadingView()
-                self?.sendUserToDeepLinkTasGroup()
-            })
-        }
+        // TODO emm 2017-11-11 decide if we need this
+//        if let deepLinkTaskGroup = scheduledActivityManager.deepLinkTaskGroup,
+//            let deepLinkTaskId = deepLinkTaskGroup.taskIdentifiers.first {
+//            // We should show a loading dialog to convey to the user that we are
+//            // automatically sending them somewhere after everything has loaded
+//            self.showLoadingView()
+//            scheduledActivityManager.notifyWhenTaskIsAvailable(taskId: deepLinkTaskId.rawValue, callback: { [weak self] (taskId) in
+//                self?.hideLoadingView()
+//                self?.sendUserToDeepLinkTasGroup()
+//            })
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -297,19 +298,29 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         
         // TODO: syoung 06/15/2017 Localize
         
-        // If the demographics and treatment detail haven't been done then set the text for "first" day
-        if isFirstDay {
-            todayDetailText = "Your first Daily Check-in! Don’t forget to fill out your demographics and add your treatment details."
+        if scheduleSection.contains(taskGroup: TaskGroup.clinic1) {
+            todayDetailText = "Complete the surveys and the\nclinic cardiovascular stress test."
         }
-        else if scheduleSection.contains(taskGroup: TaskGroup.treatmentDetails) {
-            todayDetailText = "Don’t forget to add your treatment details."
+        else if scheduleSection.contains(taskGroup: TaskGroup.clinic1alt) {
+            todayDetailText = "Complete the surveys and the\nclinic cardiovascular fitness tests."
         }
-        else if scheduleSection.contains(taskGroup: TaskGroup.weeklyChallenge) {
-            if scheduledActivityManager.completedCount(for: TaskGroup.weeklyChallenge) == 0 {
-                todayDetailText = "Complete your first Weekly Challenge."
+        else if scheduleSection.contains(taskGroup: TaskGroup.clinic2) || scheduleSection.contains(taskGroup: TaskGroup.clinic2alt) {
+            todayDetailText = "Complete your last clinic visit."
+        }
+        else if scheduleSection.contains(taskGroup: TaskGroup.cardio12MT) {
+            if scheduledActivityManager.completedCount(for: TaskGroup.cardio12MT) == 0 {
+                todayDetailText = "Complete your first run/walk."
             }
             else {
-                todayDetailText = "It's time for your Weekly Challenge. Thanks for helping us reach our goals!"
+                todayDetailText = "It's time for your run/walk."
+            }
+        }
+        else if scheduleSection.contains(taskGroup: TaskGroup.cardioStairStep) {
+            if scheduledActivityManager.completedCount(for: TaskGroup.cardioStairStep) == 0 {
+                todayDetailText = "Complete your first stair step."
+            }
+            else {
+                todayDetailText = "It's time for your stair step."
             }
         }
         else {
