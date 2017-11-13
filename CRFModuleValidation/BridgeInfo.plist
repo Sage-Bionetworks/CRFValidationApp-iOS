@@ -37,9 +37,35 @@
 	<array>
 		<dict>
 			<key>taskIdentifier</key>
+			<string>Burden Scale</string>
+			<key>bridgeSurvey</key>
+			<true/>
+			<key>estimatedMinutes</key>
+			<integer>5</integer>
+			<key>title</key>
+			<string>User Burden Scale Survey</string>
+			<key>icon</key>
+			<string>usabilitySurveyIcon</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>Usability Scale</string>
+			<key>bridgeSurvey</key>
+			<true/>
+			<key>estimatedMinutes</key>
+			<integer>5</integer>
+			<key>title</key>
+			<string>System Usability Scale Survey</string>
+			<key>icon</key>
+			<string>usabilitySurveyIcon</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
 			<string>HeartRate Measurement</string>
 			<key>resourceName</key>
 			<string>HeartRate_Measurement</string>
+			<key>bridgeSurvey</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>taskIdentifier</key>
@@ -47,7 +73,7 @@
 			<key>resourceName</key>
 			<string>Cardio_Stress</string>
 			<key>estimatedMinutes</key>
-			<string>20</string>
+			<integer>20</integer>
 			<key>title</key>
 			<string>Cardiovascular stress test</string>
 			<key>subtitle</key>
@@ -61,7 +87,7 @@
 			<key>resourceName</key>
 			<string>Cardio_12MT</string>
 			<key>estimatedMinutes</key>
-			<string>15</string>
+			<integer>15</integer>
 			<key>title</key>
 			<string>12 minute test</string>
 			<key>subtitle</key>
@@ -75,7 +101,7 @@
 			<key>resourceName</key>
 			<string>Cardio_Stair_Step</string>
 			<key>estimatedMinutes</key>
-			<string>5</string>
+			<integer>5</integer>
 			<key>title</key>
 			<string>Stair Step</string>
 			<key>subtitle</key>
@@ -89,7 +115,7 @@
 			<key>resourceName</key>
 			<string>Background_Survey</string>
 			<key>estimatedMinutes</key>
-			<string>3</string>
+			<integer>3</integer>
 			<key>title</key>
 			<string>Background and health survey</string>
 			<key>icon</key>
