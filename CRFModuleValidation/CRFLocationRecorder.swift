@@ -74,37 +74,37 @@ public struct CRFLocationRecord: RSDSampleRecord {
 
     public let uptime: TimeInterval
     public let timestamp: TimeInterval
-    public let step_path: String
-    public let timestamp_date: Date?
+    public let stepPath: String
+    public let timestampDate: Date?
     
-    public let horizontal_accuracy: Double?
-    public let relative_distance: Double?
+    public let horizontalAccuracy: Double?
+    public let relativeDistance: Double?
     public let latitude: Double?
     public let longitude: Double?
     
-    public let vertical_accuracy: Double?
+    public let verticalAccuracy: Double?
     public let altitude: Double?
     
-    public let total_distance: Double?
+    public let totalDistance: Double?
     public let course: Double?
     public let speed: Double?
   
     public init(uptime: TimeInterval, timestamp: TimeInterval, stepPath: String, location: CLLocation, previousLocation: CLLocation?, totalDistance: Double?, relativeDistanceOnly: Bool) {
         self.uptime = uptime
         self.timestamp = timestamp
-        self.step_path = stepPath
-        self.total_distance = totalDistance
-        self.timestamp_date = location.timestamp
+        self.stepPath = stepPath
+        self.totalDistance = totalDistance
+        self.timestampDate = location.timestamp
         self.speed = location.speed >= 0 ? location.speed : nil
         self.course = location.course >= 0 ? location.course : nil
         
         // Record the horizontal accuracy and relative distance
         if location.horizontalAccuracy >= 0 {
-            self.horizontal_accuracy = location.horizontalAccuracy
+            self.horizontalAccuracy = location.horizontalAccuracy
             if let previous = previousLocation, previous.horizontalAccuracy >= 0 {
-                self.relative_distance = location.distance(from: previous)
+                self.relativeDistance = location.distance(from: previous)
             } else {
-                self.relative_distance = nil
+                self.relativeDistance = nil
             }
             if relativeDistanceOnly {
                 self.latitude = nil
@@ -114,18 +114,18 @@ public struct CRFLocationRecord: RSDSampleRecord {
                 self.longitude = location.coordinate.longitude
             }
         } else {
-            self.horizontal_accuracy = nil
-            self.relative_distance = nil
+            self.horizontalAccuracy = nil
+            self.relativeDistance = nil
             self.latitude = nil
             self.longitude = nil
         }
         
         // Record the vertical accuracy
         if location.verticalAccuracy >= 0 {
-            self.vertical_accuracy = location.verticalAccuracy
+            self.verticalAccuracy = location.verticalAccuracy
             self.altitude = location.altitude
         } else {
-            self.vertical_accuracy = nil
+            self.verticalAccuracy = nil
             self.altitude = nil
         }
     }
