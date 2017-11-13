@@ -36,6 +36,7 @@ import BridgeSDK
 import BridgeAppSDK
 import ResearchUXFactory
 import UserNotifications
+import ResearchSuiteUI
 
 enum ScheduleLoadState {
     case firstLoad
@@ -346,7 +347,7 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         }
     }
 
-    func createTaskViewController(for taskIdentifier: TaskIdentifier) -> SBATaskViewController? {
+    func createTaskViewController(for taskIdentifier: TaskIdentifier) -> RSDTaskViewController? {
         
         let scheduleFilter = SBBScheduledActivity.availableTodayPredicate()
         guard let schedule = self.activities.reversed().find({
@@ -354,21 +355,21 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
                 scheduleFilter.evaluate(with: $0)
         }) else { return nil }
         
-        return self.createTaskViewController(for: schedule)
+        return self.createRSDTaskViewController(for: schedule)
     }
     
-    func createYesterdaysTaskViewController(for taskIdentifier: TaskIdentifier) -> SBATaskViewController? {
-        
-        let expiredYesterdayPredicate = NSPredicate(day: Date().addingNumberOfDays(-1), dateKey: #keyPath(SBBScheduledActivity.scheduledOn))
-        let unfinishedPredicate = SBBScheduledActivity.unfinishedPredicate()
-        let scheduleFilter = NSCompoundPredicate(andPredicateWithSubpredicates: [expiredYesterdayPredicate, unfinishedPredicate])
-        guard let schedule = self.activities.reversed().find({
-            $0.activityIdentifier == taskIdentifier.rawValue &&
-                scheduleFilter.evaluate(with: $0)
-        }) else { return nil }
-        
-        return self.createTaskViewController(for: schedule)
-    }
+//    func createYesterdaysTaskViewController(for taskIdentifier: TaskIdentifier) -> SBATaskViewController? {
+//
+//        let expiredYesterdayPredicate = NSPredicate(day: Date().addingNumberOfDays(-1), dateKey: #keyPath(SBBScheduledActivity.scheduledOn))
+//        let unfinishedPredicate = SBBScheduledActivity.unfinishedPredicate()
+//        let scheduleFilter = NSCompoundPredicate(andPredicateWithSubpredicates: [expiredYesterdayPredicate, unfinishedPredicate])
+//        guard let schedule = self.activities.reversed().find({
+//            $0.activityIdentifier == taskIdentifier.rawValue &&
+//                scheduleFilter.evaluate(with: $0)
+//        }) else { return nil }
+//
+//        return self.createTaskViewController(for: schedule)
+//    }
     
 //    override func shouldIncludeTimingIntroduction(for timingSchedule: SBBScheduledActivity) -> Bool {
 //        if self.alwaysIgnoreTimingIntroductionStepForScheduling {
@@ -378,13 +379,13 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
 //        return shouldFireTimingSchedule(for: taskGroup)
 //    }
     
-    override func createTask(for schedule: SBBScheduledActivity) -> (task: ORKTask?, taskRef: SBATaskReference?) {
-        let (task, taskRef) = super.createTask(for: schedule)
-        guard task != nil, taskRef != nil, let taskId = schedule.taskId, let taskGroup = schedule.taskGroup
-        else {
-            return (task, taskRef)
-        }
-        
+//    override func createTask(for schedule: SBBScheduledActivity) -> (task: ORKTask?, taskRef: SBATaskReference?) {
+//        let (task, taskRef) = super.createTask(for: schedule)
+//        guard task != nil, taskRef != nil, let taskId = schedule.taskId, let taskGroup = schedule.taskGroup
+//        else {
+//            return (task, taskRef)
+//        }
+//
 //        if taskId == .checkIn {
 //            var steps: [SBASubtaskStep] = []
 //            
@@ -412,9 +413,9 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
 //                return (SBANavigableOrderedTask(identifier: initialSurveyStep.identifier, steps: steps), taskRef)
 //            }
 //        }
-        
-        return (task, taskRef)
-    }
+//
+//        return (task, taskRef)
+//    }
     
     // MARK: Passive Data collection
     

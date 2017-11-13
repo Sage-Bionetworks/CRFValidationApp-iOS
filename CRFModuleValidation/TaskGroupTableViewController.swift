@@ -220,6 +220,7 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
     @IBOutlet weak var headerIconView: UIImageView!
     @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var headerDetailLabel: UILabel!
+    @IBOutlet weak var headerDescriptionLabel: UILabel!
     @IBOutlet weak var tableFooterView: UIView!
     @IBOutlet weak var tableFooterButton: SBAUnderlinedButton?
     @IBOutlet weak var doneButton: SBARoundedButton!
@@ -252,13 +253,16 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
     }
     
     func setupHeaderAndFooter() {
-        tableHeaderView.backgroundColor = UIColor(named: "darkPastelGreen")
+        tableHeaderView.backgroundColor = UIColor.white
         
-        headerTitleLabel.textColor = UIColor.white
+        headerTitleLabel.textColor = UIColor.black
         headerTitleLabel.text = scheduledActivityManager.taskGroup.title
         
-        headerDetailLabel.textColor = UIColor.white
+        headerDetailLabel.textColor = UIColor.black
         headerDetailLabel.text = ""  // set this when we load the data
+        
+        headerDescriptionLabel.textColor = UIColor(named: "black54")
+        headerDescriptionLabel.text = scheduledActivityManager.taskGroup.groupDescription ?? ""
         
         headerIconView.image = scheduledActivityManager.taskGroup.iconImage
         
@@ -370,21 +374,12 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
             }
         }
         
-        // Get the localized version of either "Activities" or "Activity"
-        // depending on the count.  Do the same for "Minutes" or "Minute"
-        let activitiesFormat = (numberOfActivities == 1) ?
-            Localization.localizedString("JP_ACTIVITIES_SINGULAR_TITLE").lowercased() :
-            Localization.localizedString("JP_ACTIVITIES_TITLE").lowercased()
-        let activitiesNumberFormatter = NumberFormatter()
-        activitiesNumberFormatter.numberStyle = .none
-        let activitiesString = String.localizedStringWithFormat("%@ %@", activitiesNumberFormatter.string(from: NSNumber(value: numberOfActivities))!, activitiesFormat)
-        
         let minutesFormatter = DateComponentsFormatter()
         minutesFormatter.unitsStyle = .full
         minutesFormatter.allowedUnits = [.minute]
         let minutesStr = minutesFormatter.string(from: TimeInterval(minutesTotal * 60))!.lowercased()
         
-        let subtitle = String.localizedStringWithFormat("%@ | %@", activitiesString, minutesStr)
+        let subtitle = String.localizedStringWithFormat("%@", minutesStr)
         headerDetailLabel.text = subtitle
     }
     

@@ -58,6 +58,7 @@ struct TaskGroup {
     let identifier: String
     let title: String
     let journeyTitle: String
+    let groupDescription: String?
     let iconImage: UIImage?
     let scheduleTaskIdentifier: TaskIdentifier?
     let taskIdentifiers: [TaskIdentifier]
@@ -69,16 +70,18 @@ struct TaskGroup {
      The "Clinic Visit 1" activities.
      */
     static let clinic1 = TaskGroup(identifier: "clinic1",
-                                   title: Localization.localizedString("Clinic"),
+                                   title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
+                                   groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
                                    taskIdentifiers: [.backgroundHealthSurvey,
                                                      .cardiovascularStressTest])
     
     static let clinic1alt = TaskGroup(identifier: "clinic1alt",
-                                   title: Localization.localizedString("Clinic"),
+                                   title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
+                                   groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
                                    taskIdentifiers: [.cardioStairStep,
@@ -88,8 +91,9 @@ struct TaskGroup {
      The "Clinic Visit 2" Activities
      */
     static let clinic2 = TaskGroup(identifier: "clinic2",
-                                   title: Localization.localizedString("Clinic"),
+                                   title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
+                                   groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
                                    taskIdentifiers: [.cardioStairStep,
@@ -97,8 +101,9 @@ struct TaskGroup {
                                                      .cardio12MT])
     
     static let clinic2alt = TaskGroup(identifier: "clinic2alt",
-                                   title: Localization.localizedString("Clinic"),
+                                   title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
+                                   groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
                                    taskIdentifiers: [.usabilitySurveys,
@@ -110,6 +115,7 @@ struct TaskGroup {
     static let heartRateMeasurement = TaskGroup(identifier: "HeartRate Measurement",
                                        title: Localization.localizedString("JP_TASK_GROUP_DEMOGRAPHICS"),
                                        journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_DEMOGRAPHICS"),
+                                       groupDescription: nil,
                                        iconImage: #imageLiteral(resourceName: "heartRateIconCapturing"),
                                        scheduleTaskIdentifier: nil,
                                        taskIdentifiers: [.heartRateMeasurement])
@@ -120,6 +126,7 @@ struct TaskGroup {
     static let cardio12MT = TaskGroup(identifier: "Cardio 12MT",
                                       title: Localization.localizedString("12 min run/walk"),
                                       journeyTitle: Localization.localizedString("12 min run/walk"),
+                                      groupDescription: nil,
                                       iconImage: #imageLiteral(resourceName: "active12MinuteRun"),
                                       scheduleTaskIdentifier: nil,
                                       taskIdentifiers: [.cardio12MT])
@@ -130,6 +137,7 @@ struct TaskGroup {
     static let cardioStairStep = TaskGroup(identifier: "Cardio Stair Step",
                                       title: Localization.localizedString("Stair step"),
                                       journeyTitle: Localization.localizedString("Stair step"),
+                                      groupDescription: nil,
                                       iconImage: #imageLiteral(resourceName: "stairStepClinicIcon"),
                                       scheduleTaskIdentifier: nil,
                                       taskIdentifiers: [.cardioStairStep])
@@ -140,6 +148,7 @@ struct TaskGroup {
     static let addActivities = TaskGroup(identifier: "Add",
                                          title: Localization.localizedString("JP_ACTIVITIES_TITLE"),
                                          journeyTitle: Localization.localizedString("JP_ACTIVITIES_TITLE"),
+                                         groupDescription: nil,
                                          iconImage: #imageLiteral(resourceName: "healthRiskIcon"),
                                          scheduleTaskIdentifier: nil,
                                          taskIdentifiers: [.backgroundHealthSurvey,
@@ -155,6 +164,7 @@ struct TaskGroup {
     static let allActivities = TaskGroup(identifier: "All",
                                          title: Localization.localizedString("JP_ACTIVITIES_TITLE"),
                                          journeyTitle: Localization.localizedString("JP_ACTIVITIES_TITLE"),
+                                         groupDescription: nil,
                                          iconImage: #imageLiteral(resourceName: "healthRiskIcon"),
                                          scheduleTaskIdentifier: nil,
                                          taskIdentifiers: [.backgroundHealthSurvey,
