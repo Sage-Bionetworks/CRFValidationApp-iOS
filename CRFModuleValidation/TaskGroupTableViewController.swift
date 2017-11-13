@@ -56,7 +56,7 @@ class BaseTaskGroupTableViewController: UITableViewController, SBAScheduledActiv
         return tableView.dequeueReusableCell(withIdentifier: BaseTaskGroupTableViewController.cellIdentifier, for: indexPath)
     }
     
-    func configure(groupedCell: ChallengeTableViewCell, for schedule:SBBScheduledActivity) {
+    func configure(groupedCell: ChallengeTableViewCell, for schedule:SBBScheduledActivity, at indexPath:IndexPath) {
         
         groupedCell.titleLabel.text = schedule.activity.label
         
@@ -96,7 +96,7 @@ class BaseTaskGroupTableViewController: UITableViewController, SBAScheduledActiv
                 return cell
         }
         
-        configure(groupedCell: groupedCell, for: schedule)
+        configure(groupedCell: groupedCell, for: schedule, at: indexPath)
         
         return cell
     }
@@ -382,6 +382,29 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
         
         let subtitle = String.localizedStringWithFormat("%@", minutesStr)
         headerDetailLabel.text = subtitle
+    }
+    
+    func isActivityEnabled(at indexPath: IndexPath) -> Bool {
+        // first one enabled at the start
+        if indexPath.row == 0 { return true }
+        
+        // otherwise, only enabled when the previous activity has been completed
+        let previousIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        guard let schedule = scheduledActivityDataSource.scheduledActivity(at: previousIndexPath) else { return true }
+        
+        return schedule.finishedOn != nil
+    }
+    
+    override func configure(groupedCell: ChallengeTableViewCell, for schedule:SBBScheduledActivity, at indexPath:IndexPath) {
+        super.configure(groupedCell: groupedCell, for: schedule, at: indexPath)
+        if isActivityEnabled(at: indexPath) {
+            groupedCell.isUserInteractionEnabled = true
+            groupedCell.contentView.alpha = 1.0
+        }
+        else {
+            groupedCell.isUserInteractionEnabled = false
+            groupedCell.contentView.alpha = 0.54
+        }
     }
     
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

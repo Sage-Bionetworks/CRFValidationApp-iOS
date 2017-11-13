@@ -594,7 +594,7 @@
                                         <constraint firstAttribute="height" constant="32" id="ZPY-fm-fkD"/>
                                         <constraint firstAttribute="width" constant="32" id="w0k-pZ-6C9"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="closeActivity"/>
+                                    <state key="normal" title="Button" image="backArrowHeader"/>
                                     <connections>
                                         <action selector="doneTapped:" destination="9Jf-Ki-4s5" eventType="touchUpInside" id="j9r-xg-ngr"/>
                                     </connections>
@@ -776,7 +776,7 @@
     <resources>
         <image name="activeChallengeIcon" width="16" height="16"/>
         <image name="add" width="16" height="16"/>
-        <image name="closeActivity" width="32" height="32"/>
+        <image name="backArrowHeader" width="32" height="32"/>
         <image name="completeCheckActivityCard" width="16" height="16"/>
         <namedColor name="black54">
             <color white="0.0" alpha="0.54000002145767212" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -75,8 +75,8 @@ struct TaskGroup {
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
-                                   taskIdentifiers: [.backgroundHealthSurvey,
-                                                     .cardiovascularStressTest])
+                                   taskIdentifiers: [.backgroundSurvey,
+                                                     .cardioStressTest])
     
     static let clinic1alt = TaskGroup(identifier: "clinic1alt",
                                    title: Localization.localizedString("Clinic fitness test"),
@@ -85,7 +85,7 @@ struct TaskGroup {
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
                                    taskIdentifiers: [.cardioStairStep,
-                                                     .backgroundHealthSurvey,
+                                                     .backgroundSurvey,
                                                      .cardio12MT])
     /**
      The "Clinic Visit 2" Activities
@@ -107,18 +107,18 @@ struct TaskGroup {
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
                                    taskIdentifiers: [.usabilitySurveys,
-                                                     .cardiovascularStressTest])
+                                                     .cardioStressTest])
     
     /**
      The Heartrate Measurement
      */
     static let heartRateMeasurement = TaskGroup(identifier: "HeartRate Measurement",
-                                       title: Localization.localizedString("JP_TASK_GROUP_DEMOGRAPHICS"),
-                                       journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_DEMOGRAPHICS"),
-                                       groupDescription: nil,
-                                       iconImage: #imageLiteral(resourceName: "heartRateIconCapturing"),
-                                       scheduleTaskIdentifier: nil,
-                                       taskIdentifiers: [.heartRateMeasurement])
+                                                title: Localization.localizedString("JP_TASK_GROUP_DEMOGRAPHICS"),
+                                                journeyTitle: Localization.localizedString("JP_TASK_GROUP_JOURNEY_DEMOGRAPHICS"),
+                                                groupDescription: nil,
+                                                iconImage: #imageLiteral(resourceName: "heartRateIconCapturing"),
+                                                scheduleTaskIdentifier: nil,
+                                                taskIdentifiers: [.heartRateMeasurement])
     
     /**
      The Cardio 12 Minute Run Test
@@ -151,8 +151,8 @@ struct TaskGroup {
                                          groupDescription: nil,
                                          iconImage: #imageLiteral(resourceName: "healthRiskIcon"),
                                          scheduleTaskIdentifier: nil,
-                                         taskIdentifiers: [.backgroundHealthSurvey,
-                                                           .cardiovascularStressTest,
+                                         taskIdentifiers: [.backgroundSurvey,
+                                                           .cardioStressTest,
                                                            .usabilitySurveys,
                                                            .heartRateMeasurement,
                                                            .cardio12MT,
@@ -167,8 +167,8 @@ struct TaskGroup {
                                          groupDescription: nil,
                                          iconImage: #imageLiteral(resourceName: "healthRiskIcon"),
                                          scheduleTaskIdentifier: nil,
-                                         taskIdentifiers: [.backgroundHealthSurvey,
-                                                           .cardiovascularStressTest,
+                                         taskIdentifiers: [.backgroundSurvey,
+                                                           .cardioStressTest,
                                                            .usabilitySurveys,
                                                            .heartRateMeasurement,
                                                            .cardio12MT,
