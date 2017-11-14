@@ -67,8 +67,8 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
 public struct CRFHeartRateSample : RSDSampleRecord {
     public let uptime: TimeInterval
     public let timestamp: TimeInterval
-    public let timestamp_date: Date?
-    public let step_path: String
+    public let timestampDate: Date?
+    public let stepPath: String
     
     public let hue: Double?
     public let saturation: Double?
@@ -77,14 +77,14 @@ public struct CRFHeartRateSample : RSDSampleRecord {
     public let green: Double?
     public let blue: Double?
     
-    public var bpm_camera: Int?
+    public var bpm: Int?
     
     public init(uptime: TimeInterval, timestamp: TimeInterval, stepPath: String, bpm: Int?, hue: Double?, saturation: Double?, brightness: Double?, red: Double?, green: Double?, blue: Double?) {
         self.uptime = uptime
         self.timestamp = timestamp
-        self.step_path = stepPath
-        self.bpm_camera = bpm
-        self.timestamp_date = nil
+        self.stepPath = stepPath
+        self.bpm = bpm
+        self.timestampDate = nil
         self.hue = hue
         self.saturation = saturation
         self.brightness = brightness
@@ -299,7 +299,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         // get the new bpm
         if let bpm = calculateBPM() {
             // update the logging samples
-            sample.bpm_camera = bpm
+            sample.bpm = bpm
         
             // update the stored bpm
             DispatchQueue.main.async {

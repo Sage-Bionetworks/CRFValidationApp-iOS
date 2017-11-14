@@ -201,9 +201,9 @@ public struct CRFAccelerometerRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
     public let timestamp: TimeInterval
-    public let step_path: String
-    public let timestamp_date: Date?
-    public let sensor_type: CRFCoreMotionRecorderType
+    public let stepPath: String
+    public let timestampDate: Date?
+    public let sensorType: CRFCoreMotionRecorderType
     
     public let x: Double?
     public let y: Double?
@@ -212,9 +212,9 @@ public struct CRFAccelerometerRecord: RSDSampleRecord {
     public init(startUptime: TimeInterval, stepPath: String, data: CMAccelerometerData) {
         self.uptime = data.timestamp
         self.timestamp = data.timestamp - startUptime
-        self.step_path = stepPath
-        self.timestamp_date = nil
-        self.sensor_type = CRFCoreMotionRecorderType.accelerometer
+        self.stepPath = stepPath
+        self.timestampDate = nil
+        self.sensorType = CRFCoreMotionRecorderType.accelerometer
         self.x = data.acceleration.x
         self.y = data.acceleration.y
         self.z = data.acceleration.z
@@ -228,9 +228,9 @@ public struct CRFDeviceMotionRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
     public let timestamp: TimeInterval
-    public let step_path: String
-    public let timestamp_date: Date?
-    public let sensor_type: CRFCoreMotionRecorderType
+    public let stepPath: String
+    public let timestampDate: Date?
+    public let sensorType: CRFCoreMotionRecorderType
     
     public let attitude_x: Double?
     public let attitude_y: Double?
@@ -254,9 +254,9 @@ public struct CRFDeviceMotionRecord: RSDSampleRecord {
     public init(startUptime: TimeInterval, stepPath: String, data: CMDeviceMotion) {
         self.uptime = data.timestamp
         self.timestamp = data.timestamp - startUptime
-        self.step_path = stepPath
-        self.timestamp_date = nil
-        self.sensor_type = CRFCoreMotionRecorderType.deviceMotion
+        self.stepPath = stepPath
+        self.timestampDate = nil
+        self.sensorType = CRFCoreMotionRecorderType.deviceMotion
 
         self.attitude_x = data.attitude.quaternion.x
         self.attitude_y = data.attitude.quaternion.y
