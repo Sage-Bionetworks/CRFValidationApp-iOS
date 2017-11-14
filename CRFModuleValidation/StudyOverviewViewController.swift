@@ -103,13 +103,15 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
                 // Record the selected data groups
                 if let task = taskViewController.task {
                     let result = taskViewController.result
-                    task.commitTrackedDataChanges(user: SBAUser.shared,
-                                                  taskResult: result,
-                                                  completion: nil)
+                    task.commitTrackedDataChanges(user: SBAUser.shared, taskResult: result, completion: { (error) in
+                        // Show the appropriate view controller
+                        appDelegate.showAppropriateViewController(animated: false)
+                    })
                 }
-
-                // Show the appropriate view controller
-                appDelegate.showAppropriateViewController(animated: false)
+                else {
+                    // Show the appropriate view controller
+                    appDelegate.showAppropriateViewController(animated: false)
+                }
             }
             else {
                 // Discard the registration information that has been gathered so far

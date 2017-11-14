@@ -69,7 +69,7 @@ struct TaskGroup {
     /**
      The "Clinic Visit 1" activities.
      */
-    static let clinic1 = TaskGroup(identifier: "clinic1",
+    static let clinicDay0 = TaskGroup(identifier: "clinicDay0",
                                    title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
@@ -78,7 +78,7 @@ struct TaskGroup {
                                    taskIdentifiers: [.backgroundSurvey,
                                                      .cardioStressTest])
     
-    static let clinic1alt = TaskGroup(identifier: "clinic1alt",
+    static let clinicDay0alt = TaskGroup(identifier: "clinicDay0alt",
                                    title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
@@ -90,7 +90,7 @@ struct TaskGroup {
     /**
      The "Clinic Visit 2" Activities
      */
-    static let clinic2 = TaskGroup(identifier: "clinic2",
+    static let clinicDay14 = TaskGroup(identifier: "clinicDay14",
                                    title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
@@ -100,7 +100,7 @@ struct TaskGroup {
                                                      .usabilitySurveys,
                                                      .cardio12MT])
     
-    static let clinic2alt = TaskGroup(identifier: "clinic2alt",
+    static let clinicDay14alt = TaskGroup(identifier: "clinicDay14alt",
                                    title: Localization.localizedString("Clinic fitness test"),
                                    journeyTitle: Localization.localizedString("Clinic fitness test"),
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
@@ -176,9 +176,9 @@ struct TaskGroup {
     
     static func allTaskGroups() -> [TaskGroup] {
         if SBAUser.shared.containsDataGroup("clinic1") {
-            return [clinic1, heartRateMeasurement, cardio12MT, cardioStairStep, clinic2, allActivities]
+            return [clinicDay0, heartRateMeasurement, cardio12MT, cardioStairStep, clinicDay14, allActivities]
         } else {
-            return [clinic1alt, heartRateMeasurement, cardio12MT, cardioStairStep, clinic2alt, allActivities]
+            return [clinicDay0alt, heartRateMeasurement, cardio12MT, cardioStairStep, clinicDay14alt, allActivities]
         }
     }
     
@@ -190,7 +190,14 @@ struct TaskGroup {
     func scheduleFilterPredicate(for date: Date) -> NSPredicate {
         let dateFilter = SBBScheduledActivity.scheduledPredicate(on: date)
         let taskFilter = tasksPredicate()
-        return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, dateFilter])
+        if identifier.hasPrefix("clinicDay") {
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, dateFilter])
+        }
+        else {
+            let scheduledKey = "scheduledOn"
+            let onDateOnlyFilter = NSPredicate(format: "%K == nil OR %K >= %@", scheduledKey, scheduledKey, date.startOfDay() as CVarArg)
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, dateFilter, onDateOnlyFilter])
+        }
     }
     
     func tasksPredicate() -> NSPredicate {

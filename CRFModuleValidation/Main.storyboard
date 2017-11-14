@@ -104,7 +104,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your journey started on December 14, 2017" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZi-Nt-icw">
-                                            <rect key="frame" x="47.5" y="35" width="225" height="60"/>
+                                            <rect key="frame" x="47.5" y="0.0" width="225" height="95"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -112,9 +112,11 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.36862745099999999" green="0.67843137249999996" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstItem="eZi-Nt-icw" firstAttribute="leading" secondItem="YSq-fF-9uy" secondAttribute="leading" constant="47.5" id="GtN-uf-CyR"/>
                                         <constraint firstItem="eZi-Nt-icw" firstAttribute="centerX" secondItem="YSq-fF-9uy" secondAttribute="centerX" id="Mk2-hT-IvJ"/>
                                         <constraint firstAttribute="bottom" secondItem="eZi-Nt-icw" secondAttribute="bottom" constant="35" id="ddd-Mq-lZF"/>
-                                        <constraint firstItem="eZi-Nt-icw" firstAttribute="top" secondItem="YSq-fF-9uy" secondAttribute="top" constant="35" id="s0L-Gv-Gle"/>
+                                        <constraint firstAttribute="trailing" secondItem="eZi-Nt-icw" secondAttribute="trailing" constant="47.5" id="hnF-Za-AMw"/>
+                                        <constraint firstItem="eZi-Nt-icw" firstAttribute="top" secondItem="YSq-fF-9uy" secondAttribute="top" id="s0L-Gv-Gle"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="textLabel" destination="eZi-Nt-icw" id="Yss-t8-4Qp"/>
@@ -208,7 +210,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuL-r9-iap">
                                                             <rect key="frame" x="17" y="122" width="76" height="18"/>
                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -284,7 +286,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x43-Ly-dBO">
                                                             <rect key="frame" x="17" y="122" width="76" height="18"/>
                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -360,7 +362,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvQ-uc-GwH">
                                                             <rect key="frame" x="17" y="122" width="76" height="18"/>
                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -449,7 +451,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDL-Qh-7g9">
                                                     <rect key="frame" x="159" y="0.0" width="2" height="8"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="2" id="Uka-Vi-ffQ"/>
                                                     </constraints>

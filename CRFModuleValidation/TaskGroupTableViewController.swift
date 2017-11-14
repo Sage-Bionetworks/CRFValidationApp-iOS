@@ -46,6 +46,8 @@ class BaseTaskGroupTableViewController: UITableViewController, SBAScheduledActiv
         return GroupedScheduledActivityManager(delegate: self)
     }()
     
+    var clinicDay0Schedule: SBBScheduledActivity?
+    
     func reloadFinished(_ sender: Any?) {
         // reload table
         self.refreshControl?.endRefreshing()
@@ -68,7 +70,7 @@ class BaseTaskGroupTableViewController: UITableViewController, SBAScheduledActiv
         
         // The default text on the subtitle label will be complete: [date], so override it
         if (schedule.isCompleted) {
-            groupedCell.subtitleLabel?.text = Localization.localizedString("JP_COMPLETED_TITLE")
+            groupedCell.subtitleLabel?.text = Localization.localizedString("Completed")
             groupedCell.subtitleLabel?.textColor = UIColor(named: "darkPastelGreen")!
             groupedCell.checkmarkImageView?.isHidden = false
         } else {
@@ -305,6 +307,14 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
         
         isCompletedOnFirstLoad = isFirstAppearance && self.scheduledActivityManager.allActivitiesCompleted
         isFirstAppearance = false
+        if self.scheduledActivityManager.allActivitiesCompleted && !isCompletedOnFirstLoad {
+            _exitOnDidAppear = true
+            
+            guard let schedule = clinicDay0Schedule else { return }
+            schedule.finishedOn = Date()
+            self.scheduledActivityManager.sendUpdated(scheduledActivities: [schedule])
+            MasterScheduledActivityManager.shared.forceReload()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

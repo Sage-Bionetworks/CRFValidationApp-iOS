@@ -185,8 +185,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         scrollToTodayIfNeeded(isFirstLoad && !self.tableView.isHidden)
         
         // Update footer text
-        let dateText = DateFormatter.localizedString(from: dayOne, dateStyle: .long, timeStyle: .none)
-        self.footerView.textLabel.text = Localization.localizedStringWithFormatKey("JP_JOURNEY_STARTED_%@", dateText)
+        let dateText = DateFormatter.localizedString(from: dayOne, dateStyle: .medium, timeStyle: .none)
+        self.footerView.textLabel.text = Localization.localizedStringWithFormatKey("You started the study on %@", dateText)
     }
     
 
@@ -298,13 +298,13 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         
         // TODO: syoung 06/15/2017 Localize
         
-        if scheduleSection.contains(taskGroup: TaskGroup.clinic1) {
+        if scheduleSection.contains(taskGroup: TaskGroup.clinicDay0) {
             todayDetailText = "Complete the surveys and the\nclinic cardiovascular stress test."
         }
-        else if scheduleSection.contains(taskGroup: TaskGroup.clinic1alt) {
+        else if scheduleSection.contains(taskGroup: TaskGroup.clinicDay0alt) {
             todayDetailText = "Complete the surveys and the\nclinic cardiovascular fitness tests."
         }
-        else if scheduleSection.contains(taskGroup: TaskGroup.clinic2) || scheduleSection.contains(taskGroup: TaskGroup.clinic2alt) {
+        else if scheduleSection.contains(taskGroup: TaskGroup.clinicDay14) || scheduleSection.contains(taskGroup: TaskGroup.clinicDay14alt) {
             todayDetailText = "Complete your last clinic visit."
         }
         else if scheduleSection.contains(taskGroup: TaskGroup.cardio12MT) {
@@ -389,7 +389,7 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         }
         else if let dateCell = cell as? MyJourneyDateCell, let scheduleSection = self.scheduleSection(at: indexPath) {
             if indexPath.section == self.todaySectionIndex {
-                dateCell.dateLabel.text = Localization.localizedString("JP_TODAY")
+                dateCell.dateLabel.text = Localization.localizedString("Today")
             }
             else {
                 let dateFormatter = DateFormatter()
@@ -498,6 +498,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             vc.scheduledActivityManager.taskGroup = taskGroup
             vc.scheduledActivityManager.date = date
             vc.scheduledActivityManager.activities = scheduledActivityManager.activities
+            
+            vc.clinicDay0Schedule = scheduledActivityManager.clinicDay0Schedule
         }
     }
     
@@ -655,7 +657,7 @@ class MyJourneySectionTableViewCell: UITableViewCell {
                 cell.imageView.image = item.taskGroup.iconImage
                 cell.titleLabel.text = item.taskGroup.journeyTitle
                 cell.detailLabel.text = item.isCompleted ?
-                    Localization.localizedString("JP_COMPLETED_TITLE") :
+                    Localization.localizedString("Completed") :
                     item.taskGroup.activityMinutesLabel()
             }
         }

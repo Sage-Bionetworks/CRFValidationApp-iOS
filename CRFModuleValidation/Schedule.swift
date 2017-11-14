@@ -195,12 +195,12 @@ struct Schedule {
     static func parseDaysOfWeek(scheduleId: TaskIdentifier, daysOfWeek: [Int]?, dayOne:Date) -> Set<Int> {
         guard let dow = daysOfWeek else {
 //            if scheduleId == .scheduleCheckIn {
-//                return Set(1...7)
+                return Set(1...7)
 //            }
 //            else {
-                let firstDate = /*(scheduleId == .scheduleWeeklyChallenge) ? dayOne.addingNumberOfDays(1) :*/ dayOne
-                let dayOfWeek = Calendar.gregorian.component(.weekday, from: firstDate)
-                return Set([dayOfWeek])
+//                let firstDate = /*(scheduleId == .scheduleWeeklyChallenge) ? dayOne.addingNumberOfDays(1) :*/ dayOne
+//                let dayOfWeek = Calendar.gregorian.component(.weekday, from: firstDate)
+//                return Set([dayOfWeek])
 //            }
         }
         return Set(dow)
@@ -287,13 +287,13 @@ struct ScheduleSection {
         return items.reduce(true, { $0 && $1.isCompleted })
     }
     
-    static let scheduleGroups = [TaskGroup.clinic1,
-                                 TaskGroup.clinic1alt,
+    static let scheduleGroups = [TaskGroup.clinicDay0,
+                                 TaskGroup.clinicDay0alt,
                                  TaskGroup.cardio12MT,
                                  TaskGroup.cardioStairStep,
                                  TaskGroup.heartRateMeasurement,
-                                 TaskGroup.clinic2,
-                                 TaskGroup.clinic2alt]
+                                 TaskGroup.clinicDay14,
+                                 TaskGroup.clinicDay14alt]
     
     static func buildSchedule(with activities:[SBBScheduledActivity],
                               enrollmentDate:Date,
@@ -304,9 +304,7 @@ struct ScheduleSection {
         // Look a the schedules and start on the first day that has something finished or today
         let sortedSchedules = activities.filter({ $0.finishedOn != nil }).sorted { $0.finishedOn < $1.finishedOn }
         let dayOne = Calendar.gregorian.startOfDay(for: sortedSchedules.first?.finishedOn ?? Date())
-        let endStudy = dayOne.adding(studyDuration).endOfDay()
-        let dateAhead = Date().endOfDay().addingNumberOfDays(7) // Always show at least 7 days ahead
-        let endDate = max(endStudy, dateAhead)
+        let endDate = dayOne.adding(studyDuration).endOfDay()
         
         var sections: [ScheduleSection] = []
         
@@ -314,12 +312,14 @@ struct ScheduleSection {
         var date: Date = dayOne
         while date <= endDate {
             var items = scheduleGroups.mapAndFilter({ (taskGroup) -> ScheduleItem? in
-                return ScheduleItem(taskGroup: taskGroup, date:date, activities:activities, dayOne: dayOne)
+                return ScheduleItem(taskGroup: taskGroup, date:date, activities:activities, dayOne: dayOne, studyDuration: studyDuration)
             })
 //            if items.count == 0 {
 //                items = [ScheduleItem(date: date, taskGroup: TaskGroup.dailyCheckIn, isCompleted: false)]
 //            }
-            sections.append(ScheduleSection(items: items))
+            if items.count > 0 {
+                sections.append(ScheduleSection(items: items))
+            }
             date = date.addingNumberOfDays(1)
         }
         
@@ -377,23 +377,54 @@ struct ScheduleItem {
         self.isCompleted = isCompleted
     }
 
-    init?(taskGroup: TaskGroup, date:Date, activities:[SBBScheduledActivity], dayOne: Date) {
+    init?(taskGroup: TaskGroup, date:Date, activities:[SBBScheduledActivity], dayOne: Date, studyDuration:DateComponents) {
         
         let tasksFilter = taskGroup.tasksPredicate()
         let finishedOnFilter = SBBScheduledActivity.finishedPredicate(on: date)
         let filter = NSCompoundPredicate(andPredicateWithSubpredicates: [tasksFilter, finishedOnFilter])
         var filteredActivities = activities.filter { filter.evaluate(with: $0) }
         
-        // Daily check-in's finished on date may be different than it's scheduled on date
-        // This is because you can complete yesterday's check-in
-        // So, the above predicate won't work correctly for it, and we must be more specific in the logic
-//        if taskGroup == TaskGroup.dailyCheckIn {
-//            filteredActivities = activities.filter({
-//                $0.surveyIdentifier == TaskIdentifier.checkIn.rawValue &&
-//                $0.scheduledOn.startOfDay() == date.startOfDay() &&
-//                NSCompoundPredicate.init(notPredicateWithSubpredicate: SBBScheduledActivity.unfinishedPredicate()).evaluate(with: $0)
-//            })
-//        }
+        // Special-case handling of clinic visit task groups:
+        guard let dataGroups = SBAUser.shared.dataGroups else { return nil }
+        
+        if date.startOfDay() == dayOne.startOfDay() {
+            // on day one, only the appropriate first clinic visit task group for their data group is valid
+            switch taskGroup.identifier {
+            case "clinicDay0":
+                if !dataGroups.contains("clinic1") {
+                    return nil
+                }
+            case "clinicDay0alt":
+                if !dataGroups.contains("clinic2") {
+                    return nil
+                }
+            default:
+                return nil
+            }
+        }
+        else if date.startOfDay() == dayOne.adding(studyDuration).startOfDay() {
+            // on the last day, only the appropriate final clinic visit task group for their data group is valid
+            switch taskGroup.identifier {
+            case "clinicDay14":
+                if !dataGroups.contains("clinic1") {
+                    return nil
+                }
+            case "clinicDay14alt":
+                if !dataGroups.contains("clinic2") {
+                    return nil
+                }
+            default:
+                return nil
+            }
+        }
+        else if taskGroup.identifier.hasPrefix("clinicDay") {
+            // on any other day, none of the clinic visit task groups are valid
+            return nil
+        }
+        else {
+            // On a non-clinic day, only show tasks scheduled on that day
+            
+        }
         
         var isCompleted = (taskGroup.taskIdentifiers.count == filteredActivities.count)
         

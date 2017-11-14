@@ -18,7 +18,7 @@
                "type": "dataGroups.singleChoiceText",
                "items":[
                         {"text" :"Activities always available", "value" : "activityTester", "dataGroup" : "activity_tester"},
-                        {"text" :"As a participant would see it", "value": "uxTester", "dataGroup" : ""},
+                        {"text" :"As a participant would see it", "value": "uxTester", "dataGroup" : "ux_tester"},
                         ],
                "optional": false,
                },

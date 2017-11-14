@@ -52,11 +52,13 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     var scheduleSections: [ScheduleSection] = []
     var schedules: [Schedule] = []
     
+    var clinicDay0Schedule: SBBScheduledActivity?
+    
     let scheduleUpdatedNotificationName = Notification.Name("MasterScheduledActivityManager.scheduleUpdated")
     
     let studyDuration: DateComponents = {
         var studyDuration = DateComponents()
-        studyDuration.day = 15
+        studyDuration.day = 14
         return studyDuration
     }()
     
@@ -99,7 +101,7 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         
         // Set days behind and days ahead to only cache today's activities
         self.daysBehind = 0
-        self.daysAhead = 7
+        self.daysAhead = 15
     }
     
     func resetScheduleFilter() {
@@ -161,6 +163,16 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     }
     
     override func load(scheduledActivities: [SBBScheduledActivity]) {
+
+        // Save the clinic scheduled activity for this user's data groups
+        guard let dataGroups = SBAUser.shared.dataGroups else { return }
+        let clinics = dataGroups.mapAndFilter({ (group) -> String? in
+            if group.hasPrefix("clinic") { return group }
+            return nil
+        })
+        guard clinics.count == 1 else { return }
+        let clinicIdentifier = clinics.first!
+        self.clinicDay0Schedule = scheduledActivities.find({ $0.activityIdentifier == clinicIdentifier })
 
         // Update the schedules if this is a cache, there are no schedules or this is the full range
         if self.scheduleSections.count == 0 || self.loadingState == .fromServerForFullDateRange {
