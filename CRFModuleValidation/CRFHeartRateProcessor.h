@@ -54,7 +54,10 @@ struct CRFPixelSample {
 @interface CRFHeartRateProcessor : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (nonatomic) __weak _Nullable id <CRFHeartRateProcessorDelegate> delegate;
+@property (nonatomic) NSMutableArray <NSNumber *> *dataPointsHue;
 
+- (void)addDataPoint:(double)hue;
+- (NSInteger)calculateBPM;
 - (NSInteger)calculateBPMWithDataPoints:(NSArray *)dataPoints NS_SWIFT_NAME(calculateBPM(with:));
 
 @end

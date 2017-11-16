@@ -120,7 +120,7 @@
                                                                    "placementType" : "topBackground",
                                                                    "animationDuration" : 2.5,
                                                                    },
-                                               "commands"           : ["transitionAutomatically"],
+                                               "commands"           : ["transitionAutomatically", "shouldDisableIdleTimer"],
                                                "spokenInstructions" : {"0": "Up", "1.25": "Down", "end": "Stand still"},
                                                "colorTheme"         : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
                                                "viewTheme"          : { "viewIdentifier": "StairStep", "storyboardIdentifier": "ActiveTaskSteps" }
