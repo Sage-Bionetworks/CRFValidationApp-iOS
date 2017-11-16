@@ -623,47 +623,7 @@
                         <view key="tableFooterView" contentMode="scaleToFill" id="npU-r8-acI">
                             <rect key="frame" x="0.0" y="484" width="320" height="151"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMl-lv-R8J" customClass="SBAUnderlinedButton" customModule="BridgeAppSDK">
-                                    <rect key="frame" x="8" y="98" width="304" height="33"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <state key="normal" title="Remind me later">
-                                        <color key="titleColor" red="0.28627450980000002" green="0.35686274509999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="remindMeLaterTappedWithSender:" destination="9Jf-Ki-4s5" eventType="touchUpInside" id="4U5-h0-j5S"/>
-                                    </connections>
-                                </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jva-h7-Gmt" customClass="SBARoundedButton" customModule="BridgeAppSDK">
-                                    <rect key="frame" x="30" y="22" width="260" height="52"/>
-                                    <color key="backgroundColor" red="1" green="0.45415658399999997" blue="0.3903435898" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="260" id="guB-Ur-WyJ"/>
-                                        <constraint firstAttribute="height" constant="52" id="irp-cL-00R"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                    <state key="normal" title="Add to Journey">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="corners">
-                                            <real key="value" value="26"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="doneTapped:" destination="9Jf-Ki-4s5" eventType="touchUpInside" id="IZL-om-Kt5"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="Jva-h7-Gmt" secondAttribute="bottom" priority="500" constant="24" id="5ar-Cu-FuV"/>
-                                <constraint firstItem="nMl-lv-R8J" firstAttribute="leading" secondItem="npU-r8-acI" secondAttribute="leading" constant="8" id="Csc-hU-Exg"/>
-                                <constraint firstItem="nMl-lv-R8J" firstAttribute="top" secondItem="Jva-h7-Gmt" secondAttribute="bottom" constant="24" id="Uft-N8-SoH"/>
-                                <constraint firstAttribute="bottom" secondItem="nMl-lv-R8J" secondAttribute="bottom" constant="20" id="fvk-Uq-reh"/>
-                                <constraint firstAttribute="trailing" secondItem="nMl-lv-R8J" secondAttribute="trailing" constant="8" id="jI0-B2-F5O"/>
-                                <constraint firstItem="Jva-h7-Gmt" firstAttribute="centerX" secondItem="npU-r8-acI" secondAttribute="centerX" id="o7c-Ov-RgS"/>
-                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChallengeTableViewCell" rowHeight="96" id="qYg-Uo-DyH" customClass="ChallengeTableViewCell" customModule="CRFModuleValidation" customModuleProvider="target">
@@ -760,12 +720,10 @@
                     <navigationItem key="navigationItem" id="DN9-kN-iYV"/>
                     <connections>
                         <outlet property="closeButton" destination="8E9-eL-mEw" id="IEW-sH-gis"/>
-                        <outlet property="doneButton" destination="Jva-h7-Gmt" id="z6A-ZT-Jcf"/>
                         <outlet property="headerDescriptionLabel" destination="gtn-Bh-XS3" id="V3N-7y-9tj"/>
                         <outlet property="headerDetailLabel" destination="g0h-gf-raO" id="WdA-7A-LHm"/>
                         <outlet property="headerIconView" destination="Khw-kN-WnQ" id="ha3-yE-aOj"/>
                         <outlet property="headerTitleLabel" destination="dha-I5-dXU" id="Lb6-rH-220"/>
-                        <outlet property="tableFooterButton" destination="nMl-lv-R8J" id="EdN-fb-J4f"/>
                         <outlet property="tableFooterView" destination="npU-r8-acI" id="gQp-J8-nKQ"/>
                         <outlet property="tableHeaderView" destination="7Lb-H3-Imk" id="6AL-ZZ-WHX"/>
                     </connections>

@@ -224,8 +224,6 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
     @IBOutlet weak var headerDetailLabel: UILabel!
     @IBOutlet weak var headerDescriptionLabel: UILabel!
     @IBOutlet weak var tableFooterView: UIView!
-    @IBOutlet weak var tableFooterButton: SBAUnderlinedButton?
-    @IBOutlet weak var doneButton: SBARoundedButton!
     @IBOutlet weak var closeButton: UIButton!
     
     var isFirstAppearance: Bool = true
@@ -268,28 +266,7 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
         headerDescriptionLabel.text = scheduledActivityManager.taskGroup.groupDescription ?? ""
         
         headerIconView.image = scheduledActivityManager.taskGroup.iconImage
-        
-        tableFooterButton?.setTitle(Localization.localizedString("JP_REMIND_ME_LATER_TITLE"), for: .normal)
-        tableFooterButton?.addTarget(self, action: #selector(remindMeLaterTapped(sender:)), for: .touchUpInside)
-        tableFooterButton?.textColor = UIColor(named: "blueyGrey") ?? UIColor.darkText
-        tableFooterButton?.isHidden = true
-        
-        doneButton.shadowColor = UIColor.roundedButtonBackgroundDark
-        doneButton.shadowColor = UIColor.roundedButtonShadowDark
-        doneButton.titleColor = UIColor.roundedButtonTextLight
     }
-    
-    @IBAction func remindMeLaterTapped(sender: UIButton!) {
-        // Instead of an action sheet, just show the scheduling task to allow setting day of week as well as time of day
-        _exitOnDidAppear = true
-        guard let vc =  self.scheduledActivityManager.createTimingTaskViewController()
-        else {
-            self.dismiss(animated: true, completion: nil)
-            return
-        }
-        present(vc, animated: true, completion: nil)
-    }
-
     
     @IBAction func doneTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -324,9 +301,6 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
         if _exitOnDidAppear {
             self.dismiss(animated: false, completion: nil)
         }
-        else {
-            showReminderScheduleIfNeeded()
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -343,15 +317,6 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
     override open func reloadFinished(_ sender: Any?) {
         super.reloadFinished(sender)
         updateHeaderAndFooter()
-        showReminderScheduleIfNeeded()
-    }
-    
-    func showReminderScheduleIfNeeded() {
-        if !isCompletedOnFirstLoad && self.scheduledActivityManager.allActivitiesCompleted && isVisible,
-            self.scheduledActivityManager.shouldFireTimingSchedule,
-            let vc =  self.scheduledActivityManager.createTimingTaskViewController() {
-            present(vc, animated: true, completion: nil)
-        }
     }
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -365,12 +330,6 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
     }
     
     func updateHeaderAndFooter() {
-        
-        let isFinished = self.scheduledActivityManager.allActivitiesCompleted
-        if isFinished {
-            tableFooterButton?.removeFromSuperview()
-        }
-        doneButton.isEnabled = self.scheduledActivityManager.allActivitiesCompleted
         
         let numberOfActivities = scheduledActivityDataSource.numberOfRows(for: 0)
         // Loop through all the activities displayed and grab their labels,

@@ -128,14 +128,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         return self.schedules.first(where: { $0.taskGroup == taskGroup })
     }
     
-    func shouldFireTimingSchedule(for taskGroup:TaskGroup) -> Bool {
-        guard let schedule = schedule(for: taskGroup)
-        else {
-            return false
-        }
-        return !schedule.hasData && completedCount(for: taskGroup) <= 1
-    }
-    
     override func resetData() {
         scheduleSections.removeAll()
         schedules.removeAll()
@@ -165,14 +157,12 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     override func load(scheduledActivities: [SBBScheduledActivity]) {
 
         // Save the clinic scheduled activity for this user's data groups
-        guard let dataGroups = SBAUser.shared.dataGroups else { return }
-        let clinics = dataGroups.mapAndFilter({ (group) -> String? in
-            if group.hasPrefix("clinic") { return group }
-            return nil
-        })
-        guard clinics.count == 1 else { return }
-        let clinicIdentifier = clinics.first!
-        self.clinicDay0Schedule = scheduledActivities.find({ $0.activityIdentifier == clinicIdentifier })
+        guard let dataGroups = SBAUser.shared.dataGroups,
+            let clinicIdentifier = dataGroups.first(where: { $0.hasPrefix("clinic") })
+            else {
+                return
+        }
+        self.clinicDay0Schedule = scheduledActivities.first(where: { $0.activityIdentifier == clinicIdentifier })
 
         // Update the schedules if this is a cache, there are no schedules or this is the full range
         if self.scheduleSections.count == 0 || self.loadingState == .fromServerForFullDateRange {
@@ -223,108 +213,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         }
     }
     
-//    func updateSchedulesWithChanges(to scheduledActivities: [SBBScheduledActivity]) {
-//        guard let todaySectionIndex = self.scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) })
-//            else {
-//                return
-//        }
-//                
-//        // Get the existing schedules and replace with the new ones
-//        self.activities.replace(with: scheduledActivities) {
-//            $0.activityIdentifier == $1.activityIdentifier &&
-//                $0.scheduledOn == $1.scheduledOn
-//        }
-//        
-//        let todaySection = self.scheduleSections[todaySectionIndex]
-//        
-//        // Look to see what has changed and if it is in any of the ScheduleItems
-//        let newItems = todaySection.items.map({ (originalItem) -> ScheduleItem in
-//            let itemActivities = originalItem.taskGroup.filtered(self.activities, on: originalItem.date)
-//            let completedActivities = itemActivities.filter({ $0.finishedOn != nil })
-//            let isCompleted = (itemActivities.count == completedActivities.count)
-//            return ScheduleItem(date: originalItem.date, taskGroup: originalItem.taskGroup, isCompleted: isCompleted)
-//        })
-//        
-//        // Replace the today Item with a new today item
-//        if (todaySection.items != newItems) {
-//            let newTodaySection = ScheduleSection(items: newItems)
-//            var newSections = self.scheduleSections
-//            newSections.remove(at: todaySectionIndex)
-//            newSections.insert(newTodaySection, at: todaySectionIndex)
-//            
-//            // Update the schedules
-//            updateSchedules(newSchedules: self.schedules, newSections: newSections, shouldResetNotifications: false)
-//        }
-//    }
-    
-//    override open func scheduledActivity(for taskViewController: ORKTaskViewController) -> SBBScheduledActivity? {
-//        
-//        guard let superSchedule = super.scheduledActivity(for: taskViewController) else { return nil }
-//        
-//        // The schedule date can be used as secondary information to find the correct schedule
-//        // But this only applies to the check in, where you can do today's or yesterday's
-//        if superSchedule.surveyIdentifier == TaskIdentifier.checkIn.rawValue {
-//            if let date = self.scheduleDateForMostRecentQuickCheckIn,
-//                let activity = activities.find({
-//                    $0.scheduleIdentifier == superSchedule.scheduleIdentifier &&
-//                    $0.scheduledOn.startOfDay() == date.startOfDay()
-//                }) {
-//                return activity
-//            }
-//        }
-//            
-//        return superSchedule
-//    }
-    
-    override open func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
-        super.taskViewController(taskViewController, didFinishWith: reason, error: error)
-        // At this point we can assume any use of scheduleDateForMostRecentQuickCheckIn is complete
-        // And that we are safe to reset it back to nil so it doesn't get misused
-        self.scheduleDateForMostRecentQuickCheckIn = nil
-    }
-    
-//    func replaceScheduleIfNeeded(_ newSchedule: Schedule) {
-//
-//        // Only replace the current schedule if it has changed
-//        guard let index = self.schedules.index(where: { $0.taskGroup == newSchedule.taskGroup }),
-//            self.schedules[index] != newSchedule
-//            else {
-//                return
-//        }
-//
-//        var newSchedules = self.schedules
-//        var newSections = self.scheduleSections
-//
-//        newSchedules.remove(at: index)
-//        newSchedules.append(newSchedule)
-//
-//        // Look to see what the future schedules should be
-//        let futureSchedules = ScheduleSection.buildFutureSchedules(with: newSchedules, endDate: self.endStudy)
-//        if let first = futureSchedules.first,
-//            let firstIndex = newSections.index(where: { $0.date == first.date }) {
-//
-//            var replaceSchedules = futureSchedules
-//            var fromIndex = firstIndex
-//
-//            // Look at today and add the new schedule if it isn't already added for today
-//            let todayWeekday = Calendar.gregorian.component(.weekday, from: self.today)
-//            if newSchedule.daysOfWeek.contains(todayWeekday),
-//                let todaySection = newSections.first(where: { $0.date.isToday }),
-//                !todaySection.contains(taskGroup: newSchedule.taskGroup) {
-//                let newItem = ScheduleItem(date: self.today, taskGroup: newSchedule.taskGroup, isCompleted: false)
-//                let newTodaySection = ScheduleSection(items: todaySection.items.appending(newItem))
-//                replaceSchedules.insert(newTodaySection, at: 0)
-//                fromIndex = fromIndex - 1
-//            }
-//
-//            // replace future and today sections as appropriate
-//            newSections.replaceSubrange(fromIndex..<newSections.endIndex, with: replaceSchedules)
-//        }
-//
-//        // Update the schedules and sections and reset the notifications
-//        updateSchedules(newSchedules: newSchedules, newSections: newSections, shouldResetNotifications: true)
-//    }
-    
     func updateReminderNotifications() {
         
         // use dispatch async to allow the method to return and put updating reminders on the next run loop
@@ -369,154 +257,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         
         return self.createRSDTaskViewController(for: schedule)
     }
-    
-//    func createYesterdaysTaskViewController(for taskIdentifier: TaskIdentifier) -> SBATaskViewController? {
-//
-//        let expiredYesterdayPredicate = NSPredicate(day: Date().addingNumberOfDays(-1), dateKey: #keyPath(SBBScheduledActivity.scheduledOn))
-//        let unfinishedPredicate = SBBScheduledActivity.unfinishedPredicate()
-//        let scheduleFilter = NSCompoundPredicate(andPredicateWithSubpredicates: [expiredYesterdayPredicate, unfinishedPredicate])
-//        guard let schedule = self.activities.reversed().find({
-//            $0.activityIdentifier == taskIdentifier.rawValue &&
-//                scheduleFilter.evaluate(with: $0)
-//        }) else { return nil }
-//
-//        return self.createTaskViewController(for: schedule)
-//    }
-    
-//    override func shouldIncludeTimingIntroduction(for timingSchedule: SBBScheduledActivity) -> Bool {
-//        if self.alwaysIgnoreTimingIntroductionStepForScheduling {
-//            return false
-//        }
-//        guard let taskGroup = timingSchedule.taskGroup else { return false }
-//        return shouldFireTimingSchedule(for: taskGroup)
-//    }
-    
-//    override func createTask(for schedule: SBBScheduledActivity) -> (task: ORKTask?, taskRef: SBATaskReference?) {
-//        let (task, taskRef) = super.createTask(for: schedule)
-//        guard task != nil, taskRef != nil, let taskId = schedule.taskId, let taskGroup = schedule.taskGroup
-//        else {
-//            return (task, taskRef)
-//        }
-//
-//        if taskId == .checkIn {
-//            var steps: [SBASubtaskStep] = []
-//            
-//            // If this is the start of the study then get the timing schedule for the daily task
-//            // and append to the steps
-//            if shouldFireTimingSchedule(for: taskGroup),
-//                let timingActivity = schedule.taskGroup?.timingSchedule(from: self.activities) {
-//                let (timingTask, _) = super.createTask(for: timingActivity)
-//                if let subtask = timingTask as? (NSCopying & NSSecureCoding & ORKTask) {
-//                    let timingSubtaskStep = SBASubtaskStep(subtask: subtask)
-//                    timingSubtaskStep.taskIdentifier = subtask.identifier
-//                    timingSubtaskStep.schemaIdentifier = subtask.identifier
-//                    steps.append(timingSubtaskStep)
-//                }
-//            }
-//                        
-//            if steps.count > 0 {
-//                // Add the initial survey as a subtask step
-//                let initialSurveyStep = SBASubtaskStep(subtask: task! as! NSCopying & NSSecureCoding & ORKTask)
-//                initialSurveyStep.taskIdentifier = task!.identifier
-//                initialSurveyStep.schemaIdentifier = task!.identifier
-//                steps.insert(initialSurveyStep, at: 0)
-//                
-//                // return a new task
-//                return (SBANavigableOrderedTask(identifier: initialSurveyStep.identifier, steps: steps), taskRef)
-//            }
-//        }
-//
-//        return (task, taskRef)
-//    }
-    
-    // MARK: Passive Data collection
-    
-//    func updatePassiveData(scheduledActivities: [SBBScheduledActivity]) {
-//
-//        // Look for the schedule to attach new data to
-//        let identifier = TaskIdentifier.passiveData.rawValue
-//        let availableTodayPredicate = SBBScheduledActivity.availableTodayPredicate()
-//        guard let schedule = scheduledActivities.first(where: {
-//            $0.activityIdentifier == identifier && availableTodayPredicate.evaluate(with: $0)
-//        }), schedule.finishedOn == nil
-//        else {
-//            return
-//        }
-//
-//        // Look for most recent upload to get the start date
-//        let filtered = scheduledActivities.filter({
-//                $0.activityIdentifier == identifier &&
-//                $0.finishedOn != nil
-//        }).sorted { $0.finishedOn < $1.finishedOn }
-//        let startDate = Calendar.current.startOfDay(for: filtered.last?.finishedOn ?? self.enrollment)
-//
-//        // We only want to get data for days where the user has a full day history
-//        // otherwise, we would end up with only partial information for steps and heart rate.
-//        guard !Calendar.current.isDateInToday(startDate) else { return }
-//
-//        // The end date is the end of yesterday
-//        let endDate = Date().addingNumberOfDays(-1).endOfDay()
-//
-//        // Request data
-//        self.requestPassiveData(from: startDate, to: endDate, for: schedule)
-//    }
-    
-//    func requestPassiveData(from startDate: Date, to endDate: Date, for schedule: SBBScheduledActivity) {
-//        guard let identifier = schedule.activityIdentifier else { return }
-//
-//        let dispatchGroup = DispatchGroup()
-//
-//        let archiveResult = SBAActivityResult(taskIdentifier: identifier, taskRun: UUID(), outputDirectory: nil)
-//        archiveResult.schedule = schedule
-//        archiveResult.schemaRevision = self.bridgeInfo.schemaReferenceWithIdentifier(identifier)?.schemaRevision ?? 1
-//
-//        let heartRateResult = HKSamplesDataResult(identifier: "heartRate")
-//        let pedometerResult = PedometerDataResult(identifier: "pedometer")
-//
-//        // Get heart rate samples
-//        let datePredicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
-//        let healthStore = HKHealthStore()
-//        dispatchGroup.enter()
-//        let heartRateQuery = HKAnchoredObjectQuery(type: HKSampleType.quantityType(forIdentifier: .heartRate)!,
-//                                           predicate: datePredicate,
-//                                           anchor: nil,
-//                                           limit: HKObjectQueryNoLimit) { (_, samples, _, _, error) in
-//                                            heartRateResult.samples = samples as? [HKQuantitySample]
-//                                            heartRateResult.permissionDenied = (error != nil)
-//                                            dispatchGroup.leave()
-//        }
-//        healthStore.execute(heartRateQuery)
-//
-//        // Get pedometer per day
-//        if SBAPermissionsManager.shared.isPermissionGranted(for: SBAPermissionObjectType(permissionType: .coremotion)) &&
-//           CMPedometer.isStepCountingAvailable() {
-//            let collector = PedometerDataCollector()
-//            dispatchGroup.enter()
-//            collector.queryPedometer(from: startDate, to: endDate, withHandler: { (pedometerData) in
-//                pedometerResult.pedometerData = pedometerData
-//                dispatchGroup.leave()
-//            })
-//        }
-//        else {
-//            pedometerResult.permissionDenied = true
-//        }
-//
-//        dispatchGroup.notify(queue: DispatchQueue.global(qos: .background)) {
-//            let stepResult = ORKStepResult(stepIdentifier: identifier, results: [heartRateResult, pedometerResult])
-//            archiveResult.results = [stepResult]
-//            if let archive = self.archive(for: archiveResult) {
-//
-//                // Update the schedule
-//                // Note: the client data is set during the sendUpdated() call
-//                schedule.startedOn = Date()
-//                schedule.finishedOn = Date()
-//                self.sendUpdated(scheduledActivities: [schedule])
-//
-//                // upload the archive
-//                SBBDataArchive.encryptAndUploadArchives([archive])
-//            }
-//        }
-//    }
     
     override func update(schedule: SBBScheduledActivity, task: ORKTask, result: ORKTaskResult, finishedOn: Date?) {
         super.update(schedule: schedule, task: task, result: result, finishedOn: finishedOn)

@@ -40,8 +40,6 @@ class GroupedScheduledActivityManager : ScheduledActivityManager {
     
     // Set a default to the all activities
     var taskGroup: TaskGroup! = TaskGroup.addActivities
-    var timingActivity: SBBScheduledActivity?
-    var timingActivityFired: Bool = false
     
     // Set the date for activities to show. default == today.
     var date: Date = Date()
@@ -50,100 +48,10 @@ class GroupedScheduledActivityManager : ScheduledActivityManager {
         return self.activities.reduce(true, { $0 && $1.finishedOn != nil })
     }
     
-    var shouldFireTimingSchedule: Bool {
-        return false
-//        return !timingActivityFired &&
-//            (timingActivity != nil) &&
-//            allActivitiesCompleted &&
-//            MasterScheduledActivityManager.shared.shouldFireTimingSchedule(for: self.taskGroup)
-    }
-    
-    func createTimingTaskViewController() -> ORKTaskViewController? {
-        guard let schedule = timingActivity else { return nil }
-        let taskVC = self.createTaskViewController(for: schedule)
-        timingActivityFired = true
-        return taskVC
-    }
-    
     override var activities:[SBBScheduledActivity] {
         get { return super.activities }
         set {
             super.activities = taskGroup.filteredAndSorted(newValue, on: date)
-//            self.timingActivity = taskGroup.timingSchedule(from: newValue)
         }
-    }
-    
-//    override func shouldIncludeTimingIntroduction(for timingSchedule: SBBScheduledActivity) -> Bool {
-//        guard let lhs = timingSchedule.taskId, let rhs = self.timingActivity?.taskId else { return false }
-//        return lhs == rhs && allActivitiesCompleted
-//    }
-    
-    override func reloadData() {
-        // If the activities are already loaded, then there is no need to load them again
-        guard activities.count == 0 else {
-            DispatchQueue.main.async {
-                self.delegate?.reloadFinished(self)
-            }
-            return
-        }
-        super.reloadData()
-    }
-    
-    override func scheduledActivity(for taskViewController: ORKTaskViewController) -> SBBScheduledActivity? {
-        if let schedule = super.scheduledActivity(for: taskViewController) {
-            return schedule
-        }
-        else if timingActivity != nil, taskViewController.task!.identifier == timingActivity!.activityIdentifier! {
-            return timingActivity
-        }
-        return nil
-    }
-    
-    override func scheduledActivity(for taskIdentifier: String) -> SBBScheduledActivity? {
-        return super.scheduledActivity(for: taskIdentifier) ?? {
-            guard let timingIdentifer = self.timingActivity?.activityIdentifier,
-                timingIdentifer == taskIdentifier
-            else {
-                return nil
-            }
-            return self.timingActivity
-        }()
-    }
-    
-//    func numberOfSections() -> Int {
-//        return 1
-//    }
-//    
-//    @objc(numberOfRowsInSection:)
-//    func numberOfRows(for section: Int) -> Int {
-//        return self.activities.count
-//    }
-//    
-//    @objc(scheduledActivityAtIndexPath:)
-//    func scheduledActivity(at indexPath: IndexPath) -> SBBScheduledActivity? {
-//        return self.activities[indexPath.row]
-//    }
-//    
-//    @objc(shouldShowTaskForIndexPath:)
-//    func shouldShowTask(for indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-    
-    @objc(didSelectRowAtIndexPath:)
-    override func didSelectRow(at indexPath: IndexPath) {
-        // Only if the task was created should something be done.
-        guard let schedule = scheduledActivity(at: indexPath)
-            else {
-                assertionFailure("Could not find schedule")
-                return
-        }
-        
-        guard let taskViewController = createRSDTaskViewController(for: schedule)
-            else {
-                assertionFailure("Failed to create task view controller for \(schedule)")
-                return
-        }
-        
-        self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
     }
 }
