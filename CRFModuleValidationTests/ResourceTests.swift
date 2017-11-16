@@ -124,12 +124,13 @@ class ResourceTests: XCTestCase {
     }
     
     func testStairSteps() {
+        var taskInfo = RSDTaskInfoStepObject(with: "Cardio Stair Step")
+        let transformer = RSDResourceTransformerObject(resourceName: "Cardio_Stair_Step")
+        taskInfo.taskTransformer = transformer
         let factory = CRFTaskFactory()
         
         do {
-            let transform = RSDResourceTransformerObject(resourceName: "Cardio_Stair_Step") as RSDSectionStepResourceTransformer
-            let _ = try transform.transformSteps(with: factory)
-            
+            let _ = try factory.decodeTask(with: transformer, taskInfo: taskInfo)
         } catch let err {
             XCTFail("Failed to decode task \(err)")
         }
@@ -137,12 +138,26 @@ class ResourceTests: XCTestCase {
 
     
     func testStressTestSteps() {
+        var taskInfo = RSDTaskInfoStepObject(with: "Cardio Stress")
+        let transformer = RSDResourceTransformerObject(resourceName: "Cardio_Stress")
+        taskInfo.taskTransformer = transformer
         let factory = CRFTaskFactory()
         
         do {
-            let transform = RSDResourceTransformerObject(resourceName: "Cardio_Stress") as RSDSectionStepResourceTransformer
-            let _ = try transform.transformSteps(with: factory)
-            
+            let _ = try factory.decodeTask(with: transformer, taskInfo: taskInfo)
+        } catch let err {
+            XCTFail("Failed to decode task \(err)")
+        }
+    }
+    
+    func testBackgroundSurvey() {
+        var taskInfo = RSDTaskInfoStepObject(with: "Background Survey")
+        let transformer = RSDResourceTransformerObject(resourceName: "Background_Survey")
+        taskInfo.taskTransformer = transformer
+        let factory = CRFTaskFactory()
+        
+        do {
+            let _ = try factory.decodeTask(with: transformer, taskInfo: taskInfo)
         } catch let err {
             XCTFail("Failed to decode task \(err)")
         }

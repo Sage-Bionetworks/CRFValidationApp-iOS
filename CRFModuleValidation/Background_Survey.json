@@ -20,6 +20,8 @@
                               "prompt": "Year",
                               "uiHint": "textfield",
                               "range": {
+                              "minimumDate" : "1900",
+                              "codingFormat" : "yyyy",
                               "allowFuture": false
                               }
                               },
@@ -131,12 +133,14 @@
                           "inputFields": [{
                                           "identifier": "hours_per_day",
                                           "dataType": "integer",
-                                          "prompt": "hours per day"
+                                          "prompt": "hours per day",
+                                          "optional": true
                                           },
                                           {
                                           "identifier": "minutes_per_day",
                                           "dataType": "integer",
-                                          "prompt": "minutes per day"
+                                          "prompt": "minutes per day",
+                                          "optional": true
                                           }],
                           "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
                           }]
@@ -168,12 +172,14 @@
                               "inputFields": [{
                                               "identifier": "hours_per_day",
                                               "dataType": "integer",
-                                              "prompt": "hours per day"
+                                              "prompt": "hours per day",
+                                              "optional": true
                                               },
                                               {
                                               "identifier": "minutes_per_day",
                                               "dataType": "integer",
-                                              "prompt": "minutes per day"
+                                              "prompt": "minutes per day",
+                                              "optional": true
                                               }],
                               "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
                             }]
@@ -205,12 +211,14 @@
                               "inputFields": [{
                                               "identifier": "hours_per_day",
                                               "dataType": "integer",
-                                              "prompt": "hours per day"
+                                              "prompt": "hours per day",
+                                              "optional": true
                                               },
                                               {
                                               "identifier": "minutes_per_day",
                                               "dataType": "integer",
-                                              "prompt": "minutes per day"
+                                              "prompt": "minutes per day",
+                                              "optional": true
                                               }],
                               "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
                               }]
@@ -231,12 +239,14 @@
                               "inputFields": [{
                                               "identifier": "hours_per_day",
                                               "dataType": "integer",
-                                              "prompt": "hours per day"
+                                              "prompt": "hours per day",
+                                              "optional": true
                                               },
                                               {
                                               "identifier": "minutes_per_day",
                                               "dataType": "integer",
-                                              "prompt": "minutes per day"
+                                              "prompt": "minutes per day",
+                                              "optional": true
                                               }],
                               "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
                               }]
