@@ -105,9 +105,9 @@
                                                },
                                                {
                                                "identifier"     : "countdown",
-                                               "type"           : "active",
+                                               "type"           : "countdown",
                                                "text"           : "Start in",
-                                               "duration"       : 5,
+                                               "duration"       : 10,
                                                "commands"       : ["playSoundOnStart", "transitionAutomatically"],
                                                },
                                                {
