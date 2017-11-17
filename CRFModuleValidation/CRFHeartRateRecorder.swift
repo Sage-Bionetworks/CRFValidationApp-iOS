@@ -56,7 +56,9 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
     }
     
     public func validate() throws {
-        try RSDStandardPermissionType.camera.validate()
+        // TODO: syoung 11/16/2017 Decide if we want validation to include checking the plist for required privacy alerts.
+        // The value of these keys change from time to time so they can't be relied upon to be the same but it's confusing
+        // for "researchers who write code" to have to manage that stuff when setting up a project.
     }
     
     public func instantiateController(with taskPath: RSDTaskPath) -> RSDAsyncActionController? {
@@ -265,18 +267,8 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
             }
         }
         
-        if let hue = hsv?.hue {
-            // Since the hue for blood is in the red zone which cross the degrees point,
-            // offset that value by 180.
-            var offsetHue = hue + 180.0
-            if (offsetHue > 360.0) {
-                offsetHue -= 360.0
-            }
-            _dataPointsHue.append(offsetHue)
-        } else {
-            // If we don't get a valid hue then reset the data points bc the user lifted their finger
-            _dataPointsHue.removeAll()
-        }
+        // Add the sample to the processor queue
+        self.sampleProcessor.addDataPoint(hsv?.hue ?? -1)
         
         var sample = CRFHeartRateSample(uptime: sample.uptime,
                                         timestamp: sample.uptime - startUptime,
@@ -315,14 +307,8 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     }
 
     func calculateBPM() -> Int? {
-        // If a valid heart rate cannot be calculated then return nil as an invalid marker.
-        guard _dataPointsHue.count > kHeartRateMinFrameCount else { return nil }
-        
-        // calculate the bpm using the range of data points
-        let processor = CRFHeartRateProcessor()
-        let bpm = processor.calculateBPM(with: _dataPointsHue)
-        
         // If the heart rate calculated is too low, then it isn't valid
+        let bpm = sampleProcessor.calculateBPM()
         return bpm >= 40 ? bpm : nil
     }
 }

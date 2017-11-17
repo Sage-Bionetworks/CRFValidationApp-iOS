@@ -41,6 +41,50 @@ const int CRFHeartRateMinFrameCount = (CRFHeartRateSettleSeconds + CRFHeartRateW
 
 @implementation CRFHeartRateProcessor
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _dataPointsHue = [NSMutableArray new];
+    }
+    return self;
+}
+
+- (void)addDataPoint:(double)hue {
+    if (hue > 0) {
+        // Since the hue for blood is in the red zone which cross the degrees point,
+        // offset that value by 180.
+        double offsetHue = hue + 180.0;
+        if (offsetHue > 360.0) {
+            offsetHue -= 360.0;
+        }
+        [_dataPointsHue addObject:@(offsetHue)];
+    } else {
+        [_dataPointsHue removeAllObjects];
+    }
+}
+
+- (NSInteger)calculateBPM {
+    
+    // If a valid heart rate cannot be calculated then return -1 as an invalid marker
+    if (_dataPointsHue.count < CRFHeartRateMinFrameCount) {
+        return -1;
+    }
+    
+    // Get a window of data points that is the length of the window we are looking at
+    NSUInteger len = CRFHeartRateWindowSeconds * CRFHeartRateFramesPerSecond;
+    NSArray *dataPoints = [_dataPointsHue subarrayWithRange:NSMakeRange(_dataPointsHue.count - len, len)];
+    
+    // If we have enough data points then remove from beginning
+    if (_dataPointsHue.count > CRFHeartRateMinFrameCount) {
+        NSInteger len = _dataPointsHue.count - CRFHeartRateMinFrameCount;
+        [_dataPointsHue removeObjectsInRange:NSMakeRange(0, len)];
+    }
+    
+    // If the heart rate calculated is too low, then it isn't valid
+    NSInteger heartRate = [self calculateBPMWithDataPoints:dataPoints];
+    return heartRate >= 40 ? heartRate : -1;
+}
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
     CMTime pts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);

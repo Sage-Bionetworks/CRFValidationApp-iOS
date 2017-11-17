@@ -70,7 +70,7 @@ public struct CRFCoreMotionRecorderConfiguration : RSDRecorderConfiguration, RSD
     }
 
     public func validate() throws {
-        try RSDStandardPermissionType.coremotion.validate()
+        // TODO: syoung 11/16/2017 Decide if we want validation to include checking the plist for required privacy alerts
     }
     
     public func instantiateController(with taskPath: RSDTaskPath) -> RSDAsyncActionController? {

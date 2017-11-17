@@ -296,7 +296,7 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
                     let archivableResult = RSDAnswerResultWrapper(sectionIdentifier: sectionIdentifier, result: answerResult)
                     archivableResults.append((stepIdentifier, archivableResult))
                     
-                    if let answer = (answerResult.value as? RSDJSONValue)?.jsonObject() {
+                    if let answer = (answerResult.value as? RSDJSONValue)?.jsonObject(), !(answer is NSNull) {
                         answerMap[archivableResult.identifier] = answer
                         if let unit = answerResult.answerType.unit {
                             answerMap["\(archivableResult.identifier)Unit"] = unit
@@ -488,7 +488,7 @@ public struct RSDJSONEncodedResult : SBAArchivableResult, Encodable {
             let data = try encoder.encode(self)
             return ArchiveableResult(result: data as NSData, filename: filename)
         } catch let err {
-            debugPrint("Error encoding resule: \(err)")
+            debugPrint("Error encoding result: \(err)")
             return nil
         }
     }

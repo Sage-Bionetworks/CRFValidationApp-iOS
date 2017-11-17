@@ -44,18 +44,8 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // TODO: syoung 11/09/2017 Replace the idle timer with sound files for up/down
-        UIApplication.shared.isIdleTimerDisabled = true
-        
         // stop the stair step animation until the accelerometers are ready
         imageView.stopAnimating()
-    }
-    
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // TODO: syoung 11/09/2017 Replace the idle timer with sound files for up/down
-        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     public override func performStartCommands() {

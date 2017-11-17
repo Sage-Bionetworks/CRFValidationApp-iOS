@@ -62,7 +62,7 @@ public struct CRFLocationRecorderConfiguration : RSDRecorderConfiguration, RSDAs
     }
     
     public func validate() throws {
-        try RSDStandardPermissionType.location.validate()
+        // TODO: syoung 11/16/2017 Decide if we want validation to include checking the plist for required privacy alerts
     }
     
     public func instantiateController(with taskPath: RSDTaskPath) -> RSDAsyncActionController? {

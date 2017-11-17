@@ -20,7 +20,7 @@
                            "text"         : "Gently cover both the camera and flash with your finger.",
                            "shouldHideActions": ["goBackward", "goForward"],
                            "duration": 60,
-                           "commands": ["playSound", "continueOnFinish"],
+                           "commands": ["playSound", "continueOnFinish", "shouldDisableIdleTimer"],
                            "spokenInstructions": {
                                 "0" : "Gently cover both the camera and flash with your finger.",
                                 "5": "Please keep still",
