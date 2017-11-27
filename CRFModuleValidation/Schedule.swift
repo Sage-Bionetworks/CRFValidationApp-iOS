@@ -206,13 +206,6 @@ struct Schedule {
         return Set(dow)
     }
     
-    func clientData() -> SBBJSONValue? {
-        guard let timeDate = self.timeDate else { return nil }
-        let clientData: NSDictionary = [ Schedule.timeOfDayKey : Schedule.timeOfDayFormatter.string(from: timeDate),
-                                         Schedule.daysOfWeekKey : self.daysOfWeek.map({ NSNumber(value: $0) })]
-        return clientData
-    }
-    
     func stepResult(with stepIdentifier: String) -> ORKStepResult? {
         if stepIdentifier == Schedule.timeOfDayKey, let dateComponents = self.timeOfDay {
             let result = ORKTimeOfDayQuestionResult(identifier: stepIdentifier)

@@ -247,7 +247,7 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         }
     }
 
-    func createTaskViewController(for taskIdentifier: TaskIdentifier) -> RSDTaskViewController? {
+    func createTaskViewController(for taskIdentifier: TaskIdentifier) -> UIViewController? {
         
         let scheduleFilter = SBBScheduledActivity.availableTodayPredicate()
         guard let schedule = self.activities.reversed().find({
@@ -255,7 +255,7 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
                 scheduleFilter.evaluate(with: $0)
         }) else { return nil }
         
-        return self.createRSDTaskViewController(for: schedule)
+        return self.createAppropriateTaskViewController(for: schedule)
     }
     
     override func update(schedule: SBBScheduledActivity, task: ORKTask, result: ORKTaskResult, finishedOn: Date?) {

@@ -127,7 +127,6 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
     }
     
     func getLatestSchedules() -> [ScheduleSection] {
-        // TODO: syoung 06/27/2017 Add UI to truncate the schedule if the future is dim.
         return scheduledActivityManager.scheduleSections.reversed()
     }
     
@@ -447,11 +446,11 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         if identifier.hasPrefix(taskGroupViewControllerSegue),
             let button = sender as? UIButton {
             
-            let isYesterdayCell = button.tag >= MyJourneyActivityViewCell.isYesterdayButtonTagFactor
-            let adjustSectionIndex = isYesterdayCell ? (todaySectionIndex + 1) : todaySectionIndex
+//            let isYesterdayCell = button.tag >= MyJourneyActivityViewCell.isYesterdayButtonTagFactor
+            let adjustSectionIndex = /*isYesterdayCell ? (todaySectionIndex + 1) :*/ todaySectionIndex
             
             if let scheduleSection = self.scheduleSection(at: IndexPath(item: 0, section: adjustSectionIndex)),
-                isYesterdayCell || button.tag < scheduleSection.items.count {
+                /*isYesterdayCell ||*/ button.tag < scheduleSection.items.count {
                 
 //                // If this is yesterday's schedule section, always return quick check-in
 //                if isYesterdayCell {

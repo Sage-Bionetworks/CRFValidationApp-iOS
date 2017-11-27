@@ -119,73 +119,65 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         return nil
     }
     
-    func createRSDTaskViewController(for schedule: SBBScheduledActivity) -> RSDTaskViewController? {
-        guard  let taskRef = bridgeInfo.taskReferenceForSchedule(schedule),
+    func createAppropriateTaskViewController(for schedule: SBBScheduledActivity) -> UIViewController? {
+        guard  let taskRef = bridgeInfo.taskReferenceForSchedule(schedule) as? TaskReferenceExtension,
             let identifier = schedule.activityIdentifier
             else {
                 assertionFailure("Could not find task reference")
                 return nil
         }
         
-        RSDFactory.shared = CRFTaskFactory()
-        
-        // Otherwise, This is a task that should run using ResearchSuite
-        let taskInfo: RSDTaskInfoStep = (taskRef as? RSDTaskInfoStep) ?? {
-            guard let dictionary = taskRef as? NSDictionary,
-                let resourceName = dictionary["resourceName"] as? String else {
-                    fatalError("Cannot create task info")
-            }
+        // For the HeartRate Measurement, use the ORKTask so that the schema stays consistent.
+        if taskRef.usesResearchKit {
             
-            var taskInfo = RSDTaskInfoStepObject(with: identifier)
-            
-            taskInfo.estimatedMinutes = taskRef.activityMinutes
-            taskInfo.taskTransformer = RSDResourceTransformerObject(resourceName: resourceName)
-            taskInfo.title = dictionary["title"] as? String
-            taskInfo.subtitle = dictionary["subtitle"] as? String
-            
-            return taskInfo
-            }()
+            // If this is a valid schedule then create the SBA task view controller
+            return createTaskViewController(for: schedule)
+        }
+        else {
+            RSDFactory.shared = CRFTaskFactory()
         
-        let taskViewController = RSDTaskViewController(taskInfo: taskInfo)
-        taskViewController.taskPath.scheduleIdentifier = schedule.scheduleIdentifier
-        taskViewController.delegate = self
-        
-        return taskViewController
+            // Otherwise, This is a task that should run using ResearchSuite
+            let taskInfo: RSDTaskInfoStep = (taskRef as? RSDTaskInfoStep) ?? {
+                guard let dictionary = taskRef as? NSDictionary,
+                    let resourceName = dictionary["resourceName"] as? String else {
+                        fatalError("Cannot create task info")
+                }
+                
+                var taskInfo = RSDTaskInfoStepObject(with: identifier)
+                
+                taskInfo.estimatedMinutes = taskRef.activityMinutes
+                taskInfo.taskTransformer = RSDResourceTransformerObject(resourceName: resourceName)
+                taskInfo.title = dictionary["title"] as? String
+                taskInfo.subtitle = dictionary["subtitle"] as? String
+                
+                return taskInfo
+                }()
+            
+            let taskViewController = RSDTaskViewController(taskInfo: taskInfo)
+            taskViewController.taskPath.scheduleIdentifier = schedule.scheduleIdentifier
+            taskViewController.delegate = self
+            
+            return taskViewController
+        }
     }
     
     func didSelectRow(at indexPath: IndexPath) {
        
         // Only if the task was created should something be done.
-        guard let schedule = scheduledActivity(at: indexPath),
-            let taskRef = bridgeInfo.taskReferenceForSchedule(schedule) as? TaskReferenceExtension,
-            let identifier = schedule.activityIdentifier
+        guard let schedule = scheduledActivity(at: indexPath)
             else {
-                assertionFailure("Could not find schedule or task reference")
+                assertionFailure("Could not find schedule")
                 return
         }
 
+        // If this is a valid schedule then create the task view controller
+        guard let taskViewController = createAppropriateTaskViewController(for: schedule)
+            else {
+                assertionFailure("Failed to create task view controller for \(schedule)")
+                return
+        }
         
-        // For the HeartRate Measurement, use the ORKTask so that the schema stays consistent.
-        if taskRef.usesResearchKit {
-            
-            // If this is a valid schedule then create the task view controller
-            guard let taskViewController = createTaskViewController(for: schedule)
-                else {
-                    assertionFailure("Failed to create task view controller for \(schedule)")
-                    return
-            }
-            
-            self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
-        }
-        else {
-            guard let taskViewController = createRSDTaskViewController(for: schedule)
-                else {
-                    assertionFailure("Failed to create task view controller for \(schedule)")
-                    return
-            }
-            
-            self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
-        }
+        self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
     }
     
     // MARK: RSDTaskViewControllerDelegate

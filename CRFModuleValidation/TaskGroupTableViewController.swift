@@ -378,7 +378,7 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
     
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if  let schedule = scheduledActivityDataSource.scheduledActivity(at: indexPath),
-            let vc = scheduledActivityManager.createRSDTaskViewController(for: schedule)
+            let vc = scheduledActivityManager.createAppropriateTaskViewController(for: schedule)
         {
             // The transition delegate should execute off the center of the cell in the view
             // Get the cell rect and adjust it to consider scroll offset
