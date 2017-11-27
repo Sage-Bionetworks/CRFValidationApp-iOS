@@ -9,7 +9,7 @@
 	<key>emailForLoginViaExternalId</key>
 	<string>nobody@null.org</string>
 	<key>cacheDaysAhead</key>
-	<integer>7</integer>
+	<integer>15</integer>
 	<key>cacheDaysBehind</key>
 	<integer>365</integer>
 	<key>schemaMapping</key>

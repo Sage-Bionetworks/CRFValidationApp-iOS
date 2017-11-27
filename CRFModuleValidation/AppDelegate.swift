@@ -75,6 +75,22 @@ class AppDelegate: SBAAppDelegate {
         return true
     }
     
+    override open func showMainViewController(animated: Bool) {
+        // Check that not already showing main
+        guard self.rootViewController?.state != .main else { return }
+        // Determine the correct storyboard based on data groups settings
+        let isActivityTester: Bool = SBAUser.shared.dataGroups!.contains("activity_tester")
+        let storyboardId = isActivityTester ? "SBAActivityTableViewController" : "MyJourneyViewController"
+        guard let storyboard = openStoryboard(SBAMainStoryboardName)
+            else {
+                assertionFailure("Failed to load main storyboard. If default onboarding is used, the storyboard should be implemented at the app level.")
+                return
+        }
+        let vc = storyboard.instantiateViewController(withIdentifier: storyboardId)
+        transition(toRootViewController: vc, state: .main, animated: animated)
+    }
+
+    
     func fitbitAuthCompletionHandler (url: URL?, error: Error?) -> () {
         guard let completion = self.fitbitCompletionHandler else {
             // if we weren't given a completion handler, just ignore any results and reset in case we get called again
