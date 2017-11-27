@@ -446,22 +446,10 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         if identifier.hasPrefix(taskGroupViewControllerSegue),
             let button = sender as? UIButton {
             
-//            let isYesterdayCell = button.tag >= MyJourneyActivityViewCell.isYesterdayButtonTagFactor
-            let adjustSectionIndex = /*isYesterdayCell ? (todaySectionIndex + 1) :*/ todaySectionIndex
+            let adjustSectionIndex = todaySectionIndex
             
             if let scheduleSection = self.scheduleSection(at: IndexPath(item: 0, section: adjustSectionIndex)),
-                /*isYesterdayCell ||*/ button.tag < scheduleSection.items.count {
-                
-//                // If this is yesterday's schedule section, always return quick check-in
-//                if isYesterdayCell {
-//                    if scheduleSection.items.contains(where: { (item) -> Bool in
-//                        item.taskGroup == TaskGroup.dailyCheckIn
-//                    }) {
-//                        return (TaskGroup.dailyCheckIn, scheduleSection.date)
-//                    }
-//                    return nil
-//                }
-                
+                button.tag < scheduleSection.items.count {
                 return (scheduleSection.items[button.tag].taskGroup, scheduleSection.date)
             }
         }
@@ -476,10 +464,6 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
                 // If there is only one task and its today then show that and cancel the segue
                 self.presentTaskViewController(for: taskGroup.taskIdentifiers[0], sender: sender)
                 return false
-//            } else {
-//                // If there is only one task and its today then show that and cancel the segue
-//                self.presentYesterdaysTaskViewController(for: taskGroup.taskIdentifiers[0], sender: sender)
-//                return false
             }
         }
         
@@ -515,41 +499,15 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         present(taskVC, animated: true, completion: nil)
     }
     
-//    func presentYesterdaysTaskViewController(for taskIdentifier: TaskIdentifier, sender: Any?) {
-//        guard let taskVC = scheduledActivityManager.createYesterdaysTaskViewController(for: taskIdentifier) else { return }
-//
-//        taskVC.modalTransitionStyle = .crossDissolve
-//        present(taskVC, animated: true, completion: nil)
-//    }
-    
     func presentTaskViewController(for scheduledActivity: SBBScheduledActivity, sender: Any?) {
         guard let taskVC = scheduledActivityManager.createTaskViewController(for: scheduledActivity)
             else {
                 return
         }
         
-//        if scheduledActivity.surveyIdentifier == TaskIdentifier.checkIn.rawValue {
-//            MasterScheduledActivityManager.shared.scheduleDateForMostRecentQuickCheckIn = Date()
-//        }
-        
         taskVC.modalTransitionStyle = .crossDissolve
         present(taskVC, animated: true, completion: nil)
     }
-    
-//    func sendUserToDeepLinkTasGroup() {
-//        guard let deepLink = scheduledActivityManager.deepLinkTaskGroup else { return }
-//        scheduledActivityManager.deepLinkTaskGroup = nil
-//
-//        if deepLink.taskIdentifiers.count == 1 {
-//            debugPrint("Only one task in group, go directly to it")
-//            // If there is only one task then show that and cancel the segue
-//            self.presentTaskViewController(for: deepLink.taskIdentifiers[0], sender: self)
-//        } else if let viewController = TaskGroupTableViewController.instantiate(taskGroup: deepLink, date: Date(), activities: MasterScheduledActivityManager.shared.activities) {
-//            self.navigationController?.show(viewController, sender: self)
-//        } else {
-//            debugPrint("failed to instantiate task group table vc")
-//        }
-//    }
 }
 
 class MyJourneyTodayHeaderView: UITableViewCell {

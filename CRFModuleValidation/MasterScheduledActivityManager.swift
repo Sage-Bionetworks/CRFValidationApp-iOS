@@ -173,13 +173,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
                             shouldResetNotifications: self.loadingState == .fromServerForFullDateRange)
         }
         
-        // update reminders and send passive data
-//        if self.loadingState == .fromServerForFullDateRange {
-//            DispatchQueue.global(qos: .background).async {
-//                self.updatePassiveData(scheduledActivities: scheduledActivities)
-//            }
-//        }
-        
         // call super with the full set
         super.load(scheduledActivities: scheduledActivities)
         

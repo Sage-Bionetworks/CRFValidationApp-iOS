@@ -194,14 +194,7 @@ struct Schedule {
     
     static func parseDaysOfWeek(scheduleId: TaskIdentifier, daysOfWeek: [Int]?, dayOne:Date) -> Set<Int> {
         guard let dow = daysOfWeek else {
-//            if scheduleId == .scheduleCheckIn {
-                return Set(1...7)
-//            }
-//            else {
-//                let firstDate = /*(scheduleId == .scheduleWeeklyChallenge) ? dayOne.addingNumberOfDays(1) :*/ dayOne
-//                let dayOfWeek = Calendar.gregorian.component(.weekday, from: firstDate)
-//                return Set([dayOfWeek])
-//            }
+            return Set(1...7)
         }
         return Set(dow)
     }
@@ -304,12 +297,9 @@ struct ScheduleSection {
         // For each date, map the section
         var date: Date = dayOne
         while date <= endDate {
-            var items = scheduleGroups.mapAndFilter({ (taskGroup) -> ScheduleItem? in
+            let items = scheduleGroups.mapAndFilter({ (taskGroup) -> ScheduleItem? in
                 return ScheduleItem(taskGroup: taskGroup, date:date, activities:activities, dayOne: dayOne, studyDuration: studyDuration)
             })
-//            if items.count == 0 {
-//                items = [ScheduleItem(date: date, taskGroup: TaskGroup.dailyCheckIn, isCompleted: false)]
-//            }
             if items.count > 0 {
                 sections.append(ScheduleSection(items: items))
             }
@@ -375,7 +365,7 @@ struct ScheduleItem {
         let tasksFilter = taskGroup.tasksPredicate()
         let finishedOnFilter = SBBScheduledActivity.finishedPredicate(on: date)
         let filter = NSCompoundPredicate(andPredicateWithSubpredicates: [tasksFilter, finishedOnFilter])
-        var filteredActivities = activities.filter { filter.evaluate(with: $0) }
+        let filteredActivities = activities.filter { filter.evaluate(with: $0) }
         
         // Special-case handling of clinic visit task groups:
         guard let dataGroups = SBAUser.shared.dataGroups else { return nil }
@@ -425,59 +415,8 @@ struct ScheduleItem {
             // If there is a schedule, then look to see if the schedule is set for this day, otherwise, return nil
             let thisDayOfWeek = Calendar.gregorian.component(.weekday, from: date)
             if (!schedule.daysOfWeek.contains(thisDayOfWeek)) {
-//                if (Calendar.gregorian.isDateInToday(date) && (taskGroup == TaskGroup.weeklyChallenge || taskGroup == TaskGroup.treatmentDetails)) {
-//                    // The logic for determining whether to show a weekly challenge or a weekly treatment is less than ideal,
-//                    // which is driven by the fact that the schedule for these are actually daily items. The old approach of
-//                    // "show the daily activity if its the right day of the week, otherwise don't" doesn't meet the requirements
-//                    // of IA-347 which is to keep showing it later in the week after its scheduled if they didn't complete it.
-//                    //
-//                    // The approach taken is check every day back to the appropriate date of the week to see if it has
-//                    // been completed since it was scheduled. If it was, hide it. If not, go ahead and show it today during
-//                    // the journey even though it normally would not be shown. There is also an edge case check to make sure
-//                    // we don't show it until the first time that we are supposed to show it based on the day of the week
-//                    // settings.
-//
-//                    if (isCompleted || (dayOne >= date)) {
-//                        // If we've already completed it, or this is the first day and the scheduled
-//                        // date for the taskGroup is later in the week, don't show the taskGroup
-//                        return nil
-//                    } else {
-//                        // Iterate back to the appropriate day of the week to see if it has been completed
-//                        // since it was scheduled
-//                        var dateToCheck = date
-//                        var dayOfWeekToCheck = Calendar.gregorian.component(.weekday, from: dateToCheck)
-//                        var totalChecks = 0 // guard against infinite loop if there is no day of the week for some reason
-//
-//                        while (!isCompleted && (dateToCheck > dayOne) && (totalChecks <= Calendar.gregorian.weekdaySymbols.count)
-//                            && !schedule.daysOfWeek.contains(dayOfWeekToCheck)) {
-//                            totalChecks += 1
-//                            // go backwards 1 day
-//                            dateToCheck = NSCalendar.current.date(byAdding: .day, value: -1, to: dateToCheck)!
-//                            dayOfWeekToCheck = Calendar.gregorian.component(.weekday, from: dateToCheck)
-//
-//                            // Now see if it was completed on this date
-//                            let dateToCheckFinishedOnFilter = SBBScheduledActivity.finishedPredicate(on: dateToCheck)
-//                            let dateToCheckFilter = NSCompoundPredicate(andPredicateWithSubpredicates: [tasksFilter, dateToCheckFinishedOnFilter])
-//                            let dateToCheckFilteredActivities = activities.filter { dateToCheckFilter.evaluate(with: $0) }
-//                            isCompleted = (taskGroup.taskIdentifiers.count == dateToCheckFilteredActivities.count)
-//
-//                            if (!isCompleted && dateToCheck <= dayOne && !schedule.daysOfWeek.contains(dayOfWeekToCheck)) {
-//                                // Edge case - if we are rewinding and hit the start of the journey but haven't yet
-//                                // made it back to the appropriate day of the week, then we don't want to show the
-//                                // taskGroup since the first instance it should appear is still in the future
-//                                isCompleted = true
-//                            }
-//                        }
-//
-//                        // Now return nil if it was completed
-//                        if (isCompleted) {
-//                            return nil
-//                        }
-//                    }
-//                } else {
-                    // If it isn't the proper day of the week, then don't show the task group
-                    return nil
-//                }
+                // If it isn't the proper day of the week, then don't show the task group
+                return nil
             }
         }
         else if taskGroup.filtered(activities, on: date).count == 0 {
@@ -485,12 +424,6 @@ struct ScheduleItem {
             // in the history or future schedule
             return nil
         }
-        
-//        if (taskGroup == TaskGroup.demographic || taskGroup == TaskGroup.monthlyHealth) && !(isCompleted || Calendar.gregorian.isDateInToday(date)) {
-//            // If the schedule is for the demographics or monthly surveys, then only include it on either the day it was
-//            // marked finished or today (if still unfinished)
-//            return nil
-//        }
         
         self.date = date
         self.taskGroup = taskGroup
