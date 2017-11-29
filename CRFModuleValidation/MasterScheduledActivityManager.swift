@@ -134,10 +134,7 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         dayOne = nil
     }
     
-    override func reloadData() {
-        // Unless today's date has changed, rely upon the previously loaded data
-        guard !Calendar.current.isDateInToday(today) || scheduleSections.count == 0 else { return }
-        
+    override func reloadData() {        
         forceReload()
     }
     
