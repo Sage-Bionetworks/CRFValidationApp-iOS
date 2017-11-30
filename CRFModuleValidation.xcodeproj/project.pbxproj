@@ -36,6 +36,41 @@
 		FF4043FA1FBAA1F1000EF2A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */; };
 		FF4043FB1FBAA202000EF2A0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */; };
 		FF4043FC1FBAA20C000EF2A0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */; };
+		FF4712101FCF95D40052E5E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */; };
+		FF4712151FCF95D40052E5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4712131FCF95D40052E5E3 /* Main.storyboard */; };
+		FF4712171FCF95D40052E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4712161FCF95D40052E5E3 /* Assets.xcassets */; };
+		FF47121A1FCF95D40052E5E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4712181FCF95D40052E5E3 /* LaunchScreen.storyboard */; };
+		FF4712251FCF95D40052E5E3 /* CRFModuleTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4712241FCF95D40052E5E3 /* CRFModuleTestAppUITests.swift */; };
+		FF4712371FCF97E10052E5E3 /* Background_Survey.json in Resources */ = {isa = PBXBuildFile; fileRef = FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */; };
+		FF4712381FCF97E10052E5E3 /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
+		FF4712391FCF97E10052E5E3 /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
+		FF47123A1FCF97E10052E5E3 /* Cardio_Stair_Step.json in Resources */ = {isa = PBXBuildFile; fileRef = FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */; };
+		FF47123B1FCF97E10052E5E3 /* Cardio_Stress.json in Resources */ = {isa = PBXBuildFile; fileRef = FF569BED1FB63CF9005F525A /* Cardio_Stress.json */; };
+		FF47123C1FCF97E10052E5E3 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
+		FF47123D1FCF97E60052E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1391E89C76E00B123FA /* Assets.xcassets */; };
+		FF47123E1FCF97F20052E5E3 /* Stress_Test.html in Resources */ = {isa = PBXBuildFile; fileRef = FF569BF51FB63FCA005F525A /* Stress_Test.html */; };
+		FF47123F1FCF97F20052E5E3 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
+		FF4712401FCF97F20052E5E3 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
+		FF4712411FCF97FA0052E5E3 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
+		FF4712421FCF97FA0052E5E3 /* CRFCameraStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */; };
+		FF4712431FCF97FA0052E5E3 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
+		FF4712441FCF97FA0052E5E3 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
+		FF4712451FCF97FA0052E5E3 /* CRFResultStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */; };
+		FF4712461FCF97FA0052E5E3 /* CRFStairStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */; };
+		FF4712471FCF97FF0052E5E3 /* CRFCameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */; };
+		FF4712481FCF98100052E5E3 /* CRFCoreMotionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA2D941FB571BF00B63CBA /* CRFCoreMotionRecorder.swift */; };
+		FF4712491FCF98140052E5E3 /* CRFLocationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */; };
+		FF47124A1FCF98140052E5E3 /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
+		FF47124B1FCF98180052E5E3 /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
+		FF47124C1FCF981B0052E5E3 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
+		FF4712511FCF99150052E5E3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4712501FCF99150052E5E3 /* TableViewController.swift */; };
+		FF4712521FCFA0F90052E5E3 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; };
+		FF4712531FCFA0F90052E5E3 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF4712571FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; };
+		FF4712581FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */; };
+		FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */; };
+		FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */; };
 		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
 		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
 		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
@@ -125,6 +160,27 @@
 			remoteGlobalIDString = 801040B11C5A843D00D26E19;
 			remoteInfo = BridgeAppSDK;
 		};
+		FF4712211FCF95D40052E5E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F7A1271E89C76E00B123FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF47120C1FCF95D40052E5E3;
+			remoteInfo = CRFModuleTestApp;
+		};
+		FF4712541FCFA0F90052E5E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FF72B2301F6859D3004C6F15;
+			remoteInfo = ResearchSuite;
+		};
+		FF4712591FCFA10D0052E5E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FF443E151F7AC21900F43BE7;
+			remoteInfo = ResearchSuiteUI;
+		};
 		FF78FC5D1FA3FE0200B8D42C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
@@ -186,6 +242,18 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF4712561FCFA0F90052E5E3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FF4712581FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Embed Frameworks */,
+				FF4712531FCFA0F90052E5E3 /* ResearchSuite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +287,16 @@
 		FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFModuleTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF4712141FCF95D40052E5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF4712161FCF95D40052E5E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF4712191FCF95D40052E5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF47121B1FCF95D40052E5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CRFModuleTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4712241FCF95D40052E5E3 /* CRFModuleTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFModuleTestAppUITests.swift; sourceTree = "<group>"; };
+		FF4712261FCF95D40052E5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4712501FCF99150052E5E3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Stair_Step.html; sourceTree = "<group>"; };
 		FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Cardio_12MT.html; sourceTree = "<group>"; };
 		FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntroductionStepViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +363,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF47120A1FCF95D40052E5E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4712571FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Frameworks */,
+				FF4712521FCFA0F90052E5E3 /* ResearchSuite.framework in Frameworks */,
+				FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */,
+				FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */,
+				FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47121D1FCF95D40052E5E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -293,6 +390,8 @@
 			children = (
 				60F7A1311E89C76E00B123FA /* CRFModuleValidation */,
 				60F7A1461E89C76E00B123FA /* CRFModuleValidationTests */,
+				FF47120E1FCF95D40052E5E3 /* CRFModuleTestApp */,
+				FF4712231FCF95D40052E5E3 /* CRFModuleTestAppUITests */,
 				60F7A1F21E89CFEF00B123FA /* Frameworks */,
 				60F7A1301E89C76E00B123FA /* Products */,
 			);
@@ -303,6 +402,8 @@
 			children = (
 				60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */,
 				60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */,
+				FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */,
+				FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,6 +530,28 @@
 				FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FF47120E1FCF95D40052E5E3 /* CRFModuleTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */,
+				FF4712501FCF99150052E5E3 /* TableViewController.swift */,
+				FF4712131FCF95D40052E5E3 /* Main.storyboard */,
+				FF4712161FCF95D40052E5E3 /* Assets.xcassets */,
+				FF4712181FCF95D40052E5E3 /* LaunchScreen.storyboard */,
+				FF47121B1FCF95D40052E5E3 /* Info.plist */,
+			);
+			path = CRFModuleTestApp;
+			sourceTree = "<group>";
+		};
+		FF4712231FCF95D40052E5E3 /* CRFModuleTestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FF4712241FCF95D40052E5E3 /* CRFModuleTestAppUITests.swift */,
+				FF4712261FCF95D40052E5E3 /* Info.plist */,
+			);
+			path = CRFModuleTestAppUITests;
 			sourceTree = "<group>";
 		};
 		FF55C4121FAAD993004EDB59 /* HTML */ = {
@@ -564,20 +687,58 @@
 			productReference = 60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4712331FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestApp" */;
+			buildPhases = (
+				FF4712091FCF95D40052E5E3 /* Sources */,
+				FF47120A1FCF95D40052E5E3 /* Frameworks */,
+				FF47120B1FCF95D40052E5E3 /* Resources */,
+				FF4712561FCFA0F90052E5E3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF4712551FCFA0F90052E5E3 /* PBXTargetDependency */,
+				FF47125A1FCFA10D0052E5E3 /* PBXTargetDependency */,
+			);
+			name = CRFModuleTestApp;
+			productName = CRFModuleTestApp;
+			productReference = FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF47121F1FCF95D40052E5E3 /* CRFModuleTestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4712341FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestAppUITests" */;
+			buildPhases = (
+				FF47121C1FCF95D40052E5E3 /* Sources */,
+				FF47121D1FCF95D40052E5E3 /* Frameworks */,
+				FF47121E1FCF95D40052E5E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF4712221FCF95D40052E5E3 /* PBXTargetDependency */,
+			);
+			name = CRFModuleTestAppUITests;
+			productName = CRFModuleTestAppUITests;
+			productReference = FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		60F7A1271E89C76E00B123FA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Sage Bionetworks";
 				TargetAttributes = {
 					60F7A12E1E89C76E00B123FA = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = KA9Z8R6M6K;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -600,8 +761,25 @@
 					60F7A1421E89C76E00B123FA = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = KA9Z8R6M6K;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						TestTargetID = 60F7A12E1E89C76E00B123FA;
+					};
+					FF47120C1FCF95D40052E5E3 = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = 4B822CZK9N;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					FF47121F1FCF95D40052E5E3 = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = 4B822CZK9N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FF47120C1FCF95D40052E5E3;
 					};
 				};
 			};
@@ -634,6 +812,8 @@
 			targets = (
 				60F7A12E1E89C76E00B123FA /* CRFModuleValidation */,
 				60F7A1421E89C76E00B123FA /* CRFModuleValidationTests */,
+				FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */,
+				FF47121F1FCF95D40052E5E3 /* CRFModuleTestAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -739,6 +919,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF47120B1FCF95D40052E5E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF47121A1FCF95D40052E5E3 /* LaunchScreen.storyboard in Resources */,
+				FF4712391FCF97E10052E5E3 /* Cardio_12MT.json in Resources */,
+				FF47123E1FCF97F20052E5E3 /* Stress_Test.html in Resources */,
+				FF4712171FCF95D40052E5E3 /* Assets.xcassets in Resources */,
+				FF4712151FCF95D40052E5E3 /* Main.storyboard in Resources */,
+				FF47123D1FCF97E60052E5E3 /* Assets.xcassets in Resources */,
+				FF4712371FCF97E10052E5E3 /* Background_Survey.json in Resources */,
+				FF4712381FCF97E10052E5E3 /* HeartrateStep.json in Resources */,
+				FF47123F1FCF97F20052E5E3 /* Stair_Step.html in Resources */,
+				FF47123A1FCF97E10052E5E3 /* Cardio_Stair_Step.json in Resources */,
+				FF47123B1FCF97E10052E5E3 /* Cardio_Stress.json in Resources */,
+				FF4712401FCF97F20052E5E3 /* Cardio_12MT.html in Resources */,
+				FF47123C1FCF97E10052E5E3 /* HeartRate_Measurement.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47121E1FCF95D40052E5E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -814,6 +1021,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF4712091FCF95D40052E5E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4712481FCF98100052E5E3 /* CRFCoreMotionRecorder.swift in Sources */,
+				FF4712511FCF99150052E5E3 /* TableViewController.swift in Sources */,
+				FF4712461FCF97FA0052E5E3 /* CRFStairStepViewController.swift in Sources */,
+				FF47124A1FCF98140052E5E3 /* CRFHeartRateRecorder.swift in Sources */,
+				FF4712411FCF97FA0052E5E3 /* TaskIntroductionStepViewController.swift in Sources */,
+				FF4712471FCF97FF0052E5E3 /* CRFCameraShutterButton.swift in Sources */,
+				FF4712421FCF97FA0052E5E3 /* CRFCameraStepViewController.swift in Sources */,
+				FF4712431FCF97FA0052E5E3 /* CRFHeartRateStepViewController.swift in Sources */,
+				FF4712441FCF97FA0052E5E3 /* CRFRunDistanceStepViewController.swift in Sources */,
+				FF4712491FCF98140052E5E3 /* CRFLocationRecorder.swift in Sources */,
+				FF47124B1FCF98180052E5E3 /* CRFTaskFactory.swift in Sources */,
+				FF4712451FCF97FA0052E5E3 /* CRFResultStepViewController.swift in Sources */,
+				FF4712101FCF95D40052E5E3 /* AppDelegate.swift in Sources */,
+				FF47124C1FCF981B0052E5E3 /* CRFHeartRateProcessor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47121C1FCF95D40052E5E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4712251FCF95D40052E5E3 /* CRFModuleTestAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -826,6 +1062,21 @@
 			isa = PBXTargetDependency;
 			name = BridgeAppSDK;
 			targetProxy = 60F7A2191E89D0B200B123FA /* PBXContainerItemProxy */;
+		};
+		FF4712221FCF95D40052E5E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */;
+			targetProxy = FF4712211FCF95D40052E5E3 /* PBXContainerItemProxy */;
+		};
+		FF4712551FCFA0F90052E5E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResearchSuite;
+			targetProxy = FF4712541FCFA0F90052E5E3 /* PBXContainerItemProxy */;
+		};
+		FF47125A1FCFA10D0052E5E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResearchSuiteUI;
+			targetProxy = FF4712591FCFA10D0052E5E3 /* PBXContainerItemProxy */;
 		};
 		FF78FC6D1FA3FE9400B8D42C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -844,6 +1095,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				60F7A13C1E89C76E00B123FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FF4712131FCF95D40052E5E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF4712141FCF95D40052E5E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FF4712181FCF95D40052E5E3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF4712191FCF95D40052E5E3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -964,7 +1231,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development org.sagebase.crfModuleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -992,7 +1260,8 @@
 				PROVISIONING_PROFILE = "9059c83e-ff2e-4a3a-8207-50f3b3cccb8f";
 				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.crfModuleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1013,7 +1282,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidationTests/Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRFModuleValidation.app/CRFModuleValidation";
 			};
 			name = Debug;
@@ -1035,8 +1305,123 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidationTests/Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRFModuleValidation.app/CRFModuleValidation";
+			};
+			name = Release;
+		};
+		FF4712271FCF95D40052E5E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FF4712281FCF95D40052E5E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FF4712291FCF95D40052E5E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CRFModuleTestApp;
+			};
+			name = Debug;
+		};
+		FF47122A1FCF95D40052E5E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CRFModuleTestApp;
 			};
 			name = Release;
 		};
@@ -1066,6 +1451,24 @@
 			buildConfigurations = (
 				60F7A15B1E89C76E00B123FA /* Debug */,
 				60F7A15C1E89C76E00B123FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF4712331FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4712271FCF95D40052E5E3 /* Debug */,
+				FF4712281FCF95D40052E5E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF4712341FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4712291FCF95D40052E5E3 /* Debug */,
+				FF47122A1FCF95D40052E5E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -48,21 +48,20 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         do {
             // create the camera session
-            let input = try AVCaptureDeviceInput(device: captureDevice)
+            let input = try AVCaptureDeviceInput(device: captureDevice!)
             let captureSession = AVCaptureSession()
             _captureSession = captureSession
             captureSession.addInput(input)
             
             // add video view
-            if let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession) {
-                videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                videoPreviewLayer.frame = view.layer.bounds
-                _videoPreviewLayer = videoPreviewLayer
-                previewView.layer.addSublayer(videoPreviewLayer)
-            }
+            let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            videoPreviewLayer.frame = view.layer.bounds
+            _videoPreviewLayer = videoPreviewLayer
+            previewView.layer.addSublayer(videoPreviewLayer)
             
             // add output for taking a picture
             let output = AVCapturePhotoOutput()

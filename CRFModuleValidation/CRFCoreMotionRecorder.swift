@@ -39,7 +39,7 @@ public enum CRFCoreMotionRecorderType : String, Codable {
     case accelerometer
     case deviceMotion
     
-    static func allTypes() -> [CRFCoreMotionRecorderType] {
+    public static func allTypes() -> [CRFCoreMotionRecorderType] {
         return [.accelerometer, .deviceMotion]
     }
 }
