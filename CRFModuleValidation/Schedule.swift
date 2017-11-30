@@ -401,15 +401,14 @@ struct ScheduleItem {
             }
         }
         else if taskGroup.identifier.hasPrefix("clinicDay") {
-            // on any other day, none of the clinic visit task groups are valid
+            // On any other day, none of the clinic visit task groups are valid.
             return nil
         }
         else {
-            // On a non-clinic day, only show tasks scheduled on that day
-            
+            // Do nothing. On a non-clinic day, only show tasks scheduled on that day.
         }
         
-        var isCompleted = (taskGroup.taskIdentifiers.count == filteredActivities.count)
+        let isCompleted = (taskGroup.taskIdentifiers.count == filteredActivities.count)
         
         if let schedule = Schedule(taskGroup: taskGroup, date: date, activities: activities, dayOne: dayOne) {
             // If there is a schedule, then look to see if the schedule is set for this day, otherwise, return nil
