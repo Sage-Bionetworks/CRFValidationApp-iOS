@@ -91,29 +91,8 @@ class CardioUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Use your finger to cover the camera and flash on the back of your phone."].exists)
         XCTAssertTrue(app.staticTexts["Press to Start"].exists)
         
-        let capturestartbuttonButton = app.buttons["captureStartButton"]
-        capturestartbuttonButton.tap()
-        
-        // Heart rate capture
-        let initialHeartRateText = app.staticTexts["Gently cover both the camera and flash with your finger."]
-        let halfWayHeartRateText = app.staticTexts["You’re half way there!"]
-        let fifteenLeftHeartRateText = app.staticTexts["Just 15 seconds left"]
-        let allDoneHeartRateText = app.staticTexts["You’re all done!"]
-        
-        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
-        XCTAssertTrue(step1Of3StaticText.exists)
-        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
-        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
-        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
-        
-        // Heart rate feedback
-        let heartRate65 = app.staticTexts["65"]
-        let bpmLabel = app.staticTexts["BPM"]
-        
-        XCTAssertTrue(app.staticTexts["Your heart rate is"].waitForExistence(timeout: 5))
-        XCTAssertTrue(allDoneHeartRateText.exists)
-        XCTAssertTrue(heartRate65.exists)
-        XCTAssertTrue(bpmLabel.exists)
+        // Capture heart rate
+        runTest_HeartRateStep(app: app, progressLabel: step1Of3StaticText, feedbackLabel: app.staticTexts["Your heart rate is"])
         app.buttons["Next"].tap()
         
         // -- Step 2 - ready to run
@@ -136,21 +115,10 @@ class CardioUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Stand still for 1 minute"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Press to Start"].exists)
-        capturestartbuttonButton.tap()
         
-        // Heart rate capture
-        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
-        XCTAssertTrue(step3Of3StaticText.exists)
-        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
-        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
-        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
-        
-        // Heart rate feedback
-        XCTAssertTrue(app.staticTexts["Your heart rate changed to"].waitForExistence(timeout: 5))
-        XCTAssertTrue(allDoneHeartRateText.exists)
-        XCTAssertTrue(heartRate65.exists)
-        XCTAssertTrue(bpmLabel.exists)
-        
+        // Capture heart rate
+        runTest_HeartRateStep(app: app, progressLabel: step3Of3StaticText, feedbackLabel: app.staticTexts["Your heart rate changed to"])
+
         app.buttons["Done"].tap()
     }
     
@@ -212,30 +180,8 @@ class CardioUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Use your finger to cover the camera and flash on the back of your phone."].exists)
         XCTAssertTrue(app.staticTexts["Press to Start"].exists)
         
-        let capturestartbuttonButton = app.buttons["captureStartButton"]
-        capturestartbuttonButton.tap()
-        
-        // Heart rate capture
-        let initialHeartRateText = app.staticTexts["Gently cover both the camera and flash with your finger."]
-        let halfWayHeartRateText = app.staticTexts["You’re half way there!"]
-        let fifteenLeftHeartRateText = app.staticTexts["Just 15 seconds left"]
-        let allDoneHeartRateText = app.staticTexts["You’re all done!"]
-        
-        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
-        XCTAssertTrue(step4Of6StaticText.exists)
-        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
-        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
-        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
-        
-        // Heart rate feedback
-        let heartRate65 = app.staticTexts["65"]
-        let bpmLabel = app.staticTexts["BPM"]
-        
-        XCTAssertTrue(app.staticTexts["Your heart rate is"].waitForExistence(timeout: 5))
-        XCTAssertTrue(step4Of6StaticText.exists)
-        XCTAssertTrue(allDoneHeartRateText.exists)
-        XCTAssertTrue(heartRate65.exists)
-        XCTAssertTrue(bpmLabel.exists)
+        // Capture heart rate
+        runTest_HeartRateStep(app: app, progressLabel: step4Of6StaticText, feedbackLabel: app.staticTexts["Your heart rate is"])
         app.buttons["Next"].tap()
 
         // -- Step 5 - stair step
@@ -263,27 +209,45 @@ class CardioUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Stand still for 1 minute"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Press to Start"].exists)
-        capturestartbuttonButton.tap()
         
-        // Heart rate capture
-        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
-        XCTAssertTrue(step6Of6StaticText.exists)
-        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
-        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
-        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
-        
-        // Heart rate feedback
-        XCTAssertTrue(app.staticTexts["Your heart rate changed to"].waitForExistence(timeout: 5))
-        XCTAssertTrue(step6Of6StaticText.exists)
-        XCTAssertTrue(allDoneHeartRateText.exists)
-        XCTAssertTrue(heartRate65.exists)
-        XCTAssertTrue(bpmLabel.exists)
+        // Capture heart rate
+        runTest_HeartRateStep(app: app, progressLabel: step6Of6StaticText, feedbackLabel: app.staticTexts["Your heart rate changed to"])
         app.buttons["Next"].tap()
         
         // -- Completion
         XCTAssertTrue(app.staticTexts["Great job!"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Your heart rate changed by"].exists)
-        XCTAssertTrue(bpmLabel.exists)
+        XCTAssertTrue(app.staticTexts["BPM"].exists)
         app.buttons["Done"].tap()
+    }
+    
+    func runTest_HeartRateStep(app: XCUIApplication, progressLabel: XCUIElement, feedbackLabel: XCUIElement) {
+        
+        let capturestartbuttonButton = app.buttons["captureStartButton"]
+        capturestartbuttonButton.tap()
+
+        let initialHeartRateText = app.staticTexts["Gently cover both the camera and flash with your finger."]
+        let halfWayHeartRateText = app.staticTexts["You’re half way there!"]
+        let fifteenLeftHeartRateText = app.staticTexts["Just 15 seconds left"]
+        let allDoneHeartRateText = app.staticTexts["You’re all done!"]
+        
+        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
+        XCTAssertTrue(progressLabel.exists)
+        sleep(30)
+        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 5))
+        sleep(10)
+        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 10))
+        sleep(10)
+        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 10))
+        
+        // Heart rate feedback
+        let heartRate65 = app.staticTexts["65"]
+        let bpmLabel = app.staticTexts["BPM"]
+        
+        XCTAssertTrue(feedbackLabel.waitForExistence(timeout: 5))
+        XCTAssertTrue(progressLabel.exists)
+        XCTAssertTrue(allDoneHeartRateText.exists)
+        XCTAssertTrue(heartRate65.exists)
+        XCTAssertTrue(bpmLabel.exists)
     }
 }
