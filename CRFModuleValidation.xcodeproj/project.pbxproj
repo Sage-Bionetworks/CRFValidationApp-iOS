@@ -64,10 +64,6 @@
 		FF47124B1FCF98180052E5E3 /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
 		FF47124C1FCF981B0052E5E3 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
 		FF4712511FCF99150052E5E3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4712501FCF99150052E5E3 /* TableViewController.swift */; };
-		FF4712521FCFA0F90052E5E3 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; };
-		FF4712531FCFA0F90052E5E3 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FF4712571FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; };
-		FF4712581FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */; };
 		FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */; };
 		FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */; };
@@ -91,14 +87,18 @@
 		FF77525B1F70A475004925B8 /* crf-module.pem in Resources */ = {isa = PBXBuildFile; fileRef = FF77525A1F70A475004925B8 /* crf-module.pem */; };
 		FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752831F722C95004925B8 /* UIColor+CMAdditions.swift */; };
 		FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752851F722CB4004925B8 /* UIColor+BridgeMapping.swift */; };
-		FF78FC6A1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; };
-		FF78FC6B1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FF78FC6E1FA3FE9400B8D42C /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; };
-		FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
 		FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
 		FF88D5051FB66D0D003BB844 /* Background_Survey.json in Resources */ = {isa = PBXBuildFile; fileRef = FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */; };
 		FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */; };
+		FFA0E4521FD117A400C36AE7 /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; };
+		FFA0E4531FD117A400C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFA0E4561FD117B900C36AE7 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; };
+		FFA0E4571FD117B900C36AE7 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFA0E45A1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; };
+		FFA0E45B1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFA0E45E1FD1194E00C36AE7 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; };
+		FFA0E45F1FD1194E00C36AE7 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
@@ -170,61 +170,89 @@
 			remoteGlobalIDString = FF47120C1FCF95D40052E5E3;
 			remoteInfo = CRFModuleTestApp;
 		};
-		FF4712541FCFA0F90052E5E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FF72B2301F6859D3004C6F15;
-			remoteInfo = ResearchSuite;
-		};
-		FF4712591FCFA10D0052E5E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FF443E151F7AC21900F43BE7;
-			remoteInfo = ResearchSuiteUI;
-		};
-		FF78FC5D1FA3FE0200B8D42C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FF443E161F7AC21900F43BE7;
-			remoteInfo = ResearchSuiteUI;
-		};
-		FF78FC5F1FA3FE0200B8D42C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FF443E1F1F7AC21900F43BE7;
-			remoteInfo = ResearchSuiteUITests;
-		};
-		FF78FC661FA3FE1E00B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E43E1FD1179800C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = FF72B2311F6859D3004C6F15;
-			remoteInfo = ResearchSuite;
+			remoteGlobalIDString = FF8B53141FCE678E006B6937;
+			remoteInfo = "ResearchSuite (iOS)";
 		};
-		FF78FC681FA3FE1E00B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E4401FD1179800C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = FF72B23A1F6859D3004C6F15;
-			remoteInfo = ResearchSuiteTests;
+			remoteGlobalIDString = FF8B531C1FCE678E006B6937;
+			remoteInfo = ResearchSuiteTests_iOS;
 		};
-		FF78FC6C1FA3FE9400B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E4421FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF8B53301FCE67AA006B6937;
+			remoteInfo = "ResearchSuite (watchOS)";
+		};
+		FFA0E4441FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF8B533D1FCE67C7006B6937;
+			remoteInfo = "ResearchSuite (tvOS)";
+		};
+		FFA0E4461FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF8B53451FCE67C8006B6937;
+			remoteInfo = ResearchSuiteTests_tvOS;
+		};
+		FFA0E44C1FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FFF2D9381FCF415E007258F8;
+			remoteInfo = "ResearchSuiteUI (iOS)";
+		};
+		FFA0E44E1FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FFF2D9401FCF415E007258F8;
+			remoteInfo = ResearchSuiteUITests_iOS;
+		};
+		FFA0E4501FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FFF2D9701FCF41BF007258F8;
+			remoteInfo = "ResearchSuiteUI (watchOS)";
+		};
+		FFA0E4541FD117A400C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = FF443E151F7AC21900F43BE7;
-			remoteInfo = ResearchSuiteUI;
+			remoteGlobalIDString = FFF2D9371FCF415E007258F8;
+			remoteInfo = "ResearchSuiteUI (iOS)";
 		};
-		FF78FC701FA3FE9400B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E4581FD117B900C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = FF72B2301F6859D3004C6F15;
-			remoteInfo = ResearchSuite;
+			remoteGlobalIDString = FF8B53131FCE678E006B6937;
+			remoteInfo = "ResearchSuite (iOS)";
+		};
+		FFA0E45C1FD1194D00C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FFF2D9371FCF415E007258F8;
+			remoteInfo = "ResearchSuiteUI (iOS)";
+		};
+		FFA0E4601FD1194E00C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FF8B53131FCE678E006B6937;
+			remoteInfo = "ResearchSuite (iOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -237,9 +265,9 @@
 			files = (
 				60F7A2101E89D0B200B123FA /* ResearchKit.framework in Embed Frameworks */,
 				60F7A2131E89D0B200B123FA /* ResearchUXFactory.framework in Embed Frameworks */,
-				FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */,
+				FFA0E4571FD117B900C36AE7 /* ResearchSuite.framework in Embed Frameworks */,
 				60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */,
-				FF78FC6B1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Embed Frameworks */,
+				FFA0E4531FD117A400C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */,
 				60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -251,8 +279,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FF4712581FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Embed Frameworks */,
-				FF4712531FCFA0F90052E5E3 /* ResearchSuite.framework in Embed Frameworks */,
+				FFA0E45F1FD1194E00C36AE7 /* ResearchSuite.framework in Embed Frameworks */,
+				FFA0E45B1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,11 +380,11 @@
 				FF4043FA1FBAA1F1000EF2A0 /* AVFoundation.framework in Frameworks */,
 				60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */,
 				60F7A20F1E89D0B200B123FA /* ResearchKit.framework in Frameworks */,
-				FF78FC6E1FA3FE9400B8D42C /* ResearchSuite.framework in Frameworks */,
 				60F7A2121E89D0B200B123FA /* ResearchUXFactory.framework in Frameworks */,
 				60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */,
-				FF78FC6A1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Frameworks */,
 				FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */,
+				FFA0E4521FD117A400C36AE7 /* ResearchSuiteUI.framework in Frameworks */,
+				FFA0E4561FD117B900C36AE7 /* ResearchSuite.framework in Frameworks */,
 				60F7A2151E89D0B200B123FA /* BridgeSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,10 +401,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF6D6C7B1FD0A9AF002B514A /* MapKit.framework in Frameworks */,
-				FF4712571FCFA10D0052E5E3 /* ResearchSuiteUI.framework in Frameworks */,
-				FF4712521FCFA0F90052E5E3 /* ResearchSuite.framework in Frameworks */,
 				FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */,
+				FFA0E45E1FD1194E00C36AE7 /* ResearchSuite.framework in Frameworks */,
 				FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */,
+				FFA0E45A1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Frameworks */,
 				FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,8 +637,9 @@
 		FF78FC551FA3FE0200B8D42C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */,
-				FF78FC601FA3FE0200B8D42C /* ResearchSuiteUITests.xctest */,
+				FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */,
+				FFA0E44F1FD1179800C36AE7 /* ResearchSuiteUITests_iOS.xctest */,
+				FFA0E4511FD1179800C36AE7 /* ResearchSuiteUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -618,8 +647,11 @@
 		FF78FC621FA3FE1E00B8D42C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */,
-				FF78FC691FA3FE1E00B8D42C /* ResearchSuiteTests.xctest */,
+				FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */,
+				FFA0E4411FD1179800C36AE7 /* ResearchSuiteTests_iOS.xctest */,
+				FFA0E4431FD1179800C36AE7 /* ResearchSuite.framework */,
+				FFA0E4451FD1179800C36AE7 /* ResearchSuite.framework */,
+				FFA0E4471FD1179800C36AE7 /* ResearchSuiteTests_tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -669,8 +701,8 @@
 			);
 			dependencies = (
 				60F7A21A1E89D0B200B123FA /* PBXTargetDependency */,
-				FF78FC6D1FA3FE9400B8D42C /* PBXTargetDependency */,
-				FF78FC711FA3FE9400B8D42C /* PBXTargetDependency */,
+				FFA0E4551FD117A400C36AE7 /* PBXTargetDependency */,
+				FFA0E4591FD117B900C36AE7 /* PBXTargetDependency */,
 			);
 			name = CRFModuleValidation;
 			productName = CRFModuleValidation;
@@ -707,8 +739,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				FF4712551FCFA0F90052E5E3 /* PBXTargetDependency */,
-				FF47125A1FCFA10D0052E5E3 /* PBXTargetDependency */,
+				FFA0E45D1FD1194D00C36AE7 /* PBXTargetDependency */,
+				FFA0E4611FD1194E00C36AE7 /* PBXTargetDependency */,
 			);
 			name = CRFModuleTestApp;
 			productName = CRFModuleTestApp;
@@ -862,32 +894,60 @@
 			remoteRef = 60F7A20C1E89D01100B123FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ResearchSuiteUI.framework;
-			remoteRef = FF78FC5D1FA3FE0200B8D42C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FF78FC601FA3FE0200B8D42C /* ResearchSuiteUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ResearchSuiteUITests.xctest;
-			remoteRef = FF78FC5F1FA3FE0200B8D42C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */ = {
+		FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ResearchSuite.framework;
-			remoteRef = FF78FC661FA3FE1E00B8D42C /* PBXContainerItemProxy */;
+			remoteRef = FFA0E43E1FD1179800C36AE7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FF78FC691FA3FE1E00B8D42C /* ResearchSuiteTests.xctest */ = {
+		FFA0E4411FD1179800C36AE7 /* ResearchSuiteTests_iOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = ResearchSuiteTests.xctest;
-			remoteRef = FF78FC681FA3FE1E00B8D42C /* PBXContainerItemProxy */;
+			path = ResearchSuiteTests_iOS.xctest;
+			remoteRef = FFA0E4401FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4431FD1179800C36AE7 /* ResearchSuite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuite.framework;
+			remoteRef = FFA0E4421FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4451FD1179800C36AE7 /* ResearchSuite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuite.framework;
+			remoteRef = FFA0E4441FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4471FD1179800C36AE7 /* ResearchSuiteTests_tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchSuiteTests_tvOS.xctest;
+			remoteRef = FFA0E4461FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuiteUI.framework;
+			remoteRef = FFA0E44C1FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E44F1FD1179800C36AE7 /* ResearchSuiteUITests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchSuiteUITests_iOS.xctest;
+			remoteRef = FFA0E44E1FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4511FD1179800C36AE7 /* ResearchSuiteUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuiteUI.framework;
+			remoteRef = FFA0E4501FD1179800C36AE7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1078,25 +1138,25 @@
 			target = FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */;
 			targetProxy = FF4712211FCF95D40052E5E3 /* PBXContainerItemProxy */;
 		};
-		FF4712551FCFA0F90052E5E3 /* PBXTargetDependency */ = {
+		FFA0E4551FD117A400C36AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ResearchSuite;
-			targetProxy = FF4712541FCFA0F90052E5E3 /* PBXContainerItemProxy */;
+			name = "ResearchSuiteUI (iOS)";
+			targetProxy = FFA0E4541FD117A400C36AE7 /* PBXContainerItemProxy */;
 		};
-		FF47125A1FCFA10D0052E5E3 /* PBXTargetDependency */ = {
+		FFA0E4591FD117B900C36AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ResearchSuiteUI;
-			targetProxy = FF4712591FCFA10D0052E5E3 /* PBXContainerItemProxy */;
+			name = "ResearchSuite (iOS)";
+			targetProxy = FFA0E4581FD117B900C36AE7 /* PBXContainerItemProxy */;
 		};
-		FF78FC6D1FA3FE9400B8D42C /* PBXTargetDependency */ = {
+		FFA0E45D1FD1194D00C36AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ResearchSuiteUI;
-			targetProxy = FF78FC6C1FA3FE9400B8D42C /* PBXContainerItemProxy */;
+			name = "ResearchSuiteUI (iOS)";
+			targetProxy = FFA0E45C1FD1194D00C36AE7 /* PBXContainerItemProxy */;
 		};
-		FF78FC711FA3FE9400B8D42C /* PBXTargetDependency */ = {
+		FFA0E4611FD1194E00C36AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ResearchSuite;
-			targetProxy = FF78FC701FA3FE9400B8D42C /* PBXContainerItemProxy */;
+			name = "ResearchSuite (iOS)";
+			targetProxy = FFA0E4601FD1194E00C36AE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -68,7 +68,7 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
 
 public struct CRFHeartRateSample : RSDSampleRecord {
     public let uptime: TimeInterval
-    public let timestamp: TimeInterval
+    public let timestamp: TimeInterval?
     public let timestampDate: Date?
     public let stepPath: String
     
