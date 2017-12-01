@@ -329,7 +329,7 @@
         <!--Task Introduction Step-->
         <scene sceneID="7Yw-yh-3dv">
             <objects>
-                <viewController storyboardIdentifier="TaskIntroduction" id="vQC-w0-27l" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskIntroduction" id="vQC-w0-27l" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6si-CK-Fg1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -450,7 +450,7 @@
         <!--Task Introduction Step-->
         <scene sceneID="UPq-3D-4TB">
             <objects>
-                <viewController storyboardIdentifier="TaskIntroductionStressTest" id="yC5-HI-89H" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskIntroductionStressTest" id="yC5-HI-89H" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wjK-KS-TQT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -571,7 +571,7 @@
         <!--Run Distance Step View Controller-->
         <scene sceneID="4iU-6i-pqf">
             <objects>
-                <viewController storyboardIdentifier="RunDistance" id="9tn-dn-sHC" customClass="CRFRunDistanceStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RunDistance" id="9tn-dn-sHC" customClass="CRFRunDistanceStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7PO-3V-yb7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -727,7 +727,7 @@
         <!--Stair Step View Controller-->
         <scene sceneID="rb0-U5-PVx">
             <objects>
-                <viewController storyboardIdentifier="StairStep" id="cJG-FV-7cK" customClass="CRFStairStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StairStep" id="cJG-FV-7cK" customClass="CRFStairStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ozR-fT-mKP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -861,7 +861,7 @@
         <!--Heart Rate Step View Controller-->
         <scene sceneID="4cP-Aq-OdA">
             <objects>
-                <viewController storyboardIdentifier="HeartRate" id="8Jc-wF-FNR" customClass="CRFHeartRateStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeartRate" id="8Jc-wF-FNR" customClass="CRFHeartRateStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JaM-On-OUa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1025,7 +1025,7 @@
         <!--Heart Rate Result Step View Controller-->
         <scene sceneID="D1g-8p-UV0">
             <objects>
-                <viewController storyboardIdentifier="HeartRateResult" id="MOh-xR-sxc" customClass="CRFHeartRateResultStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeartRateResult" id="MOh-xR-sxc" customClass="CRFHeartRateResultStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R8n-Xp-NIa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1195,7 +1195,7 @@
         <!--Run Distance Result Step View Controller-->
         <scene sceneID="5Qs-b6-WnT">
             <objects>
-                <viewController storyboardIdentifier="Completed12MT" id="1nS-Gh-N0H" customClass="CRFRunDistanceResultStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Completed12MT" id="1nS-Gh-N0H" customClass="CRFRunDistanceResultStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o8s-5a-jK1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1320,7 +1320,7 @@
         <!--Stair Step Result Step View Controller-->
         <scene sceneID="3wc-dU-9uJ">
             <objects>
-                <viewController storyboardIdentifier="CompletedStairStep" id="PQJ-uW-gmG" customClass="CRFStairStepResultStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompletedStairStep" id="PQJ-uW-gmG" customClass="CRFStairStepResultStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f8M-aB-qop">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1438,7 +1438,7 @@
         <!--Camera Step View Controller-->
         <scene sceneID="pOS-Qe-R1p">
             <objects>
-                <viewController storyboardIdentifier="TakePhoto" id="40z-TP-I3S" customClass="CRFCameraStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TakePhoto" id="40z-TP-I3S" customClass="CRFCameraStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="30u-nx-BEj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1447,9 +1447,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL8-5Y-LjM" customClass="CRFCameraShutterButton" customModule="CRFModuleValidation" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL8-5Y-LjM" customClass="CRFCameraShutterButton" customModule="CRFModuleTestApp" customModuleProvider="target">
                                 <rect key="frame" x="127.5" y="423" width="65" height="65"/>
                                 <color key="backgroundColor" name="white"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Capture Button" label="Capture Button"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" placeholder="YES" id="CLq-dg-qFK"/>
                                     <constraint firstAttribute="height" constant="65" id="ZeB-nd-YR6"/>

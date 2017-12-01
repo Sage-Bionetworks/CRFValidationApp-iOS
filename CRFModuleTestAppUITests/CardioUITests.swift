@@ -153,4 +153,137 @@ class CardioUITests: XCTestCase {
         
         app.buttons["Done"].tap()
     }
+    
+    func testStairStep() {
+        
+        let app = XCUIApplication()
+        app.tables/*@START_MENU_TOKEN@*/.staticTexts["Cardio Stair Step"]/*[[".cells.staticTexts[\"Cardio Stair Step\"]",".staticTexts[\"Cardio Stair Step\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+
+        // -- Introduction
+        XCTAssertTrue(app.staticTexts["Stair Step"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["5 minutes"].exists)
+        
+        // Check learn more text
+        app.buttons["infoIcon"].tap()
+        let webViewsQuery = app.webViews
+        XCTAssertTrue(webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["About Stair Step test"]/*[[".otherElements[\"Stair Step\"]",".otherElements[\"About Stair Step test\"]",".staticTexts[\"1\"]",".staticTexts[\"About Stair Step test\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 2))
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Why this test"]/*[[".otherElements[\"Stair Step\"]",".otherElements[\"Why this test\"]",".staticTexts[\"2\"]",".staticTexts[\"Why this test\"]"],[[[-1,3],[-1,1,2],[-1,0,1]],[[-1,3],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Recording your heart rate recovery after going up and down a stair step for 3 minutes has been used to assess ones cardiovascular fitness level."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"Recording your heart rate recovery after going up and down a stair step for 3 minutes has been used to assess ones cardiovascular fitness level.\"]",".staticTexts[\"Recording your heart rate recovery after going up and down a stair step for 3 minutes has been used to assess ones cardiovascular fitness level.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["What to do"]/*[[".otherElements[\"Stair Step\"]",".otherElements[\"What to do\"]",".staticTexts[\"2\"]",".staticTexts[\"What to do\"]"],[[[-1,3],[-1,1,2],[-1,0,1]],[[-1,3],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Find a stair step that you are comfortable going up and down for 3 minutes (can be inside or outside)."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"Find a stair step that you are comfortable going up and down for 3 minutes (can be inside or outside).\"]",".staticTexts[\"Find a stair step that you are comfortable going up and down for 3 minutes (can be inside or outside).\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Take a picture of the step that you will being going up and down."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"Take a picture of the step that you will being going up and down.\"]",".staticTexts[\"Take a picture of the step that you will being going up and down.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Measure your heart rate within this app before running for 12 minutes."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"Measure your heart rate within this app before running for 12 minutes.\"]",".staticTexts[\"Measure your heart rate within this app before running for 12 minutes.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Step up and then down a single step at a speed of 24 steps per minute for 3 minutes."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"Step up and then down a single step at a speed of 24 steps per minute for 3 minutes.\"]",".staticTexts[\"Step up and then down a single step at a speed of 24 steps per minute for 3 minutes.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Measure your heart rate immediately after the 3 minute stair step session."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"Measure your heart rate immediately after the 3 minute stair step session.\"]",".staticTexts[\"Measure your heart rate immediately after the 3 minute stair step session.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        // Continue to next step
+        app.navigationBars.buttons["Close"].tap()
+        XCTAssertTrue(app.staticTexts["Stair Step"].waitForExistence(timeout: 2))
+        app.buttons["Start"].tap()
+        
+        // -- Heart risk
+        let heartRiskInstruction = app.tables["Potential heart risk, Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you."]
+        XCTAssertTrue(heartRiskInstruction.waitForExistence(timeout: 2))
+        app.buttons["Got it"].tap()
+        
+        // -- Step 1 - take a picture
+        XCTAssertTrue(app.staticTexts["Step 1 of 6"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Take a picture of your step"].exists)
+        XCTAssertTrue(app.staticTexts["Start by taking a picture with your phone of the step with your fitibit next to the step that you will be using."].exists)
+        app.buttons["Capture picture"].tap()
+        app.buttons["Capture Button"].tap()
+        
+        // -- Step 2 - fitbit instruction
+        XCTAssertTrue(app.staticTexts["Step 2 of 6"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Wearing your fitbit?"].exists)
+        XCTAssertTrue(app.staticTexts["Before continuing on with the Stair Step test, please make sure you have your fitbit on your wrist."].exists)
+        app.buttons["It’s on"].tap()
+        
+        // -- Step 3 - volumn up instruction
+        XCTAssertTrue(app.staticTexts["Step 3 of 6"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Volume turned up?"].exists)
+        XCTAssertTrue(app.staticTexts["Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving."].exists)
+        app.buttons["It’s turned on"].tap()
+        
+        // -- Step 4 - Heart rate before
+        let step4Of6StaticText = app.staticTexts["Step 4 of 6"]
+        XCTAssertTrue(step4Of6StaticText.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Capture heart rate"].exists)
+        XCTAssertTrue(app.staticTexts["Use your finger to cover the camera and flash on the back of your phone."].exists)
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
+        
+        let capturestartbuttonButton = app.buttons["captureStartButton"]
+        capturestartbuttonButton.tap()
+        
+        // Heart rate capture
+        let initialHeartRateText = app.staticTexts["Gently cover both the camera and flash with your finger."]
+        let halfWayHeartRateText = app.staticTexts["You’re half way there!"]
+        let fifteenLeftHeartRateText = app.staticTexts["Just 15 seconds left"]
+        let allDoneHeartRateText = app.staticTexts["You’re all done!"]
+        
+        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
+        XCTAssertTrue(step4Of6StaticText.exists)
+        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
+        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
+        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
+        
+        // Heart rate feedback
+        let heartRate65 = app.staticTexts["65"]
+        let bpmLabel = app.staticTexts["BPM"]
+        
+        XCTAssertTrue(app.staticTexts["Your heart rate is"].waitForExistence(timeout: 5))
+        XCTAssertTrue(step4Of6StaticText.exists)
+        XCTAssertTrue(allDoneHeartRateText.exists)
+        XCTAssertTrue(heartRate65.exists)
+        XCTAssertTrue(bpmLabel.exists)
+        app.buttons["Next"].tap()
+
+        // -- Step 5 - stair step
+        let step5Of6StaticText = app.staticTexts["Step 5 of 6"]
+        XCTAssertTrue(step5Of6StaticText.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Please step with your phone"].exists)
+        XCTAssertTrue(app.staticTexts["You will step up and down for 3 minutes. Try to step with the pace."].exists)
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
+        app.buttons["stairStepButton"].tap()
+        
+        // count down step
+        XCTAssertTrue(app.staticTexts["Start in"].waitForExistence(timeout: 2))
+        XCTAssertTrue(step5Of6StaticText.exists)
+        sleep(10)
+        
+        // stair step
+        XCTAssertTrue(app.staticTexts["Up"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Down"].waitForExistence(timeout: 5))
+        sleep(160)
+        XCTAssertTrue(app.staticTexts["Stand still"].waitForExistence(timeout: 25))
+        
+        // -- Step 6 - Heart rate after
+        let step6Of6StaticText = app.staticTexts["Step 6 of 6"]
+        XCTAssertTrue(step6Of6StaticText.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Stand still for 1 minute"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
+        capturestartbuttonButton.tap()
+        
+        // Heart rate capture
+        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
+        XCTAssertTrue(step6Of6StaticText.exists)
+        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
+        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
+        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
+        
+        // Heart rate feedback
+        XCTAssertTrue(app.staticTexts["Your heart rate changed to"].waitForExistence(timeout: 5))
+        XCTAssertTrue(step6Of6StaticText.exists)
+        XCTAssertTrue(allDoneHeartRateText.exists)
+        XCTAssertTrue(heartRate65.exists)
+        XCTAssertTrue(bpmLabel.exists)
+        app.buttons["Next"].tap()
+        
+        // -- Completion
+        XCTAssertTrue(app.staticTexts["Great job!"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Your heart rate changed by"].exists)
+        XCTAssertTrue(bpmLabel.exists)
+        app.buttons["Done"].tap()
+    }
 }

@@ -44,9 +44,20 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
     private var _videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var _capturePhotoOutput: AVCapturePhotoOutput?
     private let processingQueue = DispatchQueue(label: "org.sagebase.ResearchSuite.camera.processing")
+
+    public let isSimulator: Bool = {
+        #if (arch(i386) || arch(x86_64)) && !os(OSX)
+            return true
+        #else
+            return false
+        #endif
+    }()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Exit early if this is a simulator run
+        guard !isSimulator else { return }
         
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         do {
