@@ -24,6 +24,8 @@
 	<string>This app uses your camera to measure heart rate and take a picture of your step.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app uses background location during the 12 Minute Run or Walk Test</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses background location during the 12 Minute Run or Walk Test</string>
 	<key>NSMotionUsageDescription</key>
 	<string>This app records your motion while doing the stair step test.</string>
 	<key>UIBackgroundModes</key>
