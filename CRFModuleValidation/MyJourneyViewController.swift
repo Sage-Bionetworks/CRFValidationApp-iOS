@@ -136,7 +136,7 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             newSchedules != scheduleSections,
             let dayOne = scheduledActivityManager.dayOne
         else {
-            debugPrint("-- reloadFinished(\(String(describing:sender)). Exit early with \(newSchedules.count) schedules.")
+            debugPrint("-- reloadFinished(\(String(describing:sender)). Exit early with \(newSchedules.count) schedules and scheduledActivityManager.dayOne is \(String(describing:scheduledActivityManager.dayOne)).")
             return
         }
         
@@ -376,8 +376,7 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         if let sectionCell = cell as? MyJourneySectionTableViewCell, let scheduleSection = self.scheduleSection(at: indexPath) {
             sectionCell.configureCell(with: scheduleSection,
                                       isFullSize: usesFullSize(for: indexPath.section),
-                                      isPast: indexPath.section > self.todaySectionIndex,
-                                      isYesterday: (indexPath.section - 1) == self.todaySectionIndex)
+                                      isPast: indexPath.section > self.todaySectionIndex)
             sectionCell.adjustInsets()
         }
         else if let headerCell = cell as? MyJourneyTodayHeaderView {
@@ -594,7 +593,7 @@ class MyJourneySectionTableViewCell: UITableViewCell {
         }
     }
     
-    func configureCell(with section: ScheduleSection, isFullSize: Bool, isPast: Bool, isYesterday: Bool) {
+    func configureCell(with section: ScheduleSection, isFullSize: Bool, isPast: Bool) {
         guard (self.section != section) || (self.isFullSize != isFullSize) else { return }
         
         // Only flag layout change if isFullSize has changed
@@ -610,7 +609,6 @@ class MyJourneySectionTableViewCell: UITableViewCell {
             if !cell.isHidden {
                 let item = section.items[index]
                 cell.isComplete = item.isCompleted
-                cell.isYesterday = isYesterday
                 cell.imageView.image = item.taskGroup.iconImage
                 cell.titleLabel.text = item.taskGroup.journeyTitle
                 cell.detailLabel.text = item.isCompleted ?
@@ -633,10 +631,6 @@ private let sectionInsets = UIEdgeInsets(top: 2, left: 0, bottom: 8, right: 0)
 
 class MyJourneyActivityViewCell: UIView {
     
-    // Since there is no connection with the cell and the task group segue it will perform when tapped,
-    // we must use the button tag to identify the special case of yesterday's cell being tapped
-    static let isYesterdayButtonTagFactor = 10
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var checkmark: UIImageView!
     @IBOutlet weak var borderView: UIView!
@@ -648,7 +642,6 @@ class MyJourneyActivityViewCell: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     
-    var isYesterday: Bool = false
     var isPast: Bool = false
     var isComplete: Bool = false
     var isFullSize: Bool = false
@@ -657,15 +650,7 @@ class MyJourneyActivityViewCell: UIView {
         
         self.backgroundColor = UIColor.clear
         
-        self.button.isHidden = !(isFullSize || isYesterday)
-        // Make sure if we change the button tag to indicate "isYesterday" we change it back when no
-        // longer applicable, because the cells will be re-used
-        // the conversation formula is simply yesterdayTag = (todayTag + 1) * factor
-        if self.isYesterday && self.button.tag < MyJourneyActivityViewCell.isYesterdayButtonTagFactor {
-            self.button.tag = (self.button.tag + 1) * MyJourneyActivityViewCell.isYesterdayButtonTagFactor
-        } else if !self.isYesterday && self.button.tag >= MyJourneyActivityViewCell.isYesterdayButtonTagFactor {
-            self.button.tag = (self.button.tag / MyJourneyActivityViewCell.isYesterdayButtonTagFactor) - 1
-        }
+        self.button.isHidden = !isFullSize
         
         self.titleLabel.textColor = UIColor(named: "darkGrayText")
         self.detailLabel.textColor = UIColor(named: "blueyGrey")
