@@ -401,28 +401,15 @@ struct ScheduleItem {
             }
         }
         else if taskGroup.identifier.hasPrefix("clinicDay") {
-            // On any other day, none of the clinic visit task groups are valid.
+            // on any other day, none of the clinic visit task groups are valid
             return nil
         }
-        else {
-            // Do nothing. On a non-clinic day, only show tasks scheduled on that day.
+        else if taskGroup.filtered(activities, on: date).count == 0 {
+            // On a non-clinic day, only show tasks scheduled on that day
+            return nil
         }
         
         let isCompleted = (taskGroup.taskIdentifiers.count == filteredActivities.count)
-        
-        if let schedule = Schedule(taskGroup: taskGroup, date: date, activities: activities, dayOne: dayOne) {
-            // If there is a schedule, then look to see if the schedule is set for this day, otherwise, return nil
-            let thisDayOfWeek = Calendar.gregorian.component(.weekday, from: date)
-            if (!schedule.daysOfWeek.contains(thisDayOfWeek)) {
-                // If it isn't the proper day of the week, then don't show the task group
-                return nil
-            }
-        }
-        else if taskGroup.filtered(activities, on: date).count == 0 {
-            // If there is no schedule, then return nil. This is not included in the task groups shown
-            // in the history or future schedule
-            return nil
-        }
         
         self.date = date
         self.taskGroup = taskGroup

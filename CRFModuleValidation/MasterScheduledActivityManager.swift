@@ -79,7 +79,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     }
     
     var dayOne: Date?
-    var today = Date()
     
     // When true, the completion step for all scheduling tasks will be skipped
     var alwaysIgnoreTimingIntroductionStepForScheduling = false
@@ -102,13 +101,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         // Set days behind and days ahead to only cache today's activities
         self.daysBehind = 0
         self.daysAhead = 15
-    }
-    
-    func resetScheduleFilter() {
-        let todayStart = Date().startOfDay() as NSDate
-        let finishedTodayOrFuture = NSPredicate(format: "finishedOn == nil OR finishedOn >= %@", todayStart)
-        let expiresTodayOrFuture = NSPredicate(format: "expiresOn == nil OR expiresOn >= %@", todayStart)
-        self.scheduleFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [finishedTodayOrFuture, expiresTodayOrFuture])
     }
     
     func completedCount(for taskGroup: TaskGroup) -> Int {
@@ -134,10 +126,7 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         dayOne = nil
     }
     
-    override func reloadData() {
-        // Unless today's date has changed, rely upon the previously loaded data
-        guard !Calendar.current.isDateInToday(today) || scheduleSections.count == 0 else { return }
-        
+    override func reloadData() {        
         forceReload()
     }
     
@@ -145,10 +134,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     
         // Exit early if loading
         guard !self.isReloading else { return }
-        
-        // Mark the date as today and reset the filter
-        resetScheduleFilter()
-        today = Date()
         
         // load schedules
         loadScheduledActivities(from: startStudy, to: scheduleAhead)

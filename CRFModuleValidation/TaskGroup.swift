@@ -97,7 +97,8 @@ struct TaskGroup {
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
                                    taskIdentifiers: [.cardioStairStep,
-                                                     .usabilitySurveys,
+                                                     .usabilitySurvey,
+                                                     .burdenSurvey,
                                                      .cardio12MT])
     
     static let clinicDay14alt = TaskGroup(identifier: "clinicDay14alt",
@@ -106,7 +107,8 @@ struct TaskGroup {
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
-                                   taskIdentifiers: [.usabilitySurveys,
+                                   taskIdentifiers: [.usabilitySurvey,
+                                                     .burdenSurvey,
                                                      .cardioStressTest])
     
     /**
@@ -153,7 +155,8 @@ struct TaskGroup {
                                          scheduleTaskIdentifier: nil,
                                          taskIdentifiers: [.backgroundSurvey,
                                                            .cardioStressTest,
-                                                           .usabilitySurveys,
+                                                           .usabilitySurvey,
+                                                           .burdenSurvey,
                                                            .heartRateMeasurement,
                                                            .cardio12MT,
                                                            .cardioStairStep])
@@ -169,7 +172,8 @@ struct TaskGroup {
                                          scheduleTaskIdentifier: nil,
                                          taskIdentifiers: [.backgroundSurvey,
                                                            .cardioStressTest,
-                                                           .usabilitySurveys,
+                                                           .usabilitySurvey,
+                                                           .burdenSurvey,
                                                            .heartRateMeasurement,
                                                            .cardio12MT,
                                                            .cardioStairStep])
@@ -187,16 +191,38 @@ struct TaskGroup {
         return taskIdentifiers.contains(taskId)
     }
     
+    func scheduledPredicate(on date:Date) -> NSPredicate {
+        // unless date is in the past, we can use the standard scheduledPredicate
+        let startOfDay = date.startOfDay()
+        guard startOfDay.compare(Date().startOfDay()) == .orderedAscending else {
+            return SBBScheduledActivity.scheduledPredicate(on: date)
+        }
+        
+        // if it's in the past, we want to show an activity on the day completed or the day originally scheduled,
+        // not the day it expired
+        let startOfNextDay = startOfDay.addingNumberOfDays(1)
+        
+        // Scheduled for this date or prior
+        let scheduledKey = #keyPath(SBBScheduledActivity.scheduledOn)
+        let scheduledOnThisDay = NSPredicate(format: "%K <> nil AND %K >= %@ AND %K < %@", scheduledKey, scheduledKey, startOfDay as CVarArg, scheduledKey, startOfNextDay as CVarArg)
+        let unfinished = SBBScheduledActivity.unfinishedPredicate()
+        let finishedOnThisDay = SBBScheduledActivity.finishedPredicate(on: date)
+        
+        // build a filter for a day in the past that includes scheduled on that day OR completed on that day
+        let scheduledThisDayAndNotFinished = NSCompoundPredicate(andPredicateWithSubpredicates: [unfinished, scheduledOnThisDay])
+        return NSCompoundPredicate(orPredicateWithSubpredicates: [finishedOnThisDay, scheduledThisDayAndNotFinished])
+    }
+    
     func scheduleFilterPredicate(for date: Date) -> NSPredicate {
-        let dateFilter = SBBScheduledActivity.scheduledPredicate(on: date)
+        let dateFilter = scheduledPredicate(on: date)
         let taskFilter = tasksPredicate()
         if identifier.hasPrefix("clinicDay") {
             return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, dateFilter])
         }
         else {
             let scheduledKey = "scheduledOn"
-            let onDateOnlyFilter = NSPredicate(format: "%K == nil OR %K >= %@", scheduledKey, scheduledKey, date.startOfDay() as CVarArg)
-            return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, dateFilter, onDateOnlyFilter])
+            let onDateOnlyFilter = NSPredicate(format: "%K <> nil AND %K >= %@ AND %K < %@", scheduledKey, scheduledKey, date.startOfDay() as CVarArg, scheduledKey, date.addingNumberOfDays(1).startOfDay() as CVarArg)
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, onDateOnlyFilter])
         }
     }
     
@@ -217,22 +243,9 @@ struct TaskGroup {
         for schedule in activities {
             
             // Only add the schedule if it passes the predicate
-            guard predicate.evaluate(with: schedule),
-                let identifier = schedule.activityIdentifier
-            else {
-                continue
-            }
+            guard predicate.evaluate(with: schedule) else { continue }
             
-            // Only add one schedule - give preference to the schedule that is finished
-            if let previousIndex = foundActivities.index(where: { $0.activityIdentifier == identifier }) {
-                if schedule.finishedOn != nil && foundActivities[previousIndex].finishedOn == nil {
-                    foundActivities.remove(at: previousIndex)
-                    foundActivities.append(schedule)
-                }
-            }
-            else {
-                foundActivities.append(schedule)
-            }
+            foundActivities.append(schedule)
         }
         return foundActivities
     }
