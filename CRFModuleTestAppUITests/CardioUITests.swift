@@ -1,5 +1,5 @@
 //
-//  CardioStressTaskUITests.swift
+//  CardioUITests.swift
 //  CRFModuleTestAppUITests
 //
 //  Copyright © 2017 Sage Bionetworks. All rights reserved.
@@ -34,7 +34,7 @@
 
 import XCTest
 
-class CardioStressTaskUITests: XCTestCase {
+class CardioUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
@@ -58,12 +58,15 @@ class CardioStressTaskUITests: XCTestCase {
         
         let app = XCUIApplication()
         app.tables/*@START_MENU_TOKEN@*/.staticTexts["Cardio Stress"]/*[[".cells.staticTexts[\"Cardio Stress\"]",".staticTexts[\"Cardio Stress\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        app.staticTexts["Cardiovascular stress test"].tap()
-        app.staticTexts["20 minutes"].tap()
-        app.buttons["infoIcon"].tap()
         
+        // -- Introduction
+        XCTAssertTrue(app.staticTexts["Cardiovascular stress test"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["20 minutes"].exists)
+        
+        // Check learn more text
+        app.buttons["infoIcon"].tap()
         let webViewsQuery = app.webViews
-        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["About Cardiovascular Stress test"]/*[[".otherElements[\"Stair Step\"]",".otherElements[\"About Cardiovascular Stress test\"]",".staticTexts[\"1\"]",".staticTexts[\"About Cardiovascular Stress test\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
+        XCTAssertTrue(webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["About Cardiovascular Stress test"]/*[[".otherElements[\"Stair Step\"]",".otherElements[\"About Cardiovascular Stress test\"]",".staticTexts[\"1\"]",".staticTexts[\"About Cardiovascular Stress test\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 2))
         webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Why a stress test"]/*[[".otherElements[\"Stair Step\"]",".otherElements[\"Why a stress test\"]",".staticTexts[\"2\"]",".staticTexts[\"Why a stress test\"]"],[[[-1,3],[-1,1,2],[-1,0,1]],[[-1,3],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
         webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["It is used to determine how well your heart responds during times when it is working the hardest. Completing the test will provide data that scientists can use to assess the accuracy of digital versions of the tests."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"It is used to determine how well your heart responds during times when it is working the hardest. Completing the test will provide data that scientists can use to assess the accuracy of digital versions of the tests.\"]",".staticTexts[\"It is used to determine how well your heart responds during times when it is working the hardest. Completing the test will provide data that scientists can use to assess the accuracy of digital versions of the tests.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["What to do"]/*[[".otherElements[\"Stair Step\"]",".otherElements[\"What to do\"]",".staticTexts[\"2\"]",".staticTexts[\"What to do\"]"],[[[-1,3],[-1,1,2],[-1,0,1]],[[-1,3],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
@@ -75,56 +78,79 @@ class CardioStressTaskUITests: XCTestCase {
         webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["You’ll start off slowly on a stationary bicycle or treadmill. The speed and grade will be increased through the test duration."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"You’ll start off slowly on a stationary bicycle or treadmill. The speed and grade will be increased through the test duration.\"]",".staticTexts[\"You’ll start off slowly on a stationary bicycle or treadmill. The speed and grade will be increased through the test duration.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["You will be asked to continue until you feel exhausted."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"You will be asked to continue until you feel exhausted.\"]",".staticTexts[\"You will be asked to continue until you feel exhausted.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Your heart rate and breathing will continue to be monitored for a short while after the test."]/*[[".otherElements[\"Stair Step\"].staticTexts[\"Your heart rate and breathing will continue to be monitored for a short while after the test.\"]",".staticTexts[\"Your heart rate and breathing will continue to be monitored for a short while after the test.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        app.navigationBars["ResearchUXFactory.SBAWebView"].buttons["Close"].tap()
+        
+        // Continue to next step
+        app.navigationBars.buttons["Close"].tap()
+        XCTAssertTrue(app.staticTexts["Cardiovascular stress test"].waitForExistence(timeout: 2))
         app.buttons["Start"].tap()
         
+        // -- Step 1 - Heart Rate before
         let step1Of3StaticText = app.staticTexts["Step 1 of 3"]
-        step1Of3StaticText.tap()
-        app.staticTexts["Capture heart rate"].tap()
-        app.staticTexts["Use your finger to cover the camera and flash on the back of your phone."].tap()
-        
-        let pressToStartStaticText = app.staticTexts["Press to Start"]
-        pressToStartStaticText.tap()
+        XCTAssertTrue(step1Of3StaticText.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Capture heart rate"].exists)
+        XCTAssertTrue(app.staticTexts["Use your finger to cover the camera and flash on the back of your phone."].exists)
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
         
         let capturestartbuttonButton = app.buttons["captureStartButton"]
         capturestartbuttonButton.tap()
-        step1Of3StaticText.tap()
-        app.staticTexts["Please keep still"].tap()
-        app.staticTexts["You’re half way there!"].tap()
-        app.staticTexts["Just 15 seconds left"].tap()
         
-        let youReAllDoneStaticText = app.staticTexts["You’re all done!"]
-        youReAllDoneStaticText.tap()
-        step1Of3StaticText.tap()
-        youReAllDoneStaticText.tap()
-        app.staticTexts["Your heart rate is"].tap()
-        app.staticTexts["65"].tap()
-        app.staticTexts["BPM"].tap()
+        // Heart rate capture
+        let initialHeartRateText = app.staticTexts["Gently cover both the camera and flash with your finger."]
+        let halfWayHeartRateText = app.staticTexts["You’re half way there!"]
+        let fifteenLeftHeartRateText = app.staticTexts["Just 15 seconds left"]
+        let allDoneHeartRateText = app.staticTexts["You’re all done!"]
+        
+        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
+        XCTAssertTrue(step1Of3StaticText.exists)
+        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
+        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
+        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
+        
+        // Heart rate feedback
+        let heartRate65 = app.staticTexts["65"]
+        let bpmLabel = app.staticTexts["BPM"]
+        
+        XCTAssertTrue(app.staticTexts["Your heart rate is"].waitForExistence(timeout: 5))
+        XCTAssertTrue(allDoneHeartRateText.exists)
+        XCTAssertTrue(heartRate65.exists)
+        XCTAssertTrue(bpmLabel.exists)
         app.buttons["Next"].tap()
         
+        // -- Step 2 - ready to run
         let step2Of3StaticText = app.staticTexts["Step 2 of 3"]
-        step2Of3StaticText.tap()
-        app.staticTexts["Ready to run on the treadmill?"].tap()
-        app.staticTexts["You’ll start off slowly, and speed and grade will be increased through the test duration."].tap()
-        pressToStartStaticText.tap()
+        XCTAssertTrue(step2Of3StaticText.waitForExistence(timeout: 2))
+        
+        XCTAssertTrue(app.staticTexts["Ready to run on the treadmill?"].exists)
+        XCTAssertTrue(app.staticTexts["You’ll start off slowly, and speed and grade will be increased through the test duration."].exists)
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
         app.buttons["treadmillStartButton"].tap()
-        step2Of3StaticText.tap()
-        app.staticTexts["Did you complete the test on the treadmill?"].tap()
+        
+        // run complete
+        XCTAssertTrue(app.staticTexts["Did you complete the test on the treadmill?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(step2Of3StaticText.exists)
         app.buttons["Yes"].tap()
         
+        // -- Step 3 - Heart rate after
         let step3Of3StaticText = app.staticTexts["Step 3 of 3"]
-        step3Of3StaticText.tap()
-        app.staticTexts["Stand still for 1 minute"].tap()
-        app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].tap()
-        pressToStartStaticText.tap()
+        XCTAssertTrue(step3Of3StaticText.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Stand still for 1 minute"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
         capturestartbuttonButton.tap()
         
-        let gentlyCoverBothTheCameraAndFlashWithYourFingerStaticText = app.staticTexts["Gently cover both the camera and flash with your finger."]
-        gentlyCoverBothTheCameraAndFlashWithYourFingerStaticText.tap()
-        gentlyCoverBothTheCameraAndFlashWithYourFingerStaticText.tap()
-        step3Of3StaticText.tap()
-        youReAllDoneStaticText.tap()
-        app.buttons["Done"].tap()
+        // Heart rate capture
+        XCTAssertTrue(initialHeartRateText.waitForExistence(timeout: 5))
+        XCTAssertTrue(step3Of3StaticText.exists)
+        XCTAssertTrue(halfWayHeartRateText.waitForExistence(timeout: 35))
+        XCTAssertTrue(fifteenLeftHeartRateText.waitForExistence(timeout: 20))
+        XCTAssertTrue(allDoneHeartRateText.waitForExistence(timeout: 20))
         
+        // Heart rate feedback
+        XCTAssertTrue(app.staticTexts["Your heart rate changed to"].waitForExistence(timeout: 5))
+        XCTAssertTrue(allDoneHeartRateText.exists)
+        XCTAssertTrue(heartRate65.exists)
+        XCTAssertTrue(bpmLabel.exists)
+        
+        app.buttons["Done"].tap()
     }
 }
