@@ -42,7 +42,8 @@ enum TaskIdentifier: String {
     case cardio12MT = "Cardio 12MT"
     case cardioStairStep = "Cardio Stair Step"
     case backgroundSurvey = "Background Survey"
-    case usabilitySurveys = "Usability Surveys"
+    case usabilitySurvey = "Usability Scale"
+    case burdenSurvey = "Burden Scale"
     case cardioStressTest = "Cardio Stress Test"
     
     case clinic1 = "Clinic visit 1 (a)"
