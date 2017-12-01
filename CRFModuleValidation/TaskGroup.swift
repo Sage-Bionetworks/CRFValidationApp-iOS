@@ -222,7 +222,7 @@ struct TaskGroup {
         else {
             let scheduledKey = "scheduledOn"
             let onDateOnlyFilter = NSPredicate(format: "%K <> nil AND %K >= %@ AND %K < %@", scheduledKey, scheduledKey, date.startOfDay() as CVarArg, scheduledKey, date.addingNumberOfDays(1).startOfDay() as CVarArg)
-            return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, /*dateFilter,*/ onDateOnlyFilter])
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [taskFilter, onDateOnlyFilter])
         }
     }
     
