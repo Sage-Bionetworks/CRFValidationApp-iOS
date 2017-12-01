@@ -206,8 +206,8 @@ class CardioUITests: XCTestCase {
         // -- Step 6 - Heart rate after
         let step6Of6StaticText = app.staticTexts["Step 6 of 6"]
         XCTAssertTrue(step6Of6StaticText.waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["Stand still for 1 minute"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Stand still for 1 minute"].exists)
+        XCTAssertTrue(app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].exists)
         XCTAssertTrue(app.staticTexts["Press to Start"].exists)
         
         // Capture heart rate
@@ -218,6 +218,105 @@ class CardioUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Great job!"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Your heart rate changed by"].exists)
         XCTAssertTrue(app.staticTexts["BPM"].exists)
+        app.buttons["Done"].tap()
+    }
+    
+    func test12MT() {
+        
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Cardio 12MT"]/*[[".cells.staticTexts[\"Cardio 12MT\"]",".staticTexts[\"Cardio 12MT\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        // -- Introduction
+        XCTAssertTrue(app.staticTexts["12 minute test"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["15 minutes"].exists)
+        
+        // Check learn more text
+        app.buttons["infoIcon"].tap()
+        let webViewsQuery = app.webViews
+        XCTAssertTrue(webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["About 12 minute test"]/*[[".otherElements[\"Instructions\"]",".otherElements[\"About 12 minute test\"]",".staticTexts[\"1\"]",".staticTexts[\"About 12 minute test\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 2))
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Why this test"]/*[[".otherElements[\"Instructions\"]",".otherElements[\"Why this test\"]",".staticTexts[\"2\"]",".staticTexts[\"Why this test\"]"],[[[-1,3],[-1,1,2],[-1,0,1]],[[-1,3],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Recording a 12 minute test is an important measure of your overall health. It is associated with overall mortality and many common diseases in the US such as cardiovascular disease and Alzheimer’s Disease."]/*[[".otherElements[\"Instructions\"].staticTexts[\"Recording a 12 minute test is an important measure of your overall health. It is associated with overall mortality and many common diseases in the US such as cardiovascular disease and Alzheimer’s Disease.\"]",".staticTexts[\"Recording a 12 minute test is an important measure of your overall health. It is associated with overall mortality and many common diseases in the US such as cardiovascular disease and Alzheimer’s Disease.\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        webViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["What to do"]/*[[".otherElements[\"Instructions\"]",".otherElements[\"What to do\"]",".staticTexts[\"2\"]",".staticTexts[\"What to do\"]"],[[[-1,3],[-1,1,2],[-1,0,1]],[[-1,3],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        // Continue to next step
+        app.navigationBars.buttons["Close"].tap()
+        XCTAssertTrue(app.staticTexts["12 minute test"].waitForExistence(timeout: 2))
+        app.buttons["Start"].tap()
+        
+        // -- Heart risk
+        let heartRiskInstruction = app.tables["Potential heart risk, Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you."]
+        XCTAssertTrue(heartRiskInstruction.waitForExistence(timeout: 2))
+        app.buttons["Got it"].tap()
+        
+        // -- Step 1 - fitbit instruction
+        XCTAssertTrue(app.staticTexts["Step 1 of 7"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Wearing your fitbit?"].exists)
+        XCTAssertTrue(app.staticTexts["Before continuing on with the 12 minute test, please make sure you have your fitbit on your wrist."].exists)
+        app.buttons["It’s on"].tap()
+        
+        // -- Step 2 - volume up instruction
+        XCTAssertTrue(app.staticTexts["Step 2 of 7"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Volume turned up?"].exists)
+        XCTAssertTrue(app.staticTexts["Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving."].exists)
+        app.buttons["It’s turned on"].tap()
+        
+        // -- Step 3 - Go outside
+        XCTAssertTrue(app.staticTexts["Step 3 of 7"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Go outside"].exists)
+        XCTAssertTrue(app.staticTexts["Start by going oustide and standing still to measure your resting heart rate before you start moving."].exists)
+        app.buttons["I am outside"].tap()
+        
+        // -- Step 4 - Heart rate before
+        let step4Of7StaticText = app.staticTexts["Step 4 of 7"]
+        XCTAssertTrue(step4Of7StaticText.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Capture heart rate"].exists)
+        XCTAssertTrue(app.staticTexts["Use your finger to cover the camera and flash on the back of your phone."].exists)
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
+        
+        // Capture heart rate
+        runTest_HeartRateStep(app: app, progressLabel: step4Of7StaticText, feedbackLabel: app.staticTexts["Your pre run heart rate is"])
+        app.buttons["Next"].tap()
+        
+        // - Step 5 - Run
+        let step5Of7StaticText = app.staticTexts["Step 5 of 7"]
+        XCTAssertTrue(step5Of7StaticText.waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Take your phone with you"].exists)
+        XCTAssertTrue(app.staticTexts["Cover as much distance as you can on a flat course in 12 minutes by running or walking."].exists)
+        app.buttons["runStartButton"].tap()
+        
+        // Countdown
+        XCTAssertTrue(app.staticTexts["Start in"].waitForExistence(timeout: 2))
+        XCTAssertTrue(step5Of7StaticText.exists)
+        sleep(10)
+
+        // Run
+        sleep(720)
+        
+        // -- Step 6 - Heart rate after
+        let step6Of7StaticText = app.staticTexts["Step 6 of 7"]
+        XCTAssertTrue(step6Of7StaticText.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Stand still for 1 minute"].exists)
+        XCTAssertTrue(app.staticTexts["Almost done! Stand still for a minute to measure your heart rate recovery."].exists)
+        XCTAssertTrue(app.staticTexts["Press to Start"].exists)
+        
+        // Capture heart rate
+        runTest_HeartRateStep(app: app, progressLabel: step6Of7StaticText, feedbackLabel: app.staticTexts["Your heart rate changed to"])
+        app.buttons["Next"].tap()
+        
+        // -- Step 7 - survey
+        XCTAssertTrue(tablesQuery.staticTexts["Step 7 of 7"].waitForExistence(timeout: 2))
+        XCTAssertTrue(tablesQuery.otherElements["What, if anything, kept you from going further?"].exists)
+        XCTAssertTrue(tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["Nothing, was my best effort"]/*[[".cells.staticTexts[\"Nothing, was my best effort\"]",".staticTexts[\"Nothing, was my best effort\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.exists)
+        XCTAssertTrue(tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["Feeling tired"]/*[[".cells.staticTexts[\"Feeling tired\"]",".staticTexts[\"Feeling tired\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.exists)
+        XCTAssertTrue(tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["Pain or physical discomfort"]/*[[".cells.staticTexts[\"Pain or physical discomfort\"]",".staticTexts[\"Pain or physical discomfort\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.exists)
+        tablesQuery/*@START_MENU_TOKEN@*/.cells.staticTexts["Interrupted"]/*[[".cells.staticTexts[\"Interrupted\"]",".staticTexts[\"Interrupted\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["Next"].tap()
+
+        // -- Completion
+        XCTAssertTrue(app.staticTexts["Great job!"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["You just went"].exists)
+        XCTAssertTrue(app.staticTexts["in 12 minutes"].exists)
         app.buttons["Done"].tap()
     }
     
