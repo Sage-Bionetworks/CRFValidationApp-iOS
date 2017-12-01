@@ -130,7 +130,7 @@ class TableViewController: UITableViewController, RSDTaskViewControllerDelegate 
             debugResult.append("\n\n=== Failed: \(String(describing: error))")
         }
         
-        debugPrint(debugResult)
+        print(debugResult)
     }
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), viewControllerFor step: RSDStep) -> (UIViewController & RSDStepController)? {
