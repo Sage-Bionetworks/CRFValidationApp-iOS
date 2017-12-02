@@ -68,7 +68,7 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
 
 public struct CRFHeartRateSample : RSDSampleRecord {
     public let uptime: TimeInterval
-    public let timestamp: TimeInterval
+    public let timestamp: TimeInterval?
     public let timestampDate: Date?
     public let stepPath: String
     
@@ -181,29 +181,37 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         // Create the session
         let session = AVCaptureSession()
         _session = session
-        session.sessionPreset = AVCaptureSessionPresetLow
+        session.sessionPreset = AVCaptureSession.Preset.low
         
         // Retrieve the back camera and add as an input
-        guard let captureDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back)
+        guard let captureDevice = AVCaptureDevice.default(AVCaptureDevice.DeviceType.builtInWideAngleCamera, for: AVMediaType.video, position: .back)
             else {
                 throw CRFHeartRateRecorderError.noBackCamera
         }
         let input = try AVCaptureDeviceInput(device: captureDevice)
         session.addInput(input)
         
+        
         // Find the max frame rate we can get from the given device
-        var currentFormat: AVCaptureDeviceFormat!
-        for obj in captureDevice.formats {
-            guard let format = obj as? AVCaptureDeviceFormat,
-                let frameRates = format.videoSupportedFrameRateRanges?.first as? AVFrameRateRange
+        var currentFormat: AVCaptureDevice.Format!
+        for format in captureDevice.formats {
+            guard let frameRates = format.videoSupportedFrameRateRanges.first,
+                frameRates.maxFrameRate == Double(kHeartRateFramesPerSecond)
                 else {
                     continue
             }
+            
+            // If this is the first valid format found then set it and continue
+            if (currentFormat == nil) {
+                currentFormat = format
+                continue
+            }
+            
             // Find the lowest resolution format at the frame rate we want.
-            if frameRates.maxFrameRate == Double(kHeartRateFramesPerSecond) {
-                if (currentFormat == nil) || (CMVideoFormatDescriptionGetDimensions(format.formatDescription).width < CMVideoFormatDescriptionGetDimensions(currentFormat.formatDescription).width && CMVideoFormatDescriptionGetDimensions(format.formatDescription).height < CMVideoFormatDescriptionGetDimensions(currentFormat.formatDescription).height) {
-                    currentFormat = format
-                }
+            let currentSize = CMVideoFormatDescriptionGetDimensions(currentFormat.formatDescription)
+            let formatSize = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+            if formatSize.width < currentSize.width && formatSize.height < currentSize.height {
+                currentFormat = format
             }
         }
 
@@ -223,7 +231,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         videoOutput.setSampleBufferDelegate(sampleProcessor, queue: captureQueue)
         
         // configure the pixel format
-        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey : kCVPixelFormatType_32BGRA]
+        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String : kCVPixelFormatType_32BGRA]
         videoOutput.alwaysDiscardsLateVideoFrames = false
         
         // Add the output and start running

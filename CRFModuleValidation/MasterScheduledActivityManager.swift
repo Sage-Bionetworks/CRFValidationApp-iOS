@@ -204,15 +204,21 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
             guard self.schedules.filter({ $0.timeOfDay != nil }).count > 0 else { return }
 
             // Check for permission and if granted, then schedule the reminders
-            if let settings = UIApplication.shared.currentUserNotificationSettings, settings.types != [] {
-                self.addLocalNotifications()
-            }
-            else {
-                UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, _) in
-                    if granted {
-                        self.addLocalNotifications()
-                    }
+            UNUserNotificationCenter.current().getNotificationCategories() { [weak self] (categories) in
+                if categories.count > 0 {
+                    self?.addLocalNotifications()
                 }
+                else {
+                    self?.requestAuthorizationForNotifications()
+                }
+            }
+        }
+    }
+    
+    fileprivate func requestAuthorizationForNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { [weak self] (granted, _) in
+            if granted {
+                self?.addLocalNotifications()
             }
         }
     }

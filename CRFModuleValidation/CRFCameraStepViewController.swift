@@ -44,25 +44,35 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
     private var _videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var _capturePhotoOutput: AVCapturePhotoOutput?
     private let processingQueue = DispatchQueue(label: "org.sagebase.ResearchSuite.camera.processing")
+
+    public let isSimulator: Bool = {
+        #if (arch(i386) || arch(x86_64)) && !os(OSX)
+            return true
+        #else
+            return false
+        #endif
+    }()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        // Exit early if this is a simulator run
+        guard !isSimulator else { return }
+        
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         do {
             // create the camera session
-            let input = try AVCaptureDeviceInput(device: captureDevice)
+            let input = try AVCaptureDeviceInput(device: captureDevice!)
             let captureSession = AVCaptureSession()
             _captureSession = captureSession
             captureSession.addInput(input)
             
             // add video view
-            if let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession) {
-                videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                videoPreviewLayer.frame = view.layer.bounds
-                _videoPreviewLayer = videoPreviewLayer
-                previewView.layer.addSublayer(videoPreviewLayer)
-            }
+            let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            videoPreviewLayer.frame = view.layer.bounds
+            _videoPreviewLayer = videoPreviewLayer
+            previewView.layer.addSublayer(videoPreviewLayer)
             
             // add output for taking a picture
             let output = AVCapturePhotoOutput()

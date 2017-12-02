@@ -70,10 +70,10 @@ public struct CRFLocationRecorderConfiguration : RSDRecorderConfiguration, RSDAs
     }
 }
 
-public struct CRFLocationRecord: RSDSampleRecord {
+public struct CRFLocationRecord: RSDSampleRecord {    
 
     public let uptime: TimeInterval
-    public let timestamp: TimeInterval
+    public let timestamp: TimeInterval?
     public let stepPath: String
     public let timestampDate: Date?
     

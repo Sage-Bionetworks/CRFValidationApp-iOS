@@ -39,7 +39,7 @@ public enum CRFCoreMotionRecorderType : String, Codable {
     case accelerometer
     case deviceMotion
     
-    static func allTypes() -> [CRFCoreMotionRecorderType] {
+    public static func allTypes() -> [CRFCoreMotionRecorderType] {
         return [.accelerometer, .deviceMotion]
     }
 }
@@ -66,7 +66,7 @@ public struct CRFCoreMotionRecorderConfiguration : RSDRecorderConfiguration, RSD
     }
     
     public var permissions: [RSDPermissionType] {
-        return [RSDStandardPermissionType.coremotion]
+        return [RSDStandardPermissionType.motion]
     }
 
     public func validate() throws {
@@ -200,7 +200,7 @@ public class CRFCoreMotionRecorder : RSDSampleRecorder {
 public struct CRFAccelerometerRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
-    public let timestamp: TimeInterval
+    public let timestamp: TimeInterval?
     public let stepPath: String
     public let timestampDate: Date?
     public let sensorType: CRFCoreMotionRecorderType
@@ -227,7 +227,7 @@ public struct CRFAccelerometerRecord: RSDSampleRecord {
 public struct CRFDeviceMotionRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
-    public let timestamp: TimeInterval
+    public let timestamp: TimeInterval?
     public let stepPath: String
     public let timestampDate: Date?
     public let sensorType: CRFCoreMotionRecorderType
