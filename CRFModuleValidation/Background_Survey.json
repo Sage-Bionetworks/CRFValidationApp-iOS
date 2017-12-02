@@ -1,0 +1,270 @@
+{
+    "identifier": "Background Survey",
+    "schemaInfo": {
+        "identifier": "Background Survey",
+        "revision": 4
+    },
+    "actions": {
+        "cancel": {
+            "iconName": "closeActivity"
+        }
+    },
+    "shouldHideActions": ["skip"],
+    "steps": [{
+              "identifier": "birthdate",
+              "type": "form",
+              "title": "What is your birthdate?",
+              "inputFields": [{
+                              "identifier": "birthdate_year",
+                              "dataType": "year",
+                              "prompt": "Year",
+                              "uiHint": "textfield",
+                              "range": {
+                                  "minimumDate" : "1900",
+                                  "codingFormat" : "yyyy",
+                                  "allowFuture": false
+                                  }
+                              },
+                              {
+                              "identifier": "birthdate_month",
+                              "dataType": "integer",
+                              "prompt": "Month",
+                              "uiHint": "textfield",
+                              "range": {
+                                  "minimumValue": 1,
+                                  "maximumValue": 12
+                                  }
+                              }
+                              ]
+              },
+              {
+              "identifier": "sex",
+              "type": "form",
+              "title": "What is your sex?",
+              "dataType": "singleChoice",
+              "choices": ["Male", "Female"]
+              },
+              {
+              "identifier": "hispanicOrLatino",
+              "type": "form",
+              "title": "Are you of Hispanic or Latino origin?",
+              "dataType": "singleChoice.boolean",
+              "choices": [{"text": "Yes", "value": true }, {"text": "No", "value": false }]
+              },
+              {
+              "identifier": "ethnicity",
+              "type": "form",
+              "title": "Which race best describes you?",
+              "detail": "(select all that apply)",
+              "dataType": "multipleChoice",
+              "choices": ["White or Caucasian",
+                          "Black or African American",
+                          "Native Hawaiian or other Pacific Islander",
+                          "Asian",
+                          "Other"
+                          ]
+              },
+              {
+              "identifier": "education",
+              "type": "form",
+              "title": "What is the highest grade in school you have finished?",
+              "detail": "(select one)",
+              "dataType": "singleChoice",
+              "choices": [{
+                          "text": "Did not finish elementary school",
+                          "value": "elementary school"
+                          }, {
+                          "text": "Finished middle school (8th grade)",
+                          "value": "middle school"
+                          }, {
+                          "text": "Finished some high school",
+                          "value": "some high school"
+                          }, {
+                          "text": "High school graduate or G.E.D",
+                          "value": "high school graduate"
+                          }, {
+                          "text": "Vocational or training school after high school",
+                          "value": "vocational school"
+                          }, {
+                          "text": "Some College or Associate degree",
+                          "value": "some college or associate"
+                          }, {
+                          "text": "College graduate or Baccalaureate Degree",
+                          "value": "college graduate"
+                          }, {
+                          "text": "Masters or Doctoral Degree (PhD, MD, JD, etc)",
+                          "value": "masters or doctoral"
+                          }]
+              },
+              {
+              "identifier": "ipaq.instruction",
+              "type": "instruction",
+              "title": "INTERNATIONAL PHYSICAL ACTIVITY QUESTIONNAIRE",
+              "text": "We are interested in finding out about the kinds of physical activities that people do as part of their everyday lives.  The questions will ask you about the time you spent being physically active in the last 7 days.  Please answer each question even if you do not consider yourself to be an active person.  Please think about the activities you do at work, as part of your house and yard work, to get from place to place, and in your spare time for recreation, exercise or sport."
+              },
+              {
+              "identifier": "vigorous",
+              "type": "section",
+              "steps": [
+                      {
+                      "identifier": "any_activity",
+                      "type": "form",
+                      "text": "Think about all the VIGOROUS activities that you did in the last 7 days. Vigorous physical activities refer to activities that take hard physical effort and make you breathe much harder than normal. Think only about those physical activities that you did for at least 10 minutes at a time.\n\nDuring the last 7 days, have you done any VIGOROUS physical activities like heavy lifting, digging, aerobics, or fast bicycling?",
+                      "dataType": "singleChoice.boolean",
+                      "choices": [{"text": "Yes, I have done vigorous activities", "value": true }, {"text": "No vigorous physical activities", "value": false }],
+                      "matchingAnswer": false,
+                      "skipToIdentifier": "nextSection"
+                      },
+                      {
+                      "identifier": "q1",
+                      "type": "form",
+                      "text": "During the last 7 days, on how many days did you do VIGOROUS physical activities?",
+                      "inputFields": [{
+                                      "identifier": "days_per_week",
+                                      "dataType": "integer",
+                                      "prompt": "days per week",
+                                      "range": { "minimumValue": 0, "maximumValue": 7 },
+                                      "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
+                                      }],
+                      "actions": { "skip": { "buttonTitle": "No vigorous physical activities", "skipToIdentifier": "nextSection" }}
+                      },
+                      {
+                      "identifier": "q2",
+                      "type": "form",
+                      "text": "How much time did you usually spend doing VIGOROUS physical activities on one of those days?",
+                      "inputFields": [{
+                                      "identifier": "hours_per_day",
+                                      "dataType": "integer",
+                                      "prompt": "hours per day",
+                                      "optional": true
+                                      },
+                                      {
+                                      "identifier": "minutes_per_day",
+                                      "dataType": "integer",
+                                      "prompt": "minutes per day",
+                                      "optional": true
+                                      }],
+                      "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
+                      }]
+              },
+              {
+              "identifier": "moderate",
+              "type": "section",
+              "steps": [
+                        {
+                          "identifier": "any_activity",
+                          "type": "form",
+                          "text": "Think about all the MODERATE activities that you did in the last 7 days. Moderate activities refer to activities that take moderate physical effort and make you breathe somewhat harder than normal. Think only about those physical activities that you did for at least 10 minutes at a time.\n\nDuring the last 7 days, have you done any MODERATE physical activities like carrying light loads, bicycling at a regular pace, or doubles tennis?  Do not include walking.",
+                          "dataType": "singleChoice.boolean",
+                          "choices": [{"text": "Yes, I have done moderate activities", "value": true }, {"text": "No moderate physical activities", "value": false }],
+                          "matchingAnswer": false,
+                          "skipToIdentifier": "nextSection"
+                          },
+                          {
+                          "identifier": "q1",
+                          "type": "form",
+                          "text": "During the last 7 days, on how many days did you do MODERATE physical activities?",
+                          "detail": "Do not include walking.",
+                          "inputFields": [{
+                                          "identifier": "days_per_week",
+                                          "dataType": "integer",
+                                          "prompt": "days per week",
+                                          "range": { "minimumValue": 0, "maximumValue": 7 },
+                                          "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
+                                          }],
+                          "actions": { "skip": { "buttonTitle": "No moderate physical activities", "skipToIdentifier": "nextSection" }}
+                          },
+                          {
+                          "identifier": "q2",
+                          "type": "form",
+                          "text": "How much time did you usually spend doing MODERATE physical activities on one of those days?",
+                          "inputFields": [{
+                                          "identifier": "hours_per_day",
+                                          "dataType": "integer",
+                                          "prompt": "hours per day",
+                                          "optional": true
+                                          },
+                                          {
+                                          "identifier": "minutes_per_day",
+                                          "dataType": "integer",
+                                          "prompt": "minutes per day",
+                                          "optional": true
+                                          }],
+                          "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
+                        }]
+              },
+              {
+              "identifier": "walking",
+              "type": "section",
+              "steps": [
+                          {
+                          "identifier": "any_activity",
+                          "type": "form",
+                          "text": "Think about the time you spent WALKING in the last 7 days.  This includes at work and at home, walking to travel from place to place, and any other walking that you have done solely for recreation, sport, exercise, or leisure.\n\nDuring the last 7 days, have you WALKED for at least 10 minutes at a time?",
+                          "dataType": "singleChoice.boolean",
+                          "choices": [{"text": "Yes, I have walked", "value": true }, {"text": "No walking", "value": false }],
+                          "matchingAnswer": false,
+                          "skipToIdentifier": "nextSection"
+                          },
+                          {
+                          "identifier": "q1",
+                          "type": "form",
+                          "text": "During the last 7 days, on how many days did you WALK for at least 10 minutes at a time?",
+                          "inputFields": [{
+                                          "identifier": "days_per_week",
+                                          "dataType": "integer",
+                                          "prompt": "days per week",
+                                          "range": { "minimumValue": 0, "maximumValue": 7 },
+                                          "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
+                                          }],
+                          "actions": { "skip": { "buttonTitle": "No walking", "skipToIdentifier": "nextSection"  }}
+                          },
+                          {
+                          "identifier": "q2",
+                          "type": "form",
+                          "text": "How much time did you usually spend WALKING on one of those days?",
+                          "inputFields": [{
+                                          "identifier": "hours_per_day",
+                                          "dataType": "integer",
+                                          "prompt": "hours per day",
+                                          "optional": true
+                                          },
+                                          {
+                                          "identifier": "minutes_per_day",
+                                          "dataType": "integer",
+                                          "prompt": "minutes per day",
+                                          "optional": true
+                                          }],
+                          "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
+                          }]
+              },
+              {
+              "identifier": "sitting",
+              "type": "section",
+              "steps": [
+                          {
+                          "identifier": "instruction",
+                          "type": "instruction",
+                          "text": "The last question is about the time you spent SITTING on weekdays during the last 7 days.  Include time spent at work, at home, while doing course work and during leisure time.  This may include time spent sitting at a desk, visiting friends, reading, or sitting or lying down to watch television."
+                          },
+                          {
+                          "identifier": "q1",
+                          "type": "form",
+                          "text": "During the last 7 days, how much time did you spend SITTING on a week day?",
+                          "inputFields": [{
+                                          "identifier": "hours_per_day",
+                                          "dataType": "integer",
+                                          "prompt": "hours per day",
+                                          "optional": true
+                                          },
+                                          {
+                                          "identifier": "minutes_per_day",
+                                          "dataType": "integer",
+                                          "prompt": "minutes per day",
+                                          "optional": true
+                                          }],
+                          "actions": { "skip": { "buttonTitle": "Don’t know/Not sure" }}
+                          }]
+              }
+              ]
+}

@@ -1,8 +1,21 @@
 {
     "identifier"        : "Cardio 12MT",
+    "schemaInfo": {
+        "identifier": "Cardio 12MT",
+        "revision": 5
+    },
     "actions"           : { "cancel": { "iconName": "closeActivity" }},
     "shouldHideActions" : ["goBackward", "skip"],
     "progressMarkers"   : ["wearingFitbit", "volumeUp", "goOutside", "heartRate.before", "run", "heartRate.after", "surveyAfter"],
+    "asyncActions"      : [
+                           {
+                           "identifier"             : "location",
+                           "type"                   : "location",
+                           "startStepIdentifier"    : "heartRate.before",
+                           "stopStepIdentifier"     : "heartRate.after",
+                           "motionStepIdentifier"   : "runDistance"
+                           }
+                           ],
     "steps"             : [
                            {
                            "identifier"   : "introduction",
@@ -33,8 +46,7 @@
                            "image"                  : "healthRiskIcon",
                            "title"                  : "Potential heart risk",
                            "text"                   : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
-                           "actions"                : { "goForward": { "buttonTitle": "Got it" },
-                                                        "cancel": { "iconName": "closeActivityWhite" }}
+                           "actions"                : { "goForward": { "buttonTitle": "Got it" }}
                            },
                            {
                            "identifier"   : "wearingFitbit",
@@ -96,23 +108,33 @@
                                                "viewTheme"      : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
                                                },
                                                {
-                                               "identifier"   : "countdown",
-                                               "type"         : "active",
-                                               "text"         : "Start in",
-                                               "shouldHideActions": ["goBackward", "goForward"],
-                                               "duration": 5,
-                                               "commands": ["transitionAutomatically"],
-                                               "viewTheme"      : { "viewIdentifier": "Countdown", "storyboardIdentifier": "ActiveTaskSteps" }
+                                               "identifier"     : "countdown",
+                                               "type"           : "countdown",
+                                               "text"           : "Start in",
+                                               "duration"       : 10,
+                                               "commands"       : ["playSoundOnStart", "transitionAutomatically"],
                                                },
                                                {
-                                               "identifier"   : "run",
-                                               "type"         : "active",
-                                               "title"        : "NOT YET IMPLEMENTED: This will count down for 12 seconds.",
-                                               "shouldHideActions": ["goBackward", "goForward"],
-                                               "duration": 12,
-                                               "commands": ["playSound", "vibrate", "transitionAutomatically"],
-                                               "colorTheme"     : { "usesLightStyle" : true },
-                                               "viewTheme"      : { "viewIdentifier": "RunDistance", "storyboardIdentifier": "ActiveTaskSteps" }
+                                               "identifier"         : "runDistance",
+                                               "type"               : "active",
+                                               "duration"           : 720,
+                                               "commands"           : ["vibrate", "playSound", "transitionAutomatically", "shouldDisableIdleTimer"],
+                                               "spokenInstructions" : {"0": "Start running or walking",
+                                                                       "60": "11 minutes remaining",
+                                                                       "120": "10 minutes remaining",
+                                                                       "180": "9 minutes remaining",
+                                                                       "240": "8 minutes remaining",
+                                                                       "300": "7 minutes remaining",
+                                                                       "360": "6 minutes remaining",
+                                                                       "420": "5 minutes remaining",
+                                                                       "480": "4 minutes remaining",
+                                                                       "540": "3 minutes remaining",
+                                                                       "600": "2 minutes remaining",
+                                                                       "660": "1 minute remaining",
+                                                                       "690": "30 seconds remaining",
+                                                                       "end": "Stop running or walking"},
+                                               "colorTheme"         : { "usesLightStyle" : true },
+                                               "viewTheme"          : { "viewIdentifier": "RunDistance", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }
                                                ]
                            },
@@ -140,10 +162,7 @@
                            {
                            "identifier"   : "completion",
                            "type"         : "completion",
-                           "title"        : "Great Job!",
-                           "image"        : "completed",
-                           "text"         : "You just went <run.distance> in 12 minutes",
-                           "colorTheme"   : { "backgroundColor" : "darkPastelGreenTwo", "usesLightStyle" : true },
+                           "viewTheme"    : { "viewIdentifier": "Completed12MT", "storyboardIdentifier": "ActiveTaskSteps" }
                            }
                            ]
 }

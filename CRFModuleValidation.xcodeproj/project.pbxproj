@@ -20,11 +20,66 @@
 		60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2141E89D0B200B123FA /* BridgeSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; };
 		60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7A2071E89D01100B123FA /* BridgeAppSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		801281881FB7C00300AA52D6 /* TaskGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801281811FB7C00200AA52D6 /* TaskGroupTableViewController.swift */; };
+		8012818A1FB7C05900AA52D6 /* GroupedScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801281891FB7C05900AA52D6 /* GroupedScheduledActivityManager.swift */; };
+		8012818C1FB8F71E00AA52D6 /* MasterScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012818B1FB8F71D00AA52D6 /* MasterScheduledActivityManager.swift */; };
+		801281901FB901BE00AA52D6 /* ChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012818F1FB901BE00AA52D6 /* ChallengeTableViewCell.swift */; };
+		80B3FB531FB51EC900B81B6E /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */; };
+		80D529091FB26A17007B9B26 /* MyJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D529021FB26A17007B9B26 /* MyJourneyViewController.swift */; };
+		80D5290C1FB26C2E007B9B26 /* TaskGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */; };
+		80D5290D1FB26C2E007B9B26 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5290B1FB26C2D007B9B26 /* Schedule.swift */; };
+		80E8D1BC1FB5460A00A695C5 /* OnboardingSurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */; };
+		FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
 		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
+		FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
+		FF2A1D5A1FB176BC0095044A /* CRFLocationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */; };
+		FF4043FA1FBAA1F1000EF2A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */; };
+		FF4043FB1FBAA202000EF2A0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */; };
+		FF4043FC1FBAA20C000EF2A0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */; };
+		FF4712101FCF95D40052E5E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */; };
+		FF4712151FCF95D40052E5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4712131FCF95D40052E5E3 /* Main.storyboard */; };
+		FF4712171FCF95D40052E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4712161FCF95D40052E5E3 /* Assets.xcassets */; };
+		FF47121A1FCF95D40052E5E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4712181FCF95D40052E5E3 /* LaunchScreen.storyboard */; };
+		FF4712251FCF95D40052E5E3 /* BackgroundSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4712241FCF95D40052E5E3 /* BackgroundSurveyUITests.swift */; };
+		FF4712371FCF97E10052E5E3 /* Background_Survey.json in Resources */ = {isa = PBXBuildFile; fileRef = FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */; };
+		FF4712381FCF97E10052E5E3 /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
+		FF4712391FCF97E10052E5E3 /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
+		FF47123A1FCF97E10052E5E3 /* Cardio_Stair_Step.json in Resources */ = {isa = PBXBuildFile; fileRef = FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */; };
+		FF47123B1FCF97E10052E5E3 /* Cardio_Stress.json in Resources */ = {isa = PBXBuildFile; fileRef = FF569BED1FB63CF9005F525A /* Cardio_Stress.json */; };
+		FF47123C1FCF97E10052E5E3 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
+		FF47123D1FCF97E60052E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1391E89C76E00B123FA /* Assets.xcassets */; };
+		FF47123E1FCF97F20052E5E3 /* Stress_Test.html in Resources */ = {isa = PBXBuildFile; fileRef = FF569BF51FB63FCA005F525A /* Stress_Test.html */; };
+		FF47123F1FCF97F20052E5E3 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
+		FF4712401FCF97F20052E5E3 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
+		FF4712411FCF97FA0052E5E3 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
+		FF4712421FCF97FA0052E5E3 /* CRFCameraStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */; };
+		FF4712431FCF97FA0052E5E3 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
+		FF4712441FCF97FA0052E5E3 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
+		FF4712451FCF97FA0052E5E3 /* CRFResultStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */; };
+		FF4712461FCF97FA0052E5E3 /* CRFStairStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */; };
+		FF4712471FCF97FF0052E5E3 /* CRFCameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */; };
+		FF4712481FCF98100052E5E3 /* CRFCoreMotionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA2D941FB571BF00B63CBA /* CRFCoreMotionRecorder.swift */; };
+		FF4712491FCF98140052E5E3 /* CRFLocationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */; };
+		FF47124A1FCF98140052E5E3 /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
+		FF47124B1FCF98180052E5E3 /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
+		FF47124C1FCF981B0052E5E3 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
+		FF4712511FCF99150052E5E3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4712501FCF99150052E5E3 /* TableViewController.swift */; };
+		FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */; };
+		FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */; };
+		FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */; };
 		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
 		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
 		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
-		FF55C42E1FAB0189004EDB59 /* CountdownStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C42D1FAB0189004EDB59 /* CountdownStepViewController.swift */; };
+		FF569BF41FB63CFA005F525A /* Cardio_Stress.json in Resources */ = {isa = PBXBuildFile; fileRef = FF569BED1FB63CF9005F525A /* Cardio_Stress.json */; };
+		FF569BF61FB63FCA005F525A /* Stress_Test.html in Resources */ = {isa = PBXBuildFile; fileRef = FF569BF51FB63FCA005F525A /* Stress_Test.html */; };
+		FF5D8B771FB522F70003B0FC /* Cardio_Stair_Step.json in Resources */ = {isa = PBXBuildFile; fileRef = FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */; };
+		FF5D8B7D1FB526F80003B0FC /* CRFCameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */; };
+		FF5D8B7F1FB528BC0003B0FC /* CRFCameraStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */; };
+		FF5D8B811FB535340003B0FC /* CRFStairStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */; };
+		FF6D6C7B1FD0A9AF002B514A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D6C721FD0A9AE002B514A /* MapKit.framework */; };
+		FF6D6C7C1FD0AA84002B514A /* ActiveTaskSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */; };
+		FF7707611FB43D8000658074 /* heartrate.json in Resources */ = {isa = PBXBuildFile; fileRef = FF77075A1FB43D7F00658074 /* heartrate.json */; };
+		FF7707641FB43E1200658074 /* HeartRateRecorderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7707631FB43E1200658074 /* HeartRateRecorderTests.swift */; };
 		FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752371F7093AF004925B8 /* SurveyFactory.swift */; };
 		FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */; };
 		FF7752481F709D71004925B8 /* StudyOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF7752471F709D71004925B8 /* StudyOverview.storyboard */; };
@@ -32,21 +87,30 @@
 		FF77525B1F70A475004925B8 /* crf-module.pem in Resources */ = {isa = PBXBuildFile; fileRef = FF77525A1F70A475004925B8 /* crf-module.pem */; };
 		FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752831F722C95004925B8 /* UIColor+CMAdditions.swift */; };
 		FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752851F722CB4004925B8 /* UIColor+BridgeMapping.swift */; };
-		FF78FC6A1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; };
-		FF78FC6B1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FF78FC6E1FA3FE9400B8D42C /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; };
-		FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
 		FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
+		FF88D5051FB66D0D003BB844 /* Background_Survey.json in Resources */ = {isa = PBXBuildFile; fileRef = FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */; };
 		FF9D7F691FA8F958008506DB /* ActiveTaskSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */; };
+		FFA0E4521FD117A400C36AE7 /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; };
+		FFA0E4531FD117A400C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFA0E4561FD117B900C36AE7 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; };
+		FFA0E4571FD117B900C36AE7 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFA0E45A1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; };
+		FFA0E45B1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFA0E45E1FD1194E00C36AE7 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; };
+		FFA0E45F1FD1194E00C36AE7 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
 		FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */; };
 		FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
 		FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */; };
+		FFAA2D951FB571BF00B63CBA /* CRFCoreMotionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA2D941FB571BF00B63CBA /* CRFCoreMotionRecorder.swift */; };
 		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
-		FFDD77F81FAD30900024BDD1 /* RunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */; };
+		FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
+		FFE7EB611FD0BAB200A69F46 /* CardioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7EB601FD0BAB200A69F46 /* CardioUITests.swift */; };
+		FFF159F51FB4E31F0061BA93 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
+		FFFDAFBC1FB50091001C59BD /* CRFResultStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,47 +163,96 @@
 			remoteGlobalIDString = 801040B11C5A843D00D26E19;
 			remoteInfo = BridgeAppSDK;
 		};
-		FF78FC5D1FA3FE0200B8D42C /* PBXContainerItemProxy */ = {
+		FF4712211FCF95D40052E5E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FF443E161F7AC21900F43BE7;
-			remoteInfo = ResearchSuiteUI;
+			containerPortal = 60F7A1271E89C76E00B123FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF47120C1FCF95D40052E5E3;
+			remoteInfo = CRFModuleTestApp;
 		};
-		FF78FC5F1FA3FE0200B8D42C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FF443E1F1F7AC21900F43BE7;
-			remoteInfo = ResearchSuiteUITests;
-		};
-		FF78FC661FA3FE1E00B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E43E1FD1179800C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = FF72B2311F6859D3004C6F15;
-			remoteInfo = ResearchSuite;
+			remoteGlobalIDString = FF8B53141FCE678E006B6937;
+			remoteInfo = "ResearchSuite (iOS)";
 		};
-		FF78FC681FA3FE1E00B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E4401FD1179800C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = FF72B23A1F6859D3004C6F15;
-			remoteInfo = ResearchSuiteTests;
+			remoteGlobalIDString = FF8B531C1FCE678E006B6937;
+			remoteInfo = ResearchSuiteTests_iOS;
 		};
-		FF78FC6C1FA3FE9400B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E4421FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF8B53301FCE67AA006B6937;
+			remoteInfo = "ResearchSuite (watchOS)";
+		};
+		FFA0E4441FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF8B533D1FCE67C7006B6937;
+			remoteInfo = "ResearchSuite (tvOS)";
+		};
+		FFA0E4461FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FF8B53451FCE67C8006B6937;
+			remoteInfo = ResearchSuiteTests_tvOS;
+		};
+		FFA0E44C1FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FFF2D9381FCF415E007258F8;
+			remoteInfo = "ResearchSuiteUI (iOS)";
+		};
+		FFA0E44E1FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FFF2D9401FCF415E007258F8;
+			remoteInfo = ResearchSuiteUITests_iOS;
+		};
+		FFA0E4501FD1179800C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FFF2D9701FCF41BF007258F8;
+			remoteInfo = "ResearchSuiteUI (watchOS)";
+		};
+		FFA0E4541FD117A400C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = FF443E151F7AC21900F43BE7;
-			remoteInfo = ResearchSuiteUI;
+			remoteGlobalIDString = FFF2D9371FCF415E007258F8;
+			remoteInfo = "ResearchSuiteUI (iOS)";
 		};
-		FF78FC701FA3FE9400B8D42C /* PBXContainerItemProxy */ = {
+		FFA0E4581FD117B900C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = FF72B2301F6859D3004C6F15;
-			remoteInfo = ResearchSuite;
+			remoteGlobalIDString = FF8B53131FCE678E006B6937;
+			remoteInfo = "ResearchSuite (iOS)";
+		};
+		FFA0E45C1FD1194D00C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FFF2D9371FCF415E007258F8;
+			remoteInfo = "ResearchSuiteUI (iOS)";
+		};
+		FFA0E4601FD1194E00C36AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FF8B53131FCE678E006B6937;
+			remoteInfo = "ResearchSuite (iOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -152,10 +265,22 @@
 			files = (
 				60F7A2101E89D0B200B123FA /* ResearchKit.framework in Embed Frameworks */,
 				60F7A2131E89D0B200B123FA /* ResearchUXFactory.framework in Embed Frameworks */,
-				FF78FC6F1FA3FE9400B8D42C /* ResearchSuite.framework in Embed Frameworks */,
+				FFA0E4571FD117B900C36AE7 /* ResearchSuite.framework in Embed Frameworks */,
 				60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */,
-				FF78FC6B1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Embed Frameworks */,
+				FFA0E4531FD117A400C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */,
 				60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4712561FCFA0F90052E5E3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FFA0E45F1FD1194E00C36AE7 /* ResearchSuite.framework in Embed Frameworks */,
+				FFA0E45B1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,11 +302,44 @@
 		60F7A20E1E89D0B200B123FA /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchUXFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F7A2141E89D0B200B123FA /* BridgeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BridgeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		801281811FB7C00200AA52D6 /* TaskGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupTableViewController.swift; sourceTree = "<group>"; };
+		801281891FB7C05900AA52D6 /* GroupedScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedScheduledActivityManager.swift; sourceTree = "<group>"; };
+		8012818B1FB8F71D00AA52D6 /* MasterScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduledActivityManager.swift; sourceTree = "<group>"; };
+		8012818F1FB901BE00AA52D6 /* ChallengeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTableViewCell.swift; sourceTree = "<group>"; };
+		80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitStep.swift; sourceTree = "<group>"; };
+		80D529021FB26A17007B9B26 /* MyJourneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJourneyViewController.swift; sourceTree = "<group>"; };
+		80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroup.swift; sourceTree = "<group>"; };
+		80D5290B1FB26C2D007B9B26 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OnboardingSurvey.json; sourceTree = "<group>"; };
+		FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateStepViewController.swift; sourceTree = "<group>"; };
 		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
+		FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateRecorder.swift; sourceTree = "<group>"; };
+		FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFLocationRecorder.swift; sourceTree = "<group>"; };
+		FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFModuleTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF4712141FCF95D40052E5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF4712161FCF95D40052E5E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF4712191FCF95D40052E5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF47121B1FCF95D40052E5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CRFModuleTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4712241FCF95D40052E5E3 /* BackgroundSurveyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSurveyUITests.swift; sourceTree = "<group>"; };
+		FF4712261FCF95D40052E5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF4712501FCF99150052E5E3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Stair_Step.html; sourceTree = "<group>"; };
 		FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Cardio_12MT.html; sourceTree = "<group>"; };
 		FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntroductionStepViewController.swift; sourceTree = "<group>"; };
-		FF55C42D1FAB0189004EDB59 /* CountdownStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownStepViewController.swift; sourceTree = "<group>"; };
+		FF569BED1FB63CF9005F525A /* Cardio_Stress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_Stress.json; sourceTree = "<group>"; };
+		FF569BF51FB63FCA005F525A /* Stress_Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Stress_Test.html; sourceTree = "<group>"; };
+		FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_Stair_Step.json; sourceTree = "<group>"; };
+		FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFCameraShutterButton.swift; sourceTree = "<group>"; };
+		FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFCameraStepViewController.swift; sourceTree = "<group>"; };
+		FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFStairStepViewController.swift; sourceTree = "<group>"; };
+		FF6D6C721FD0A9AE002B514A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FF77075A1FB43D7F00658074 /* heartrate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heartrate.json; sourceTree = "<group>"; };
+		FF7707631FB43E1200658074 /* HeartRateRecorderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateRecorderTests.swift; sourceTree = "<group>"; };
 		FF7752371F7093AF004925B8 /* SurveyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFactory.swift; sourceTree = "<group>"; };
 		FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyOverviewViewController.swift; sourceTree = "<group>"; };
 		FF7752471F709D71004925B8 /* StudyOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyOverview.storyboard; sourceTree = "<group>"; };
@@ -194,6 +352,7 @@
 		FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchSuite.xcodeproj; path = ResearchSuite/ResearchSuite/ResearchSuite.xcodeproj; sourceTree = "<group>"; };
 		FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cardio_12MT.json; sourceTree = "<group>"; };
 		FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartrateStep.json; sourceTree = "<group>"; };
+		FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Background_Survey.json; sourceTree = "<group>"; };
 		FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActiveTaskSteps.storyboard; sourceTree = "<group>"; };
 		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
@@ -202,8 +361,13 @@
 		FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartRate_Measurement.json; sourceTree = "<group>"; };
 		FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledActivityManager.swift; sourceTree = "<group>"; };
+		FFAA2D941FB571BF00B63CBA /* CRFCoreMotionRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFCoreMotionRecorder.swift; sourceTree = "<group>"; };
 		FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
-		FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDistanceStepViewController.swift; sourceTree = "<group>"; };
+		FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFRunDistanceStepViewController.swift; sourceTree = "<group>"; };
+		FFE7EB601FD0BAB200A69F46 /* CardioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioUITests.swift; sourceTree = "<group>"; };
+		FFF159ED1FB4E31F0061BA93 /* CRFHeartRateProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFHeartRateProcessor.h; sourceTree = "<group>"; };
+		FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFHeartRateProcessor.m; sourceTree = "<group>"; };
+		FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFResultStepViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,18 +375,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4043FC1FBAA20C000EF2A0 /* CoreMotion.framework in Frameworks */,
+				FF4043FB1FBAA202000EF2A0 /* CoreLocation.framework in Frameworks */,
+				FF4043FA1FBAA1F1000EF2A0 /* AVFoundation.framework in Frameworks */,
 				60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */,
 				60F7A20F1E89D0B200B123FA /* ResearchKit.framework in Frameworks */,
-				FF78FC6E1FA3FE9400B8D42C /* ResearchSuite.framework in Frameworks */,
 				60F7A2121E89D0B200B123FA /* ResearchUXFactory.framework in Frameworks */,
 				60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */,
-				FF78FC6A1FA3FE9400B8D42C /* ResearchSuiteUI.framework in Frameworks */,
 				FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */,
+				FFA0E4521FD117A400C36AE7 /* ResearchSuiteUI.framework in Frameworks */,
+				FFA0E4561FD117B900C36AE7 /* ResearchSuite.framework in Frameworks */,
 				60F7A2151E89D0B200B123FA /* BridgeSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		60F7A1401E89C76E00B123FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47120A1FCF95D40052E5E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF6D6C7B1FD0A9AF002B514A /* MapKit.framework in Frameworks */,
+				FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */,
+				FFA0E45E1FD1194E00C36AE7 /* ResearchSuite.framework in Frameworks */,
+				FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */,
+				FFA0E45A1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Frameworks */,
+				FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47121D1FCF95D40052E5E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,6 +424,8 @@
 			children = (
 				60F7A1311E89C76E00B123FA /* CRFModuleValidation */,
 				60F7A1461E89C76E00B123FA /* CRFModuleValidationTests */,
+				FF47120E1FCF95D40052E5E3 /* CRFModuleTestApp */,
+				FF4712231FCF95D40052E5E3 /* CRFModuleTestAppUITests */,
 				60F7A1F21E89CFEF00B123FA /* Frameworks */,
 				60F7A1301E89C76E00B123FA /* Products */,
 			);
@@ -247,6 +436,8 @@
 			children = (
 				60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */,
 				60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */,
+				FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */,
+				FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,12 +447,17 @@
 			children = (
 				60F7A1321E89C76E00B123FA /* AppDelegate.swift */,
 				FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */,
+				8012818B1FB8F71D00AA52D6 /* MasterScheduledActivityManager.swift */,
 				FFA607B01F7080F80034A4C0 /* ScheduledActivityManager.swift */,
 				FF7752371F7093AF004925B8 /* SurveyFactory.swift */,
+				80D529021FB26A17007B9B26 /* MyJourneyViewController.swift */,
+				80D5290B1FB26C2D007B9B26 /* Schedule.swift */,
+				80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */,
+				801281811FB7C00200AA52D6 /* TaskGroupTableViewController.swift */,
+				801281891FB7C05900AA52D6 /* GroupedScheduledActivityManager.swift */,
 				FF7752451F709D5D004925B8 /* StudyOverviewViewController.swift */,
-				FFDD77F71FAD30900024BDD1 /* RunDistanceStepViewController.swift */,
-				FF55C42D1FAB0189004EDB59 /* CountdownStepViewController.swift */,
-				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
+				80B3FB4C1FB51EC900B81B6E /* FitbitStep.swift */,
+				8012818F1FB901BE00AA52D6 /* ChallengeTableViewCell.swift */,
 				FF9D7F591FA8DEB8008506DB /* Step Customization */,
 				60F7A1641E89C98800B123FA /* Resources */,
 				60F7A1611E89C93800B123FA /* Storyboards */,
@@ -274,9 +470,10 @@
 		60F7A1461E89C76E00B123FA /* CRFModuleValidationTests */ = {
 			isa = PBXGroup;
 			children = (
-				60F7A1491E89C76E00B123FA /* Info.plist */,
+				FF7707651FB43E1C00658074 /* Supporting Files */,
+				FF7707621FB43D8900658074 /* test files */,
+				FF7707631FB43E1200658074 /* HeartRateRecorderTests.swift */,
 				FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */,
-				FF77528F1F7230DC004925B8 /* Bridging-Header.h */,
 			);
 			path = CRFModuleValidationTests;
 			sourceTree = "<group>";
@@ -317,6 +514,10 @@
 		60F7A1F21E89CFEF00B123FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF6D6C721FD0A9AE002B514A /* MapKit.framework */,
+				FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */,
+				FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */,
+				FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */,
 				60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */,
 				FFA6078D1F70745F0034A4C0 /* HealthKit.framework */,
 				60F7A2141E89D0B200B123FA /* BridgeSDK.framework */,
@@ -341,13 +542,87 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FF2A1D581FB176340095044A /* Recorders */ = {
+			isa = PBXGroup;
+			children = (
+				FFAA2D941FB571BF00B63CBA /* CRFCoreMotionRecorder.swift */,
+				FFF159ED1FB4E31F0061BA93 /* CRFHeartRateProcessor.h */,
+				FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */,
+				FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */,
+				FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */,
+			);
+			name = Recorders;
+			sourceTree = "<group>";
+		};
+		FF2A1D5B1FB177750095044A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */,
+				FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */,
+				FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */,
+				FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */,
+				FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */,
+				FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FF47120E1FCF95D40052E5E3 /* CRFModuleTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */,
+				FF4712501FCF99150052E5E3 /* TableViewController.swift */,
+				FF4712131FCF95D40052E5E3 /* Main.storyboard */,
+				FF4712161FCF95D40052E5E3 /* Assets.xcassets */,
+				FF4712181FCF95D40052E5E3 /* LaunchScreen.storyboard */,
+				FF47121B1FCF95D40052E5E3 /* Info.plist */,
+			);
+			path = CRFModuleTestApp;
+			sourceTree = "<group>";
+		};
+		FF4712231FCF95D40052E5E3 /* CRFModuleTestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FFE7EB601FD0BAB200A69F46 /* CardioUITests.swift */,
+				FF4712241FCF95D40052E5E3 /* BackgroundSurveyUITests.swift */,
+				FF4712261FCF95D40052E5E3 /* Info.plist */,
+			);
+			path = CRFModuleTestAppUITests;
+			sourceTree = "<group>";
+		};
 		FF55C4121FAAD993004EDB59 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				FF569BF51FB63FCA005F525A /* Stress_Test.html */,
 				FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */,
 				FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		FF5D8B781FB5269C0003B0FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FF7707621FB43D8900658074 /* test files */ = {
+			isa = PBXGroup;
+			children = (
+				FF77075A1FB43D7F00658074 /* heartrate.json */,
+			);
+			path = "test files";
+			sourceTree = "<group>";
+		};
+		FF7707651FB43E1C00658074 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FF77528F1F7230DC004925B8 /* Bridging-Header.h */,
+				60F7A1491E89C76E00B123FA /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		FF77527E1F722C60004925B8 /* Style Guide */ = {
@@ -362,8 +637,9 @@
 		FF78FC551FA3FE0200B8D42C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */,
-				FF78FC601FA3FE0200B8D42C /* ResearchSuiteUITests.xctest */,
+				FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */,
+				FFA0E44F1FD1179800C36AE7 /* ResearchSuiteUITests_iOS.xctest */,
+				FFA0E4511FD1179800C36AE7 /* ResearchSuiteUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -371,8 +647,11 @@
 		FF78FC621FA3FE1E00B8D42C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */,
-				FF78FC691FA3FE1E00B8D42C /* ResearchSuiteTests.xctest */,
+				FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */,
+				FFA0E4411FD1179800C36AE7 /* ResearchSuiteTests_iOS.xctest */,
+				FFA0E4431FD1179800C36AE7 /* ResearchSuite.framework */,
+				FFA0E4451FD1179800C36AE7 /* ResearchSuite.framework */,
+				FFA0E4471FD1179800C36AE7 /* ResearchSuiteTests_tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -380,6 +659,9 @@
 		FF9D7F591FA8DEB8008506DB /* Step Customization */ = {
 			isa = PBXGroup;
 			children = (
+				FF2A1D5B1FB177750095044A /* View Controllers */,
+				FF5D8B781FB5269C0003B0FC /* Views */,
+				FF2A1D581FB176340095044A /* Recorders */,
 				FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */,
 				FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */,
 				601ADB071FACDEDD00B6D975 /* OnboardingSteps.storyboard */,
@@ -390,9 +672,13 @@
 		FFA607AB1F707BB70034A4C0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */,
 				FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */,
 				FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */,
+				FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */,
+				FF569BED1FB63CF9005F525A /* Cardio_Stress.json */,
 				FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */,
+				80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -415,8 +701,8 @@
 			);
 			dependencies = (
 				60F7A21A1E89D0B200B123FA /* PBXTargetDependency */,
-				FF78FC6D1FA3FE9400B8D42C /* PBXTargetDependency */,
-				FF78FC711FA3FE9400B8D42C /* PBXTargetDependency */,
+				FFA0E4551FD117A400C36AE7 /* PBXTargetDependency */,
+				FFA0E4591FD117B900C36AE7 /* PBXTargetDependency */,
 			);
 			name = CRFModuleValidation;
 			productName = CRFModuleValidation;
@@ -441,20 +727,58 @@
 			productReference = 60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4712331FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestApp" */;
+			buildPhases = (
+				FF4712091FCF95D40052E5E3 /* Sources */,
+				FF47120A1FCF95D40052E5E3 /* Frameworks */,
+				FF47120B1FCF95D40052E5E3 /* Resources */,
+				FF4712561FCFA0F90052E5E3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFA0E45D1FD1194D00C36AE7 /* PBXTargetDependency */,
+				FFA0E4611FD1194E00C36AE7 /* PBXTargetDependency */,
+			);
+			name = CRFModuleTestApp;
+			productName = CRFModuleTestApp;
+			productReference = FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF47121F1FCF95D40052E5E3 /* CRFModuleTestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4712341FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestAppUITests" */;
+			buildPhases = (
+				FF47121C1FCF95D40052E5E3 /* Sources */,
+				FF47121D1FCF95D40052E5E3 /* Frameworks */,
+				FF47121E1FCF95D40052E5E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF4712221FCF95D40052E5E3 /* PBXTargetDependency */,
+			);
+			name = CRFModuleTestAppUITests;
+			productName = CRFModuleTestAppUITests;
+			productReference = FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		60F7A1271E89C76E00B123FA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Sage Bionetworks";
 				TargetAttributes = {
 					60F7A12E1E89C76E00B123FA = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = KA9Z8R6M6K;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -477,8 +801,25 @@
 					60F7A1421E89C76E00B123FA = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = KA9Z8R6M6K;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						TestTargetID = 60F7A12E1E89C76E00B123FA;
+					};
+					FF47120C1FCF95D40052E5E3 = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = 4B822CZK9N;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					FF47121F1FCF95D40052E5E3 = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = 4B822CZK9N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FF47120C1FCF95D40052E5E3;
 					};
 				};
 			};
@@ -511,6 +852,8 @@
 			targets = (
 				60F7A12E1E89C76E00B123FA /* CRFModuleValidation */,
 				60F7A1421E89C76E00B123FA /* CRFModuleValidationTests */,
+				FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */,
+				FF47121F1FCF95D40052E5E3 /* CRFModuleTestAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -551,32 +894,60 @@
 			remoteRef = 60F7A20C1E89D01100B123FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FF78FC5E1FA3FE0200B8D42C /* ResearchSuiteUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ResearchSuiteUI.framework;
-			remoteRef = FF78FC5D1FA3FE0200B8D42C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FF78FC601FA3FE0200B8D42C /* ResearchSuiteUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ResearchSuiteUITests.xctest;
-			remoteRef = FF78FC5F1FA3FE0200B8D42C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FF78FC671FA3FE1E00B8D42C /* ResearchSuite.framework */ = {
+		FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ResearchSuite.framework;
-			remoteRef = FF78FC661FA3FE1E00B8D42C /* PBXContainerItemProxy */;
+			remoteRef = FFA0E43E1FD1179800C36AE7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FF78FC691FA3FE1E00B8D42C /* ResearchSuiteTests.xctest */ = {
+		FFA0E4411FD1179800C36AE7 /* ResearchSuiteTests_iOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = ResearchSuiteTests.xctest;
-			remoteRef = FF78FC681FA3FE1E00B8D42C /* PBXContainerItemProxy */;
+			path = ResearchSuiteTests_iOS.xctest;
+			remoteRef = FFA0E4401FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4431FD1179800C36AE7 /* ResearchSuite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuite.framework;
+			remoteRef = FFA0E4421FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4451FD1179800C36AE7 /* ResearchSuite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuite.framework;
+			remoteRef = FFA0E4441FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4471FD1179800C36AE7 /* ResearchSuiteTests_tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchSuiteTests_tvOS.xctest;
+			remoteRef = FFA0E4461FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuiteUI.framework;
+			remoteRef = FFA0E44C1FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E44F1FD1179800C36AE7 /* ResearchSuiteUITests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchSuiteUITests_iOS.xctest;
+			remoteRef = FFA0E44E1FD1179800C36AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA0E4511FD1179800C36AE7 /* ResearchSuiteUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchSuiteUI.framework;
+			remoteRef = FFA0E4501FD1179800C36AE7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -589,7 +960,10 @@
 				601ADB081FACDEDD00B6D975 /* OnboardingSteps.storyboard in Resources */,
 				60F7A13D1E89C76E00B123FA /* LaunchScreen.storyboard in Resources */,
 				FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */,
+				FF5D8B771FB522F70003B0FC /* Cardio_Stair_Step.json in Resources */,
 				FF77525B1F70A475004925B8 /* crf-module.pem in Resources */,
+				80E8D1BC1FB5460A00A695C5 /* OnboardingSurvey.json in Resources */,
+				FF88D5051FB66D0D003BB844 /* Background_Survey.json in Resources */,
 				FF7752591F70A465004925B8 /* BridgeInfo-private.plist in Resources */,
 				FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */,
 				FF78FC8E1FA7B49900B8D42C /* Cardio_12MT.json in Resources */,
@@ -599,11 +973,42 @@
 				60F7A13A1E89C76E00B123FA /* Assets.xcassets in Resources */,
 				60F7A1E31E89CAFB00B123FA /* BridgeInfo.plist in Resources */,
 				FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */,
+				FF569BF61FB63FCA005F525A /* Stress_Test.html in Resources */,
 				FF78FC901FA7B8DB00B8D42C /* HeartrateStep.json in Resources */,
+				FF569BF41FB63CFA005F525A /* Cardio_Stress.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		60F7A1411E89C76E00B123FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7707611FB43D8000658074 /* heartrate.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47120B1FCF95D40052E5E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF47121A1FCF95D40052E5E3 /* LaunchScreen.storyboard in Resources */,
+				FF4712391FCF97E10052E5E3 /* Cardio_12MT.json in Resources */,
+				FF47123E1FCF97F20052E5E3 /* Stress_Test.html in Resources */,
+				FF4712171FCF95D40052E5E3 /* Assets.xcassets in Resources */,
+				FF4712151FCF95D40052E5E3 /* Main.storyboard in Resources */,
+				FF6D6C7C1FD0AA84002B514A /* ActiveTaskSteps.storyboard in Resources */,
+				FF47123D1FCF97E60052E5E3 /* Assets.xcassets in Resources */,
+				FF4712371FCF97E10052E5E3 /* Background_Survey.json in Resources */,
+				FF4712381FCF97E10052E5E3 /* HeartrateStep.json in Resources */,
+				FF47123F1FCF97F20052E5E3 /* Stair_Step.html in Resources */,
+				FF47123A1FCF97E10052E5E3 /* Cardio_Stair_Step.json in Resources */,
+				FF47123B1FCF97E10052E5E3 /* Cardio_Stress.json in Resources */,
+				FF4712401FCF97F20052E5E3 /* Cardio_12MT.html in Resources */,
+				FF47123C1FCF97E10052E5E3 /* HeartRate_Measurement.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47121E1FCF95D40052E5E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -646,17 +1051,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801281901FB901BE00AA52D6 /* ChallengeTableViewCell.swift in Sources */,
+				FF5D8B811FB535340003B0FC /* CRFStairStepViewController.swift in Sources */,
+				FF2A1D5A1FB176BC0095044A /* CRFLocationRecorder.swift in Sources */,
+				80D5290C1FB26C2E007B9B26 /* TaskGroup.swift in Sources */,
 				FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */,
+				801281881FB7C00300AA52D6 /* TaskGroupTableViewController.swift in Sources */,
 				FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */,
+				FFAA2D951FB571BF00B63CBA /* CRFCoreMotionRecorder.swift in Sources */,
 				FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */,
+				8012818C1FB8F71E00AA52D6 /* MasterScheduledActivityManager.swift in Sources */,
+				FF5D8B7F1FB528BC0003B0FC /* CRFCameraStepViewController.swift in Sources */,
 				FFA607B11F7080F80034A4C0 /* ScheduledActivityManager.swift in Sources */,
 				FF7752461F709D5D004925B8 /* StudyOverviewViewController.swift in Sources */,
+				FF5D8B7D1FB526F80003B0FC /* CRFCameraShutterButton.swift in Sources */,
+				8012818A1FB7C05900AA52D6 /* GroupedScheduledActivityManager.swift in Sources */,
+				FFFDAFBC1FB50091001C59BD /* CRFResultStepViewController.swift in Sources */,
 				FF7752861F722CB4004925B8 /* UIColor+BridgeMapping.swift in Sources */,
-				FFDD77F81FAD30900024BDD1 /* RunDistanceStepViewController.swift in Sources */,
+				FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */,
+				80B3FB531FB51EC900B81B6E /* FitbitStep.swift in Sources */,
+				FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */,
 				FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */,
+				FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */,
 				FF7752841F722C95004925B8 /* UIColor+CMAdditions.swift in Sources */,
-				FF55C42E1FAB0189004EDB59 /* CountdownStepViewController.swift in Sources */,
+				80D529091FB26A17007B9B26 /* MyJourneyViewController.swift in Sources */,
+				80D5290D1FB26C2E007B9B26 /* Schedule.swift in Sources */,
 				FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */,
+				FFF159F51FB4E31F0061BA93 /* CRFHeartRateProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,7 +1085,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7707641FB43E1200658074 /* HeartRateRecorderTests.swift in Sources */,
 				FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF4712091FCF95D40052E5E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4712481FCF98100052E5E3 /* CRFCoreMotionRecorder.swift in Sources */,
+				FF4712511FCF99150052E5E3 /* TableViewController.swift in Sources */,
+				FF4712461FCF97FA0052E5E3 /* CRFStairStepViewController.swift in Sources */,
+				FF47124A1FCF98140052E5E3 /* CRFHeartRateRecorder.swift in Sources */,
+				FF4712411FCF97FA0052E5E3 /* TaskIntroductionStepViewController.swift in Sources */,
+				FF4712471FCF97FF0052E5E3 /* CRFCameraShutterButton.swift in Sources */,
+				FF4712421FCF97FA0052E5E3 /* CRFCameraStepViewController.swift in Sources */,
+				FF4712431FCF97FA0052E5E3 /* CRFHeartRateStepViewController.swift in Sources */,
+				FF4712441FCF97FA0052E5E3 /* CRFRunDistanceStepViewController.swift in Sources */,
+				FF4712491FCF98140052E5E3 /* CRFLocationRecorder.swift in Sources */,
+				FF47124B1FCF98180052E5E3 /* CRFTaskFactory.swift in Sources */,
+				FF4712451FCF97FA0052E5E3 /* CRFResultStepViewController.swift in Sources */,
+				FF4712101FCF95D40052E5E3 /* AppDelegate.swift in Sources */,
+				FF47124C1FCF981B0052E5E3 /* CRFHeartRateProcessor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF47121C1FCF95D40052E5E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFE7EB611FD0BAB200A69F46 /* CardioUITests.swift in Sources */,
+				FF4712251FCF95D40052E5E3 /* BackgroundSurveyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,15 +1133,30 @@
 			name = BridgeAppSDK;
 			targetProxy = 60F7A2191E89D0B200B123FA /* PBXContainerItemProxy */;
 		};
-		FF78FC6D1FA3FE9400B8D42C /* PBXTargetDependency */ = {
+		FF4712221FCF95D40052E5E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ResearchSuiteUI;
-			targetProxy = FF78FC6C1FA3FE9400B8D42C /* PBXContainerItemProxy */;
+			target = FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */;
+			targetProxy = FF4712211FCF95D40052E5E3 /* PBXContainerItemProxy */;
 		};
-		FF78FC711FA3FE9400B8D42C /* PBXTargetDependency */ = {
+		FFA0E4551FD117A400C36AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ResearchSuite;
-			targetProxy = FF78FC701FA3FE9400B8D42C /* PBXContainerItemProxy */;
+			name = "ResearchSuiteUI (iOS)";
+			targetProxy = FFA0E4541FD117A400C36AE7 /* PBXContainerItemProxy */;
+		};
+		FFA0E4591FD117B900C36AE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ResearchSuite (iOS)";
+			targetProxy = FFA0E4581FD117B900C36AE7 /* PBXContainerItemProxy */;
+		};
+		FFA0E45D1FD1194D00C36AE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ResearchSuiteUI (iOS)";
+			targetProxy = FFA0E45C1FD1194D00C36AE7 /* PBXContainerItemProxy */;
+		};
+		FFA0E4611FD1194E00C36AE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ResearchSuite (iOS)";
+			targetProxy = FFA0E4601FD1194E00C36AE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -698,6 +1165,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				60F7A13C1E89C76E00B123FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FF4712131FCF95D40052E5E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF4712141FCF95D40052E5E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FF4712181FCF95D40052E5E3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF4712191FCF95D40052E5E3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -810,6 +1293,7 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -817,7 +1301,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development org.sagebase.crfModuleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -838,13 +1323,15 @@
 					"$(PROJECT_DIR)/CRFModuleValidation/JourneyPRO",
 				);
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9059c83e-ff2e-4a3a-8207-50f3b3cccb8f";
 				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.crfModuleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -865,7 +1352,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidationTests/Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRFModuleValidation.app/CRFModuleValidation";
 			};
 			name = Debug;
@@ -887,8 +1375,123 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidationTests/Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CRFModuleValidation.app/CRFModuleValidation";
+			};
+			name = Release;
+		};
+		FF4712271FCF95D40052E5E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FF4712281FCF95D40052E5E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FF4712291FCF95D40052E5E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CRFModuleTestApp;
+			};
+			name = Debug;
+		};
+		FF47122A1FCF95D40052E5E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CRFModuleTestAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CRFModuleTestApp;
 			};
 			name = Release;
 		};
@@ -918,6 +1521,24 @@
 			buildConfigurations = (
 				60F7A15B1E89C76E00B123FA /* Debug */,
 				60F7A15C1E89C76E00B123FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF4712331FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4712271FCF95D40052E5E3 /* Debug */,
+				FF4712281FCF95D40052E5E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF4712341FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4712291FCF95D40052E5E3 /* Debug */,
+				FF47122A1FCF95D40052E5E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

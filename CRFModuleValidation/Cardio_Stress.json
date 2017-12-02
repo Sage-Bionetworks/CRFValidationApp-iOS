@@ -1,0 +1,74 @@
+{
+    "identifier"        : "Cardio Stress Test",
+    "schemaInfo": {
+        "identifier": "Cardio Stress Test",
+        "revision": 1
+    },
+    "actions"           : { "cancel": { "iconName": "closeActivity" }},
+    "shouldHideActions" : ["goBackward", "skip"],
+    "progressMarkers"   : ["heartRate.before", "stressTest", "heartRate.after"],
+    "steps"             : [
+                           {
+                           "identifier"   : "introduction",
+                           "type"         : "instruction",
+                           "title"        : "Cardiovascular stress test",
+                           "text"         : "20 minutes",
+                           "image"        : { "imageName" : "treadmillMan", "placementType" : "topBackground" },
+                           "colorTheme"   : {   "backgroundColor" : "offWhite",
+                                                "foregroundColor" : "gunmetal",
+                                                "usesLightStyle" : false },
+                           "actions"      : {
+                                               "goForward":  { "buttonTitle": "Start" },
+                                               "cancel":     { "iconName": "backArrowHeader" },
+                                               "learnMore":  { "iconName": "infoIcon", "url": "Stress_Test.html" }
+                                            },
+                           "viewTheme"    : { "viewIdentifier": "TaskIntroductionStressTest", "storyboardIdentifier": "ActiveTaskSteps" }
+                           },
+                           {
+                           "identifier"         : "heartRate.before",
+                           "type"               : "transform",
+                           "replacementSteps"   : [{ "identifier"   : "instruction",
+                                                     "title"        : "Capture heart rate",
+                                                     "text"         : "Use your finger to cover the camera and flash on the back of your phone." },
+                                                   { "identifier"   : "feedback",
+                                                     "text"         : "Your heart rate is" }
+                                                   ],
+                           "sectionTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           },
+                           {
+                           "identifier"     : "stressTest",
+                           "type"           : "section",
+                           "steps"          : [
+                                   {
+                                   "identifier"   : "instructions",
+                                   "type"         : "instruction",
+                                   "title"        : "Ready to run on the treadmill?",
+                                   "text"         : "You’ll start off slowly, and speed and grade will be increased through the test duration.",
+                                   "image"        : { "imageName" : "treadmillMan", "placementType" : "topBackground" },
+                                   "colorTheme"     : { "backgroundColor" : "offWhite", "usesLightStyle" : false },
+                                   "actions"        : { "goForward": { "iconName": "treadmillStartButton" }},
+                                   "viewTheme"      : { "viewIdentifier": "ActiveInstruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                                   },
+                                   {
+                                   "identifier"   : "testDone",
+                                   "type"         : "instruction",
+                                   "text"         : "Did you complete the test on the treadmill?",
+                                   "image"        : { "imageName": "treadmillMan", "placementType": "topBackground" },
+                                   "colorTheme"   : { "backgroundColor" : "offWhite", "usesLightStyle" : false },
+                                   "actions"      : { "goForward": { "buttonTitle": "Yes" }},
+                                   "viewTheme"    : { "viewIdentifier": "Instruction", "storyboardIdentifier": "ActiveTaskSteps" }
+                                   }]
+                           },
+                           {
+                           "identifier"         : "heartRate.after",
+                           "type"               : "transform",
+                           "replacementSteps"   : [{ "identifier"   : "instruction",
+                                                   "title"        : "Stand still for 1 minute",
+                                                   "text"         : "Almost done! Stand still for a minute to measure your heart rate recovery." },
+                                                   { "identifier"   : "feedback",
+                                                     "text"         : "Your heart rate changed to" }
+                                                   ],
+                           "sectionTransformer"    : { "resourceName": "HeartrateStep.json"}
+                           }
+                           ]
+}

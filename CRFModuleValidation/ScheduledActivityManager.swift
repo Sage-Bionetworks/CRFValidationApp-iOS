@@ -119,38 +119,28 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         return nil
     }
     
-    func didSelectRow(at indexPath: IndexPath) {
-       
-        // Only if the task was created should something be done.
-        guard let schedule = scheduledActivity(at: indexPath),
-            let taskRef = bridgeInfo.taskReferenceForSchedule(schedule),
+    func createAppropriateTaskViewController(for schedule: SBBScheduledActivity) -> UIViewController? {
+        guard  let taskRef = bridgeInfo.taskReferenceForSchedule(schedule) as? TaskReferenceExtension,
             let identifier = schedule.activityIdentifier
             else {
-                assertionFailure("Could not find schedule or task reference")
-                return
+                assertionFailure("Could not find task reference")
+                return nil
         }
         
         // For the HeartRate Measurement, use the ORKTask so that the schema stays consistent.
-        if identifier == heartRateTaskIdentifier {
+        if taskRef.usesResearchKit {
             
-            // If this is a valid schedule then create the task view controller
-            guard let taskViewController = createTaskViewController(for: schedule)
-                else {
-                    assertionFailure("Failed to create task view controller for \(schedule)")
-                    return
-            }
-            
-            self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
+            // If this is a valid schedule then create the SBA task view controller
+            return createTaskViewController(for: schedule)
         }
         else {
-            
             RSDFactory.shared = CRFTaskFactory()
-            
+        
             // Otherwise, This is a task that should run using ResearchSuite
             let taskInfo: RSDTaskInfoStep = (taskRef as? RSDTaskInfoStep) ?? {
                 guard let dictionary = taskRef as? NSDictionary,
                     let resourceName = dictionary["resourceName"] as? String else {
-                    fatalError("Cannot create task info")
+                        fatalError("Cannot create task info")
                 }
                 
                 var taskInfo = RSDTaskInfoStepObject(with: identifier)
@@ -161,21 +151,56 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
                 taskInfo.subtitle = dictionary["subtitle"] as? String
                 
                 return taskInfo
-            }()
+                }()
             
             let taskViewController = RSDTaskViewController(taskInfo: taskInfo)
             taskViewController.taskPath.scheduleIdentifier = schedule.scheduleIdentifier
             taskViewController.delegate = self
             
-            self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
+            return taskViewController
         }
+    }
+    
+    func didSelectRow(at indexPath: IndexPath) {
+       
+        // Only if the task was created should something be done.
+        guard let schedule = scheduledActivity(at: indexPath)
+            else {
+                assertionFailure("Could not find schedule")
+                return
+        }
+
+        // If this is a valid schedule then create the task view controller
+        guard let taskViewController = createAppropriateTaskViewController(for: schedule)
+            else {
+                assertionFailure("Failed to create task view controller for \(schedule)")
+                return
+        }
+        
+        self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
     }
     
     // MARK: RSDTaskViewControllerDelegate
     
+    open func deleteOutputDirectory(_ outputDirectory: URL?) {
+        guard let outputDirectory = outputDirectory else { return }
+        do {
+            try FileManager.default.removeItem(at: outputDirectory)
+        } catch let error {
+            print("Error removing ResearchKit output directory: \(error.localizedDescription)")
+            debugPrint("\tat: \(outputDirectory)")
+        }
+    }
+    
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), didFinishWith reason: RSDTaskFinishReason, error: Error?) {
+        
         // dismiss the view controller
-        taskViewController.dismiss(animated: true, completion: nil)
+        let outputDirectory = taskViewController.taskPath.outputDirectory
+        taskViewController.dismiss(animated: true) {
+            self.offMainQueue.async {
+                self.deleteOutputDirectory(outputDirectory)
+            }
+        }
         
         if let err = error {
             debugPrint(err)
@@ -214,10 +239,30 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     }
     
     func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), viewControllerFor step: RSDStep) -> (UIViewController & RSDStepController)? {
-        return nil  // TODO: syoung 10/30/2017 build replacement view controllers
+        return nil
     }
     
     func taskViewControllerShouldAutomaticallyForward(_ taskViewController: (UIViewController & RSDTaskController)) -> Bool {
+        return true
+    }
+    
+    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), asyncActionControllerFor configuration: RSDAsyncActionConfiguration) -> RSDAsyncActionController? {
+        return nil
+    }
+}
+
+protocol TaskReferenceExtension : SBATaskReference {
+    var usesResearchKit: Bool { get }
+}
+
+extension NSDictionary : TaskReferenceExtension {
+    var usesResearchKit: Bool {
+        return self["bridgeSurvey"] as? Bool ?? false
+    }
+}
+
+extension SBBSurveyReference : TaskReferenceExtension {
+    var usesResearchKit: Bool {
         return true
     }
 }
@@ -245,8 +290,8 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
                 if let archivableResult = result as? SBAArchivableResult {
                     archivableResults.append((stepIdentifier, archivableResult))
                 }
-                else if let stepCollection = result as? RSDStepCollectionResult {
-                    recursiveAddFunc(sectionIdentifier, stepCollection.identifier, stepCollection.inputResults)
+                else if let collection = result as? RSDCollectionResult {
+                    recursiveAddFunc(sectionIdentifier, collection.identifier, collection.inputResults)
                 }
                 else if let taskResult = result as? RSDTaskResult {
                     recursiveAddFunc(taskResult.identifier, taskResult.identifier, taskResult.stepHistory)
@@ -259,7 +304,7 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
                     let archivableResult = RSDAnswerResultWrapper(sectionIdentifier: sectionIdentifier, result: answerResult)
                     archivableResults.append((stepIdentifier, archivableResult))
                     
-                    if let answer = (answerResult.value as? RSDJSONValue)?.jsonObject() {
+                    if let answer = (answerResult.value as? RSDJSONValue)?.jsonObject(), !(answer is NSNull) {
                         answerMap[archivableResult.identifier] = answer
                         if let unit = answerResult.answerType.unit {
                             answerMap["\(archivableResult.identifier)Unit"] = unit
@@ -279,7 +324,7 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
         }
         
         if answerMap.count > 0 {
-            let archiveAnswers = RSDConsolidatedResult(identifier: identifier, startDate: startDate, endDate: endDate, filename: "answerMap", json: answerMap)
+            let archiveAnswers = RSDConsolidatedResult(identifier: identifier, startDate: startDate, endDate: endDate, filename: "answers", json: answerMap)
             archivableResults.append((identifier, archiveAnswers))
         }
         
@@ -401,7 +446,11 @@ public struct RSDFileResultWrapper : SBAArchivableResult {
     public let result : RSDFileResult
     
     public var identifier: String {
-        return "\(sectionIdentifier ?? "").\(result.identifier)"
+        if let sectionId = sectionIdentifier {
+            return "\(sectionId).\(result.identifier)"
+        } else {
+            return result.identifier
+        }
     }
     
     public var startDate: Date {
@@ -447,7 +496,7 @@ public struct RSDJSONEncodedResult : SBAArchivableResult, Encodable {
             let data = try encoder.encode(self)
             return ArchiveableResult(result: data as NSData, filename: filename)
         } catch let err {
-            debugPrint("Error encoding resule: \(err)")
+            debugPrint("Error encoding result: \(err)")
             return nil
         }
     }

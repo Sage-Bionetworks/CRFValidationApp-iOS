@@ -34,12 +34,11 @@
 import UIKit
 import ResearchSuiteUI
 import ResearchSuite
-import ResearchUXFactory
 
 class TaskIntroductionStepViewController: RSDStepViewController {
     
     override func shouldUseGlobalButtonVisibility() -> Bool {
-        return false
+        return self.shouldHideAction(for: .navigation(.skip))
     }
     
     override func showLearnMore() {
@@ -49,19 +48,11 @@ class TaskIntroductionStepViewController: RSDStepViewController {
             return
         }
         
-        do {
-            // TODO: syoung 11/01/2017 Replace BridgeAppSDK implementation of a webview with one that can load html from an embedded resource.
-            let (data, _) = try action.resourceData()
-            let html = String(data: data, encoding: String.Encoding.utf8)
-            let webVC = SBAWebViewController()
-            webVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(_dismissChildViewController))
-            webVC.html = html
-            let navVC = UINavigationController(rootViewController: webVC)
-            self.present(navVC, animated: true, completion: nil)
-            
-        } catch let err {
-            self.presentAlertWithOk(title: nil, message: "Cannot load learn more for this task. \(err)", actionHandler: nil)
-        }
+        let webVC = RSDWebViewController()
+        webVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(_dismissChildViewController))
+        webVC.resourceTransformer = action
+        let navVC = UINavigationController(rootViewController: webVC)
+        self.present(navVC, animated: true, completion: nil)
     }
     
     @objc func _dismissChildViewController() {

@@ -34,6 +34,10 @@
 import UIKit
 import BridgeAppSDK
 
+public enum CRFOnboardingError: Error {
+    case invalidTaskJson(reason: String?)
+}
+
 class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelegate, SBASharedInfoController {
     
     @IBOutlet weak var loginButton: SBARoundedButton!
@@ -44,6 +48,19 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
         return UIApplication.shared.delegate as! SBAAppInfoDelegate
     }()
     
+    func surveySteps(from jsonFile: String) -> [ORKStep] {
+        guard let json = SBAResourceFinder.shared.json(forResource: jsonFile),
+            let jsonSteps = json["steps"] as? [[String: Any]]
+            else {
+                return []
+        }
+        
+        let factory = SurveyFactory()
+        let steps = jsonSteps.rsd_mapAndFilter { (jsonStep) -> ORKStep? in
+            return factory.createSurveyStepWithDictionary(jsonStep as NSDictionary)
+        }
+        return steps
+    }
     
     // MARK: actions
     
@@ -54,15 +71,24 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
         let appDelegate = UIApplication.shared.delegate as! SBABridgeAppSDKDelegate
         appDelegate.currentUser.consentSignature = SBAConsentSignature(identifier: "signature")
         
-        // Create a task with an external ID and permissions steps and display the view controller
+        // Create a task with external ID, data groups, permissions, and Fitbit steps, and display the view controller
         let externalIDStep = SBAExternalIDLoginStep(identifier: "externalID")
+        let onboardingSurveySteps = self.surveySteps(from: "OnboardingSurvey")
         let permissionsStep = SBAPermissionsStep(identifier: "permissions", permissions:[.camera, .coremotion, .location, .notifications])
-        let fitbitStep = SBAInstructionStep(identifier: "fitbit")
+        // Replace the location permission with a permission that always requests the permission.
+        permissionsStep.permissionTypes = permissionsStep.permissionTypes.map{ (input) -> SBAPermissionObjectType in
+            guard input.permissionType == .location else { return input }
+            let permission = SBALocationPermissionObjectType(permissionType: .location)
+            permission.always = true
+            return permission
+        }
+        let fitbitStep = FitbitStep(identifier: "fitbit")
         fitbitStep.title = "Connect your Fitbit"
         fitbitStep.detailText = "Connecting to your Fitbit data allows the CRF module to understand the various aspects of your health such as your heart rate and daily movement."
         fitbitStep.continueButtonTitle = "Connect"
         fitbitStep.iconImage = #imageLiteral(resourceName: "fitbitLogo")
-        let task = ORKOrderedTask(identifier: "registration", steps: [externalIDStep, permissionsStep, fitbitStep])
+        let steps = [externalIDStep] + onboardingSurveySteps + [permissionsStep, fitbitStep]
+        let task = SBANavigableOrderedTask(identifier: "registration", steps: steps)
         let vc = SBATaskViewController(task: task, taskRun: nil)
         vc.delegate = self
         self.present(vc, animated: true, completion: nil)
@@ -74,10 +100,18 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
         taskViewController.dismiss(animated: true) { 
             if (reason == .completed), let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.connectToFitbit(completionHandler: { (_, _) in
+                // Record the selected data groups
+                if let task = taskViewController.task {
+                    let result = taskViewController.result
+                    task.commitTrackedDataChanges(user: SBAUser.shared, taskResult: result, completion: { (error) in
+                        // Show the appropriate view controller
+                        appDelegate.showAppropriateViewController(animated: false)
+                    })
+                }
+                else {
                     // Show the appropriate view controller
                     appDelegate.showAppropriateViewController(animated: false)
-                })
+                }
             }
             else {
                 // Discard the registration information that has been gathered so far

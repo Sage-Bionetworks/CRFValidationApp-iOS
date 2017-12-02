@@ -9,7 +9,7 @@
 	<key>emailForLoginViaExternalId</key>
 	<string>nobody@null.org</string>
 	<key>cacheDaysAhead</key>
-	<integer>7</integer>
+	<integer>15</integer>
 	<key>cacheDaysBehind</key>
 	<integer>365</integer>
 	<key>schemaMapping</key>
@@ -37,31 +37,89 @@
 	<array>
 		<dict>
 			<key>taskIdentifier</key>
+			<string>Burden Scale</string>
+			<key>bridgeSurvey</key>
+			<true/>
+			<key>estimatedMinutes</key>
+			<integer>5</integer>
+			<key>title</key>
+			<string>User Burden Scale Survey</string>
+			<key>icon</key>
+			<string>usabilitySurveyIcon</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>Usability Scale</string>
+			<key>bridgeSurvey</key>
+			<true/>
+			<key>estimatedMinutes</key>
+			<integer>5</integer>
+			<key>title</key>
+			<string>System Usability Scale Survey</string>
+			<key>icon</key>
+			<string>usabilitySurveyIcon</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
 			<string>HeartRate Measurement</string>
 			<key>resourceName</key>
 			<string>HeartRate_Measurement</string>
+			<key>bridgeSurvey</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>Cardio Stress Test</string>
+			<key>resourceName</key>
+			<string>Cardio_Stress</string>
+			<key>estimatedMinutes</key>
+			<integer>20</integer>
+			<key>title</key>
+			<string>Cardiovascular stress test</string>
+			<key>subtitle</key>
+			<string>20 minutes</string>
+			<key>icon</key>
+			<string>cardioStressTestIcon</string>
 		</dict>
 		<dict>
 			<key>taskIdentifier</key>
 			<string>Cardio 12MT</string>
+			<key>resourceName</key>
+			<string>Cardio_12MT</string>
 			<key>estimatedMinutes</key>
-			<string>15</string>
+			<integer>15</integer>
 			<key>title</key>
 			<string>12 minute test</string>
 			<key>subtitle</key>
 			<string>15 minutes</string>
 			<key>icon</key>
 			<string>active12MinuteRun</string>
-			<key>backgroundImage</key>
-			<string>12MinFullScreen</string>
-			<key>resourceName</key>
-			<string>Cardio_12MT</string>
 		</dict>
 		<dict>
 			<key>taskIdentifier</key>
 			<string>Cardio Stair Step</string>
 			<key>resourceName</key>
 			<string>Cardio_Stair_Step</string>
+			<key>estimatedMinutes</key>
+			<integer>5</integer>
+			<key>title</key>
+			<string>Stair Step</string>
+			<key>subtitle</key>
+			<string>5 minutes</string>
+			<key>icon</key>
+			<string>stairStepClinicIcon</string>
+		</dict>
+		<dict>
+			<key>taskIdentifier</key>
+			<string>Background Survey</string>
+			<key>resourceName</key>
+			<string>Background_Survey</string>
+			<key>estimatedMinutes</key>
+			<integer>3</integer>
+			<key>title</key>
+			<string>Background and health survey</string>
+			<key>icon</key>
+			<string>demographicIcon</string>
 		</dict>
 	</array>
 </dict>
