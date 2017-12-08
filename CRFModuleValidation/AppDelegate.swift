@@ -92,17 +92,13 @@ class AppDelegate: SBAAppDelegate {
 
     
     func fitbitAuthCompletionHandler (url: URL?, error: Error?) -> () {
-        guard let completion = self.fitbitCompletionHandler else {
-            // if we weren't given a completion handler, just ignore any results and reset in case we get called again
-            self.fitbitCompletionURL = nil
-            return
-        }
+        let completion = self.fitbitCompletionHandler
         
         // reset it in case there's a next time
         self.fitbitCompletionHandler = nil
         
         guard let successURL = self.fitbitCompletionURL else {
-            completion(nil, error)
+            completion?(nil, error)
             return
         }
         
@@ -112,16 +108,29 @@ class AppDelegate: SBAAppDelegate {
         let codeArg = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
         let authCode = codeArg?.value
         debugPrint("auth code: \(String(describing: authCode))")
-        // TODO emm 2017-10-25 when Bridge API for this is implemented and supported in BridgeSDK, call it with authCode and use the returned access token
-        // in the call to the completion handler instead of this placeholder.
-        let accessToken = (authCode ?? "") + "not-really-an-access-token"
-        
-        completion(accessToken, nil)
+        SBABridgeManager.getOAuthAccessToken(forVendor: "fitbit", authCode: authCode) { (response, error) in
+            DispatchQueue.main.async {
+                guard let oauthAccessToken = response as? SBBOAuthAccessToken else {
+                    debugPrint("error retrieving access token: \(String(describing: error))")
+                    guard let json = response as? String
+                        else {
+                            completion?(nil, error)
+                            return
+                    }
+                    debugPrint("response message: \(String(describing: json))")
+                    completion?(json, error)
+                    return
+                }
+                let accessToken = oauthAccessToken.accessToken
+                debugPrint("access token: \(String(describing: accessToken))")
+                completion?(accessToken, nil)
+            }
+        }
     }
     
     func connectToFitbit(completionHandler: FitbitCompletionHandler? = nil) {
         // Fitbit Authorization Code Grant Flow URL
-        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=https%3A%2F%2Fdocs.sagebridge.org%2Fcrf-module%2F&scope=heartrate&expires_in=604800") else { return }
+        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=https%3A%2F%2Fwebservices.sagebridge.org%2Fcrf-module%2F&scope=heartrate&expires_in=604800") else { return }
         
         fitbitCompletionHandler = completionHandler
         
