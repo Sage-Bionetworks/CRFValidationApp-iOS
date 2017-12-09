@@ -1,35 +1,24 @@
 {
-    "taskIdentifier"            : "HeartRate Measurement",
-    "schemaIdentifier"          : "HeartRate Measurement",
+    "identifier": "HeartRate Measurement",
+    "schemaInfo": {
+        "identifier": "HeartRate Measurement",
+        "revision": 7
+    },
+    "actions"           : { "cancel": { "iconName": "closeActivity" }},
+    "shouldHideActions" : ["goBackward", "skip"],
     "steps":
     [
      {
-     "identifier"   : "cameraPermission",
-     "type"         : "permissions",
-     "title"        : "Heart Rate Measurement",
-     "text"         : "Enable your phone’s camera.",
-     "buttonTitle"  : "Enable camera",
-     "items"        : [{
-                       "identifier" : "camera",
-                       "detail" : "CRF Module would like to access your your camera to easily and quickly gather heart rate data."
-                       }],
-     "optional"     : false,
+     "identifier"           : "cameraHeartRate",
+     "type"                 : "transform",
+     "sectionTransformer"   : { "resourceName": "HeartrateStep.json"}
      },
      {
-     "identifier"   : "coremotion",
-     "type"         : "permissions",
-     "title"        : "Heart Rate Measurement",
-     "text"         : "CRF Module would like to access motion sensors.",
-     "buttonTitle"  : "Enable motion sensors",
-     "items"        : [{
-                       "identifier" : "coremotion",
-                       "detail" : "The Heart Rate Measurement needs access to your phone’s motion sensor is needed for this activity."
-                       }],
-     "optional"     : false,
-     },
-     {
-     "identifier"       : "heartRate",
-     "type"             : "heartRate",
+     "identifier"   : "oximeter",
+     "type"         : "form",
+     "title"        : "What is your heart rate using the oximeter?",
+     "dataType"     : "integer",
+     "placeholder"  : "bpm"
      },
      {
      "identifier"       : "completion",
@@ -37,5 +26,5 @@
      "title"            : "Great job!",
      "text"             : "Your results will be uploaded for analysis."
      }
-     ],
+     ]
 }
