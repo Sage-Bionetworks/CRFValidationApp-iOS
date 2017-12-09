@@ -87,6 +87,8 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
         fitbitStep.detailText = "Connecting to your Fitbit data allows the CRF module to understand the various aspects of your health such as your heart rate and daily movement."
         fitbitStep.continueButtonTitle = "Connect"
         fitbitStep.iconImage = #imageLiteral(resourceName: "fitbitLogo")
+        fitbitStep.learnMoreAction = SkipLearnMoreAction(dictionaryRepresentation: ["learnMoreButtonText": "skip"])
+
         let steps = [externalIDStep] + onboardingSurveySteps + [permissionsStep, fitbitStep]
         let task = SBANavigableOrderedTask(identifier: "registration", steps: steps)
         let vc = SBATaskViewController(task: task, taskRun: nil)
@@ -118,5 +120,12 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
                 self.sharedUser.resetStoredUserData()
             }
         }
+    }
+}
+
+class SkipLearnMoreAction: SBALearnMoreAction {
+    override open func learnMoreAction(for step: SBALearnMoreActionStep, with taskViewController: ORKTaskViewController) {
+        guard let stepViewController = taskViewController.currentStepViewController else { return }
+        stepViewController.skipForward()
     }
 }
