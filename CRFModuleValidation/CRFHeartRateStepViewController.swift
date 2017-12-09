@@ -78,7 +78,7 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         // Create a recorder that runs only during this step
         let taskPath = self.taskController.taskPath!
         var config = CRFHeartRateRecorderConfiguration(identifier: "recorder")
-        config.shouldSaveBuffer = true  // TODO: refactor to allow setting up the config using json file.
+        config.shouldSaveBuffer = true  // TODO: syoung 12/08/2017 refactor to allow setting up the config using json file.
         config.duration = self.activeStep?.duration ?? config.duration
         bpmRecorder = CRFHeartRateRecorder(configuration: config, outputDirectory: taskPath.outputDirectory)
         bpmRecorder?.delegate = self

@@ -27,7 +27,7 @@
                                 "5": "Please keep still",
                                 "halfway": "You’re half way there!",
                                 "45": "Just 15 seconds left",
-                                "end": "You’re all done!",
+                                "end": "You’re all done!"
                            },
                             "viewTheme"   : { "viewIdentifier": "HeartRate", "storyboardIdentifier": "ActiveTaskSteps" }
                            },
