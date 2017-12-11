@@ -37,6 +37,8 @@ import ResearchSuiteUI
 
 class TableViewController: UITableViewController, RSDTaskViewControllerDelegate {
 
+    
+
     var taskGroup: RSDTaskGroupObject!
 
     override func viewDidLoad() {
@@ -46,7 +48,7 @@ class TableViewController: UITableViewController, RSDTaskViewControllerDelegate 
         RSDFactory.shared = CRFTaskFactory()
         
         // Set up a task group
-        let taskRefs = ["Background_Survey", "Cardio_12MT", "Cardio_Stair_Step", "Cardio_Stress"]
+        let taskRefs = ["Background_Survey", "Cardio_12MT", "Cardio_Stair_Step", "Cardio_Stress", "HeartRate_Measurement"]
         let tasks: [RSDTaskInfoStep] = taskRefs.map {
             var taskInfo = RSDTaskInfoStepObject(with: $0)
             taskInfo.title = $0.replacingOccurrences(of: "_", with: " ")
@@ -103,49 +105,42 @@ class TableViewController: UITableViewController, RSDTaskViewControllerDelegate 
         }
     }
     
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), didFinishWith reason: RSDTaskFinishReason, error: Error?) {
+    func taskController(_ taskController: RSDTaskController, didFinishWith reason: RSDTaskFinishReason, error: Error?) {
         
         // dismiss the view controller
-        let outputDirectory = taskViewController.taskPath.outputDirectory
-        taskViewController.dismiss(animated: true) {
+        let outputDirectory = taskController.taskPath.outputDirectory
+        (taskController as? UIViewController)?.dismiss(animated: true) {
             self.offMainQueue.async {
                 self.deleteOutputDirectory(outputDirectory)
             }
         }
         
-        var debugResult: String = taskViewController.taskPath.description
+        var debugResult: String = taskController.taskPath.description
+        debugResult.append("\n\n=== Completed: \(reason) error:\(String(describing: error))")
+        print(debugResult)
+    }
+    
+    func taskController(_ taskController: RSDTaskController, readyToSave taskPath: RSDTaskPath) {
+        var debugResult: String = taskPath.description
         
-        if reason == .completed {
-            do {
-                let encoder = RSDFactory.shared.createJSONEncoder()
-                let taskJSON = try taskViewController.taskPath.encodeResult(to: encoder)
-                if let string = String(data: taskJSON, encoding: .utf8) {
-                    debugResult.append("\n\n\(string)")
-                }
-            } catch let error {
-                debugResult.append("\n\n=== Failed to encode the result: \(error)")
+        do {
+            let encoder = RSDFactory.shared.createJSONEncoder()
+            let taskJSON = try taskPath.encodeResult(to: encoder)
+            if let string = String(data: taskJSON, encoding: .utf8) {
+                debugResult.append("\n\n\(string)")
             }
-        }
-        else {
-            debugResult.append("\n\n=== Failed: \(String(describing: error))")
+        } catch let error {
+            debugResult.append("\n\n=== Failed to encode the result: \(error)")
         }
         
         print(debugResult)
     }
     
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), viewControllerFor step: RSDStep) -> (UIViewController & RSDStepController)? {
+    func taskController(_ taskController: RSDTaskController, asyncActionControllerFor configuration: RSDAsyncActionConfiguration) -> RSDAsyncActionController? {
         return nil
     }
     
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), asyncActionControllerFor configuration: RSDAsyncActionConfiguration) -> RSDAsyncActionController? {
-        return nil
-    }
-    
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), readyToSave taskPath: RSDTaskPath) {
-        // do nothing - This is just a test
-    }
-    
-    func taskViewControllerShouldAutomaticallyForward(_ taskViewController: (UIViewController & RSDTaskController)) -> Bool {
-        return true
+    func taskViewController(_ taskViewController: UIViewController, shouldShowTaskInfoFor step: Any) -> Bool {
+        return false
     }
 }

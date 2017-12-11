@@ -88,6 +88,14 @@
                            {
                            "identifier"     : "stairStep",
                            "type"           : "section",
+                           "asyncActions"      : [
+                                                  {
+                                                  "identifier"              : "motion",
+                                                  "type"                    : "motion",
+                                                  "startStepIdentifier"     : "countdown",
+                                                  "requiresBackgroundAudio" : true
+                                                  }
+                                                  ],
                            "steps"          : [
                                                {
                                                "identifier"   : "bringPhone",

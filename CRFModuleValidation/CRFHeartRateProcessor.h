@@ -61,7 +61,6 @@ extern const int CRFHeartRateMinFrameCount;
 
 @optional
 - (void)processor:(CRFHeartRateProcessor *)recorder didFailToRecordWithError:(NSError *)error;
-- (void)processorDidFinishRecording:(CRFHeartRateProcessor *)recorder;
 
 @end
 
@@ -73,7 +72,7 @@ extern const int CRFHeartRateMinFrameCount;
 
 - (void)startRecordingToURL:(NSURL *)url startTime:(CMTime)time formatDescription:(CMFormatDescriptionRef)formatDescription NS_SWIFT_NAME(prepareRecording(to:startTime:formatDescription:));
 
-- (void)stopRecording;
+- (void)stopRecordingWithCompletion:(void (^)(void))completion NS_SWIFT_NAME(stopRecording(_:));
 
 - (void)appendVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 

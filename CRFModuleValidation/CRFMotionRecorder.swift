@@ -1,5 +1,5 @@
 //
-//  CRFCoreMotionRecorder.swift
+//  CRFMotionRecorder.swift
 //  CRFModuleValidation
 //
 //  Copyright © 2017 Sage Bionetworks. All rights reserved.
@@ -35,33 +35,45 @@ import Foundation
 import CoreMotion
 import ResearchSuite
 
-public enum CRFCoreMotionRecorderType : String, Codable {
+public enum CRFMotionRecorderType : String, Codable {
     case accelerometer
     case deviceMotion
     
-    public static func allTypes() -> [CRFCoreMotionRecorderType] {
+    public static func allTypes() -> [CRFMotionRecorderType] {
         return [.accelerometer, .deviceMotion]
     }
 }
 
-public struct CRFCoreMotionRecorderConfiguration : RSDRecorderConfiguration, RSDAsyncActionControllerVendor, Codable {
+public struct CRFMotionRecorderConfiguration : RSDRecorderConfiguration, RSDAsyncActionControllerVendor, Codable {
     public let identifier: String
-    public let recorderTypes: [CRFCoreMotionRecorderType]
-    public let startStepIdentifier: String?
-    public let stopStepIdentifier: String?
-    public let requiresBackgroundAudio: Bool
+    
+    public var startStepIdentifier: String?
+    public var stopStepIdentifier: String?
+    
+    public var recorderTypes: [CRFMotionRecorderType] {
+        return _recorderTypes ?? CRFMotionRecorderType.allTypes()
+    }
+    private let _recorderTypes: [CRFMotionRecorderType]?
+
     public let frequency: Double?
     
-    public init(recorderType: CRFCoreMotionRecorderType) {
+    public var requiresBackgroundAudio: Bool {
+        return _requiresBackgroundAudio ?? false
+    }
+    private let _requiresBackgroundAudio: Bool?
+    
+    private enum CodingKeys : String, CodingKey {
+        case identifier, _recorderTypes = "recorderTypes", startStepIdentifier, stopStepIdentifier, frequency, _requiresBackgroundAudio = "requiresBackgroundAudio"
+    }
+    
+    public init(recorderType: CRFMotionRecorderType) {
         self.init(identifier: recorderType.rawValue, recorderTypes: [recorderType])
     }
     
-    public init(identifier: String, recorderTypes: [CRFCoreMotionRecorderType] = CRFCoreMotionRecorderType.allTypes(), startStepIdentifier: String? = nil, stopStepIdentifier: String? = nil, requiresBackgroundAudio: Bool = true, frequency: Double? = nil) {
+    public init(identifier: String, recorderTypes: [CRFMotionRecorderType] = CRFMotionRecorderType.allTypes(), requiresBackgroundAudio: Bool = true, frequency: Double? = nil) {
         self.identifier = identifier
-        self.recorderTypes = recorderTypes
-        self.startStepIdentifier = startStepIdentifier
-        self.stopStepIdentifier = stopStepIdentifier
-        self.requiresBackgroundAudio = requiresBackgroundAudio
+        self._recorderTypes = recorderTypes
+        self._requiresBackgroundAudio = requiresBackgroundAudio
         self.frequency = frequency
     }
     
@@ -74,7 +86,7 @@ public struct CRFCoreMotionRecorderConfiguration : RSDRecorderConfiguration, RSD
     }
     
     public func instantiateController(with taskPath: RSDTaskPath) -> RSDAsyncActionController? {
-        return CRFCoreMotionRecorder(configuration: self, outputDirectory: taskPath.outputDirectory)
+        return CRFMotionRecorder(configuration: self, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
     }
 }
 
@@ -83,21 +95,21 @@ public enum CRFRecorderError : Error {
     case notAvailable
 }
 
-public class CRFCoreMotionRecorder : RSDSampleRecorder {
+public class CRFMotionRecorder : RSDSampleRecorder {
     
-    public var coreMotionConfiguration: CRFCoreMotionRecorderConfiguration? {
-        return self.configuration as? CRFCoreMotionRecorderConfiguration
+    public var coreMotionConfiguration: CRFMotionRecorderConfiguration? {
+        return self.configuration as? CRFMotionRecorderConfiguration
     }
     
-    lazy public var recorderTypes: [CRFCoreMotionRecorderType] = {
-        return self.coreMotionConfiguration?.recorderTypes ?? CRFCoreMotionRecorderType.allTypes()
+    lazy public var recorderTypes: [CRFMotionRecorderType] = {
+        return self.coreMotionConfiguration?.recorderTypes ?? CRFMotionRecorderType.allTypes()
     }()
     
     private var motionManager: CMMotionManager?
     
-    override public var isRunning: Bool {
+    public var isRunning: Bool {
         guard let manager = self.motionManager, let config = self.coreMotionConfiguration else {
-            return super.isRunning
+            return false
         }
         return config.recorderTypes.reduce(false) {
             switch $1 {
@@ -109,19 +121,7 @@ public class CRFCoreMotionRecorder : RSDSampleRecorder {
         }
     }
     
-    override public func startRecorder(_ completion: RSDAsyncActionCompletionHandler?) {
-        DispatchQueue.main.async {
-            do {
-                try self._startMotionManager()
-                super.startRecorder(completion)
-            } catch let err {
-                debugPrint("Failed to start core motion detection. \(err)")
-                completion?(self, nil, err)
-            }
-        }
-    }
-    
-    private func _startMotionManager() throws {
+    private func _startMotionManager(_ completion: @escaping ((Error?) -> Void)) {
         guard self.motionManager == nil else {
             return
         }
@@ -131,25 +131,31 @@ public class CRFCoreMotionRecorder : RSDSampleRecorder {
         let motionManager = CMMotionManager()
         self.motionManager = motionManager
         
+        // Only use the callback on *one* of the motion types that is being started
+        var handler: ((Error?) -> Void)? = completion
         for motionType in recorderTypes {
             switch motionType {
             case .accelerometer:
-                startAccelerometer(with: motionManager, updateInterval: updateInterval)
+                startAccelerometer(with: motionManager, updateInterval: updateInterval, completion: handler)
+                handler = nil
+                
             case .deviceMotion:
-                startDeviceMotion(with: motionManager, updateInterval: updateInterval)
+                startDeviceMotion(with: motionManager, updateInterval: updateInterval, completion: handler)
+                handler = nil
             }
         }
     }
     
-    func startAccelerometer(with motionManager: CMMotionManager, updateInterval: TimeInterval) {
+    func startAccelerometer(with motionManager: CMMotionManager, updateInterval: TimeInterval, completion: ((Error?) -> Void)?) {
         motionManager.stopAccelerometerUpdates()
         motionManager.accelerometerUpdateInterval = updateInterval
         motionManager.startAccelerometerUpdates(to: OperationQueue()) { [weak self] (data, error) in
-            if data != nil {
+            if data != nil, self?.status == .running {
                 self?.recordAccelerometerSample(data!)
-            } else if error != nil {
+            } else if error != nil, self?.status != .failed {
                 self?.didFail(with: error!)
             }
+            completion?(error)
         }
     }
     
@@ -158,15 +164,16 @@ public class CRFCoreMotionRecorder : RSDSampleRecorder {
         self.writeSample(sample)
     }
     
-    func startDeviceMotion(with motionManager: CMMotionManager, updateInterval: TimeInterval) {
+    func startDeviceMotion(with motionManager: CMMotionManager, updateInterval: TimeInterval, completion: ((Error?) -> Void)?) {
         motionManager.stopDeviceMotionUpdates()
         motionManager.deviceMotionUpdateInterval = updateInterval
         motionManager.startDeviceMotionUpdates(to: OperationQueue()) { [weak self] (data, error) in
-            if data != nil {
+            if data != nil, self?.status == .running {
                 self?.recordDeviceMotionSample(data!)
-            } else if error != nil {
+            } else if error != nil, self?.status != .failed {
                 self?.didFail(with: error!)
             }
+            completion?(error)
         }
     }
     
@@ -175,8 +182,14 @@ public class CRFCoreMotionRecorder : RSDSampleRecorder {
         self.writeSample(sample)
     }
     
-    override public func stopRecorder(loggerError: Error?, _ completion: RSDAsyncActionCompletionHandler?) {
+    override public func stopRecorder(_ completion: @escaping ((RSDAsyncActionStatus) -> Void)) {
+        
+        // Call completion immediately with a "stopping" status.
+        completion(.stopping)
+        
         DispatchQueue.main.async {
+            
+            // Stop the updates synchronously
             if let motionManager = self.motionManager {
                 for motionType in self.recorderTypes {
                     switch motionType {
@@ -189,21 +202,20 @@ public class CRFCoreMotionRecorder : RSDSampleRecorder {
             }
             self.motionManager = nil
             
-            super.stopRecorder(loggerError: loggerError, completion)
+            // and then call finished.
+            self.updateStatus(to: .finished, error: nil)
         }
     }
 }
 
-/**
- `CRFAccelerometerRecord` is intended to be used for recording raw accelerometer data.
- */
+/// `CRFAccelerometerRecord` is intended to be used for recording raw accelerometer data.
 public struct CRFAccelerometerRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
     public let timestamp: TimeInterval?
     public let stepPath: String
     public let timestampDate: Date?
-    public let sensorType: CRFCoreMotionRecorderType
+    public let sensorType: CRFMotionRecorderType
     
     public let x: Double?
     public let y: Double?
@@ -214,23 +226,21 @@ public struct CRFAccelerometerRecord: RSDSampleRecord {
         self.timestamp = data.timestamp - startUptime
         self.stepPath = stepPath
         self.timestampDate = nil
-        self.sensorType = CRFCoreMotionRecorderType.accelerometer
+        self.sensorType = CRFMotionRecorderType.accelerometer
         self.x = data.acceleration.x
         self.y = data.acceleration.y
         self.z = data.acceleration.z
     }
 }
 
-/**
- `CRFDeviceMotionRecord` is intended to be used for recording processed device motion data.
- */
+/// `CRFDeviceMotionRecord` is intended to be used for recording processed device motion data.
 public struct CRFDeviceMotionRecord: RSDSampleRecord {
     
     public let uptime: TimeInterval
     public let timestamp: TimeInterval?
     public let stepPath: String
     public let timestampDate: Date?
-    public let sensorType: CRFCoreMotionRecorderType
+    public let sensorType: CRFMotionRecorderType
     
     public let attitude_x: Double?
     public let attitude_y: Double?
@@ -256,7 +266,7 @@ public struct CRFDeviceMotionRecord: RSDSampleRecord {
         self.timestamp = data.timestamp - startUptime
         self.stepPath = stepPath
         self.timestampDate = nil
-        self.sensorType = CRFCoreMotionRecorderType.deviceMotion
+        self.sensorType = CRFMotionRecorderType.deviceMotion
 
         self.attitude_x = data.attitude.quaternion.x
         self.attitude_y = data.attitude.quaternion.y

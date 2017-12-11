@@ -79,7 +79,7 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
     /// - parameter taskPath: The current task path.
     /// - returns: A new instance of `CRFHeartRateRecorder` keyed to this configuration.
     public func instantiateController(with taskPath: RSDTaskPath) -> RSDAsyncActionController? {
-        return CRFHeartRateRecorder(configuration: self, outputDirectory: taskPath.outputDirectory)
+        return CRFHeartRateRecorder(configuration: self, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
     }
 }
 
@@ -117,6 +117,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
 
     public enum CRFHeartRateRecorderError : Error {
         case noBackCamera
+        case permissionDenied(AVAuthorizationStatus)
     }
 
     /// Last calculated heartrate.
@@ -128,44 +129,75 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     public var heartRateConfiguration : CRFHeartRateRecorderConfiguration? {
         return self.configuration as? CRFHeartRateRecorderConfiguration
     }
-
-    override public func startRecorder(_ completion: RSDAsyncActionCompletionHandler?) {
-        DispatchQueue.main.async {
-            do {
-                try self._startSampling()
-                super.startRecorder(completion)
-            } catch let err {
-                debugPrint("Failed to start camera: \(err)")
-                completion?(self, nil, err)
+    
+    public override func requestPermissions(on viewController: UIViewController, _ completion: @escaping RSDAsyncActionCompletionHandler) {
+        
+        // TODO: syoung 12/11/2017 Implement UI/UX for alerting the user that they do not have the required permission and must
+        // change this from the Settings app.
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        if status == .denied || status == .restricted {
+            let error = CRFHeartRateRecorderError.permissionDenied(status)
+            self.updateStatus(to: .failed, error: error)
+            completion(self, nil, error)
+            return
+        }
+        
+        guard status == .notDetermined else {
+            self.updateStatus(to: .permissionGranted, error: nil)
+            completion(self, nil, nil)
+            return
+        }
+        
+        AVCaptureDevice.requestAccess(for: .video) { (granted) in
+            if granted {
+                self.updateStatus(to: .permissionGranted, error: nil)
+                completion(self, nil, nil)
+            } else {
+                let error = CRFHeartRateRecorderError.permissionDenied(.denied)
+                self.updateStatus(to: .failed, error: error)
+                completion(self, nil, error)
             }
         }
     }
+    
+    public override func startRecorder(_ completion: @escaping ((RSDAsyncActionStatus, Error?) -> Void)) {
+        do {
+            try self._startSampling()
+            completion(.running, nil)
+        } catch let err {
+            debugPrint("Failed to start camera: \(err)")
+            completion(.failed, err)
+        }
+    }
+    
+    public override func stopRecorder(_ completion: @escaping ((RSDAsyncActionStatus) -> Void)) {
+        
+        updateStatus(to: .processingResults, error: nil)
+        
+        self._simulationTimer?.invalidate()
+        self._simulationTimer = nil
+        
+        self._session?.stopRunning()
+        self._session = nil
 
-    override public func stopRecorder(loggerError: Error?, _ completion: RSDAsyncActionCompletionHandler?) {
-        DispatchQueue.main.async {
-            
-            self._simulationTimer?.invalidate()
-            self._simulationTimer = nil
-            
-            if let url = self.sampleProcessor?.videoURL {
-                
-                // Create and add the result
-                var fileResult = RSDFileResultObject(identifier: self.videoIdentifier)
-                fileResult.startDate = self.startDate
-                fileResult.endDate = Date()
-                fileResult.url = url
-                fileResult.startUptime = self.startUptime
-                fileResult.contentType = "video/mp4"
-                self.appendResults(fileResult)
-                
-                // Close the video recorder
-                self.sampleProcessor.stopRecording()
+        if let url = self.sampleProcessor?.videoURL {
+
+            // Create and add the result
+            var fileResult = RSDFileResultObject(identifier: self.videoIdentifier)
+            fileResult.startDate = self.startDate
+            fileResult.endDate = Date()
+            fileResult.url = url
+            fileResult.startUptime = self.startUptime
+            fileResult.contentType = "video/mp4"
+            self.appendResults(fileResult)
+
+            // Close the video recorder
+            updateStatus(to: .stopping, error: nil)
+            self.sampleProcessor.stopRecording() {
+                completion(.finished)
             }
-            
-            self._session?.stopRunning()
-            self._session = nil
-
-            super.stopRecorder(loggerError: loggerError, completion)
+        } else {
+            completion(.finished)
         }
     }
     
@@ -183,14 +215,6 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     deinit {
         _session?.stopRunning()
         _simulationTimer?.invalidate()
-    }
-    
-    public override var isRunning: Bool {
-        if isSimulator {
-            return _simulationTimer != nil
-        } else {
-            return _session?.isRunning ?? false
-        }
     }
     
     private func _getCaptureDevice() -> AVCaptureDevice? {

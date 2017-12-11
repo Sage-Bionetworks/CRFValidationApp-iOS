@@ -40,6 +40,8 @@ open class CRFTaskFactory: RSDFactory {
             switch permissionType {
             case .location:
                 return try CRFLocationRecorderConfiguration(from: decoder)
+            case .motion:
+                return try CRFMotionRecorderConfiguration(from: decoder)
             default:
                 break
             }

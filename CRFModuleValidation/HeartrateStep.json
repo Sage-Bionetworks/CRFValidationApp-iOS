@@ -33,7 +33,7 @@
                            },
                            {
                            "identifier"   : "feedback",
-                           "type"         : "instruction",
+                           "type"         : "completion",
                            "title"        : "You’re all done!",
                            "text"         : "Your heart rate is",
                            "viewTheme"   : { "viewIdentifier": "HeartRateResult", "storyboardIdentifier": "ActiveTaskSteps" }
