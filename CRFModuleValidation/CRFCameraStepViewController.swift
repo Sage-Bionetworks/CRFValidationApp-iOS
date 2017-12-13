@@ -94,9 +94,6 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
             return
         }
         
-        // User feedback of the photo shutter
-        self.playSound(.photoShutter)
-        
         processingQueue.async {
             
             // Create photo settings
@@ -104,6 +101,11 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
             photoSettings.isAutoStillImageStabilizationEnabled = true
             photoSettings.isHighResolutionPhotoEnabled = true
             photoSettings.flashMode = .auto
+            
+            DispatchQueue.main.sync {
+                // User feedback of the photo shutter
+                self.playSound(.photoShutter)
+            }
             
             // Call capturePhoto method by passing our photo settings and a
             // delegate implementing AVCapturePhotoCaptureDelegate

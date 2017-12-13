@@ -382,7 +382,7 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
         [self transitionToStatus:MovieRecorderStatusPreparingToRecord error:nil];
         _videoURL = url;
     }
-
+    
     dispatch_async(_processingQueue, ^{
         @autoreleasepool {
             
@@ -443,11 +443,6 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
         dispatch_async(_delegateCallbackQueue, ^{
             @autoreleasepool {
                 switch (newStatus) {
-                    case MovieRecorderStatusFinished:
-                        if ([_delegate respondsToSelector:@selector(processorDidFinishRecording:)]) {
-                            [_delegate processorDidFinishRecording:self];
-                        }
-                        break;
                     case MovieRecorderStatusFailed:
                         if ([_delegate respondsToSelector:@selector(processor:didFailToRecordWithError:)]) {
                             [_delegate processor:self didFailToRecordWithError:error];
@@ -461,7 +456,7 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     }
 }
 
-- (void)stopRecording {
+- (void)stopRecordingWithCompletion:(void (^)(void))completion {
     @synchronized(self) {
         BOOL shouldFinishRecording = NO;
         switch (_status) {
@@ -511,6 +506,10 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
                     } else {
                         [self transitionToStatus:MovieRecorderStatusFinished error:nil];
                     }
+                }
+                
+                if (completion) {
+                    completion();
                 }
             }];
         }

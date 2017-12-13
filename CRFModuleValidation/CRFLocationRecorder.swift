@@ -41,9 +41,8 @@ public struct CRFLocationRecorderConfiguration : RSDRecorderConfiguration, RSDAs
     public let startStepIdentifier: String?
     public let stopStepIdentifier: String?
     
-    /**
-     Optional identifier for the step that records distance travelled. If non-nil then the recorder will use this step to record distance travelled while the other steps are assumed to be standing still.
-     */
+    /// Optional identifier for the step that records distance travelled. If non-nil then the recorder will use this step to
+    /// record distance travelled while the other steps are assumed to be standing still.
     public let motionStepIdentifier: String?
     
     public init(identifier: String, startStepIdentifier: String?, stopStepIdentifier: String?, motionStepIdentifier: String?) {
@@ -66,7 +65,7 @@ public struct CRFLocationRecorderConfiguration : RSDRecorderConfiguration, RSDAs
     }
     
     public func instantiateController(with taskPath: RSDTaskPath) -> RSDAsyncActionController? {
-        return CRFLocationRecorder(configuration: self, outputDirectory: taskPath.outputDirectory)
+        return CRFLocationRecorder(configuration: self, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
     }
 }
 
@@ -131,9 +130,10 @@ public struct CRFLocationRecord: RSDSampleRecord {
     }
 }
 
-/**
- `CRFLocationRecorder` is intended to be used for recording location where the participant is walking, running, cycling, or other activities where the distance traveled is of interest. It should be setup to run in the background which requires setting the capabilities in your app to include background mode. Additionally, you will need to add the private permission for getting location always to the info.plist file and you will need to link the CoreLocation framework.
- */
+/// `CRFLocationRecorder` is intended to be used for recording location where the participant is walking, running, cycling,
+/// or other activities where the distance traveled is of interest. It should be setup to run in the background which requires
+/// setting the capabilities in your app to include background mode. Additionally, you will need to add the privacy permission
+/// for getting location always and when in use to the info.plist file, and you will need to link the CoreLocation framework.
 public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate {
     
     public enum CRFLocationRecorderError : Error {
@@ -144,21 +144,17 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
         case stepCount, pedometerDistance, gpsDistance
     }
     
-    /**
-     Convenience property for getting the location configuration.
-     */
+    /// Convenience property for getting the location configuration.
     public var locationConfiguration: CRFLocationRecorderConfiguration? {
         return self.configuration as? CRFLocationRecorderConfiguration
     }
     
-    /**
-     Should relative distance only be saved to the log. Default = `true`.
-     */
+    /// Should relative distance only be saved to the log. Default = `true`.
     public var relativeDistanceOnly: Bool = true
     
-    /**
-     Whether or not the user is expected to be standing still or moving. This is used to mark when to start calculating distance traveled while moving as a part of a larger overrall data gathering effort that might include how much a person is moving in order to get into position.
-     */
+    /// Whether or not the user is expected to be standing still or moving. This is used to mark when to start
+    /// calculating distance traveled while moving as a part of a larger overrall data gathering effort that
+    /// might include how much a person is moving in order to get into position.
     public var isStandingStill: Bool = false {
         didSet {
             if !isStandingStill {
@@ -171,9 +167,7 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
         }
     }
     
-    /**
-     Total distance (measured in meters) from the start of recording.
-     */
+    /// Total distance (measured in meters) from the start of recording.
     @objc dynamic public private(set) var totalDistance: Double = 0.0
     
     /**
@@ -186,61 +180,84 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     private var locationManager: CLLocationManager?
     private let processingQueue = DispatchQueue(label: "org.sagebase.ResearchSuite.location.processing")
     
-    override public func startRecorder(_ completion: RSDAsyncActionCompletionHandler?) {
-        DispatchQueue.main.async {
-            do {
-                try self._startLocationManager()
-                super.startRecorder(completion)
-            } catch let err {
-                completion?(self, nil, err)
-            }
-        }
-    }
-    
-    private func _startLocationManager() throws {
-        guard self.locationManager == nil else { return }
+    override public func requestPermissions(on viewController: UIViewController, _ completion: @escaping RSDAsyncActionCompletionHandler) {
         
+        // TODO: syoung 12/11/2017 Implement UI/UX for alerting the user that they do not have the required permission and must
+        // change this from the Settings app.
+        // TODO: syoung 12/11/2017 Implement UI/UX for the case where the user has **only** given permission when in use.
         let status = CLLocationManager.authorizationStatus()
         if status == .denied || status == .restricted {
-            throw CRFLocationRecorderError.permissionDenied(status)
+            let error = CRFLocationRecorderError.permissionDenied(status)
+            self.updateStatus(to: .failed, error: error)
+            completion(self, nil, error)
+            return
         }
         
-        if let motionStepId = self.locationConfiguration?.motionStepIdentifier {
-            self.isStandingStill = (self.currentStepIdentifier != motionStepId)
+        // **Only** if the status is not determined, should permission be requested.
+        guard status == .notDetermined else {
+            self.updateStatus(to: .permissionGranted, error: nil)
+            completion(self, nil, nil)
+            return
         }
+
+        _permissionCompletion = completion
+        _setupLocationManager()
+        self.locationManager!.requestAlwaysAuthorization()
+    }
+    
+    private var _permissionCompletion: RSDAsyncActionCompletionHandler?
+    
+    private func _setupLocationManager() {
+        guard self.locationManager == nil else { return }
         
+        // setup the location manager when asking for permissions
         let manager = CLLocationManager()
         manager.delegate = self
         manager.allowsBackgroundLocationUpdates = true
         manager.pausesLocationUpdatesAutomatically = false
         self.locationManager = manager
+    }
+    
+    override public func startRecorder(_ completion: @escaping ((RSDAsyncActionStatus, Error?) -> Void)) {
+        do {
+            try self._startLocationManager()
+            completion(.running, nil)
+        } catch let err {
+            completion(.failed, err)
+        }
+    }
+
+    private func _startLocationManager() throws {
+        let status = CLLocationManager.authorizationStatus()
+        guard status == .authorizedAlways || status == .authorizedWhenInUse else {
+            throw CRFLocationRecorderError.permissionDenied(status)
+        }
         
-        if status == .authorizedAlways {
-            manager.startUpdatingLocation()
-        } else {
-            manager.requestAlwaysAuthorization()
+        _setupLocationManager()
+        
+        if let motionStepId = self.locationConfiguration?.motionStepIdentifier {
+            self.isStandingStill = (self.currentStepIdentifier != motionStepId)
         }
+        
+        self.locationManager!.startUpdatingLocation()
     }
     
-    override public func stopRecorder(loggerError: Error?, _ completion: RSDAsyncActionCompletionHandler?) {
-        DispatchQueue.main.async {
-            self.locationManager?.stopUpdatingLocation()
-            self.locationManager?.delegate = nil
-            self.locationManager = nil
-            
-            super.stopRecorder(loggerError: loggerError, completion)
-        }
+    override public func stopRecorder(_ completion: @escaping ((RSDAsyncActionStatus) -> Void)) {
+        self.locationManager?.stopUpdatingLocation()
+        self.locationManager?.delegate = nil
+        self.locationManager = nil
+        super.stopRecorder(completion)
     }
-    
+
     override public func pause() {
-        if !self.isPaused && self.isRunning {
+        if !self.isPaused && self.status == .running  {
             self.locationManager?.stopUpdatingLocation()
         }
         super.pause()
     }
-    
+
     override public func resume() {
-        if self.isPaused && self.isRunning {
+        if self.isPaused && self.status == .running {
             self.locationManager?.startUpdatingLocation()
         }
         super.resume()
@@ -267,15 +284,22 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     // MARK: CLLocationManagerDelegate
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.didFail(with: error)
+        if let completion = _permissionCompletion {
+            self.updateStatus(to: .failed, error: error)
+            completion(self, nil, error)
+            _permissionCompletion = nil
+        } else {
+            self.didFail(with: error)
+        }
     }
     
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            self.locationManager = manager
-            manager.startUpdatingLocation()
-        } else {
-            self.didFail(with: CRFLocationRecorderError.permissionDenied(status))
+        if status != .authorizedAlways {
+            self.locationManager(manager, didFailWithError: CRFLocationRecorderError.permissionDenied(status))
+        } else if let completion = _permissionCompletion {
+            self.updateStatus(to: .permissionGranted, error: nil)
+            completion(self, nil, nil)
+            _permissionCompletion = nil
         }
     }
     
