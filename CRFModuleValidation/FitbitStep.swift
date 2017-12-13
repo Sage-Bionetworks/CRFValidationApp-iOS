@@ -101,6 +101,22 @@ open class FitbitStepViewController: SBAInstructionStepViewController {
         return result
     }
     
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Let test users skip Fitbit auth, participants not so much. We use the SkipLearnMoreAction to skip.
+        self.learnMoreButton?.isHidden = true
+        let dataGroups = SBAUser.shared.dataGroups ?? [String]()
+        if let task = taskViewController?.task, let result = taskViewController?.result {
+            let (newGroups, _) = task.union(currentGroups: dataGroups, with: result)
+            guard let groups = newGroups else { return }
+            if groups.contains("test_user") {
+                self.learnMoreButton?.isHidden = false
+            }
+        }
+
+    }
+    
     override open func goForward() {
         guard let fitbitStep = self.step as? FitbitStep,
                 let appDelegate = UIApplication.shared.delegate as? AppDelegate

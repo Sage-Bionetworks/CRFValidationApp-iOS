@@ -18,6 +18,7 @@
                            "identifier"   : "heartRate",
                            "type"         : "active",
                            "text"         : "Gently cover both the camera and flash with your finger.",
+                           "detail"       : "Doing a great job of keeping your finger on the camera!",
                            "shouldHideActions": ["goBackward", "goForward"],
                            "duration": 60,
                            "commands": ["playSound", "continueOnFinish", "shouldDisableIdleTimer"],
@@ -25,7 +26,6 @@
                                 "0" : "Gently cover both the camera and flash with your finger.",
                                 "5": "Please keep still",
                                 "halfway": "You’re half way there!",
-                                "40": "Doing a great job of keeping your finger on the camera!",
                                 "45": "Just 15 seconds left",
                                 "end": "You’re all done!"
                            },
@@ -33,7 +33,7 @@
                            },
                            {
                            "identifier"   : "feedback",
-                           "type"         : "instruction",
+                           "type"         : "completion",
                            "title"        : "You’re all done!",
                            "text"         : "Your heart rate is",
                            "viewTheme"   : { "viewIdentifier": "HeartRateResult", "storyboardIdentifier": "ActiveTaskSteps" }

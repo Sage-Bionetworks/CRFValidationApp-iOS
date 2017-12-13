@@ -37,28 +37,46 @@
 NS_ASSUME_NONNULL_BEGIN
 
 struct CRFPixelSample {
+    double uptime;
     double red;
     double green;
     double blue;
-    double uptime;
+    double hue;
+    double saturation;
+    double brightness;
 };
+
+extern const NSTimeInterval CRFHeartRateSampleRate;
+extern const int CRFHeartRateFramesPerSecond;
+extern const int CRFHeartRateSettleSeconds;
+extern const int CRFHeartRateWindowSeconds;
+extern const int CRFHeartRateMinFrameCount;
 
 @class CRFHeartRateProcessor;
 
 @protocol CRFHeartRateProcessorDelegate <NSObject>
 
+@required
 - (void)processor:(CRFHeartRateProcessor *)processor didCaptureSample:(struct CRFPixelSample)sample;
+
+@optional
+- (void)processor:(CRFHeartRateProcessor *)recorder didFailToRecordWithError:(NSError *)error;
 
 @end
 
-@interface CRFHeartRateProcessor : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface CRFHeartRateProcessor : NSObject
 
-@property (nonatomic) __weak _Nullable id <CRFHeartRateProcessorDelegate> delegate;
-@property (nonatomic) NSMutableArray <NSNumber *> *dataPointsHue;
+@property (nonatomic, nullable, readonly) NSURL *videoURL;
 
-- (void)addDataPoint:(double)hue;
+- (instancetype)initWithDelegate:(id<CRFHeartRateProcessorDelegate>)delegate callbackQueue:(dispatch_queue_t)queue NS_SWIFT_NAME(init(delegate:callbackQueue:));
+
+- (void)startRecordingToURL:(NSURL *)url startTime:(CMTime)time formatDescription:(CMFormatDescriptionRef)formatDescription NS_SWIFT_NAME(prepareRecording(to:startTime:formatDescription:));
+
+- (void)stopRecordingWithCompletion:(void (^)(void))completion NS_SWIFT_NAME(stopRecording(_:));
+
+- (void)appendVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+
 - (NSInteger)calculateBPM;
-- (NSInteger)calculateBPMWithDataPoints:(NSArray *)dataPoints NS_SWIFT_NAME(calculateBPM(with:));
 
 @end
 

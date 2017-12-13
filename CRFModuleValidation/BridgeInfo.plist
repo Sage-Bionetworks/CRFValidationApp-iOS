@@ -64,8 +64,6 @@
 			<string>HeartRate Measurement</string>
 			<key>resourceName</key>
 			<string>HeartRate_Measurement</string>
-			<key>bridgeSurvey</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>taskIdentifier</key>

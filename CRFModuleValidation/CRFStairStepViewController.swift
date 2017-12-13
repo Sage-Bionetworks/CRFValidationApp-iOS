@@ -51,11 +51,11 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     public override func performStartCommands() {
         self.instructionLabel?.text = self.uiStep?.text
         
-        let config = CRFCoreMotionRecorderConfiguration(identifier: self.step.identifier)
-        self.taskController.startAsyncActions(with: [config]) { [weak self] in
-            DispatchQueue.main.async {
-                self?._finishStart()
-            }
+        // Use a delay to show the "Stand still" text for the instruction
+        // to give the user a moment to prepare.
+        let delay = DispatchTime.now() + .milliseconds(1000)
+        DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
+            self?._finishStart()
         }
     }
     
@@ -68,10 +68,6 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     public override func stop() {
         super.stop()
         imageView.stopAnimating()
-        let controllers = taskController.currentAsyncControllers
-        taskController.stopAsyncActions(for: controllers) {
-            // do nothing
-        }
     }
     
     public override var timerInterval: TimeInterval {

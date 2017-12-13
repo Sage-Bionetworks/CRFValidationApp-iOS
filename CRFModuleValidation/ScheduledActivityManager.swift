@@ -192,11 +192,11 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         }
     }
     
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), didFinishWith reason: RSDTaskFinishReason, error: Error?) {
+    func taskController(_ taskController: RSDTaskController, didFinishWith reason: RSDTaskFinishReason, error: Error?) {
         
         // dismiss the view controller
-        let outputDirectory = taskViewController.taskPath.outputDirectory
-        taskViewController.dismiss(animated: true) {
+        let outputDirectory = taskController.taskPath.outputDirectory
+        (taskController as? UIViewController)?.dismiss(animated: true) {
             self.offMainQueue.async {
                 self.deleteOutputDirectory(outputDirectory)
             }
@@ -207,7 +207,7 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         }
     }
     
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), readyToSave taskPath: RSDTaskPath) {
+    func taskController(_ taskController: RSDTaskController, readyToSave taskPath: RSDTaskPath) {
         // Check if the results of this survey should be uploaded
         guard let schedule = scheduledActivity(with: taskPath.scheduleIdentifier)
             else {
@@ -238,16 +238,12 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         }
     }
     
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), viewControllerFor step: RSDStep) -> (UIViewController & RSDStepController)? {
+    func taskController(_ taskController: RSDTaskController, asyncActionControllerFor configuration: RSDAsyncActionConfiguration) -> RSDAsyncActionController? {
         return nil
     }
     
-    func taskViewControllerShouldAutomaticallyForward(_ taskViewController: (UIViewController & RSDTaskController)) -> Bool {
-        return true
-    }
-    
-    func taskViewController(_ taskViewController: (UIViewController & RSDTaskController), asyncActionControllerFor configuration: RSDAsyncActionConfiguration) -> RSDAsyncActionController? {
-        return nil
+    func taskViewController(_ taskViewController: UIViewController, shouldShowTaskInfoFor step: Any) -> Bool {
+        return false
     }
 }
 
