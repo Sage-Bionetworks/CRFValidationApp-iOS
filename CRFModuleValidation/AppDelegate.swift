@@ -41,7 +41,6 @@ typealias FitbitCompletionHandler = (_ accessToken: String?, _ error: Error?) ->
 class AppDelegate: SBAAppDelegate {
     
     var authSession: SFAuthenticationSession?
-    var fitbitCompletionURL: URL?
     var fitbitCompletionHandler: FitbitCompletionHandler?
     
     override func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -62,8 +61,7 @@ class AppDelegate: SBAAppDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         debugPrint("\(String(describing: userActivity.webpageURL))")
-        fitbitCompletionURL = userActivity.webpageURL
-        guard fitbitCompletionURL != nil else { return false }
+        guard let fitbitCompletionURL = userActivity.webpageURL else { return false }
         
         // Close the auth session. This ends up calling its completion handler with an error.
         // emm 2017-11-09 As of iOS SDK 11.1 that behavior no longer applies, so now we call it explicitly.
@@ -97,13 +95,10 @@ class AppDelegate: SBAAppDelegate {
         // reset it in case there's a next time
         self.fitbitCompletionHandler = nil
         
-        guard let successURL = self.fitbitCompletionURL else {
+        guard let successURL = url else {
             completion?(nil, error)
             return
         }
-        
-        // again, reset it for hypothetical next times
-        self.fitbitCompletionURL = nil
         
         let codeArg = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
         let authCode = codeArg?.value
@@ -130,7 +125,7 @@ class AppDelegate: SBAAppDelegate {
     
     func connectToFitbit(completionHandler: FitbitCompletionHandler? = nil) {
         // Fitbit Authorization Code Grant Flow URL
-        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=https%3A%2F%2Fwebservices.sagebridge.org%2Fcrf-module%2F&scope=heartrate&expires_in=604800") else { return }
+        guard let authURL = URL(string: "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CK8G&redirect_uri=org.sagebase.crf-module%3A%2F%2Foauth2&scope=heartrate&expires_in=604800") else { return }
         
         fitbitCompletionHandler = completionHandler
         
