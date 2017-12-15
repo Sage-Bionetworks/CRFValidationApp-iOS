@@ -71,37 +71,4 @@ class HeartRateRecorderTests: XCTestCase {
         super.tearDown()
     }
 
-    func testHueConvertion() {
-        
-        for sample in sampleLog.items {
-            let color = CRFColor(red: sample.red, green: sample.green, blue: sample.blue)
-            if sample.hue >= 0 {
-                guard let hsv = color.getHSV() else {
-                    XCTFail("Failed to calculate hue")
-                    return
-                }
-                XCTAssertEqual(hsv.hue, sample.hue, accuracy: 0.01)
-            }
-        }
-    }
-    
-    func testCalculateBPM() {
-        
-        let calculator = CRFHeartRateProcessor()
-        var count = 0
-        for (index, sample) in sampleLog.items.enumerated() {
-            guard let expectedBPM = sample.bpm_camera, expectedBPM > 0, index+1 < sampleLog.items.count else { continue }
-            
-            let dataPoints = sampleLog.items.prefix(upTo: index+1).map { $0.hue }
-            let bpm = calculator.calculateBPM(with: dataPoints)
-            
-            // TODO: syoung 11/09/2017 Figure out why the first two calculated values don't match
-            if count >= 2 {
-                XCTAssertEqual(bpm, expectedBPM, "\(count)")
-            }
-            count += 1
-        }
-        
-        debugPrint("total bpm found = \(count)")
-    }
 }

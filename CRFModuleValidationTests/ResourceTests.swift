@@ -50,15 +50,15 @@ class ResourceTests: XCTestCase {
     
     func testHeartRateMeasurement() {
         
-        let json = jsonForResource("HeartRate_Measurement")
-        XCTAssertNotNil(json)
+        var taskInfo = RSDTaskInfoStepObject(with: "HeartRate Measurement")
+        let transformer = RSDResourceTransformerObject(resourceName: "HeartRate_Measurement")
+        taskInfo.taskTransformer = transformer
+        let factory = CRFTaskFactory()
         
-        let task = json?.createORKTask(with: SurveyFactory())
-        XCTAssertNotNil(task)
-        
-        guard let _ = task as? SBANavigableOrderedTask else {
-            XCTFail("\(String(describing: task)) nil or not expected type")
-            return
+        do {
+            let _ = try factory.decodeTask(with: transformer, taskInfo: taskInfo)
+        } catch let err {
+            XCTFail("Failed to decode task \(err)")
         }
     }
     
