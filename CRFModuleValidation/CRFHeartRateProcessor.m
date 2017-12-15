@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, MovieRecorderStatus) {
 }; // internal state machine
 
 const NSTimeInterval CRFHeartRateSampleRate = 1.0;
-const int CRFHeartRateFramesPerSecond = 30;
+const int CRFHeartRateFramesPerSecond = 60;
 const int CRFHeartRateSettleSeconds = 3;
 const int CRFHeartRateWindowSeconds = 10;
 const int CRFHeartRateMinFrameCount = (CRFHeartRateSettleSeconds + CRFHeartRateWindowSeconds) * CRFHeartRateFramesPerSecond;
@@ -312,24 +312,46 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     // 4th order
     // sample rate - varies between possible camera frequencies. Either 30, 60, 120, or 240 FPS
     // corner1 freq. = 0.667 Hz (assuming a minimum heart rate of 40 bpm, 40 beats/60 seconds = 0.667 Hz)
-    // corner2 freq. = 4.167 Hz (assuming a maximum heart rate of 250 bpm, 250 beats/60 secods = 4.167 Hz)
+    // corner2 freq. = 3.333 Hz (assuming a maximum heart rate of 250 bpm, 200 beats/60 secods = 3.333 Hz)
     // Bandpass filter was chosen because it removes frequency noise outside of our target range (both higher and lower)
-    double dGain = 1.232232910e+02;
     
+    double dGain;
+    switch (CRFHeartRateFramesPerSecond) {
+        case 60:
+            dGain = CRFHeartRateFramesPerSecond == 60; break;
+        default:    // 30 fps
+            dGain = 1.232232910e+02; break;
+    }
+
     NSMutableArray *outputData = [[NSMutableArray alloc] init];
     for (NSNumber *number in inputData) {
         double input = number.doubleValue;
         
-        xv[0] = xv[1]; xv[1] = xv[2]; xv[2] = xv[3]; xv[3] = xv[4]; xv[4] = xv[5]; xv[5] = xv[6]; xv[6] = xv[7]; xv[7] = xv[8];
-        xv[8] = input / dGain;
-        yv[0] = yv[1]; yv[1] = yv[2]; yv[2] = yv[3]; yv[3] = yv[4]; yv[4] = yv[5]; yv[5] = yv[6]; yv[6] = yv[7]; yv[7] = yv[8];
-        yv[8] = (xv[0] + xv[8]) - 4 * (xv[2] + xv[6]) + 6 * xv[4]
-        + ( -0.1397436053 * yv[0]) + (  1.2948188815 * yv[1])
-        + ( -5.4070037946 * yv[2]) + ( 13.2683981280 * yv[3])
-        + (-20.9442560520 * yv[4]) + ( 21.7932169160 * yv[5])
-        + (-14.5817197500 * yv[6]) + (  5.7161939252 * yv[7]);
+        for (int nn=0; nn < NZEROS; nn++) {
+            xv[nn] = xv[nn + 1];
+            yv[nn] = yv[nn + 1];
+        }
+        xv[NZEROS] = input / dGain;
         
-        [outputData addObject:@(yv[8])];
+        switch (CRFHeartRateFramesPerSecond) {
+            case 60:    // fps
+                yv[8] =   (xv[0] + xv[8]) - 4 * (xv[2] + xv[6]) + 6 * xv[4]
+                + ( -0.4807840433 * yv[0]) + (  4.1451027450 * yv[1])
+                + (-15.7113442660 * yv[2]) + ( 34.1943207190 * yv[3])
+                + (-46.7368439100 * yv[4]) + ( 41.0778389140 * yv[5])
+                + (-22.6708290820 * yv[6]) + (  7.1825386733 * yv[7]);
+                break;
+                
+            default:    // 30 fps
+                yv[8] = (xv[0] + xv[8]) - 4 * (xv[2] + xv[6]) + 6 * xv[4]
+                + ( -0.1397436053 * yv[0]) + (  1.2948188815 * yv[1])
+                + ( -5.4070037946 * yv[2]) + ( 13.2683981280 * yv[3])
+                + (-20.9442560520 * yv[4]) + ( 21.7932169160 * yv[5])
+                + (-14.5817197500 * yv[6]) + (  5.7161939252 * yv[7]);
+                break;
+        }
+
+        [outputData addObject:@(yv[NPOLES])];
     }
     
     return outputData;

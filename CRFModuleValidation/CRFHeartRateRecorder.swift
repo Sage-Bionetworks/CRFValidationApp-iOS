@@ -218,7 +218,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     }
     
     private func _getCaptureDevice() -> AVCaptureDevice? {
-        // If this is an iPhone Plus then the lens that is closer to the flash is the telephoto lens.
+        // If this is an iPhone Plus then the lens that is closer to the flash is the telephoto lens
         let telephoto = AVCaptureDevice.default(AVCaptureDevice.DeviceType.builtInTelephotoCamera, for: AVMediaType.video, position: .back)
         return telephoto ?? AVCaptureDevice.default(AVCaptureDevice.DeviceType.builtInWideAngleCamera, for: AVMediaType.video, position: .back)
     }
