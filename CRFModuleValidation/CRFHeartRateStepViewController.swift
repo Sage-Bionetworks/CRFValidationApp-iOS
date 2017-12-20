@@ -37,6 +37,12 @@ import ResearchSuite
 
 public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsyncActionControllerDelegate {
     
+    /// The image view for showing the heart image.
+    @IBOutlet public var heartImageView: UIImageView!
+    
+    /// The video preview window.
+    @IBOutlet public var previewView: UIView!
+    
     /// The heart rate recorder.
     public private(set) var bpmRecorder: CRFHeartRateRecorder?
     
@@ -57,19 +63,21 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         self.taskController.taskPath.appendStepHistory(with: stepResult)
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    /// Override `viewDidLoad` to set up the preview layer and hide the heart image.
+    public override func viewDidLoad() {
+        super.viewDidLoad()
         
-        self.progressLabel?.text = "--"
-        self.unitLabel?.text = "BPM"    // TODO: syoung 11/08/2017 Localize
+        self.previewView.layer.cornerRadius = self.previewView.bounds.width / 2.0
+        self.previewView.layer.masksToBounds = true
+        self.heartImageView.isHidden = true
+        self.progressLabel?.isHidden = true
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Use a delay to let the page view controller finish its animation
-        // and for the user to put their finger on the lens.
-        let delay = DispatchTime.now() + .milliseconds(500)
+        // Use a delay to let the page view controller finish its animation.
+        let delay = DispatchTime.now() + .milliseconds(100)
         DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
             self?._startCamera()
         }
@@ -85,21 +93,18 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         config.shouldSaveBuffer = true  // TODO: syoung 12/08/2017 refactor to allow setting up the config using json file.
         config.duration = self.activeStep?.duration ?? config.duration
         bpmRecorder = CRFHeartRateRecorder(configuration: config, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
-        bpmRecorder?.delegate = self
+        bpmRecorder!.delegate = self
+        bpmRecorder!.previewView = self.previewView
         
         // add an observer for changes in the bpm
         _bpmObserver = bpmRecorder!.observe(\.bpm, changeHandler: { [weak self] (recorder, _) in
             self?._updateBPMLabelOnMainQueue(recorder.bpm)
         })
         
-        // Setup a listener to start the timer when the lens is covered or in 5 seconds if not detected.
+        // Setup a listener to start the timer when the lens is covered.
         _isCoveredObserver = bpmRecorder!.observe(\.isCoveringLens, changeHandler: { [weak self] (recorder, _) in
             self?._handleLensCoveredOnMainQueue(recorder.isCoveringLens)
         })
-        let delay = DispatchTime.now() + .seconds(5)
-        DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
-            self?._startCountdownIfNeeded()
-        }
         
         // Create a motion recorder
         var motionConfig = CRFMotionRecorderConfiguration(identifier: "motion")
@@ -140,10 +145,20 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         }
         guard startUptime == nil else { return }
         self.start()
+        _startAnimatingHeart()
+    }
+    
+    private func _startAnimatingHeart() {
+        self.heartImageView.alpha = 0.0
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat],
+                       animations: { self.heartImageView.alpha = 1.0 },
+                       completion: nil)
     }
     
     private func _handleLensCoveredOnMainQueue(_ isCoveringLens: Bool) {
         DispatchQueue.main.async {
+            self.heartImageView.isHidden = !isCoveringLens
+            self.progressLabel?.isHidden = !isCoveringLens
             if isCoveringLens {
                 self._startCountdownIfNeeded()
             } else {
@@ -185,7 +200,6 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
             _encouragementGiven = true
             self.speakInstruction(continueText, at: 40, completion: nil)
         }
-        
         self.progressLabel?.text = numberFormatter.string(from: NSNumber(value: bpm))
     }
 }

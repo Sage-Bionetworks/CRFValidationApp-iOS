@@ -119,6 +119,9 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         case noBackCamera
         case permissionDenied(AVAuthorizationStatus)
     }
+    
+    /// An optional view that can be used to show the user's finger while the lens is uncovered.
+    public var previewView: UIView?
 
     /// Last calculated heartrate.
     @objc dynamic public private(set) var bpm: Int = 0
@@ -170,9 +173,16 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         }
     }
     
+    public func stopProcessing() {
+        
+    }
+    
     public override func stopRecorder(_ completion: @escaping ((RSDAsyncActionStatus) -> Void)) {
         
         updateStatus(to: .processingResults, error: nil)
+        
+        self._videoPreviewLayer?.removeFromSuperlayer()
+        self._videoPreviewLayer = nil
         
         self._simulationTimer?.invalidate()
         self._simulationTimer = nil
@@ -203,9 +213,10 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     
     private let processingQueue = DispatchQueue(label: "org.sagebase.ResearchSuite.heartrate.processing")
 
-    var _simulationTimer: Timer?
-    var _session: AVCaptureSession?
-    var _loggingSamples: [CRFHeartRateSample] = []
+    private var _simulationTimer: Timer?
+    private var _session: AVCaptureSession?
+    private var _videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    private var _loggingSamples: [CRFHeartRateSample] = []
     
     lazy var sampleProcessor: CRFHeartRateProcessor! = {
         let processor = CRFHeartRateProcessor(delegate: self, callbackQueue: processingQueue)
@@ -310,6 +321,15 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         
         // start the video recorder (if there is one)
         _setupVideoRecorder(formatDescription: currentFormat.formatDescription)
+        
+        // Check to see if there is a preview window
+        if let view = self.previewView {
+            let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
+            videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            videoPreviewLayer.frame = view.layer.bounds
+            _videoPreviewLayer = videoPreviewLayer
+            view.layer.addSublayer(videoPreviewLayer)
+        }
 
         // Add the output and start running
         session.addOutput(videoOutput)
@@ -347,10 +367,17 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     private func _recordColor(_ sample: CRFPixelSample) {
         
         // mark a change in whether or not the lens is covered
-        let coveringLens = (sample.hue != -1)
+        let coveringLens = sample.isCoveringLens
         if coveringLens != self.isCoveringLens {
             DispatchQueue.main.async {
                 self.isCoveringLens = coveringLens
+                if let previewLayer = self._videoPreviewLayer {
+                    if coveringLens {
+                        previewLayer.removeFromSuperlayer()
+                    } else {
+                        self.previewView?.layer.addSublayer(previewLayer)
+                    }
+                }
             }
         }
         
