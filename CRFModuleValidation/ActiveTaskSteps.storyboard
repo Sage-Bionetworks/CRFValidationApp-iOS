@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -175,7 +175,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="1Ko-EV-hHf" id="IbV-bm-M7j"/>
                         <outlet property="navigationHeader" destination="t7v-vl-gTt" id="FVX-tP-f8D"/>
-                        <outlet property="statusBackgroundView" destination="5KJ-RD-0rg" id="6So-ft-2mU"/>
+                        <outlet property="statusBarBackgroundView" destination="5KJ-RD-0rg" id="6So-ft-2mU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z37-O3-9dA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,7 +319,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="H6A-bN-8V9" id="Tbr-Qg-e6b"/>
                         <outlet property="navigationHeader" destination="mCD-I5-qW8" id="vEA-OP-FTF"/>
-                        <outlet property="statusBackgroundView" destination="SuP-g5-NUe" id="uay-WU-c6q"/>
+                        <outlet property="statusBarBackgroundView" destination="SuP-g5-NUe" id="uay-WU-c6q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLA-mq-AXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -440,7 +440,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="sOe-6c-yjA" id="zkl-CD-fP4"/>
                         <outlet property="navigationHeader" destination="pnh-H8-rEJ" id="Hm6-Ba-fmR"/>
-                        <outlet property="statusBackgroundView" destination="6bx-MI-ypF" id="Nua-rZ-Pda"/>
+                        <outlet property="statusBarBackgroundView" destination="6bx-MI-ypF" id="Nua-rZ-Pda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9c-zw-As7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -561,7 +561,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="YMt-M7-Juz" id="xlc-42-MX3"/>
                         <outlet property="navigationHeader" destination="k53-8v-P3d" id="ugY-W9-JV9"/>
-                        <outlet property="statusBackgroundView" destination="3PY-S1-57n" id="yL2-yA-cvH"/>
+                        <outlet property="statusBarBackgroundView" destination="3PY-S1-57n" id="yL2-yA-cvH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyX-iC-XYk" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -36,28 +36,6 @@ import ResearchSuiteUI
 import ResearchSuite
 
 class TaskIntroductionStepViewController: RSDStepViewController {
-    
-    override func shouldUseGlobalButtonVisibility() -> Bool {
-        return self.shouldHideAction(for: .navigation(.skip))
-    }
-    
-    override func showLearnMore() {
-        guard let action = self.action(for: .navigation(.learnMore)) as? RSDResourceTransformer
-            else {
-            self.presentAlertWithOk(title: nil, message: "Missing learn more action for this task", actionHandler: nil)
-            return
-        }
-        
-        let webVC = RSDWebViewController()
-        webVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(_dismissChildViewController))
-        webVC.resourceTransformer = action
-        let navVC = UINavigationController(rootViewController: webVC)
-        self.present(navVC, animated: true, completion: nil)
-    }
-    
-    @objc func _dismissChildViewController() {
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
-    }
 
     override func skipForward() {
         // TODO: Implement remind me later
