@@ -188,6 +188,7 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
         let status = CLLocationManager.authorizationStatus()
         if status == .denied || status == .restricted {
             let error = CRFLocationRecorderError.permissionDenied(status)
+            debugPrint("Failed to start the location recorder: \(status)")
             self.updateStatus(to: .failed, error: error)
             completion(self, nil, error)
             return
@@ -195,6 +196,7 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
         
         // **Only** if the status is not determined, should permission be requested.
         guard status == .notDetermined else {
+            debugPrint("Status has been previously authorized: \(status)")
             self.updateStatus(to: .permissionGranted, error: nil)
             completion(self, nil, nil)
             return
@@ -294,9 +296,12 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     }
     
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status != .authorizedAlways {
+        guard status != .notDetermined else { return }
+        guard status == .authorizedAlways || status == .authorizedWhenInUse else {
             self.locationManager(manager, didFailWithError: CRFLocationRecorderError.permissionDenied(status))
-        } else if let completion = _permissionCompletion {
+            return
+        }
+        if let completion = _permissionCompletion {
             self.updateStatus(to: .permissionGranted, error: nil)
             completion(self, nil, nil)
             _permissionCompletion = nil
