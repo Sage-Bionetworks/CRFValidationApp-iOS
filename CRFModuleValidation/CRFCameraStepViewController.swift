@@ -36,7 +36,7 @@ import ResearchSuiteUI
 import ResearchSuite
 import AVFoundation
 
-public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoCaptureDelegate {
+open class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoCaptureDelegate {
     
     @IBOutlet public var previewView: UIView!
 
@@ -53,8 +53,8 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
         #endif
     }()
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         // Exit early if this is a simulator run
         guard !isSimulator else { return }
@@ -88,7 +88,7 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
         }
     }
     
-    public override func goForward() {
+    open override func goForward() {
         guard let capturePhotoOutput = _capturePhotoOutput else {
             _goNext()
             return
@@ -117,7 +117,7 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
         super.goForward()
     }
     
-    public override func stop() {
+    open override func stop() {
         if _captureSession?.isRunning ?? false {
             _captureSession?.stopRunning()
         }
