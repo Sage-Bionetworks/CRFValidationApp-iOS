@@ -156,9 +156,13 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     // Get the average rgb values for the entire image.
     for (int y = 0; y < height; y += heightScaleFactor) {
         for (int x = 0; x < width * 4; x += (4 * widthScaleFactor)) {
-            r += buf[x + 2];
-            g += buf[x + 1];
-            b += buf[x];
+            float red = buf[x + 2];
+            float green = buf[x + 1];
+            float blue = buf[x];
+            
+            r += red;
+            g += green;
+            b += blue;
         }
         buf += bprow;
     }
@@ -172,7 +176,7 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     // Get the HSV values
     float hue, sat, bright;
     [self getHSVFromRed:r green:g blue:b hue:&hue saturation:&sat brightness:&bright];
-    [self addDataPoint: hue];
+    [self addDataPoint: hue saturation:sat brightness:bright];
     
     // Create a struct to return the pixel average
     struct CRFPixelSample sample;
@@ -183,7 +187,8 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     sample.hue = (double)hue;
     sample.saturation = (double)sat;
     sample.brightness = (double)bright;
-    
+    sample.isCoveringLens = [self isCoveringLens:hue saturation:sat brightness:bright];
+        
     // Alert the delegate
     dispatch_async(_delegateCallbackQueue, ^{
         [_delegate processor:self didCaptureSample:sample];
@@ -220,8 +225,12 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     *h = hue;
 }
 
-- (void)addDataPoint:(double)hue {
-    if (hue > 0) {
+- (BOOL)isCoveringLens:(double)hue saturation:(float)saturation brightness:(float)brightness {
+    return (hue >= 0) && (hue <= 10 || hue >= 350) && (saturation > 0.8) && (brightness > 0.8);
+}
+
+- (void)addDataPoint:(double)hue saturation:(float)saturation brightness:(float)brightness {
+    if ([self isCoveringLens: hue saturation: saturation brightness: brightness]) {
         // Since the hue for blood is in the red zone which cross the degrees point,
         // offset that value by 180.
         double offsetHue = hue + 180.0;
