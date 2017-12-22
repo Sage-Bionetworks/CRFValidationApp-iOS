@@ -545,11 +545,11 @@
 		FF2A1D581FB176340095044A /* Recorders */ = {
 			isa = PBXGroup;
 			children = (
-				FFAA2D941FB571BF00B63CBA /* CRFMotionRecorder.swift */,
 				FFF159ED1FB4E31F0061BA93 /* CRFHeartRateProcessor.h */,
 				FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */,
-				FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */,
 				FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */,
+				FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */,
+				FFAA2D941FB571BF00B63CBA /* CRFMotionRecorder.swift */,
 			);
 			name = Recorders;
 			sourceTree = "<group>";
