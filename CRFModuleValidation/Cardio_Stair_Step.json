@@ -35,8 +35,7 @@
                                                        "foregroundColor"        : "white",
                                                        "usesLightStyle"         : true },
                            "image"                  : "healthRiskIcon",
-                           "title"                  : "Potential heart risk",
-                           "text"                   : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
+                           "text"                   : "Do not attempt to complete this test if you have been told by your doctor that you should not participate in physical activity or exercise. Stop the test and talk to your doctor if any of the following symptoms occur: chest pain, dizziness, blurred vision, disorientation, excessive shortness of breath, severe nausea, severe fatigue, or severe headache.",
                            "actions"                : { "goForward": { "buttonTitle": "Got it" }}
                            },
                            {
@@ -129,7 +128,12 @@
                                                                    "animationDuration" : 2.5,
                                                                    },
                                                "commands"           : ["transitionAutomatically", "shouldDisableIdleTimer"],
-                                               "spokenInstructions" : {"0": "Up", "1.25": "Down", "end": "Stand still"},
+                                               "spokenInstructions" : { "0": "Up",
+                                                                        "60": "You’re doing well; 2 minutes left.",
+                                                                        "90": "Good job; 1 minute left.",
+                                                                        "105": "Almost done, 15 seconds.",
+                                                                        "countdown": "10",
+                                                                        "end": "Stand still"},
                                                "colorTheme"         : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
                                                "viewTheme"          : { "viewIdentifier": "StairStep", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }
