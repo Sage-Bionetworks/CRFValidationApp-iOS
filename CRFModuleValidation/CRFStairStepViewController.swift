@@ -53,7 +53,7 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
         
         // Use a delay to show the "Stand still" text for the instruction
         // to give the user a moment to prepare.
-        let delay = DispatchTime.now() + .milliseconds(1000)
+        let delay = DispatchTime.now() + .milliseconds(500)
         DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
             self?._finishStart()
         }
@@ -91,30 +91,44 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
         return Array(sorted.prefix(2))
     }()
     
-    private var _toggle = false
-    
-    public override func speakInstruction(at duration: TimeInterval) {
-        guard let stepDuration = self.activeStep?.duration else { return }
-        if duration >= stepDuration {
-            super.speakInstruction(at: duration)
-        } else if duration == 0 || !_toggle {
-            _speakFirstInstruction(at: duration)
-        } else {
-            _speakSecondInstruction(at: duration)
-        }
-    }
-    
-    private func _speakFirstInstruction(at duration: TimeInterval) {
-        guard let instruction = self.firstInstruction else { return }
-        _toggle = true
-        self.vibrateDevice()
-        self.speakInstruction(instruction.1, at: duration, completion: nil)
-    }
+    private var _upStep = true
+    private var _speakCadenceOn = true
+    private let _maxCount = 5
 
-    private func _speakSecondInstruction(at duration: TimeInterval) {
-        guard let instruction = self.secondInstruction else { return }
-        _toggle = false
-        self.vibrateDevice()
-        self.speakInstruction(instruction.1, at: duration, completion: nil)
+    /// Override `speakInstruction`. This method is called every time the timer is fired.
+    /// Repeat the "Up, Down" instructions for the first 5 cycles.
+    public override func speakInstruction(at duration: TimeInterval) {
+        // Do nothing if the first and second instruction aren't set.
+        guard let instructionText = (_upStep ? firstInstruction : secondInstruction)?.1,
+            let stepDuration = self.activeStep?.duration
+            else {
+                return
+        }
+
+        // toggle the up/down state
+        _upStep = !_upStep
+        
+        // Play metronome sound.
+        self.playSound(.tock)
+                
+        if _speakCadenceOn && duration > 0 {
+            // If this is the start then repeat the up/down spoken cadence for the first
+            // few steps. After that, only play the metronome sound and follow the logic set up
+            // by the super class.
+            if duration > Double(_maxCount * 2) * timerInterval && _upStep {
+                _speakCadenceOn = false
+            }
+            
+            // Speak the up/down cadence.
+            self.speakInstruction(instructionText, at: duration, completion: nil)
+        }
+        else {
+            super.speakInstruction(at: duration)
+            if duration < stepDuration {
+                // Only the end step should write to the instruction label.
+                // Otherwise, should show the up/down cadence.
+                self.instructionLabel?.text = instructionText
+            }
+        }
     }
 }

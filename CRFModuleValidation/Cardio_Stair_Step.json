@@ -127,13 +127,13 @@
                                                                    "placementType" : "topBackground",
                                                                    "animationDuration" : 2.5,
                                                                    },
-                                               "commands"           : ["transitionAutomatically", "shouldDisableIdleTimer"],
+                                               "commands"           : ["transitionAutomatically", "shouldDisableIdleTimer", "vibrate", "playSoundOnFinish"],
                                                "spokenInstructions" : { "0": "Up",
+                                                                        "1.25": "Down",
                                                                         "60": "You’re doing well; 2 minutes left.",
-                                                                        "90": "Good job; 1 minute left.",
-                                                                        "105": "Almost done, 15 seconds.",
-                                                                        "countdown": "10",
-                                                                        "end": "Stand still"},
+                                                                        "120": "Good job; 1 minute left.",
+                                                                        "170": "Almost done, 10 seconds.",
+                                                                        "end": "Stand still."},
                                                "colorTheme"         : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
                                                "viewTheme"          : { "viewIdentifier": "StairStep", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }
