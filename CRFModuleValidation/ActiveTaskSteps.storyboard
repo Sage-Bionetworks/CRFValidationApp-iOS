@@ -849,8 +849,8 @@
                         <viewLayoutGuide key="safeArea" id="j2T-Rz-fes"/>
                     </view>
                     <connections>
+                        <outlet property="commandLabel" destination="49V-MX-D7Z" id="3KF-8B-4Ld"/>
                         <outlet property="countdownLabel" destination="0H1-a5-wRw" id="oJH-B0-JIz"/>
-                        <outlet property="instructionLabel" destination="49V-MX-D7Z" id="YUZ-Jp-ush"/>
                         <outlet property="navigationHeader" destination="fS4-Pb-RWv" id="ayo-Ss-ECO"/>
                     </connections>
                 </viewController>

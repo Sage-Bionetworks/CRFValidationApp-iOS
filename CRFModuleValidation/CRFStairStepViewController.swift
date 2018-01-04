@@ -37,6 +37,8 @@ import ResearchSuite
 
 public class CRFStairStepViewController: RSDActiveStepViewController {
     
+    @IBOutlet open var commandLabel: UILabel?
+    
     public var imageView: UIImageView! {
         return (self.navigationHeader as? RSDStepHeaderView)?.imageView
     }
@@ -71,10 +73,7 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     }
     
     public override var timerInterval: TimeInterval {
-        guard let (timeInterval,_) = self.secondInstruction else {
-            return 1
-        }
-        return timeInterval
+        return _metronomeInterval
     }
 
     lazy public var firstInstruction: (TimeInterval, String)? = {
@@ -91,43 +90,49 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
         return Array(sorted.prefix(2))
     }()
     
-    private var _upStep = true
-    private var _speakCadenceOn = true
-    private let _maxCount = 5
+    private var _speakCadenceOn: Bool = true
+    private let _metronomeInterval: TimeInterval = 60 / 96
+    private let _speakCadenceDuration: TimeInterval = (60 / 96) * 4 * 4
 
     /// Override `speakInstruction`. This method is called every time the timer is fired.
     /// Repeat the "Up, Down" instructions for the first 5 cycles.
     public override func speakInstruction(at duration: TimeInterval) {
+        
+        let cadence = Int(duration / _metronomeInterval) % 4
+        let upStep = cadence == 0 || cadence == 1
+        
         // Do nothing if the first and second instruction aren't set.
-        guard let instructionText = (_upStep ? firstInstruction : secondInstruction)?.1,
+        guard let instructionText = (upStep ? firstInstruction : secondInstruction)?.1,
             let stepDuration = self.activeStep?.duration
             else {
                 return
         }
-
-        // toggle the up/down state
-        _upStep = !_upStep
         
         // Play metronome sound.
         self.playSound(.tock)
-                
-        if _speakCadenceOn && duration > 0 {
+        
+        if _speakCadenceOn && duration > 0 && (cadence == 0 || cadence == 2) {
+
             // If this is the start then repeat the up/down spoken cadence for the first
             // few steps. After that, only play the metronome sound and follow the logic set up
             // by the super class.
-            if duration > Double(_maxCount * 2) * timerInterval && _upStep {
+            if !upStep && duration > _speakCadenceDuration {
                 _speakCadenceOn = false
             }
             
             // Speak the up/down cadence.
             self.speakInstruction(instructionText, at: duration, completion: nil)
+            self.commandLabel?.text = instructionText
         }
         else {
             super.speakInstruction(at: duration)
             if duration < stepDuration {
                 // Only the end step should write to the instruction label.
-                // Otherwise, should show the up/down cadence.
-                self.instructionLabel?.text = instructionText
+                // Otherwise, should only show the animating person.
+                self.commandLabel?.text = ""
+            } else {
+                // TODO: syoung 01/03/2018 Localize
+                self.commandLabel?.text = "Stand Still"
             }
         }
     }

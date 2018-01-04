@@ -11,7 +11,7 @@
                            {
                            "identifier"   : "introduction",
                            "type"         : "instruction",
-                           "title"        : "Stair Step",
+                           "title"        : "3 Minute Stair Test",
                            "text"         : "5 minutes",
                            "image"  : {
                                            "imageNames" : ["stairStepLarge1", "stairStepLarge2", "stairStepLarge3", "stairStepLarge4"],
@@ -132,8 +132,8 @@
                                                                         "1.25": "Down",
                                                                         "60": "You’re doing well; 2 minutes left.",
                                                                         "120": "Good job; 1 minute left.",
-                                                                        "170": "Almost done, 10 seconds.",
-                                                                        "end": "Stand still."},
+                                                                        "170": "10 seconds; Almost done!",
+                                                                        "end": "Done! Now measure your heart rate again."},
                                                "colorTheme"         : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
                                                "viewTheme"          : { "viewIdentifier": "StairStep", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }
