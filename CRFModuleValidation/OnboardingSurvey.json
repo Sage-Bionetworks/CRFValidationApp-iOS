@@ -21,7 +21,7 @@
                         {"text" :"As a participant would see it", "value": "uxTester", "dataGroup" : "ux_tester"},
                         ],
                "expectedAnswer": ["uxTester"],
-               "skipIdentifier": "fitbit",
+               "skipIdentifier": "permissions",
                "optional": false,
                },
                {
