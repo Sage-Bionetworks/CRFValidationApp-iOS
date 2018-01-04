@@ -36,37 +36,6 @@
 		FF4043FA1FBAA1F1000EF2A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */; };
 		FF4043FB1FBAA202000EF2A0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */; };
 		FF4043FC1FBAA20C000EF2A0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */; };
-		FF4712101FCF95D40052E5E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */; };
-		FF4712151FCF95D40052E5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4712131FCF95D40052E5E3 /* Main.storyboard */; };
-		FF4712171FCF95D40052E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4712161FCF95D40052E5E3 /* Assets.xcassets */; };
-		FF47121A1FCF95D40052E5E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4712181FCF95D40052E5E3 /* LaunchScreen.storyboard */; };
-		FF4712251FCF95D40052E5E3 /* BackgroundSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4712241FCF95D40052E5E3 /* BackgroundSurveyUITests.swift */; };
-		FF4712371FCF97E10052E5E3 /* Background_Survey.json in Resources */ = {isa = PBXBuildFile; fileRef = FF88D4FE1FB66D0D003BB844 /* Background_Survey.json */; };
-		FF4712381FCF97E10052E5E3 /* HeartrateStep.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8F1FA7B8DB00B8D42C /* HeartrateStep.json */; };
-		FF4712391FCF97E10052E5E3 /* Cardio_12MT.json in Resources */ = {isa = PBXBuildFile; fileRef = FF78FC8D1FA7B49800B8D42C /* Cardio_12MT.json */; };
-		FF47123A1FCF97E10052E5E3 /* Cardio_Stair_Step.json in Resources */ = {isa = PBXBuildFile; fileRef = FF5D8B701FB522F60003B0FC /* Cardio_Stair_Step.json */; };
-		FF47123B1FCF97E10052E5E3 /* Cardio_Stress.json in Resources */ = {isa = PBXBuildFile; fileRef = FF569BED1FB63CF9005F525A /* Cardio_Stress.json */; };
-		FF47123C1FCF97E10052E5E3 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
-		FF47123D1FCF97E60052E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F7A1391E89C76E00B123FA /* Assets.xcassets */; };
-		FF47123E1FCF97F20052E5E3 /* Stress_Test.html in Resources */ = {isa = PBXBuildFile; fileRef = FF569BF51FB63FCA005F525A /* Stress_Test.html */; };
-		FF47123F1FCF97F20052E5E3 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
-		FF4712401FCF97F20052E5E3 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
-		FF4712411FCF97FA0052E5E3 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
-		FF4712421FCF97FA0052E5E3 /* CRFCameraStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */; };
-		FF4712431FCF97FA0052E5E3 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
-		FF4712441FCF97FA0052E5E3 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
-		FF4712451FCF97FA0052E5E3 /* CRFResultStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */; };
-		FF4712461FCF97FA0052E5E3 /* CRFStairStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */; };
-		FF4712471FCF97FF0052E5E3 /* CRFCameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */; };
-		FF4712481FCF98100052E5E3 /* CRFMotionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA2D941FB571BF00B63CBA /* CRFMotionRecorder.swift */; };
-		FF4712491FCF98140052E5E3 /* CRFLocationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D591FB176BC0095044A /* CRFLocationRecorder.swift */; };
-		FF47124A1FCF98140052E5E3 /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
-		FF47124B1FCF98180052E5E3 /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
-		FF47124C1FCF981B0052E5E3 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
-		FF4712511FCF99150052E5E3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4712501FCF99150052E5E3 /* TableViewController.swift */; };
-		FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */; };
-		FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */; };
-		FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */; };
 		FF55C41F1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55C41E1FAAEB3D004EDB59 /* TaskIntroductionStepViewController.swift */; };
 		FF55C4201FAAF79A004EDB59 /* Cardio_12MT.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4141FAAD9F7004EDB59 /* Cardio_12MT.html */; };
 		FF55C4211FAAF79C004EDB59 /* Stair_Step.html in Resources */ = {isa = PBXBuildFile; fileRef = FF55C4131FAAD9DA004EDB59 /* Stair_Step.html */; };
@@ -76,8 +45,6 @@
 		FF5D8B7D1FB526F80003B0FC /* CRFCameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7C1FB526F80003B0FC /* CRFCameraShutterButton.swift */; };
 		FF5D8B7F1FB528BC0003B0FC /* CRFCameraStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B7E1FB528BC0003B0FC /* CRFCameraStepViewController.swift */; };
 		FF5D8B811FB535340003B0FC /* CRFStairStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D8B801FB535340003B0FC /* CRFStairStepViewController.swift */; };
-		FF6D6C7B1FD0A9AF002B514A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6D6C721FD0A9AE002B514A /* MapKit.framework */; };
-		FF6D6C7C1FD0AA84002B514A /* ActiveTaskSteps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */; };
 		FF7707611FB43D8000658074 /* heartrate.json in Resources */ = {isa = PBXBuildFile; fileRef = FF77075A1FB43D7F00658074 /* heartrate.json */; };
 		FF7707641FB43E1200658074 /* HeartRateRecorderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7707631FB43E1200658074 /* HeartRateRecorderTests.swift */; };
 		FF7752381F7093AF004925B8 /* SurveyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7752371F7093AF004925B8 /* SurveyFactory.swift */; };
@@ -95,10 +62,6 @@
 		FFA0E4531FD117A400C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FFA0E4561FD117B900C36AE7 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; };
 		FFA0E4571FD117B900C36AE7 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FFA0E45A1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; };
-		FFA0E45B1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E44D1FD1179800C36AE7 /* ResearchSuiteUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FFA0E45E1FD1194E00C36AE7 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; };
-		FFA0E45F1FD1194E00C36AE7 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
 		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
@@ -108,7 +71,6 @@
 		FFAA2D951FB571BF00B63CBA /* CRFMotionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA2D941FB571BF00B63CBA /* CRFMotionRecorder.swift */; };
 		FFCE303C1EB9AA000086DCAA /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCE303B1EB9AA000086DCAA /* ResourceTests.swift */; };
 		FFDD77F81FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD77F71FAD30900024BDD1 /* CRFRunDistanceStepViewController.swift */; };
-		FFE7EB611FD0BAB200A69F46 /* CardioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7EB601FD0BAB200A69F46 /* CardioUITests.swift */; };
 		FFF159F51FB4E31F0061BA93 /* CRFHeartRateProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF159F41FB4E31F0061BA93 /* CRFHeartRateProcessor.m */; };
 		FFFDAFBC1FB50091001C59BD /* CRFResultStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDAFBB1FB50091001C59BD /* CRFResultStepViewController.swift */; };
 /* End PBXBuildFile section */
@@ -162,13 +124,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 801040B11C5A843D00D26E19;
 			remoteInfo = BridgeAppSDK;
-		};
-		FF4712211FCF95D40052E5E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 60F7A1271E89C76E00B123FA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FF47120C1FCF95D40052E5E3;
-			remoteInfo = CRFModuleTestApp;
 		};
 		FFA0E43E1FD1179800C36AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -240,20 +195,6 @@
 			remoteGlobalIDString = FF8B53131FCE678E006B6937;
 			remoteInfo = "ResearchSuite (iOS)";
 		};
-		FFA0E45C1FD1194D00C36AE7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC541FA3FE0200B8D42C /* ResearchSuiteUI.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FFF2D9371FCF415E007258F8;
-			remoteInfo = "ResearchSuiteUI (iOS)";
-		};
-		FFA0E4601FD1194E00C36AE7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF78FC611FA3FE1E00B8D42C /* ResearchSuite.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FF8B53131FCE678E006B6937;
-			remoteInfo = "ResearchSuite (iOS)";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -269,18 +210,6 @@
 				60F7A2181E89D0B200B123FA /* BridgeAppSDK.framework in Embed Frameworks */,
 				FFA0E4531FD117A400C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */,
 				60F7A2161E89D0B200B123FA /* BridgeSDK.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF4712561FCFA0F90052E5E3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				FFA0E45F1FD1194E00C36AE7 /* ResearchSuite.framework in Embed Frameworks */,
-				FFA0E45B1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,13 +247,11 @@
 		FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFModuleTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF47120F1FCF95D40052E5E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF4712141FCF95D40052E5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF4712161FCF95D40052E5E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF4712191FCF95D40052E5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF47121B1FCF95D40052E5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CRFModuleTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4712241FCF95D40052E5E3 /* BackgroundSurveyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSurveyUITests.swift; sourceTree = "<group>"; };
 		FF4712261FCF95D40052E5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF4712501FCF99150052E5E3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -396,26 +323,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF47120A1FCF95D40052E5E3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF6D6C7B1FD0A9AF002B514A /* MapKit.framework in Frameworks */,
-				FF47125C1FCFA1230052E5E3 /* CoreLocation.framework in Frameworks */,
-				FFA0E45E1FD1194E00C36AE7 /* ResearchSuite.framework in Frameworks */,
-				FF47125D1FCFA1270052E5E3 /* CoreMotion.framework in Frameworks */,
-				FFA0E45A1FD1194D00C36AE7 /* ResearchSuiteUI.framework in Frameworks */,
-				FF47125B1FCFA11F0052E5E3 /* AVFoundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF47121D1FCF95D40052E5E3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -436,8 +343,6 @@
 			children = (
 				60F7A12F1E89C76E00B123FA /* CRFModuleValidation.app */,
 				60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */,
-				FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */,
-				FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -726,44 +631,6 @@
 			productReference = 60F7A1431E89C76E00B123FA /* CRFModuleValidationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FF4712331FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestApp" */;
-			buildPhases = (
-				FF4712091FCF95D40052E5E3 /* Sources */,
-				FF47120A1FCF95D40052E5E3 /* Frameworks */,
-				FF47120B1FCF95D40052E5E3 /* Resources */,
-				FF4712561FCFA0F90052E5E3 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FFA0E45D1FD1194D00C36AE7 /* PBXTargetDependency */,
-				FFA0E4611FD1194E00C36AE7 /* PBXTargetDependency */,
-			);
-			name = CRFModuleTestApp;
-			productName = CRFModuleTestApp;
-			productReference = FF47120D1FCF95D40052E5E3 /* CRFModuleTestApp.app */;
-			productType = "com.apple.product-type.application";
-		};
-		FF47121F1FCF95D40052E5E3 /* CRFModuleTestAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FF4712341FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestAppUITests" */;
-			buildPhases = (
-				FF47121C1FCF95D40052E5E3 /* Sources */,
-				FF47121D1FCF95D40052E5E3 /* Frameworks */,
-				FF47121E1FCF95D40052E5E3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FF4712221FCF95D40052E5E3 /* PBXTargetDependency */,
-			);
-			name = CRFModuleTestAppUITests;
-			productName = CRFModuleTestAppUITests;
-			productReference = FF4712201FCF95D40052E5E3 /* CRFModuleTestAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -804,22 +671,6 @@
 						ProvisioningStyle = Manual;
 						TestTargetID = 60F7A12E1E89C76E00B123FA;
 					};
-					FF47120C1FCF95D40052E5E3 = {
-						CreatedOnToolsVersion = 9.1;
-						DevelopmentTeam = 4B822CZK9N;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.BackgroundModes = {
-								enabled = 1;
-							};
-						};
-					};
-					FF47121F1FCF95D40052E5E3 = {
-						CreatedOnToolsVersion = 9.1;
-						DevelopmentTeam = 4B822CZK9N;
-						ProvisioningStyle = Automatic;
-						TestTargetID = FF47120C1FCF95D40052E5E3;
-					};
 				};
 			};
 			buildConfigurationList = 60F7A12A1E89C76E00B123FA /* Build configuration list for PBXProject "CRFModuleValidation" */;
@@ -851,8 +702,6 @@
 			targets = (
 				60F7A12E1E89C76E00B123FA /* CRFModuleValidation */,
 				60F7A1421E89C76E00B123FA /* CRFModuleValidationTests */,
-				FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */,
-				FF47121F1FCF95D40052E5E3 /* CRFModuleTestAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -986,34 +835,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF47120B1FCF95D40052E5E3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF47121A1FCF95D40052E5E3 /* LaunchScreen.storyboard in Resources */,
-				FF4712391FCF97E10052E5E3 /* Cardio_12MT.json in Resources */,
-				FF47123E1FCF97F20052E5E3 /* Stress_Test.html in Resources */,
-				FF4712171FCF95D40052E5E3 /* Assets.xcassets in Resources */,
-				FF4712151FCF95D40052E5E3 /* Main.storyboard in Resources */,
-				FF6D6C7C1FD0AA84002B514A /* ActiveTaskSteps.storyboard in Resources */,
-				FF47123D1FCF97E60052E5E3 /* Assets.xcassets in Resources */,
-				FF4712371FCF97E10052E5E3 /* Background_Survey.json in Resources */,
-				FF4712381FCF97E10052E5E3 /* HeartrateStep.json in Resources */,
-				FF47123F1FCF97F20052E5E3 /* Stair_Step.html in Resources */,
-				FF47123A1FCF97E10052E5E3 /* Cardio_Stair_Step.json in Resources */,
-				FF47123B1FCF97E10052E5E3 /* Cardio_Stress.json in Resources */,
-				FF4712401FCF97F20052E5E3 /* Cardio_12MT.html in Resources */,
-				FF47123C1FCF97E10052E5E3 /* HeartRate_Measurement.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF47121E1FCF95D40052E5E3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1076,36 +897,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF4712091FCF95D40052E5E3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF4712481FCF98100052E5E3 /* CRFMotionRecorder.swift in Sources */,
-				FF4712511FCF99150052E5E3 /* TableViewController.swift in Sources */,
-				FF4712461FCF97FA0052E5E3 /* CRFStairStepViewController.swift in Sources */,
-				FF47124A1FCF98140052E5E3 /* CRFHeartRateRecorder.swift in Sources */,
-				FF4712411FCF97FA0052E5E3 /* TaskIntroductionStepViewController.swift in Sources */,
-				FF4712471FCF97FF0052E5E3 /* CRFCameraShutterButton.swift in Sources */,
-				FF4712421FCF97FA0052E5E3 /* CRFCameraStepViewController.swift in Sources */,
-				FF4712431FCF97FA0052E5E3 /* CRFHeartRateStepViewController.swift in Sources */,
-				FF4712441FCF97FA0052E5E3 /* CRFRunDistanceStepViewController.swift in Sources */,
-				FF4712491FCF98140052E5E3 /* CRFLocationRecorder.swift in Sources */,
-				FF47124B1FCF98180052E5E3 /* CRFTaskFactory.swift in Sources */,
-				FF4712451FCF97FA0052E5E3 /* CRFResultStepViewController.swift in Sources */,
-				FF4712101FCF95D40052E5E3 /* AppDelegate.swift in Sources */,
-				FF47124C1FCF981B0052E5E3 /* CRFHeartRateProcessor.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF47121C1FCF95D40052E5E3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FFE7EB611FD0BAB200A69F46 /* CardioUITests.swift in Sources */,
-				FF4712251FCF95D40052E5E3 /* BackgroundSurveyUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1119,11 +910,6 @@
 			name = BridgeAppSDK;
 			targetProxy = 60F7A2191E89D0B200B123FA /* PBXContainerItemProxy */;
 		};
-		FF4712221FCF95D40052E5E3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FF47120C1FCF95D40052E5E3 /* CRFModuleTestApp */;
-			targetProxy = FF4712211FCF95D40052E5E3 /* PBXContainerItemProxy */;
-		};
 		FFA0E4551FD117A400C36AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ResearchSuiteUI (iOS)";
@@ -1133,16 +919,6 @@
 			isa = PBXTargetDependency;
 			name = "ResearchSuite (iOS)";
 			targetProxy = FFA0E4581FD117B900C36AE7 /* PBXContainerItemProxy */;
-		};
-		FFA0E45D1FD1194D00C36AE7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ResearchSuiteUI (iOS)";
-			targetProxy = FFA0E45C1FD1194D00C36AE7 /* PBXContainerItemProxy */;
-		};
-		FFA0E4611FD1194E00C36AE7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ResearchSuite (iOS)";
-			targetProxy = FFA0E4601FD1194E00C36AE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1367,120 +1143,6 @@
 			};
 			name = Release;
 		};
-		FF4712271FCF95D40052E5E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4B822CZK9N;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = CRFModuleTestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		FF4712281FCF95D40052E5E3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4B822CZK9N;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = CRFModuleTestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		FF4712291FCF95D40052E5E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4B822CZK9N;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = CRFModuleTestAppUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CRFModuleTestApp;
-			};
-			name = Debug;
-		};
-		FF47122A1FCF95D40052E5E3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4B822CZK9N;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = CRFModuleTestAppUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.CRFModuleTestAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CRFModuleTestApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1507,24 +1169,6 @@
 			buildConfigurations = (
 				60F7A15B1E89C76E00B123FA /* Debug */,
 				60F7A15C1E89C76E00B123FA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FF4712331FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FF4712271FCF95D40052E5E3 /* Debug */,
-				FF4712281FCF95D40052E5E3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FF4712341FCF95D40052E5E3 /* Build configuration list for PBXNativeTarget "CRFModuleTestAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FF4712291FCF95D40052E5E3 /* Debug */,
-				FF47122A1FCF95D40052E5E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
