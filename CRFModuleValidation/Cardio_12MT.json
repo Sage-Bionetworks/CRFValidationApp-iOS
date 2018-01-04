@@ -20,7 +20,7 @@
                            {
                            "identifier"   : "introduction",
                            "type"         : "instruction",
-                           "title"        : "12 minute test",
+                           "title"        : "12 Minute Distance Test",
                            "text"         : "15 minutes",
                            "image"  : {
                                            "imageNames" : ["12MinLarge1", "12MinLarge2", "12MinLarge3", "12MinLarge4"],
@@ -123,7 +123,7 @@
                                                                        "360": "Good job, halfway done; 6 minutes left.",
                                                                        "540": "You’re doing well; 3 minutes left.",
                                                                        "660": "Good job; 1 minute left.",
-                                                                       "690": "Almost done; 30 seconds.",
+                                                                       "700": "Almost done.",
                                                                        "countdown": "15",
                                                                        "end": "Stop running or walking."},
                                                "colorTheme"         : { "usesLightStyle" : true },
