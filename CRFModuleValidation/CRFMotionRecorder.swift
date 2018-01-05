@@ -106,23 +106,26 @@ public class CRFMotionRecorder : RSDSampleRecorder {
     }()
     
     private var motionManager: CMMotionManager?
+    private var pedometer: CMPedometer?
     
-    public var isRunning: Bool {
-        guard let manager = self.motionManager, let config = self.coreMotionConfiguration else {
-            return false
-        }
-        return config.recorderTypes.reduce(false) {
-            switch $1 {
-            case .accelerometer:
-                return $0 || manager.isAccelerometerActive
-            case .deviceMotion:
-                return $0 || manager.isDeviceMotionActive
+    override public func requestPermissions(on viewController: UIViewController, _ completion: @escaping RSDAsyncActionCompletionHandler) {
+        pedometer = CMPedometer()
+        let now = Date()
+        pedometer!.queryPedometerData(from: now.addingTimeInterval(-2*60), to: now) { [weak self] (_, error) in
+            guard let strongSelf = self else { return }
+            if let err = error {
+                debugPrint("Failed to query pedometer: \(err)")
             }
+            let status: RSDAsyncActionStatus = (error == nil) ? .permissionGranted : .failed
+            strongSelf.updateStatus(to: status, error: error)
+            completion(strongSelf, nil, error)
+            strongSelf.pedometer = nil
         }
     }
     
-    private func _startMotionManager(_ completion: @escaping ((Error?) -> Void)) {
+    override public func startRecorder(_ completion: @escaping ((RSDAsyncActionStatus, Error?) -> Void)) {
         guard self.motionManager == nil else {
+            completion(.failed, RSDRecorderError.alreadyRunning)
             return
         }
 
@@ -132,18 +135,16 @@ public class CRFMotionRecorder : RSDSampleRecorder {
         self.motionManager = motionManager
         
         // Only use the callback on *one* of the motion types that is being started
-        var handler: ((Error?) -> Void)? = completion
         for motionType in recorderTypes {
             switch motionType {
             case .accelerometer:
-                startAccelerometer(with: motionManager, updateInterval: updateInterval, completion: handler)
-                handler = nil
-                
+                startAccelerometer(with: motionManager, updateInterval: updateInterval, completion: nil)
             case .deviceMotion:
-                startDeviceMotion(with: motionManager, updateInterval: updateInterval, completion: handler)
-                handler = nil
+                startDeviceMotion(with: motionManager, updateInterval: updateInterval, completion: nil)
             }
         }
+        
+        completion(.running, nil)
     }
     
     func startAccelerometer(with motionManager: CMMotionManager, updateInterval: TimeInterval, completion: ((Error?) -> Void)?) {

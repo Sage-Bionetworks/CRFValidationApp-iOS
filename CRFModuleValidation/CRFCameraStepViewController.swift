@@ -34,111 +34,54 @@
 import UIKit
 import ResearchSuiteUI
 import ResearchSuite
-import AVFoundation
 
-public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoCaptureDelegate {
+open class CRFCameraStepViewController: RSDStepViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet public var previewView: UIView!
+    @IBOutlet public var captureButton: UIButton!
 
-    private var _captureSession: AVCaptureSession?
-    private var _videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    private var _capturePhotoOutput: AVCapturePhotoOutput?
+    private let picker = UIImagePickerController()
     private let processingQueue = DispatchQueue(label: "org.sagebase.ResearchSuite.camera.processing")
-
-    public let isSimulator: Bool = {
-        #if (arch(i386) || arch(x86_64)) && !os(OSX)
-            return true
-        #else
-            return false
-        #endif
-    }()
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Exit early if this is a simulator run
-        guard !isSimulator else { return }
-        
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-        do {
-            // create the camera session
-            let input = try AVCaptureDeviceInput(device: captureDevice!)
-            let captureSession = AVCaptureSession()
-            _captureSession = captureSession
-            captureSession.addInput(input)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             
-            // add video view
-            let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            videoPreviewLayer.frame = view.layer.bounds
-            _videoPreviewLayer = videoPreviewLayer
-            previewView.layer.addSublayer(videoPreviewLayer)
+            // hide the capture button (it's included for simulator)
+            self.captureButton.isHidden = true
             
-            // add output for taking a picture
-            let output = AVCapturePhotoOutput()
-            _capturePhotoOutput = output
-            output.isHighResolutionCaptureEnabled = true
-            captureSession.addOutput(output)
+            // Set up the picker.
+            picker.delegate = self
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.camera
+            picker.cameraCaptureMode = .photo
             
-            // start the camera
-            captureSession.startRunning()
-            
-        } catch let error {
-            debugPrint("Failed to access the camera: \(error)")
+            // Embed the picker in this view.
+            picker.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
+            self.addChildViewController(picker)
+            picker.view.frame = self.view.bounds
+            self.view.addSubview(picker.view)
+            picker.view.rsd_alignAllToSuperview(padding: 0)
+            picker.didMove(toParentViewController: self)
         }
     }
     
-    public override func goForward() {
-        guard let capturePhotoOutput = _capturePhotoOutput else {
-            _goNext()
+    // MARK: UIImagePickerControllerDelegate
+    
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        goBack()
+    }
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            debugPrint("Failed to capture image: \(info)")
+            self.goForward()
             return
         }
-        
-        processingQueue.async {
-            
-            // Create photo settings
-            let photoSettings = AVCapturePhotoSettings()
-            photoSettings.isAutoStillImageStabilizationEnabled = true
-            photoSettings.isHighResolutionPhotoEnabled = true
-            photoSettings.flashMode = .auto
-            
-            DispatchQueue.main.sync {
-                // User feedback of the photo shutter
-                self.playSound(.photoShutter)
-            }
-            
-            // Call capturePhoto method by passing our photo settings and a
-            // delegate implementing AVCapturePhotoCaptureDelegate
-            capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
-        }
-    }
-    
-    private func _goNext() {
-        super.goForward()
-    }
-    
-    public override func stop() {
-        if _captureSession?.isRunning ?? false {
-            _captureSession?.stopRunning()
-        }
-        _captureSession = nil
-        
-        super.stop()
-    }
-    
-    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard error == nil else {
-            // TODO: syoung 11/10/2017 Handle failure
-            debugPrint("Failed to capture image: \(error!)")
-            DispatchQueue.main.async {
-                self._goNext()
-            }
-            return
-        }
-        
+
         var url: URL?
         do {
-            if let imageData = photo.fileDataRepresentation() {
+            if let imageData = UIImageJPEGRepresentation(chosenImage, 1.0) {
                 url = try RSDFileResultUtility.createFileURL(identifier: self.step.identifier, ext: "jpeg", outputDirectory: self.taskController.taskPath.outputDirectory)
                 save(imageData, to: url!)
             }
@@ -146,16 +89,13 @@ public class CRFCameraStepViewController: RSDStepViewController, AVCapturePhotoC
             debugPrint("Failed to save the camera image: \(error)")
         }
         
-        DispatchQueue.main.async {
-            
-            // Create the result and set it as the result for this step
-            var result = RSDFileResultObject(identifier: self.step.identifier)
-            result.url = url
-            self.taskController.taskPath.appendStepHistory(with: result)
-            
-            // Go to the next step
-            self._goNext()
-        }
+        // Create the result and set it as the result for this step
+        var result = RSDFileResultObject(identifier: self.step.identifier)
+        result.url = url
+        self.taskController.taskPath.appendStepHistory(with: result)
+        
+        // Go to the next step.
+        self.goForward()
     }
     
     private func save(_ imageData: Data, to url: URL) {

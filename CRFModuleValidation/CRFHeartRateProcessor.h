@@ -44,6 +44,7 @@ struct CRFPixelSample {
     double hue;
     double saturation;
     double brightness;
+    bool   isCoveringLens;
 };
 
 extern const NSTimeInterval CRFHeartRateSampleRate;

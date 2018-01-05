@@ -34,33 +34,106 @@
 import UIKit
 import ResearchSuiteUI
 import ResearchSuite
+import UserNotifications
 
-class TaskIntroductionStepViewController: RSDStepViewController {
+open class TaskIntroductionStepViewController: RSDStepViewController {
     
-    override func shouldUseGlobalButtonVisibility() -> Bool {
-        return self.shouldHideAction(for: .navigation(.skip))
+    open var reminderIdentifier: String {
+        return self.step.identifier
+    }
+
+    open override func skipForward() {
+        updateReminderNotification()
     }
     
-    override func showLearnMore() {
-        guard let action = self.action(for: .navigation(.learnMore)) as? RSDResourceTransformer
-            else {
-            self.presentAlertWithOk(title: nil, message: "Missing learn more action for this task", actionHandler: nil)
-            return
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Remove any previous reminder.
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [reminderIdentifier])
+    }
+    
+    open func handleNotificationAuthorizationDenied() {
+        // TODO: syoung 12/27/2017 Localize
+        self.presentAlertWithOk(title: "Cannot add reminder", message: "This app does not have authorization to send you a reminder notification. Go to the 'Settings' app to change your permissions.") { (_) in
+        }
+    }
+    
+    open func remindMeLater() {
+        // TODO: syoung 12/27/2017 Localize
+        
+        let actionNone = UIAlertAction(title: "Do not remind me", style: .cancel) { (_) in
+            // Do nothing.
+        }
+        let action15min = UIAlertAction(title: "Remind me in 15 minutes", style: .default) { (_) in
+            self.addReminder(timeInterval: 15 * 60)
+        }
+        let action1hr = UIAlertAction(title: "Remind me in 1 hour", style: .default) { (_) in
+            self.addReminder(timeInterval: 60 * 60)
+        }
+        let action2hr = UIAlertAction(title: "Remind me in 2 hour", style: .default) { (_) in
+            self.addReminder(timeInterval: 2 * 60 * 60)
         }
         
-        let webVC = RSDWebViewController()
-        webVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(_dismissChildViewController))
-        webVC.resourceTransformer = action
-        let navVC = UINavigationController(rootViewController: webVC)
-        self.present(navVC, animated: true, completion: nil)
+        self.presentAlertWithActions(title: nil, message: "When do you want a reminder?", preferredStyle: .actionSheet, actions: [action2hr, action1hr, action15min, actionNone])
     }
     
-    @objc func _dismissChildViewController() {
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
+    open func addReminder(timeInterval: TimeInterval) {
+        // TODO: syoung 12/27/2017 Localize
+        
+        let content = UNMutableNotificationContent()
+        if let title = (self.step as? RSDTaskInfoStep)?.title ?? self.uiStep?.title {
+            content.body = "Time to do the \(title)."
+        } else {
+            content.body = "Time to perform your next task."
+        }
+        content.sound = UNNotificationSound.default()
+        if let bundleIdentifier = Bundle.main.bundleIdentifier {
+            content.categoryIdentifier = "\(bundleIdentifier).RemindMeLater"
+        }
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+        let request = UNNotificationRequest(identifier: reminderIdentifier, content: content, trigger: trigger)
+        
+        // Schedule the notification.
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error != nil {
+                print("Failed to add notification for \(self.reminderIdentifier). \(error!)")
+            }
+            self.cancel()
+        }
+    }
+    
+    public final func updateReminderNotification() {
+        
+        // Check if this is the main thread and if not, then call it on the main thread.
+        // The expectation is that if calling method is a button push, the response should be inline
+        // and *not* at the bottom of the queue.
+        guard Thread.isMainThread else {
+            DispatchQueue.main.async {
+                self.updateReminderNotification()
+            }
+            return
+        }
+
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] (settings) in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                self?._requestAuthorization()
+            case .denied:
+                self?.handleNotificationAuthorizationDenied()
+            case .authorized:
+                self?.remindMeLater()
+            }
+        }
     }
 
-    override func skipForward() {
-        // TODO: Implement remind me later
-        self.presentAlertWithOk(title: nil, message: "Not yet implemented", actionHandler: nil)
+    fileprivate func _requestAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { [weak self] (granted, _) in
+            DispatchQueue.main.async {
+                if granted {
+                    self?.remindMeLater()
+                }
+            }
+        }
     }
 }

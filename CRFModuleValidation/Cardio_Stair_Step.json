@@ -11,7 +11,7 @@
                            {
                            "identifier"   : "introduction",
                            "type"         : "instruction",
-                           "title"        : "Stair Step",
+                           "title"        : "3 Minute Stair Test",
                            "text"         : "5 minutes",
                            "image"  : {
                                            "imageNames" : ["stairStepLarge1", "stairStepLarge2", "stairStepLarge3", "stairStepLarge4"],
@@ -35,8 +35,7 @@
                                                        "foregroundColor"        : "white",
                                                        "usesLightStyle"         : true },
                            "image"                  : "healthRiskIcon",
-                           "title"                  : "Potential heart risk",
-                           "text"                   : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
+                           "text"                   : "Do not attempt to complete this test if you have been told by your doctor that you should not participate in physical activity or exercise. Stop the test and talk to your doctor if any of the following symptoms occur: chest pain, dizziness, blurred vision, disorientation, excessive shortness of breath, severe nausea, severe fatigue, or severe headache.",
                            "actions"                : { "goForward": { "buttonTitle": "Got it" }}
                            },
                            {
@@ -68,7 +67,7 @@
                            "identifier"   : "volumeUp",
                            "type"         : "instruction",
                            "title"        : "Volume turned up?",
-                           "text"         : "Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving.",
+                           "text"         : "Turn up your phone volume and turn off the mute switch so you can hear the instructions while you are moving.",
                            "image"        : { "imageName": "volumeCheckIcon", "placementType": "topBackground" },
                            "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
                            "actions"      : { "goForward": { "buttonTitle": "It’s turned on" }},
@@ -128,8 +127,13 @@
                                                                    "placementType" : "topBackground",
                                                                    "animationDuration" : 2.5,
                                                                    },
-                                               "commands"           : ["transitionAutomatically", "shouldDisableIdleTimer"],
-                                               "spokenInstructions" : {"0": "Up", "1.25": "Down", "end": "Stand still"},
+                                               "commands"           : ["transitionAutomatically", "shouldDisableIdleTimer", "vibrate", "playSoundOnFinish"],
+                                               "spokenInstructions" : { "0": "Up",
+                                                                        "1.25": "Down",
+                                                                        "60": "You’re doing well; 2 minutes left.",
+                                                                        "120": "Good job; 1 minute left.",
+                                                                        "170": "10 seconds; Almost done!",
+                                                                        "end": "Done! Now measure your heart rate again."},
                                                "colorTheme"         : { "backgroundColor" : "perrywinkleTwo", "usesLightStyle" : true },
                                                "viewTheme"          : { "viewIdentifier": "StairStep", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }

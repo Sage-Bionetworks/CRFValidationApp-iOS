@@ -20,7 +20,7 @@
                            {
                            "identifier"   : "introduction",
                            "type"         : "instruction",
-                           "title"        : "12 minute test",
+                           "title"        : "12 Minute Distance Test",
                            "text"         : "15 minutes",
                            "image"  : {
                                            "imageNames" : ["12MinLarge1", "12MinLarge2", "12MinLarge3", "12MinLarge4"],
@@ -44,8 +44,7 @@
                                                        "foregroundColor"        : "white",
                                                        "usesLightStyle"         : true },
                            "image"                  : "healthRiskIcon",
-                           "title"                  : "Potential heart risk",
-                           "text"                   : "Do not attempt this test if you have experienced unstable angina, a myocardial infarction (heart attack) during the previous month, need supplemental oxygen to walk, or if you feel that running or walking for 12 minutes will be a challenge for you.",
+                           "text"                   : "Do not attempt to complete this test if you have been told by your doctor that you should not participate in physical activity or exercise. Stop the test and talk to your doctor if any of the following symptoms occur: chest pain, dizziness, blurred vision, disorientation, excessive shortness of breath, severe nausea, severe fatigue, or severe headache.",
                            "actions"                : { "goForward": { "buttonTitle": "Got it" }}
                            },
                            {
@@ -119,20 +118,14 @@
                                                "type"               : "active",
                                                "duration"           : 720,
                                                "commands"           : ["vibrate", "playSound", "transitionAutomatically", "shouldDisableIdleTimer"],
-                                               "spokenInstructions" : {"0": "Start running or walking",
-                                                                       "60": "11 minutes remaining",
-                                                                       "120": "10 minutes remaining",
-                                                                       "180": "9 minutes remaining",
-                                                                       "240": "8 minutes remaining",
-                                                                       "300": "7 minutes remaining",
-                                                                       "360": "6 minutes remaining",
-                                                                       "420": "5 minutes remaining",
-                                                                       "480": "4 minutes remaining",
-                                                                       "540": "3 minutes remaining",
-                                                                       "600": "2 minutes remaining",
-                                                                       "660": "1 minute remaining",
-                                                                       "690": "30 seconds remaining",
-                                                                       "end": "Stop running or walking"},
+                                               "spokenInstructions" : {"0": "Start running or walking.",
+                                                                       "180": "You’re doing well; 9 minutes left.",
+                                                                       "360": "Good job, halfway done; 6 minutes left.",
+                                                                       "540": "You’re doing well; 3 minutes left.",
+                                                                       "660": "Good job; 1 minute left.",
+                                                                       "700": "Almost done.",
+                                                                       "countdown": "15",
+                                                                       "end": "Stop running or walking."},
                                                "colorTheme"         : { "usesLightStyle" : true },
                                                "viewTheme"          : { "viewIdentifier": "RunDistance", "storyboardIdentifier": "ActiveTaskSteps" }
                                                }

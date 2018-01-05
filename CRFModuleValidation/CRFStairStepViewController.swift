@@ -37,6 +37,8 @@ import ResearchSuite
 
 public class CRFStairStepViewController: RSDActiveStepViewController {
     
+    @IBOutlet open var commandLabel: UILabel?
+    
     public var imageView: UIImageView! {
         return (self.navigationHeader as? RSDStepHeaderView)?.imageView
     }
@@ -53,7 +55,7 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
         
         // Use a delay to show the "Stand still" text for the instruction
         // to give the user a moment to prepare.
-        let delay = DispatchTime.now() + .milliseconds(1000)
+        let delay = DispatchTime.now() + .milliseconds(500)
         DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
             self?._finishStart()
         }
@@ -71,10 +73,7 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     }
     
     public override var timerInterval: TimeInterval {
-        guard let (timeInterval,_) = self.secondInstruction else {
-            return 1
-        }
-        return timeInterval
+        return _metronomeInterval
     }
 
     lazy public var firstInstruction: (TimeInterval, String)? = {
@@ -91,30 +90,50 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
         return Array(sorted.prefix(2))
     }()
     
-    private var _toggle = false
-    
-    public override func speakInstruction(at duration: TimeInterval) {
-        guard let stepDuration = self.activeStep?.duration else { return }
-        if duration >= stepDuration {
-            super.speakInstruction(at: duration)
-        } else if duration == 0 || !_toggle {
-            _speakFirstInstruction(at: duration)
-        } else {
-            _speakSecondInstruction(at: duration)
-        }
-    }
-    
-    private func _speakFirstInstruction(at duration: TimeInterval) {
-        guard let instruction = self.firstInstruction else { return }
-        _toggle = true
-        self.vibrateDevice()
-        self.speakInstruction(instruction.1, at: duration, completion: nil)
-    }
+    private var _speakCadenceOn: Bool = true
+    private let _metronomeInterval: TimeInterval = 60 / 96
+    private let _speakCadenceDuration: TimeInterval = (60 / 96) * 4 * 4
 
-    private func _speakSecondInstruction(at duration: TimeInterval) {
-        guard let instruction = self.secondInstruction else { return }
-        _toggle = false
-        self.vibrateDevice()
-        self.speakInstruction(instruction.1, at: duration, completion: nil)
+    /// Override `speakInstruction`. This method is called every time the timer is fired.
+    /// Repeat the "Up, Down" instructions for the first 5 cycles.
+    public override func speakInstruction(at duration: TimeInterval) {
+        
+        let cadence = Int(duration / _metronomeInterval) % 4
+        let upStep = cadence == 0 || cadence == 1
+        
+        // Do nothing if the first and second instruction aren't set.
+        guard let instructionText = (upStep ? firstInstruction : secondInstruction)?.1,
+            let stepDuration = self.activeStep?.duration
+            else {
+                return
+        }
+        
+        // Play metronome sound.
+        self.playSound(.tock)
+        
+        if _speakCadenceOn && duration > 0 && (cadence == 0 || cadence == 2) {
+
+            // If this is the start then repeat the up/down spoken cadence for the first
+            // few steps. After that, only play the metronome sound and follow the logic set up
+            // by the super class.
+            if !upStep && duration > _speakCadenceDuration {
+                _speakCadenceOn = false
+            }
+            
+            // Speak the up/down cadence.
+            self.speakInstruction(instructionText, at: duration, completion: nil)
+            self.commandLabel?.text = instructionText
+        }
+        else {
+            super.speakInstruction(at: duration)
+            if duration < stepDuration {
+                // Only the end step should write to the instruction label.
+                // Otherwise, should only show the animating person.
+                self.commandLabel?.text = ""
+            } else {
+                // TODO: syoung 01/03/2018 Localize
+                self.commandLabel?.text = "Stand Still"
+            }
+        }
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -175,7 +175,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="1Ko-EV-hHf" id="IbV-bm-M7j"/>
                         <outlet property="navigationHeader" destination="t7v-vl-gTt" id="FVX-tP-f8D"/>
-                        <outlet property="statusBackgroundView" destination="5KJ-RD-0rg" id="6So-ft-2mU"/>
+                        <outlet property="statusBarBackgroundView" destination="5KJ-RD-0rg" id="6So-ft-2mU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z37-O3-9dA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,7 +319,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="H6A-bN-8V9" id="Tbr-Qg-e6b"/>
                         <outlet property="navigationHeader" destination="mCD-I5-qW8" id="vEA-OP-FTF"/>
-                        <outlet property="statusBackgroundView" destination="SuP-g5-NUe" id="uay-WU-c6q"/>
+                        <outlet property="statusBarBackgroundView" destination="SuP-g5-NUe" id="uay-WU-c6q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLA-mq-AXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -329,7 +329,7 @@
         <!--Task Introduction Step-->
         <scene sceneID="7Yw-yh-3dv">
             <objects>
-                <viewController storyboardIdentifier="TaskIntroduction" id="vQC-w0-27l" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskIntroduction" id="vQC-w0-27l" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6si-CK-Fg1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -440,7 +440,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="sOe-6c-yjA" id="zkl-CD-fP4"/>
                         <outlet property="navigationHeader" destination="pnh-H8-rEJ" id="Hm6-Ba-fmR"/>
-                        <outlet property="statusBackgroundView" destination="6bx-MI-ypF" id="Nua-rZ-Pda"/>
+                        <outlet property="statusBarBackgroundView" destination="6bx-MI-ypF" id="Nua-rZ-Pda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9c-zw-As7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -450,7 +450,7 @@
         <!--Task Introduction Step-->
         <scene sceneID="UPq-3D-4TB">
             <objects>
-                <viewController storyboardIdentifier="TaskIntroductionStressTest" id="yC5-HI-89H" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskIntroductionStressTest" id="yC5-HI-89H" userLabel="Task Introduction Step" customClass="TaskIntroductionStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wjK-KS-TQT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -561,7 +561,7 @@
                     <connections>
                         <outlet property="navigationFooter" destination="YMt-M7-Juz" id="xlc-42-MX3"/>
                         <outlet property="navigationHeader" destination="k53-8v-P3d" id="ugY-W9-JV9"/>
-                        <outlet property="statusBackgroundView" destination="3PY-S1-57n" id="yL2-yA-cvH"/>
+                        <outlet property="statusBarBackgroundView" destination="3PY-S1-57n" id="yL2-yA-cvH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyX-iC-XYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -571,7 +571,7 @@
         <!--Run Distance Step View Controller-->
         <scene sceneID="4iU-6i-pqf">
             <objects>
-                <viewController storyboardIdentifier="RunDistance" id="9tn-dn-sHC" customClass="CRFRunDistanceStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RunDistance" id="9tn-dn-sHC" customClass="CRFRunDistanceStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7PO-3V-yb7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -727,7 +727,7 @@
         <!--Stair Step View Controller-->
         <scene sceneID="rb0-U5-PVx">
             <objects>
-                <viewController storyboardIdentifier="StairStep" id="cJG-FV-7cK" customClass="CRFStairStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StairStep" id="cJG-FV-7cK" customClass="CRFStairStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ozR-fT-mKP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -849,8 +849,8 @@
                         <viewLayoutGuide key="safeArea" id="j2T-Rz-fes"/>
                     </view>
                     <connections>
+                        <outlet property="commandLabel" destination="49V-MX-D7Z" id="3KF-8B-4Ld"/>
                         <outlet property="countdownLabel" destination="0H1-a5-wRw" id="oJH-B0-JIz"/>
-                        <outlet property="instructionLabel" destination="49V-MX-D7Z" id="YUZ-Jp-ush"/>
                         <outlet property="navigationHeader" destination="fS4-Pb-RWv" id="ayo-Ss-ECO"/>
                     </connections>
                 </viewController>
@@ -861,16 +861,16 @@
         <!--Heart Rate Step View Controller-->
         <scene sceneID="4cP-Aq-OdA">
             <objects>
-                <viewController storyboardIdentifier="HeartRate" id="8Jc-wF-FNR" customClass="CRFHeartRateStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeartRate" id="8Jc-wF-FNR" customClass="CRFHeartRateStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JaM-On-OUa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybq-sF-bm4" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="0.0" y="32" width="320" height="28"/>
+                                <rect key="frame" x="0.0" y="32" width="320" height="45"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHk-r0-Aop" userLabel="Navigation Header">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXm-uu-q96">
                                                 <rect key="frame" x="16" y="0.0" width="32" height="32"/>
@@ -902,7 +902,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ug-vB-zh5">
-                                                <rect key="frame" x="122.5" y="28" width="76" height="0.0"/>
+                                                <rect key="frame" x="122.5" y="28" width="76" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" name="gunmetal"/>
                                                 <nil key="highlightedColor"/>
@@ -937,7 +937,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cme-uq-pyz">
-                                <rect key="frame" x="0.0" y="60" width="320" height="160"/>
+                                <rect key="frame" x="0.0" y="77" width="320" height="160"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gently cover both the camera and flash with your finger." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ov-7f-Yb9">
                                         <rect key="frame" x="24" y="40.5" width="272" height="79"/>
@@ -954,51 +954,46 @@
                                     <constraint firstAttribute="height" constant="160" id="yi6-QE-fhH"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s75-JE-o2a">
+                                <rect key="frame" x="20.5" y="237" width="279" height="279"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l1n-cn-Sxa" customClass="RSDCountdownDial" customModule="ResearchSuiteUI">
-                                <rect key="frame" x="20.5" y="220" width="279" height="279"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="62" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4q-FH-RVP">
-                                        <rect key="frame" x="91.5" y="70.5" width="95.5" height="98"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="82"/>
-                                        <color key="textColor" name="salmon"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BPM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZn-zr-DYi">
-                                        <rect key="frame" x="114.5" y="168" width="50" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" name="salmon"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20.5" y="237" width="279" height="279"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="tealGreen"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="l1n-cn-Sxa" secondAttribute="height" multiplier="1:1" placeholder="YES" id="JDf-og-9Rv"/>
-                                    <constraint firstItem="TZn-zr-DYi" firstAttribute="centerX" secondItem="l1n-cn-Sxa" secondAttribute="centerX" id="MuI-eo-WQz"/>
                                     <constraint firstAttribute="width" constant="279" id="Xwg-p7-FA1"/>
-                                    <constraint firstItem="TZn-zr-DYi" firstAttribute="top" secondItem="K4q-FH-RVP" secondAttribute="bottom" constant="-0.5" id="bAn-Cz-7L7"/>
-                                    <constraint firstItem="K4q-FH-RVP" firstAttribute="centerX" secondItem="l1n-cn-Sxa" secondAttribute="centerX" id="bRl-Br-7OL"/>
-                                    <constraint firstItem="K4q-FH-RVP" firstAttribute="centerY" secondItem="l1n-cn-Sxa" secondAttribute="centerY" constant="-20" id="fKZ-ES-N1k"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heartRateIconCapturing" translatesAutoresizingMaskIntoConstraints="NO" id="JGX-wx-uQP">
-                                <rect key="frame" x="160" y="549" width="0.0" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="JGX-wx-uQP" secondAttribute="height" multiplier="32:29" id="5aR-pi-aXT"/>
-                                    <constraint firstAttribute="height" priority="750" constant="58" id="yfC-55-2vV"/>
-                                </constraints>
+                                <rect key="frame" x="128" y="347.5" width="64" height="58"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3P-qJ-Ohd">
+                                <rect key="frame" x="110" y="524" width="100" height="30"/>
+                                <state key="normal" title="skip heart rate"/>
+                                <connections>
+                                    <action selector="skipForward" destination="8Jc-wF-FNR" eventType="touchUpInside" id="jDJ-o9-Xtj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Sqy-a9-IDh" firstAttribute="trailing" secondItem="Cme-uq-pyz" secondAttribute="trailing" id="2DM-ZQ-rIB"/>
+                            <constraint firstItem="I3P-qJ-Ohd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="s75-JE-o2a" secondAttribute="bottom" constant="8" id="3x6-lR-Xyz"/>
                             <constraint firstItem="Ybq-sF-bm4" firstAttribute="leading" secondItem="Sqy-a9-IDh" secondAttribute="leading" id="4AH-c4-3YS"/>
-                            <constraint firstItem="Sqy-a9-IDh" firstAttribute="bottom" secondItem="JGX-wx-uQP" secondAttribute="bottom" priority="800" constant="24" id="8A7-Mb-paC"/>
                             <constraint firstItem="l1n-cn-Sxa" firstAttribute="top" secondItem="Cme-uq-pyz" secondAttribute="bottom" id="ANb-ix-Las"/>
+                            <constraint firstItem="s75-JE-o2a" firstAttribute="centerY" secondItem="l1n-cn-Sxa" secondAttribute="centerY" id="BSk-bo-gxt"/>
                             <constraint firstItem="Ybq-sF-bm4" firstAttribute="top" secondItem="JaM-On-OUa" secondAttribute="topMargin" constant="12" id="BhD-bF-6zb"/>
-                            <constraint firstItem="JGX-wx-uQP" firstAttribute="centerX" secondItem="JaM-On-OUa" secondAttribute="centerX" id="GyG-me-cxz"/>
-                            <constraint firstItem="JGX-wx-uQP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="l1n-cn-Sxa" secondAttribute="bottom" constant="50" id="UZm-GW-S4Z"/>
+                            <constraint firstItem="Sqy-a9-IDh" firstAttribute="bottom" secondItem="I3P-qJ-Ohd" secondAttribute="bottom" priority="700" constant="24" id="Bzi-mS-7pC"/>
+                            <constraint firstItem="JGX-wx-uQP" firstAttribute="centerX" secondItem="l1n-cn-Sxa" secondAttribute="centerX" id="Mzq-r2-FB0"/>
+                            <constraint firstItem="s75-JE-o2a" firstAttribute="height" secondItem="l1n-cn-Sxa" secondAttribute="height" id="Xax-FH-PfN"/>
                             <constraint firstAttribute="trailing" secondItem="Ybq-sF-bm4" secondAttribute="trailing" id="bBf-5n-C9E"/>
+                            <constraint firstItem="JGX-wx-uQP" firstAttribute="centerY" secondItem="l1n-cn-Sxa" secondAttribute="centerY" id="fqm-bj-7uN"/>
+                            <constraint firstItem="I3P-qJ-Ohd" firstAttribute="centerX" secondItem="JaM-On-OUa" secondAttribute="centerX" id="jgM-HF-aK1"/>
+                            <constraint firstItem="s75-JE-o2a" firstAttribute="centerX" secondItem="l1n-cn-Sxa" secondAttribute="centerX" id="lLP-Dh-LHZ"/>
+                            <constraint firstItem="s75-JE-o2a" firstAttribute="width" secondItem="l1n-cn-Sxa" secondAttribute="width" id="n0D-59-Uaj"/>
                             <constraint firstItem="Cme-uq-pyz" firstAttribute="leading" secondItem="Sqy-a9-IDh" secondAttribute="leading" id="tKa-Bt-Sl8"/>
                             <constraint firstItem="Cme-uq-pyz" firstAttribute="top" secondItem="Ybq-sF-bm4" secondAttribute="bottom" id="x7B-cx-s4h"/>
                             <constraint firstItem="l1n-cn-Sxa" firstAttribute="centerX" secondItem="JaM-On-OUa" secondAttribute="centerX" id="yic-tI-Msn"/>
@@ -1012,20 +1007,21 @@
                     </view>
                     <connections>
                         <outlet property="countdownDial" destination="l1n-cn-Sxa" id="XbL-2A-Hjb"/>
+                        <outlet property="heartImageView" destination="JGX-wx-uQP" id="tC8-wM-d2F"/>
                         <outlet property="instructionLabel" destination="4ov-7f-Yb9" id="YFH-7d-2ux"/>
                         <outlet property="navigationHeader" destination="Ybq-sF-bm4" id="zvH-eK-vGt"/>
-                        <outlet property="progressLabel" destination="K4q-FH-RVP" id="yeY-8O-Rgz"/>
-                        <outlet property="unitLabel" destination="TZn-zr-DYi" id="DFM-99-C4P"/>
+                        <outlet property="previewView" destination="s75-JE-o2a" id="AET-r4-KIM"/>
+                        <outlet property="skipButton" destination="I3P-qJ-Ohd" id="mpe-0T-xaj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDV-yn-0oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="207"/>
+            <point key="canvasLocation" x="590.625" y="205.98591549295776"/>
         </scene>
         <!--Heart Rate Result Step View Controller-->
         <scene sceneID="D1g-8p-UV0">
             <objects>
-                <viewController storyboardIdentifier="HeartRateResult" id="MOh-xR-sxc" customClass="CRFHeartRateResultStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeartRateResult" id="MOh-xR-sxc" customClass="CRFHeartRateResultStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R8n-Xp-NIa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1195,7 +1191,7 @@
         <!--Run Distance Result Step View Controller-->
         <scene sceneID="5Qs-b6-WnT">
             <objects>
-                <viewController storyboardIdentifier="Completed12MT" id="1nS-Gh-N0H" customClass="CRFRunDistanceResultStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Completed12MT" id="1nS-Gh-N0H" customClass="CRFRunDistanceResultStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o8s-5a-jK1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1320,7 +1316,7 @@
         <!--Stair Step Result Step View Controller-->
         <scene sceneID="3wc-dU-9uJ">
             <objects>
-                <viewController storyboardIdentifier="CompletedStairStep" id="PQJ-uW-gmG" customClass="CRFStairStepResultStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompletedStairStep" id="PQJ-uW-gmG" customClass="CRFStairStepResultStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f8M-aB-qop">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1438,16 +1434,12 @@
         <!--Camera Step View Controller-->
         <scene sceneID="pOS-Qe-R1p">
             <objects>
-                <viewController storyboardIdentifier="TakePhoto" id="40z-TP-I3S" customClass="CRFCameraStepViewController" customModule="CRFModuleTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TakePhoto" id="40z-TP-I3S" customClass="CRFCameraStepViewController" customModule="CRFModuleValidation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="30u-nx-BEj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4a-QU-LmI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL8-5Y-LjM" customClass="CRFCameraShutterButton" customModule="CRFModuleTestApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL8-5Y-LjM" customClass="CRFCameraShutterButton" customModule="CRFModuleValidation" customModuleProvider="target">
                                 <rect key="frame" x="127.5" y="423" width="65" height="65"/>
                                 <color key="backgroundColor" name="white"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Capture Button" label="Capture Button"/>
@@ -1460,24 +1452,20 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="j4a-QU-LmI" firstAttribute="top" secondItem="30u-nx-BEj" secondAttribute="top" id="4HZ-0H-lH0"/>
                             <constraint firstItem="Ite-Ie-XIr" firstAttribute="bottom" secondItem="lL8-5Y-LjM" secondAttribute="bottom" constant="80" id="DC6-3y-fhi"/>
-                            <constraint firstItem="j4a-QU-LmI" firstAttribute="leading" secondItem="Ite-Ie-XIr" secondAttribute="leading" id="ggn-Lf-sfF"/>
-                            <constraint firstItem="j4a-QU-LmI" firstAttribute="bottom" secondItem="Ite-Ie-XIr" secondAttribute="bottom" id="jGE-qc-dY3"/>
                             <constraint firstItem="lL8-5Y-LjM" firstAttribute="centerX" secondItem="30u-nx-BEj" secondAttribute="centerX" id="nO6-8C-Y5D"/>
-                            <constraint firstItem="j4a-QU-LmI" firstAttribute="trailing" secondItem="Ite-Ie-XIr" secondAttribute="trailing" id="qzP-jz-JSk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ite-Ie-XIr"/>
                     </view>
                     <connections>
-                        <outlet property="previewView" destination="j4a-QU-LmI" id="u2M-qM-kXD"/>
+                        <outlet property="captureButton" destination="lL8-5Y-LjM" id="9Ud-dK-SDa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lvH-oA-lca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1802" y="1647"/>
+            <point key="canvasLocation" x="-1803.75" y="1646.8309859154929"/>
         </scene>
     </scenes>
     <resources>
