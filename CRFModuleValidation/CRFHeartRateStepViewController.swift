@@ -40,6 +40,9 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
     /// The image view for showing the heart image.
     @IBOutlet public var heartImageView: UIImageView!
     
+    /// Button to skip the heart rate measurement if not registering as lens covered.
+    @IBOutlet public var skipButton: UIButton!
+    
     /// The video preview window.
     @IBOutlet public var previewView: UIView!
     
@@ -71,6 +74,7 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         self.previewView.layer.masksToBounds = true
         self.heartImageView.isHidden = true
         self.progressLabel?.isHidden = true
+        self.skipButton?.isHidden = true
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -105,6 +109,16 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         _isCoveredObserver = bpmRecorder!.observe(\.isCoveringLens, changeHandler: { [weak self] (recorder, _) in
             self?._handleLensCoveredOnMainQueue(recorder.isCoveringLens)
         })
+        
+        // If the user is trying for 10 seconds to cover the lens and it isn't recognized,
+        // then show a skip button.
+        let delay = DispatchTime.now() + .seconds(10)
+        DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
+            guard let strongSelf = self else { return }
+            if strongSelf.startUptime == nil {
+                strongSelf.skipButton.isHidden = false
+            }
+        }
         
         // Create a motion recorder
         var motionConfig = CRFMotionRecorderConfiguration(identifier: "motion")

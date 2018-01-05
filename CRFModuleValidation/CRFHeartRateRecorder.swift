@@ -173,10 +173,6 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         }
     }
     
-    public func stopProcessing() {
-        
-    }
-    
     public override func stopRecorder(_ completion: @escaping ((RSDAsyncActionStatus) -> Void)) {
         
         updateStatus(to: .processingResults, error: nil)
@@ -215,6 +211,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
 
     private var _simulationTimer: Timer?
     private var _session: AVCaptureSession?
+    private var _captureDevice: AVCaptureDevice?
     private var _videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var _loggingSamples: [CRFHeartRateSample] = []
     
@@ -267,6 +264,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
             else {
                 throw CRFHeartRateRecorderError.noBackCamera
         }
+        _captureDevice = captureDevice
         let input = try AVCaptureDeviceInput(device: captureDevice)
         session.addInput(input)
         
@@ -295,17 +293,35 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
 
         // Tell the device to use the max frame rate.
         try captureDevice.lockForConfiguration()
+        
+        // Turn on the flash
         captureDevice.torchMode = .on
+        
+        // Set the format
         captureDevice.activeFormat = currentFormat
+        
+        // Set the frame rate
+        captureDevice.activeVideoMinFrameDuration = CMTimeMake(1, CRFHeartRateFramesPerSecond)
+        captureDevice.activeVideoMaxFrameDuration = CMTimeMake(1, CRFHeartRateFramesPerSecond)
+        
+        // Belt & suspenders. For currently supported devices, HDR is not supported for the lowest
+        // resolution format (which is what this recorder uses), but in case a device comes out that
+        // does support HDR, then be sure to turn it off.
         if currentFormat.isVideoHDRSupported {
-            // Belt & suspenders. For currently supported devices, HDR is not supported for the lowest
-            // resolution format (which is what this recorder uses), but in case a device comes out that
-            // does support HDR, then be sure to turn it off.
             captureDevice.isVideoHDREnabled = false
             captureDevice.automaticallyAdjustsVideoHDREnabled = false
         }
-        captureDevice.activeVideoMinFrameDuration = CMTimeMake(1, CRFHeartRateFramesPerSecond)
-        captureDevice.activeVideoMaxFrameDuration = CMTimeMake(1, CRFHeartRateFramesPerSecond)
+
+        // Restrict the camera to focus in the "near" (or macro) range.
+        if captureDevice.isLockingFocusWithCustomLensPositionSupported {
+            captureDevice.setFocusModeLocked(lensPosition: 0.0, completionHandler: nil)
+        } else if captureDevice.isAutoFocusRangeRestrictionSupported {
+            captureDevice.autoFocusRangeRestriction = .near
+            if captureDevice.isFocusPointOfInterestSupported {
+                captureDevice.focusPointOfInterest = CGPoint(x: 0.5, y: 0.5)
+            }
+        }
+
         captureDevice.unlockForConfiguration()
         
         // Set the output
@@ -378,6 +394,17 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
                         self.previewView?.layer.addSublayer(previewLayer)
                     }
                 }
+            }
+        }
+        
+        // If not covering the lens then check that everything is still on
+        if !coveringLens, let device = _captureDevice, device.torchMode != .on {
+            do {
+                try device.lockForConfiguration()
+                device.torchMode = .on
+                device.unlockForConfiguration()
+            } catch let err {
+                self.didFail(with: err)
             }
         }
         
