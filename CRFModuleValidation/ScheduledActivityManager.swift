@@ -180,6 +180,36 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         self.delegate?.presentViewController(taskViewController, animated: true, completion: nil)
     }
     
+    private func copyTestArchive(archive: SBAActivityArchive, identifier: String) {
+        guard self.user.isTestUser else { return }
+        do {
+            if !archive.isCompleted {
+                try archive.complete()
+            }
+            let fileManager = FileManager.default
+            
+            let outputDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let dirURL = outputDirectory.appendingPathComponent("archives", isDirectory: true)
+            try FileManager.default.createDirectory(at: dirURL, withIntermediateDirectories: true, attributes: nil)
+            
+            // Scrub non-alphanumeric characters from the identifer
+            var characterSet = CharacterSet.alphanumerics
+            characterSet.invert()
+            var filename = identifier
+            while let range = filename.rangeOfCharacter(from: characterSet) {
+                filename.removeSubrange(range)
+            }
+            filename.append("-")
+            filename.append(String(UUID().uuidString.prefix(4)))
+            let debugURL = dirURL.appendingPathComponent(filename, isDirectory: false).appendingPathExtension("zip")
+            try fileManager.copyItem(at: archive.unencryptedURL, to: debugURL)
+            debugPrint("Copied archive to \(debugURL)")
+            
+        } catch let err {
+            debugPrint("Failed to copy archive: \(err)")
+        }
+    }
+    
     // MARK: RSDTaskViewControllerDelegate
     
     open func deleteOutputDirectory(_ outputDirectory: URL?) {
@@ -226,23 +256,10 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
             
             // Archive the result
             if let archive = SBAActivityArchive(result: taskResult, schedule: schedule) {
+            
+                // Uncomment to save a copy of the test archive.
+                // self.copyTestArchive(archive: archive, identifier: taskResult.identifier)
                 
-                #if SAVE_UNENCRYPTED_RESULTS
-                if self.user.isTestUser {
-                    do {
-                        if !archive.isCompleted {
-                            try archive.complete()
-                        }
-                        let fileManager = FileManager.default
-                        let dir = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                        let debugURL = try RSDFileResultUtility.createFileURL(identifier: taskResult.identifier, ext: "zip", outputDirectory: dir)
-                        try fileManager.copyItem(at: archive.unencryptedURL, to: debugURL)
-                    } catch let err {
-                        debugPrint("Failed to copy archive: \(err)")
-                    }
-                }
-                #endif
-
                 SBBDataArchive.encryptAndUploadArchives([archive])
             }
             
