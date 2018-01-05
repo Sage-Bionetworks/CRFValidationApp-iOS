@@ -107,22 +107,27 @@ public class CRFMotionRecorder : RSDSampleRecorder {
     
     private var motionManager: CMMotionManager?
     
-    public var isRunning: Bool {
-        guard let manager = self.motionManager, let config = self.coreMotionConfiguration else {
-            return false
+    override public func requestPermissions(on viewController: UIViewController, _ completion: @escaping RSDAsyncActionCompletionHandler) {
+        let pedometer = CMPedometer()
+        let now = Date()
+        pedometer.queryPedometerData(from: now.addingTimeInterval(-60), to: now) { [weak self] (_, error) in
+            guard let strongSelf = self else { return }
+            let status: RSDAsyncActionStatus = (error == nil) ? .permissionGranted : .failed
+            strongSelf.updateStatus(to: status, error: error)
+            completion(strongSelf, nil, error)
         }
-        return config.recorderTypes.reduce(false) {
-            switch $1 {
-            case .accelerometer:
-                return $0 || manager.isAccelerometerActive
-            case .deviceMotion:
-                return $0 || manager.isDeviceMotionActive
-            }
+    }
+    
+    override public func startRecorder(_ completion: @escaping ((RSDAsyncActionStatus, Error?) -> Void)) {
+        _startMotionManager { (error) in
+            let status: RSDAsyncActionStatus = (error == nil) ? .running : .failed
+            completion(status, error)
         }
     }
     
     private func _startMotionManager(_ completion: @escaping ((Error?) -> Void)) {
         guard self.motionManager == nil else {
+            completion(RSDRecorderError.alreadyRunning)
             return
         }
 
