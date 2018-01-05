@@ -3,4 +3,4 @@
 	url = https://github.com/Sage-Bionetworks/BridgeAppSDK.git
 [submodule "ResearchSuite"]
 	path = ResearchSuite
-	url = https://github.com/Sage-Bionetworks/ResearchSuite-AppleOS.git
+	url = https://github.com/ResearchKit/SageResearch.git
