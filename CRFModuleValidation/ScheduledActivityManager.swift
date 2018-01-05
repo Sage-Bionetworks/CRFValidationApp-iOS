@@ -226,6 +226,23 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
             
             // Archive the result
             if let archive = SBAActivityArchive(result: taskResult, schedule: schedule) {
+                
+                #if SAVE_UNENCRYPTED_RESULTS
+                if self.user.isTestUser {
+                    do {
+                        if !archive.isCompleted {
+                            try archive.complete()
+                        }
+                        let fileManager = FileManager.default
+                        let dir = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                        let debugURL = try RSDFileResultUtility.createFileURL(identifier: taskResult.identifier, ext: "zip", outputDirectory: dir)
+                        try fileManager.copyItem(at: archive.unencryptedURL, to: debugURL)
+                    } catch let err {
+                        debugPrint("Failed to copy archive: \(err)")
+                    }
+                }
+                #endif
+
                 SBBDataArchive.encryptAndUploadArchives([archive])
             }
             
