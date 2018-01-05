@@ -67,7 +67,7 @@
                            "identifier"   : "volumeUp",
                            "type"         : "instruction",
                            "title"        : "Volume turned up?",
-                           "text"         : "Bring your phone with you and turn up your phone volume so you can hear the instructions while you are moving.",
+                           "text"         : "Turn up your phone volume and turn off the mute switch so you can hear the instructions while you are moving.",
                            "image"        : { "imageName": "volumeCheckIcon", "placementType": "topBackground" },
                            "colorTheme"   : { "backgroundColor" : "perrywinkle", "usesLightStyle" : true },
                            "actions"      : { "goForward": { "buttonTitle": "It’s turned on" }},
