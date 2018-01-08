@@ -405,10 +405,13 @@ public struct RSDAnswerResultWrapper : SBAArchivableResult {
         
         var json: [String : Any] = [:]
 
+        // Synapse exporter expects item value to match base filename
+        let item = bridgifyFilename(self.identifier)
+        
         json[kIdentifierKey] = result.identifier
         json[kStartDateKey]  = result.startDate
         json[kEndDateKey]    = result.endDate
-        json[kItemKey] = result.identifier
+        json[kItemKey] = item
         if let answer = (result.value as? RSDJSONValue)?.jsonObject() {
             json[result.answerType.bridgeAnswerKey] = answer
             json[QuestionResultSurveyAnswerKey] = answer
@@ -418,7 +421,7 @@ public struct RSDAnswerResultWrapper : SBAArchivableResult {
             }
         }
         
-        let filename = bridgifyFilename(self.identifier) + ".json"
+        let filename = item + ".json"
         return ArchiveableResult(result: (json as NSDictionary).jsonObject(), filename: filename)
     }
 }
