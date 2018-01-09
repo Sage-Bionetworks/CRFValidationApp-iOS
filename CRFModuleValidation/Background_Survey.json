@@ -123,6 +123,7 @@
                                       "identifier": "days_per_week",
                                       "dataType": "integer",
                                       "prompt": "days per week",
+                                      "uiHint": "textfield",
                                       "range": { "minimumValue": 0, "maximumValue": 7 },
                                       "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
                                       }],
@@ -169,6 +170,7 @@
                                           "identifier": "days_per_week",
                                           "dataType": "integer",
                                           "prompt": "days per week",
+                                          "uiHint": "textfield",
                                           "range": { "minimumValue": 0, "maximumValue": 7 },
                                           "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
                                           }],
@@ -214,6 +216,7 @@
                                           "identifier": "days_per_week",
                                           "dataType": "integer",
                                           "prompt": "days per week",
+                                          "uiHint": "textfield",
                                           "range": { "minimumValue": 0, "maximumValue": 7 },
                                           "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
                                           }],
