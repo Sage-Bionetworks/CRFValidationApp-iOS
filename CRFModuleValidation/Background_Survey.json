@@ -123,7 +123,8 @@
                                       "identifier": "days_per_week",
                                       "dataType": "integer",
                                       "prompt": "days per week",
-                                      "range": { "minimumValue": 1, "maximumValue": 7 },
+                                      "uiHint": "textfield",
+                                      "range": { "minimumValue": 0, "maximumValue": 7 },
                                       "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
                                       }],
                       "actions": { "skip": { "buttonTitle": "No vigorous physical activities", "skipToIdentifier": "nextSection" }}
@@ -169,7 +170,8 @@
                                           "identifier": "days_per_week",
                                           "dataType": "integer",
                                           "prompt": "days per week",
-                                          "range": { "minimumValue": 1, "maximumValue": 7 },
+                                          "uiHint": "textfield",
+                                          "range": { "minimumValue": 0, "maximumValue": 7 },
                                           "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
                                           }],
                           "actions": { "skip": { "buttonTitle": "No moderate physical activities", "skipToIdentifier": "nextSection" }}
@@ -214,7 +216,8 @@
                                           "identifier": "days_per_week",
                                           "dataType": "integer",
                                           "prompt": "days per week",
-                                          "range": { "minimumValue": 1, "maximumValue": 7 },
+                                          "uiHint": "textfield",
+                                          "range": { "minimumValue": 0, "maximumValue": 7 },
                                           "surveyRules": [{ "matchingAnswer" : 0, "skipToIdentifier" : "nextSection"}]
                                           }],
                           "actions": { "skip": { "buttonTitle": "No walking", "skipToIdentifier": "nextSection"  }}
