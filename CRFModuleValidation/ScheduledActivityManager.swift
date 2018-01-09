@@ -433,6 +433,12 @@ extension RSDAnswerResultType {
             return "MultipleChoice"
         }
         
+        if let dataType = self.formDataType,
+            case .collection(let collectionType, _) = dataType,
+            collectionType == .singleChoice {
+            return "SingleChoice"
+        }
+        
         switch self.baseType {
         case .boolean:
             return "Boolean"
@@ -453,6 +459,12 @@ extension RSDAnswerResultType {
     
     var bridgeAnswerKey: String {
         guard self.sequenceType == nil else {
+            return "choiceAnswers"
+        }
+        
+        if let dataType = self.formDataType,
+            case .collection(let collectionType, _) = dataType,
+            collectionType == .singleChoice {
             return "choiceAnswers"
         }
         
