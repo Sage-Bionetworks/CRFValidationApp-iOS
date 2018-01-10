@@ -186,6 +186,11 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         // Update footer text
         let dateText = DateFormatter.localizedString(from: dayOne, dateStyle: .medium, timeStyle: .none)
         self.footerView.textLabel.text = Localization.localizedStringWithFormatKey("You started the study on %@", dateText)
+        
+        let version = Bundle.main.versionString
+        let build = Bundle.main.appVersion()
+        let externalID = self.scheduledActivityManager.user.externalId ?? "Unknown"
+        self.footerView.versionLabel.text = Localization.localizedStringWithFormatKey("CRF %@ (%@), Participant %@", version, build, externalID)
     }
     
 
@@ -689,6 +694,7 @@ class MyJourneyActivityViewCell: UIView {
 class MyJourneyFooterView: UIView {
     
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
 }
 
 extension UIImage {
@@ -720,4 +726,11 @@ extension UIImage {
         return result ?? self.copy() as! UIImage
     }
     
+}
+
+extension Bundle {
+    
+    var versionString: String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    }
 }

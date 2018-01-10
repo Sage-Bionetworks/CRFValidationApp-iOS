@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="U7f-QO-6Bj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="U7f-QO-6Bj">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -109,17 +109,26 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CRF 1.0 (24), Participant ABCD1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Er-L4-O3i">
+                                            <rect key="frame" x="59" y="99" width="203" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" name="white"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.36862745099999999" green="0.67843137249999996" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="eZi-Nt-icw" firstAttribute="leading" secondItem="YSq-fF-9uy" secondAttribute="leading" constant="47.5" id="GtN-uf-CyR"/>
                                         <constraint firstItem="eZi-Nt-icw" firstAttribute="centerX" secondItem="YSq-fF-9uy" secondAttribute="centerX" id="Mk2-hT-IvJ"/>
                                         <constraint firstAttribute="bottom" secondItem="eZi-Nt-icw" secondAttribute="bottom" constant="35" id="ddd-Mq-lZF"/>
+                                        <constraint firstAttribute="bottom" secondItem="3Er-L4-O3i" secondAttribute="bottom" constant="16" id="gaO-nh-3PZ"/>
                                         <constraint firstAttribute="trailing" secondItem="eZi-Nt-icw" secondAttribute="trailing" constant="47.5" id="hnF-Za-AMw"/>
+                                        <constraint firstItem="3Er-L4-O3i" firstAttribute="centerX" secondItem="YSq-fF-9uy" secondAttribute="centerX" id="pNy-WU-CJC"/>
                                         <constraint firstItem="eZi-Nt-icw" firstAttribute="top" secondItem="YSq-fF-9uy" secondAttribute="top" id="s0L-Gv-Gle"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="textLabel" destination="eZi-Nt-icw" id="Yss-t8-4Qp"/>
+                                        <outlet property="versionLabel" destination="3Er-L4-O3i" id="sfU-Zf-C9n"/>
                                     </connections>
                                 </view>
                                 <prototypes>
@@ -541,7 +550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UT7-xc-YVe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="-1073.6131934032985"/>
+            <point key="canvasLocation" x="586.875" y="-1073.75"/>
         </scene>
         <!--Task Group Table View Controller-->
         <scene sceneID="Zo6-kg-yjX">
@@ -737,9 +746,12 @@
         <image name="activeChallengeIcon" width="16" height="16"/>
         <image name="add" width="16" height="16"/>
         <image name="backArrowHeader" width="32" height="32"/>
-        <image name="completeCheckActivityCard" width="16" height="16"/>
+        <image name="completeCheckActivityCard" width="18" height="18"/>
         <namedColor name="black54">
             <color white="0.0" alpha="0.54000002145767212" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
