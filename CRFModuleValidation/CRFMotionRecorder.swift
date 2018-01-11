@@ -37,40 +37,49 @@ import ResearchSuite
 
 public enum CRFMotionRecorderType : String, Codable {
     
-    /// Raw accelerometer reading.
+    /// Raw accelerometer reading. `CMAccelerometerData` accelerometer.
     case accelerometer
     
-    /// Raw gyroscope reading.
+    /// Raw gyroscope reading. `CMGyroData` rotationRate.
     case gyro
 
-    /// Raw magnetometer reading.
+    /// Raw magnetometer reading. `CMMagnetometerData` magneticField.
     case magnetometer
     
-    /// Calculated orientation of the phone using the gyro and magnetometer (if appropriate)
+    /// Calculated orientation of the device using the gyro and magnetometer (if appropriate).
+    ///
+    /// This is included in the `CMDeviceMotion` data object.
     ///
     /// - note: If the `magneticField` is included in the configuration's list of desired
     /// recorder types then the reference frame is `.xMagneticNorthZVertical`. Otherwise,
     /// the motion recorder will use `.xArbitraryZVertical`.
     case attitude
     
-    /// Calculated vector for the direction of gravity in the coordinates of the phone.
+    /// Calculated vector for the direction of gravity in the coordinates of the device.
+    ///
     /// This is included in the `CMDeviceMotion` data object.
     case gravity
     
-    /// The magnetic field of the device for devices with a gyro that is included in the
-    /// `CMDeviceMotion` data object returned by calling `startDeviceMotionUpdates()`.
+    /// The magnetic field vector with respect to the device for devices with a magnetometer.
+    /// Note that this is the total magnetic field in the device's vicinity without device
+    /// bias (Earth's magnetic field plus surrounding fields, without device bias),
+    /// unlike `CMMagnetometerData` magneticField.
+    ///
+    /// This is included in the `CMDeviceMotion` data object.
     ///
     /// - note: If this recorder type is included in the configuration, then the attitude
     /// reference frame will be set to `.xMagneticNorthZVertical`. Otherwise, the magnetic
     /// field vector will be returned as `{ 0, 0, 0 }`.
     case magneticField
     
-    /// The rotation rate of the device for devices with a gyro that is included in the
-    /// `CMDeviceMotion` data object returned by calling `startDeviceMotionUpdates()`.
+    /// The rotation rate of the device for devices with a gyro.
+    ///
+    /// This is included in the `CMDeviceMotion` data object.
     case rotationRate
     
-    /// Calculated vector for the user's acceleration in the coordinates of the phone.
-    /// This is the acceleration component after subtracting the gravity vectory.
+    /// Calculated vector for the user's acceleration in the coordinates of the device.
+    /// This is the acceleration component after subtracting the gravity vector.
+    ///
     /// This is included in the `CMDeviceMotion` data object.
     case userAcceleration
     
