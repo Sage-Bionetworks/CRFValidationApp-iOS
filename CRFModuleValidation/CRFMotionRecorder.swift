@@ -36,15 +36,18 @@ import CoreMotion
 import ResearchSuite
 
 public enum CRFMotionRecorderType : String, Codable {
+    
     case accelerometer
     case attitude
     case gravity
+    case gyro
     case magneticField
+    case magnetometer
     case rotationRate
     case userAcceleration
     
     public static func allTypes() -> [CRFMotionRecorderType] {
-        return [.accelerometer, .attitude, .gravity, .magneticField, .rotationRate, .userAcceleration]
+        return [.accelerometer, .attitude, .gravity, .gyro, .magneticField, .magnetometer, .rotationRate, .userAcceleration]
     }
 }
 
@@ -111,6 +114,7 @@ public class CRFMotionRecorder : RSDSampleRecorder {
     
     private var motionManager: CMMotionManager?
     private var pedometer: CMPedometer?
+    private let motionQueue = OperationQueue()
     
     override public func requestPermissions(on viewController: UIViewController, _ completion: @escaping RSDAsyncActionCompletionHandler) {
         pedometer = CMPedometer()
@@ -132,31 +136,50 @@ public class CRFMotionRecorder : RSDSampleRecorder {
             completion(.failed, RSDRecorderError.alreadyRunning)
             return
         }
-
+        
+        // Call completion before starting all the sensors
+        // then add a block to the main queue to start the sensors
+        // on the next run loop.
+        completion(.running, nil)
+        DispatchQueue.main.async { [weak self] in
+            self?._startNextRunLoop()
+        }
+    }
+    
+    func _startNextRunLoop() {
+        guard self.status <= .running else { return }
+        
+        // set up the motion manager and the frequency
         let frequency: Double = coreMotionConfiguration?.frequency ?? 100
         let updateInterval: TimeInterval = 1.0 / frequency
         let motionManager = CMMotionManager()
         self.motionManager = motionManager
         
-        // Only use the callback on *one* of the motion types that is being started
+        // start each sensor
+        var deviceMotionStarted = false
         for motionType in recorderTypes {
             switch motionType {
             case .accelerometer:
                 startAccelerometer(with: motionManager, updateInterval: updateInterval, completion: nil)
+            case .gyro:
+                startGyro(with: motionManager, updateInterval: updateInterval, completion: nil)
+            case .magnetometer:
+                startMagnetometer(with: motionManager, updateInterval: updateInterval, completion: nil)
             default:
-                startDeviceMotion(with: motionManager, updateInterval: updateInterval, completion: nil)
+                if !deviceMotionStarted {
+                    deviceMotionStarted = true
+                    startDeviceMotion(with: motionManager, updateInterval: updateInterval, completion: nil)
+                }
             }
         }
-        
-        completion(.running, nil)
     }
     
     func startAccelerometer(with motionManager: CMMotionManager, updateInterval: TimeInterval, completion: ((Error?) -> Void)?) {
         motionManager.stopAccelerometerUpdates()
         motionManager.accelerometerUpdateInterval = updateInterval
-        motionManager.startAccelerometerUpdates(to: OperationQueue()) { [weak self] (data, error) in
+        motionManager.startAccelerometerUpdates(to: motionQueue) { [weak self] (data, error) in
             if data != nil, self?.status == .running {
-                self?.recordAccelerometerSample(data!)
+                self?.recordRawSample(data!)
             } else if error != nil, self?.status != .failed {
                 self?.didFail(with: error!)
             }
@@ -164,7 +187,33 @@ public class CRFMotionRecorder : RSDSampleRecorder {
         }
     }
     
-    func recordAccelerometerSample(_ data: CMAccelerometerData) {
+    func startGyro(with motionManager: CMMotionManager, updateInterval: TimeInterval, completion: ((Error?) -> Void)?) {
+        motionManager.stopGyroUpdates()
+        motionManager.gyroUpdateInterval = updateInterval
+        motionManager.startGyroUpdates(to: motionQueue) { [weak self] (data, error) in
+            if data != nil, self?.status == .running {
+                self?.recordRawSample(data!)
+            } else if error != nil, self?.status != .failed {
+                self?.didFail(with: error!)
+            }
+            completion?(error)
+        }
+    }
+    
+    func startMagnetometer(with motionManager: CMMotionManager, updateInterval: TimeInterval, completion: ((Error?) -> Void)?) {
+        motionManager.stopMagnetometerUpdates()
+        motionManager.magnetometerUpdateInterval = updateInterval
+        motionManager.startMagnetometerUpdates(to: motionQueue) { [weak self] (data, error) in
+            if data != nil, self?.status == .running {
+                self?.recordRawSample(data!)
+            } else if error != nil, self?.status != .failed {
+                self?.didFail(with: error!)
+            }
+            completion?(error)
+        }
+    }
+    
+    func recordRawSample(_ data: CMLogItem) {
         let sample = CRFMotionRecord(startUptime: startUptime, stepPath: currentStepPath, data: data)
         self.writeSample(sample)
     }
@@ -172,7 +221,8 @@ public class CRFMotionRecorder : RSDSampleRecorder {
     func startDeviceMotion(with motionManager: CMMotionManager, updateInterval: TimeInterval, completion: ((Error?) -> Void)?) {
         motionManager.stopDeviceMotionUpdates()
         motionManager.deviceMotionUpdateInterval = updateInterval
-        motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical, to: OperationQueue()) { [weak self] (data, error) in
+        let frame: CMAttitudeReferenceFrame = recorderTypes.contains(.magneticField) ? .xMagneticNorthZVertical : .xArbitraryZVertical
+        motionManager.startDeviceMotionUpdates(using: frame, to: motionQueue) { [weak self] (data, error) in
             if data != nil, self?.status == .running {
                 self?.recordDeviceMotionSample(data!)
             } else if error != nil, self?.status != .failed {
@@ -183,8 +233,9 @@ public class CRFMotionRecorder : RSDSampleRecorder {
     }
     
     func recordDeviceMotionSample(_ data: CMDeviceMotion) {
+        let frame = motionManager?.attitudeReferenceFrame ?? CMAttitudeReferenceFrame.xArbitraryZVertical
         let samples = recorderTypes.rsd_mapAndFilter {
-            CRFMotionRecord(startUptime: startUptime, stepPath: currentStepPath, data: data, sensorType: $0) }
+            CRFMotionRecord(startUptime: startUptime, stepPath: currentStepPath, data: data, referenceFrame: frame, sensorType: $0) }
         self.writeSamples(samples)
     }
     
@@ -214,6 +265,21 @@ public class CRFMotionRecorder : RSDSampleRecorder {
     }
 }
 
+public enum CRFAttitudeReferenceFrame : String, Codable {
+    
+    case xArbitraryZVertical = "Z-Up"
+    case xMagneticNorthZVertical = "North-West-Up"
+    
+    init(frame : CMAttitudeReferenceFrame) {
+        switch frame {
+        case .xMagneticNorthZVertical:
+            self = .xMagneticNorthZVertical
+        default:
+            self = .xArbitraryZVertical
+        }
+    }
+}
+
 public struct CRFMotionRecord : RSDSampleRecord {
     
     public let uptime: TimeInterval
@@ -223,7 +289,7 @@ public struct CRFMotionRecord : RSDSampleRecord {
     
     public let sensorType: CRFMotionRecorderType?
     public let eventAccuracy: Int?
-    public let referenceCoordinate: String?
+    public let referenceCoordinate: CRFAttitudeReferenceFrame?
     public let heading: Double?
     
     public let x: Double?
@@ -231,10 +297,10 @@ public struct CRFMotionRecord : RSDSampleRecord {
     public let z: Double?
     public let w: Double?
     
-    public init?(startUptime: TimeInterval, stepPath: String, data: CMDeviceMotion, sensorType: CRFMotionRecorderType) {
+    public init?(startUptime: TimeInterval, stepPath: String, data: CMDeviceMotion, referenceFrame: CMAttitudeReferenceFrame, sensorType: CRFMotionRecorderType) {
 
         var eventAccuracy: Int?
-        var referenceCoordinate: String?
+        var referenceCoordinate: CRFAttitudeReferenceFrame?
         var w: Double?
         
         switch sensorType {
@@ -243,7 +309,7 @@ public struct CRFMotionRecord : RSDSampleRecord {
             self.y = data.attitude.quaternion.y
             self.z = data.attitude.quaternion.z
             w = data.attitude.quaternion.w
-            referenceCoordinate = "North-West-Up"
+            referenceCoordinate = CRFAttitudeReferenceFrame(frame: referenceFrame)
             
         case .gravity:
             self.x = data.gravity.x
@@ -266,7 +332,7 @@ public struct CRFMotionRecord : RSDSampleRecord {
             self.y = data.userAcceleration.y
             self.z = data.userAcceleration.z
             
-        case .accelerometer:
+        default:
             return nil
         }
 
@@ -275,21 +341,43 @@ public struct CRFMotionRecord : RSDSampleRecord {
         self.stepPath = stepPath
         self.timestampDate = nil
         self.sensorType = sensorType
-        self.heading = data.heading
+        self.heading = (data.heading >= 0) ? data.heading : nil
         self.w = w
         self.eventAccuracy = eventAccuracy
         self.referenceCoordinate = referenceCoordinate
     }
     
-    public init(startUptime: TimeInterval, stepPath: String, data: CMAccelerometerData) {
+    public init(startUptime: TimeInterval, stepPath: String, data: CMLogItem) {
+        
+        if let accel = data as? CMAccelerometerData {
+            self.sensorType = .accelerometer
+            self.x = accel.acceleration.x
+            self.y = accel.acceleration.y
+            self.z = accel.acceleration.z
+        }
+        else if let gyro = data as? CMGyroData {
+            self.sensorType = .gyro
+            self.x = gyro.rotationRate.x
+            self.y = gyro.rotationRate.y
+            self.z = gyro.rotationRate.z
+        }
+        else if let mag = data as? CMMagnetometerData {
+            self.sensorType = .magnetometer
+            self.x = mag.magneticField.x
+            self.y = mag.magneticField.y
+            self.z = mag.magneticField.z
+        }
+        else {
+            self.sensorType = nil
+            self.x = nil
+            self.y = nil
+            self.z = nil
+        }
+        
         self.uptime = data.timestamp
         self.timestamp = data.timestamp - startUptime
         self.stepPath = stepPath
         self.timestampDate = nil
-        self.sensorType = .accelerometer
-        self.x = data.acceleration.x
-        self.y = data.acceleration.y
-        self.z = data.acceleration.z
         self.heading = nil
         self.w = nil
         self.eventAccuracy = nil
