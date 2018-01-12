@@ -178,6 +178,7 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     private var startTotalDistance = Date()
     private var endTotalDistance = Date.distantFuture
     private var locationManager: CLLocationManager?
+    private var pedometer: CMPedometer?
     private let processingQueue = DispatchQueue(label: "org.sagebase.ResearchSuite.location.processing")
     
     override public func requestPermissions(on viewController: UIViewController, _ completion: @escaping RSDAsyncActionCompletionHandler) {
@@ -356,8 +357,8 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
     
     private func _addPedometerData() {
         // Get the results of the pedometer for the time when in motion.
-        let pedometer = CMPedometer()
-        pedometer.queryPedometerData(from: startTotalDistance, to: endTotalDistance) { [weak self] (data, _) in
+        pedometer = CMPedometer()
+        pedometer!.queryPedometerData(from: startTotalDistance, to: endTotalDistance) { [weak self] (data, _) in
             guard let pedometerData = data else { return }
             self?._recordPedometerData(pedometerData)
         }
@@ -376,6 +377,9 @@ public class CRFLocationRecorder : RSDSampleRecorder, CLLocationManagerDelegate 
         var gpsDistanceResult = RSDAnswerResultObject(identifier: CRFResultIdentifier.gpsDistance.stringValue, answerType: RSDAnswerResultType(baseType: .decimal))
         gpsDistanceResult.value = totalDistance
         self.appendResults(gpsDistanceResult)
+        
+        // Release the pedometer
+        pedometer = nil
     }
     
     private func _updateTotalDistance(_ location: CLLocation) -> Double? {
