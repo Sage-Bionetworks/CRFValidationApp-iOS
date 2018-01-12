@@ -210,8 +210,7 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         DispatchQueue.main.async {
             
             // Remove previous reminders
-            let identifiers = self.scheduleItemsToRemindOf().map({ $0.identifier })
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             
             // Check that there are any reminders to set and otherwise, do not even check for permission
             let remindItems = self.scheduleItemsToRemindOf()
