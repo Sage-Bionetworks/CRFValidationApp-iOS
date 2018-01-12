@@ -234,10 +234,10 @@ struct Schedule {
     fileprivate func addNotification(with dateComponents: DateComponents) {
         
         let content = UNMutableNotificationContent()
-        content.body = Localization.localizedStringWithFormatKey("JP_TIME_FOR_%@", taskGroup.title)
+        content.body = "Don't forget to do your \(taskGroup.title) today!"
         content.sound = UNNotificationSound.default()
         content.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber;
-        content.categoryIdentifier = "org.sagebase.JourneyPro.Schedule"
+        content.categoryIdentifier = "org.sagebase.crfModuleApp.Schedule"
         content.userInfo = [Schedule.userInfoKeyTaskGroup: taskGroup.identifier]
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: taskGroup.identifier, content: content, trigger: trigger)
@@ -353,11 +353,13 @@ struct ScheduleItem {
     let date: Date
     let taskGroup: TaskGroup
     let isCompleted: Bool
+    let identifier: String
     
     init(date: Date, taskGroup: TaskGroup, isCompleted: Bool) {
         self.date = date
         self.taskGroup = taskGroup
         self.isCompleted = isCompleted
+        self.identifier = "\(taskGroup.identifier):\(date)"
     }
 
     init?(taskGroup: TaskGroup, date:Date, activities:[SBBScheduledActivity], dayOne: Date, studyDuration:DateComponents) {
@@ -414,6 +416,28 @@ struct ScheduleItem {
         self.date = date
         self.taskGroup = taskGroup
         self.isCompleted = isCompleted
+        self.identifier = "\(taskGroup.identifier):\(date)"
+    }
+    
+    func scheduleReminder() {
+        let content = UNMutableNotificationContent()
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: self.date)
+        dateComponents.hour = 10
+        content.body = "Don't forget to do your \(taskGroup.title) today!"
+        content.sound = UNNotificationSound.default()
+        content.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber;
+        content.categoryIdentifier = "org.sagebase.crfModuleApp.Schedule"
+        content.userInfo = [Schedule.userInfoKeyTaskGroup: taskGroup.identifier]
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: self.identifier, content: content, trigger: trigger)
+        
+        // Schedule the notification.
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error != nil {
+                print("Failed to add notification for \(self.taskGroup.identifier). \(error!)")
+            }
+        }
     }
 }
 
