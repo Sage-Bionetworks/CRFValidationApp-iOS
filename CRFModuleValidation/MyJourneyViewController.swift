@@ -152,7 +152,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         // Set up the schedule management
         scheduleSections = newSchedules
         isFirstDay = Calendar.gregorian.isDateInToday(dayOne)
-        todaySectionIndex = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) ?? 0
+        todaySectionIndex = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) ??
+                            scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date.addingNumberOfDays(1)) }) ?? 0
         
         // set up values associated with first load
         if isFirstLoad {
@@ -391,7 +392,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             headerCell.titleToDetail.constant = self.view.bounds.size.width < 375 ? 12 : 24
         }
         else if let dateCell = cell as? MyJourneyDateCell, let scheduleSection = self.scheduleSection(at: indexPath) {
-            if indexPath.section == self.todaySectionIndex {
+            if indexPath.section == self.todaySectionIndex &&
+                Calendar.gregorian.isDateInToday(scheduleSection.date) {
                 dateCell.dateLabel.text = Localization.localizedString("Today")
             }
             else {
