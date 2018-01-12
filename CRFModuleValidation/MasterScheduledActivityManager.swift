@@ -209,22 +209,33 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         // use dispatch async to allow the method to return and put updating reminders on the next run loop
         DispatchQueue.main.async {
             
-            // Remove previous reminders
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            
-            // Check that there are any reminders to set and otherwise, do not even check for permission
-            let remindItems = self.scheduleItemsToRemindOf()
-            guard remindItems.count > 0 else { return }
-
-            // Check for permission and if granted, then schedule the reminders
-            UNUserNotificationCenter.current().getNotificationCategories() { [weak self] (categories) in
-                if categories.count > 0 {
-                    self?.addLocalNotifications()
+            // Get previous reminders so we can remove ours
+            UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { (reminders) in
+                // Get identifiers of previous Schedule-based reminders
+                let myReminders = reminders.mapAndFilter({ (reminder) -> String? in
+                    if (reminder.content.categoryIdentifier == "org.sagebase.crfModuleApp.Schedule") {
+                        return reminder.identifier
+                    }
+                    else { return nil }
+                })
+                
+                // Remove them
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: myReminders)
+                
+                // Check that there are any reminders to set and otherwise, do not even check for permission
+                let remindItems = self.scheduleItemsToRemindOf()
+                guard remindItems.count > 0 else { return }
+                
+                // Check for permission and if granted, then schedule the reminders
+                UNUserNotificationCenter.current().getNotificationCategories() { [weak self] (categories) in
+                    if categories.count > 0 {
+                        self?.addLocalNotifications()
+                    }
+                    else {
+                        self?.requestAuthorizationForNotifications()
+                    }
                 }
-                else {
-                    self?.requestAuthorizationForNotifications()
-                }
-            }
+            })
         }
     }
     
