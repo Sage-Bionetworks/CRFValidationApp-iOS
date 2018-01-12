@@ -175,8 +175,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     func updateSchedules(newSchedules: [Schedule], newSections: [ScheduleSection], shouldResetNotifications: Bool) {
         DispatchQueue.main.async {
             
-            let schedulesChanged = (self.schedules != newSchedules)
-            
             // Set the new values
             self.scheduleSections = newSections
             self.schedules = newSchedules
@@ -184,11 +182,26 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
             // refresh the delegate
             self.delegate?.reloadFinished(self)
             
-            // update the reminders if changed
-            if schedulesChanged && shouldResetNotifications {
+            // update the reminders
+            if shouldResetNotifications {
                 self.updateReminderNotifications()
             }
         }
+    }
+    
+    func scheduleItemsToRemindOf() -> [ScheduleItem] {
+        let unfinishedCardioSections = self.scheduleSections.filter({
+            ($0.items[0].taskGroup.identifier as NSString).hasPrefix("Cardio") &&
+            !$0.items[0].isCompleted
+        })
+        guard unfinishedCardioSections.count > 0 else { return [] }
+        
+        var items: [ScheduleItem] = []
+        for section in unfinishedCardioSections {
+            items.append(contentsOf: section.items)
+        }
+        
+        return items
     }
     
     func updateReminderNotifications() {
@@ -196,22 +209,33 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         // use dispatch async to allow the method to return and put updating reminders on the next run loop
         DispatchQueue.main.async {
             
-            // Remove previous reminders
-            let identifiers = self.schedules.map({ $0.taskGroup.identifier })
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
-            
-            // Check that there are any reminders to set and otherwise, do not even check for permission
-            guard self.schedules.filter({ $0.timeOfDay != nil }).count > 0 else { return }
-
-            // Check for permission and if granted, then schedule the reminders
-            UNUserNotificationCenter.current().getNotificationCategories() { [weak self] (categories) in
-                if categories.count > 0 {
-                    self?.addLocalNotifications()
+            // Get previous reminders so we can remove ours
+            UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { (reminders) in
+                // Get identifiers of previous Schedule-based reminders
+                let myReminders = reminders.mapAndFilter({ (reminder) -> String? in
+                    if (reminder.content.categoryIdentifier == "org.sagebase.crfModuleApp.Schedule") {
+                        return reminder.identifier
+                    }
+                    else { return nil }
+                })
+                
+                // Remove them
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: myReminders)
+                
+                // Check that there are any reminders to set and otherwise, do not even check for permission
+                let remindItems = self.scheduleItemsToRemindOf()
+                guard remindItems.count > 0 else { return }
+                
+                // Check for permission and if granted, then schedule the reminders
+                UNUserNotificationCenter.current().getNotificationCategories() { [weak self] (categories) in
+                    if categories.count > 0 {
+                        self?.addLocalNotifications()
+                    }
+                    else {
+                        self?.requestAuthorizationForNotifications()
+                    }
                 }
-                else {
-                    self?.requestAuthorizationForNotifications()
-                }
-            }
+            })
         }
     }
     
@@ -225,8 +249,8 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     
     fileprivate func addLocalNotifications() {
         DispatchQueue.main.async {
-            for schedule in self.schedules {
-                schedule.scheduleReminder()
+            for item in self.scheduleItemsToRemindOf() {
+                item.scheduleReminder()
             }
         }
     }
