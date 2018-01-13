@@ -53,7 +53,7 @@ public struct CRFCameraSettings : Codable {
     /// Only ISO values between `minISO` and `maxISO` of the current device format are supported.
     /// Higher values will result in noisier images.
     ///
-    /// If the settings requests an iso that is outside the bounds of the minimum and maximum,
+    /// If the settings requests an ISO that is outside the bounds of the minimum and maximum,
     /// then the actual value set will be bound by those values. Default = `minISO`
     public var iso: Float = 0
     
@@ -359,7 +359,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
             captureDevice.automaticallyAdjustsVideoHDREnabled = false
         }
 
-        // Restrict the camera to focus in the far range (~ infinity).
+        // Lock the camera focus (if available) otherwise restrict the range.
         if captureDevice.isLockingFocusWithCustomLensPositionSupported {
             captureDevice.setFocusModeLocked(lensPosition: cameraSettings.focusLensPosition, completionHandler: nil)
         } else if captureDevice.isAutoFocusRangeRestrictionSupported {
@@ -369,7 +369,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
             }
         }
         
-        // Set the exposure time (shutter speed) and iso
+        // Set the exposure time (shutter speed) and ISO
         if captureDevice.isExposureModeSupported(.custom) {
             let duration = CMTime(seconds: cameraSettings.exposureDuration, preferredTimescale: 1000)
             let iso = min(max(cameraSettings.iso, currentFormat.minISO), currentFormat.maxISO)
