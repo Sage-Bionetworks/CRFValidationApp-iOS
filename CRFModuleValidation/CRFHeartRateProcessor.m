@@ -50,6 +50,7 @@ const int CRFHeartRateWindowSeconds = 10;
 const int CRFHeartRateMinFrameCount = (CRFHeartRateSettleSeconds + CRFHeartRateWindowSeconds) * CRFHeartRateFramesPerSecond;
 const int CRFHeartRateResolutionWidth = 192;    // lowest resolution on an iPhone 6
 const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhone 6
+const float CRFRedThreshold = 40;
 
 @implementation CRFHeartRateProcessor {
     dispatch_queue_t _processingQueue;
@@ -101,7 +102,7 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
                     return;
                 }
             }
-            
+
             if (_videoInput.readyForMoreMediaData) {
                 BOOL success = [_videoInput appendSampleBuffer:sampleBuffer];
                 if (!success) {
@@ -122,13 +123,13 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
 // with additional modifications by: https://github.com/Litekey/heartbeat-cordova-plugin (July 30, 2015)
 // and modifications by Shannon Young (February, 2017)
 
-- (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer {
+- (BOOL)processSampleBuffer:(CMSampleBufferRef)sampleBuffer {
     CMTime pts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
     CVImageBufferRef cvimgRef = CMSampleBufferGetImageBuffer(sampleBuffer);
-    [self processImageBuffer:cvimgRef timestamp:pts];
+    return [self processImageBuffer:cvimgRef timestamp:pts];
 }
 
-- (void)processImageBuffer:(CVImageBufferRef)cvimgRef timestamp:(CMTime)pts {
+- (BOOL)processImageBuffer:(CVImageBufferRef)cvimgRef timestamp:(CMTime)pts {
     
     // Lock the image buffer
     CVPixelBufferLockBaseAddress(cvimgRef,0);
@@ -143,6 +144,7 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
 
     // Calculate average
     float r = 0, g = 0, b = 0;
+    long redCount = 0;
     
     long widthScaleFactor = 1;
     long heightScaleFactor = 1;
@@ -160,6 +162,11 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
             float green = buf[x + 1];
             float blue = buf[x];
             
+            float h = [self getRedHueFromRed:red green:green blue:blue];
+            if (h >= 0) {
+                redCount++;
+            }
+            
             r += red;
             g += green;
             b += blue;
@@ -169,6 +176,7 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     r /= 255 * (float)((width * height) / (widthScaleFactor * heightScaleFactor));
     g /= 255 * (float)((width * height) / (widthScaleFactor * heightScaleFactor));
     b /= 255 * (float)((width * height) / (widthScaleFactor * heightScaleFactor));
+    float redLevel = redCount / (float)((width * height) / (widthScaleFactor * heightScaleFactor));
     
     // Unlock the image buffer
     CVPixelBufferUnlockBaseAddress(cvimgRef,0);
@@ -176,7 +184,10 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     // Get the HSV values
     float hue, sat, bright;
     [self getHSVFromRed:r green:g blue:b hue:&hue saturation:&sat brightness:&bright];
-    [self addDataPoint: hue saturation:sat brightness:bright];
+    
+    BOOL isCoveringLens = [self isCoveringLens:hue saturation:sat brightness:bright redLevel:redLevel];
+    
+    [self addDataPoint:hue isCoveringLens:isCoveringLens];
     
     // Create a struct to return the pixel average
     struct CRFPixelSample sample;
@@ -187,12 +198,31 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     sample.hue = (double)hue;
     sample.saturation = (double)sat;
     sample.brightness = (double)bright;
-    sample.isCoveringLens = [self isCoveringLens:hue saturation:sat brightness:bright];
+    sample.redLevel = (double)redLevel;
+    sample.isCoveringLens = isCoveringLens;
         
     // Alert the delegate
     dispatch_async(_delegateCallbackQueue, ^{
         [_delegate processor:self didCaptureSample:sample];
     });
+    
+    return isCoveringLens;
+}
+
+- (float)getRedHueFromRed:(float)r green:(float)g blue:(float)b {
+    if ((r < g) || (r < b)) {
+        return -1;
+    }
+    float min = MIN(g, b);
+    float delta = r - min;
+    if (delta < CRFRedThreshold) {
+        return -1;
+    }
+    float hue = 60*((g - b) / delta);
+    if (hue < 0) {
+        hue += 360;
+    }
+    return hue;
 }
 
 - (void)getHSVFromRed:(float)r green:(float)g blue:(float)b hue:(float *)h saturation:(float *)s brightness:(float *)v {
@@ -225,12 +255,13 @@ const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhon
     *h = hue;
 }
 
-- (BOOL)isCoveringLens:(double)hue saturation:(float)saturation brightness:(float)brightness {
-    return (hue >= 0) && (hue <= 10 || hue >= 350) && (saturation > 0.8) && (brightness > 0.8);
+- (BOOL)isCoveringLens:(double)hue saturation:(float)saturation brightness:(float)brightness redLevel:(float)redLevel {
+    //NSLog(@"hue:%0.3f, saturation:%0.3f, brightness:%0.3f, redLevel:%0.3f", hue, saturation, brightness, redLevel);
+    return (hue >= 0) && (hue <= 30 || hue >= 350) && (saturation >= 0.7) && (redLevel >= 0.9);
 }
 
-- (void)addDataPoint:(double)hue saturation:(float)saturation brightness:(float)brightness {
-    if ([self isCoveringLens: hue saturation: saturation brightness: brightness]) {
+- (void)addDataPoint:(double)hue isCoveringLens:(BOOL)isCoveringLens {
+    if (isCoveringLens) {
         // Since the hue for blood is in the red zone which cross the degrees point,
         // offset that value by 180.
         double offsetHue = hue + 180.0;
