@@ -643,7 +643,7 @@
 				TargetAttributes = {
 					60F7A12E1E89C76E00B123FA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = KA9Z8R6M6K;
+						DevelopmentTeam = 4B822CZK9N;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -1048,7 +1048,7 @@
 				CODE_SIGN_ENTITLEMENTS = CRFModuleValidation.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 24;
-				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CRFModuleValidation",
@@ -1057,10 +1057,10 @@
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.enterprise.CRF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d028ae9a-34ff-4554-9bf3-ed0cf75bb678";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.sagebase.crfModuleApp";
+				PROVISIONING_PROFILE = "5b9f681b-8cdc-4497-bdb1-57b04c20e23e";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.sagebase.enterprise.CRF";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1078,7 +1078,7 @@
 				CODE_SIGN_ENTITLEMENTS = CRFModuleValidation.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 24;
-				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CRFModuleValidation",
@@ -1087,10 +1087,10 @@
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.enterprise.CRF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9059c83e-ff2e-4a3a-8207-50f3b3cccb8f";
-				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.crfModuleApp";
+				PROVISIONING_PROFILE = "fd5abaae-2a77-4cd5-9d06-75d827f6ef48";
+				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.enterprise.CRF";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
