@@ -92,7 +92,13 @@
                                                   "identifier"              : "motion",
                                                   "type"                    : "motion",
                                                   "startStepIdentifier"     : "countdown",
-                                                  "requiresBackgroundAudio" : true
+                                                  "requiresBackgroundAudio" : true,
+                                                  "recorderTypes"           : ["accelerometer",
+                                                                               "attitude",
+                                                                               "gravity",
+                                                                               "gyro",
+                                                                               "magnetometer",
+                                                                               "userAcceleration"]
                                                   }
                                                   ],
                            "steps"          : [

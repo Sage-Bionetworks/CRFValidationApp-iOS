@@ -405,10 +405,13 @@ public struct RSDAnswerResultWrapper : SBAArchivableResult {
         
         var json: [String : Any] = [:]
 
+        // Synapse exporter expects item value to match base filename
+        let item = bridgifyFilename(self.identifier)
+        
         json[kIdentifierKey] = result.identifier
         json[kStartDateKey]  = result.startDate
         json[kEndDateKey]    = result.endDate
-        json[kItemKey] = result.identifier
+        json[kItemKey] = item
         if let answer = (result.value as? RSDJSONValue)?.jsonObject() {
             json[result.answerType.bridgeAnswerKey] = answer
             json[QuestionResultSurveyAnswerKey] = answer
@@ -418,7 +421,7 @@ public struct RSDAnswerResultWrapper : SBAArchivableResult {
             }
         }
         
-        let filename = bridgifyFilename(self.identifier) + ".json"
+        let filename = item + ".json"
         return ArchiveableResult(result: (json as NSDictionary).jsonObject(), filename: filename)
     }
 }
@@ -428,6 +431,12 @@ extension RSDAnswerResultType {
     var bridgeAnswerType: String {
         guard self.sequenceType == nil else {
             return "MultipleChoice"
+        }
+        
+        if let dataType = self.formDataType,
+            case .collection(let collectionType, _) = dataType,
+            collectionType == .singleChoice {
+            return "SingleChoice"
         }
         
         switch self.baseType {
@@ -450,6 +459,12 @@ extension RSDAnswerResultType {
     
     var bridgeAnswerKey: String {
         guard self.sequenceType == nil else {
+            return "choiceAnswers"
+        }
+        
+        if let dataType = self.formDataType,
+            case .collection(let collectionType, _) = dataType,
+            collectionType == .singleChoice {
             return "choiceAnswers"
         }
         

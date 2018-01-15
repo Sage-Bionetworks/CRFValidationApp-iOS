@@ -152,7 +152,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         // Set up the schedule management
         scheduleSections = newSchedules
         isFirstDay = Calendar.gregorian.isDateInToday(dayOne)
-        todaySectionIndex = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) ?? 0
+        todaySectionIndex = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) ??
+                            scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date.addingNumberOfDays(1)) }) ?? 0
         
         // set up values associated with first load
         if isFirstLoad {
@@ -186,6 +187,11 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         // Update footer text
         let dateText = DateFormatter.localizedString(from: dayOne, dateStyle: .medium, timeStyle: .none)
         self.footerView.textLabel.text = Localization.localizedStringWithFormatKey("You started the study on %@", dateText)
+        
+        let version = Bundle.main.versionString
+        let build = Bundle.main.appVersion()
+        let externalID = self.scheduledActivityManager.user.externalId ?? "Unknown"
+        self.footerView.versionLabel.text = Localization.localizedStringWithFormatKey("CRF %@ (%@), Participant %@", version, build, externalID)
     }
     
 
@@ -386,7 +392,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             headerCell.titleToDetail.constant = self.view.bounds.size.width < 375 ? 12 : 24
         }
         else if let dateCell = cell as? MyJourneyDateCell, let scheduleSection = self.scheduleSection(at: indexPath) {
-            if indexPath.section == self.todaySectionIndex {
+            if indexPath.section == self.todaySectionIndex &&
+                Calendar.gregorian.isDateInToday(scheduleSection.date) {
                 dateCell.dateLabel.text = Localization.localizedString("Today")
             }
             else {
@@ -689,6 +696,7 @@ class MyJourneyActivityViewCell: UIView {
 class MyJourneyFooterView: UIView {
     
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
 }
 
 extension UIImage {
@@ -720,4 +728,11 @@ extension UIImage {
         return result ?? self.copy() as! UIImage
     }
     
+}
+
+extension Bundle {
+    
+    var versionString: String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    }
 }

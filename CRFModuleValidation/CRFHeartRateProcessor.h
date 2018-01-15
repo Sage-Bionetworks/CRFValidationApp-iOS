@@ -44,6 +44,7 @@ struct CRFPixelSample {
     double hue;
     double saturation;
     double brightness;
+    double redLevel;
     bool   isCoveringLens;
 };
 

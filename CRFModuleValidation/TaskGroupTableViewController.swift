@@ -176,6 +176,7 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
             _exitOnDidAppear = true
             
             guard let schedule = clinicDay0Schedule else { return }
+            schedule.startedOn = Date()
             schedule.finishedOn = Date()
             self.scheduledActivityManager.sendUpdated(scheduledActivities: [schedule])
             MasterScheduledActivityManager.shared.forceReload()
