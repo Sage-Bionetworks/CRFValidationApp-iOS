@@ -9,16 +9,74 @@
     "steps":
     [
      {
+     "identifier"   : "name",
+     "type"         : "form",
+     "title"        : "Enter name",
+     "detail"       : "This is a string you can use to filter your results. For example, the first name of the person whose heart rate you are measuring.",
+     "dataType"     : "string",
+     "optional"     : true
+     },
+     {
+     "identifier"   : "timing",
+     "type"         : "form",
+     "title"        : "Is this heart rate measurement taken before or after excercising?",
+     "dataType"     : "singleChoice",
+     "choices"      : ["before", "after"]
+     },
+     {
+     "identifier": "cameraSettings",
+     "type": "form",
+     "title": "Enter the camera settings",
+     "inputFields": [{
+                     "identifier": "focusLensPosition",
+                     "dataType": "decimal",
+                     "prompt": "Focus position",
+                     "placeholder": "0.0 (near) - 1.0 (far). Default = 1",
+                     "uiHint": "textfield",
+                     "optional": true,
+                     "range" : { "minimumValue" : 0,
+                                 "maximumValue" : 1,
+                                 "formatter" : {"maximumDigits" : 3 }
+                                }
+                     },
+                     {
+                     "identifier": "exposureDuration",
+                     "dataType": "decimal",
+                     "prompt": "Exposure",
+                     "placeholder": "(shutter speed). Default = 1/125",
+                     "uiHint": "textfield",
+                     "optional": true
+                     },
+                     {
+                     "identifier": "iso",
+                     "dataType": "integer",
+                     "prompt": "ISO",
+                     "placeholder": "Default = minISO",
+                     "uiHint": "textfield",
+                     "optional": true
+                     },
+                     {
+                     "identifier": "whiteBalance.temperature",
+                     "dataType":"integer",
+                     "prompt": "Temperature",
+                     "placeholder": "white balance temperature. Default = 3200K",
+                     "uiHint": "textfield",
+                     "optional": true
+                     },
+                     {
+                     "identifier": "whiteBalance.tint",
+                     "dataType": "integer",
+                     "prompt": "Tint",
+                     "placeholder": "white balance tint. Default = 0",
+                     "uiHint": "textfield",
+                     "optional": true
+                     }
+            ]
+     },
+     {
      "identifier"           : "cameraHeartRate",
      "type"                 : "transform",
      "sectionTransformer"   : { "resourceName": "HeartrateStep.json"}
-     },
-     {
-     "identifier"   : "oximeter",
-     "type"         : "form",
-     "title"        : "What is your heart rate using the oximeter?",
-     "dataType"     : "integer",
-     "placeholder"  : "bpm"
      },
      {
      "identifier"       : "completion",
