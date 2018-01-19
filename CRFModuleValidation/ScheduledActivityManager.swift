@@ -258,7 +258,7 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
             if let archive = SBAActivityArchive(result: taskResult, schedule: schedule) {
             
                 // Uncomment to save a copy of the test archive.
-                // self.copyTestArchive(archive: archive, identifier: taskResult.identifier)
+                self.copyTestArchive(archive: archive, identifier: taskResult.identifier)
                 
                 SBBDataArchive.encryptAndUploadArchives([archive])
             }
@@ -560,5 +560,19 @@ public struct RSDConsolidatedResult : SBAArchivableResult {
     
     public func bridgeData(_ stepIdentifier: String) -> ArchiveableResult? {
         return ArchiveableResult(result: (json as NSDictionary).jsonObject(), filename: filename)
+    }
+}
+
+extension CRFCameraSettings : SBAArchivableResult {
+    
+    public func bridgeData(_ stepIdentifier: String) -> ArchiveableResult? {
+        do {
+            let encoder = RSDFactory.shared.createJSONEncoder()
+            let data = try encoder.encode(self)
+            return ArchiveableResult(result: data as NSData, filename: self.identifier)
+        } catch let err {
+            debugPrint("Error encoding result: \(err)")
+            return nil
+        }
     }
 }
