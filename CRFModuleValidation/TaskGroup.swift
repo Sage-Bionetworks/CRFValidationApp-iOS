@@ -84,8 +84,8 @@ struct TaskGroup {
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
-                                   taskIdentifiers: [.cardioStairStep,
-                                                     .backgroundSurvey,
+                                   taskIdentifiers: [.backgroundSurvey,
+                                                     .cardioStairStep,
                                                      .cardio12MT])
     /**
      The "Clinic Visit 2" Activities
@@ -96,9 +96,9 @@ struct TaskGroup {
                                    groupDescription: Localization.localizedString("Clinic tests will provide data that scientists  use to assess the accuracy of digital versions. This may help future generations in receiving better tools."),
                                    iconImage: #imageLiteral(resourceName: "clinicDetailIcon"),
                                    scheduleTaskIdentifier: nil,
-                                   taskIdentifiers: [.cardioStairStep,
-                                                     .usabilitySurvey,
+                                   taskIdentifiers: [.usabilitySurvey,
                                                      .burdenSurvey,
+                                                     .cardioStairStep,
                                                      .cardio12MT])
     
     static let clinicDay14alt = TaskGroup(identifier: "clinicDay14alt",
