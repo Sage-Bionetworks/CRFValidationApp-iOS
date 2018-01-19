@@ -12,7 +12,7 @@
      "identifier"   : "name",
      "type"         : "form",
      "title"        : "Enter name",
-     "detail"       : "This is a string you can use to filter your results. For example, the first name of the person whose heart rate you are measuring.",
+     "detail"       : "This is a string you can use to filter your results -- for example, the first name of the person whose heart rate you are measuring.",
      "dataType"     : "string",
      "optional"     : true
      },

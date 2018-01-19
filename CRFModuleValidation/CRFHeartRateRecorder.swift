@@ -56,7 +56,7 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
     /// The camera settings.
     public var cameraSettings : CRFCameraSettings = CRFCameraSettings()
     
-    /// Should the preview be hidden when the lens is convered?
+    /// Should the preview be hidden when the lens is covered?
     public var shouldHidePreview: Bool = true
     
     /// Default initializer.
