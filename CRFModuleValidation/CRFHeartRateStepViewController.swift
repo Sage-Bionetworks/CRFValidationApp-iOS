@@ -93,6 +93,12 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         // Create a recorder that runs only during this step
         let taskPath = self.taskController.taskPath!
         var config = CRFHeartRateRecorderConfiguration(identifier: "recorder")
+        if let cameraSettingsResult = taskPath.parentPath?.result.findResult(with: "cameraSettings") as? RSDCollectionResult {
+            config.cameraSettings = CRFCameraSettings(stepResult: cameraSettingsResult)
+            // Always show the camera if the settings are editable
+            config.shouldHidePreview = false
+            self.progressLabel?.isHidden = false
+        }
         config.stopStepIdentifier = self.step.identifier
         config.shouldSaveBuffer = true  // TODO: syoung 12/08/2017 refactor to allow setting up the config using json file.
         config.duration = self.activeStep?.duration ?? config.duration
@@ -172,7 +178,6 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
     private func _handleLensCoveredOnMainQueue(_ isCoveringLens: Bool) {
         DispatchQueue.main.async {
             self.heartImageView.isHidden = !isCoveringLens
-            self.progressLabel?.isHidden = !isCoveringLens
             if isCoveringLens {
                 self._startCountdownIfNeeded()
             } else {

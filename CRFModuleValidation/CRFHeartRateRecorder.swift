@@ -35,48 +35,7 @@ import Foundation
 import AVFoundation
 import ResearchSuite
 
-public struct CRFCameraSettings : Codable {
-    
-    /// Desired lens focal length. This number should be between `0.0 - 1.0` where "nearest" is `0`
-    /// and "farthest" is `1.0`. Default = `1.0`
-    public var focusLensPosition: Float = 1.0
-    
-    /// The exposure duration in seconds.
-    ///
-    /// Note that changes to this property may result in changes to `activeVideoMinFrameDuration`
-    /// and/or `activeVideoMaxFrameDuration`. Default = `1/125`
-    public var exposureDuration: TimeInterval = 1.0 / 125.0
-    
-    /// This property returns the sensor's sensitivity to light by means of a gain value applied to
-    /// the signal.
-    ///
-    /// Only ISO values between `minISO` and `maxISO` of the current device format are supported.
-    /// Higher values will result in noisier images.
-    ///
-    /// If the settings requests an ISO that is outside the bounds of the minimum and maximum,
-    /// then the actual value set will be bound by those values. Default = `minISO`
-    public var iso: Float = 0
-    
-    /// For each channel in the whiteBalanceGains struct, only values between 1.0 and
-    /// `AVCaptureDevice.maxWhiteBalanceGain` are supported. Gain values are normalized to the minimum channel
-    /// value to avoid brightness changes (for example, R:2 G:2 B:4 will be normalized to R:1 G:1 B:2).
-    /// Default = `R:1 G:1 B:1`
-    public var whiteBalanceGains : WhiteBalanceGains = WhiteBalanceGains()
-    
-    /// Codable struct that can be converted to an `AVCaptureDevice.WhiteBalanceGains` struct.
-    public struct WhiteBalanceGains : Codable {
-        
-        /// The blue gain component of the white balance value.
-        public var blueGain: Float = 1.0
-        
-        /// The green gain component of the white balance value.
-        public var greenGain: Float = 1.0
-        
-        /// The red gain component of the white balance value.
-        public var redGain: Float = 1.0
-    }
-}
-
+/// The configuration for the heart rate recorder.
 public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDAsyncActionControllerVendor, Codable {
     
     /// A unique string used to identify the recorder.
@@ -96,6 +55,9 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
     
     /// The camera settings.
     public var cameraSettings : CRFCameraSettings = CRFCameraSettings()
+    
+    /// Should the preview be hidden when the lens is covered?
+    public var shouldHidePreview: Bool = true
     
     /// Default initializer.
     /// - parameter identifier: A unique string used to identify the recorder.
@@ -125,36 +87,6 @@ public struct CRFHeartRateRecorderConfiguration : RSDRecorderConfiguration, RSDA
     /// - returns: A new instance of `CRFHeartRateRecorder` keyed to this configuration.
     public func instantiateController(with taskPath: RSDTaskPath) -> RSDAsyncActionController? {
         return CRFHeartRateRecorder(configuration: self, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
-    }
-}
-
-public struct CRFHeartRateSample : RSDSampleRecord {
-    public let uptime: TimeInterval
-    public let timestamp: TimeInterval?
-    public let timestampDate: Date?
-    public let stepPath: String
-    
-    public let hue: Double?
-    public let saturation: Double?
-    public let brightness: Double?
-    public let red: Double?
-    public let green: Double?
-    public let blue: Double?
-    
-    public var bpm: Int?
-    
-    public init(uptime: TimeInterval, timestamp: TimeInterval, stepPath: String, hue: Double?, saturation: Double?, brightness: Double?, red: Double?, green: Double?, blue: Double?) {
-        self.uptime = uptime
-        self.timestamp = timestamp
-        self.stepPath = stepPath
-        self.bpm = nil
-        self.timestampDate = nil
-        self.hue = hue
-        self.saturation = saturation
-        self.brightness = brightness
-        self.red = red
-        self.green = green
-        self.blue = blue
     }
 }
 
@@ -221,6 +153,11 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     public override func stopRecorder(_ completion: @escaping ((RSDAsyncActionStatus) -> Void)) {
         
         updateStatus(to: .processingResults, error: nil)
+        
+        // Append the camera settings
+        if let settings = self.heartRateConfiguration?.cameraSettings {
+            self.appendResults(settings)
+        }
         
         self._videoPreviewLayer?.removeFromSuperlayer()
         self._videoPreviewLayer = nil
@@ -378,10 +315,9 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         
         // Set the white balance
         if captureDevice.isWhiteBalanceModeSupported(.locked) {
-            let blueGain = max(1.0, min(cameraSettings.whiteBalanceGains.blueGain, captureDevice.maxWhiteBalanceGain))
-            let greenGain = max(1.0, min(cameraSettings.whiteBalanceGains.greenGain, captureDevice.maxWhiteBalanceGain))
-            let redGain = max(1.0, min(cameraSettings.whiteBalanceGains.redGain, captureDevice.maxWhiteBalanceGain))
-            let gains = AVCaptureDevice.WhiteBalanceGains(redGain: redGain, greenGain: greenGain, blueGain: blueGain)
+            let wb = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues(temperature: cameraSettings.whiteBalance.temperature,
+                                                                          tint: cameraSettings.whiteBalance.tint)
+            let gains = captureDevice.deviceWhiteBalanceGains(for: wb)
             captureDevice.setWhiteBalanceModeLocked(with: gains, completionHandler: nil)
         }
 
@@ -450,7 +386,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         if coveringLens != self.isCoveringLens {
             DispatchQueue.main.async {
                 self.isCoveringLens = coveringLens
-                if let previewLayer = self._videoPreviewLayer {
+                if let previewLayer = self._videoPreviewLayer, (self.heartRateConfiguration?.shouldHidePreview ?? true) {
                     if coveringLens {
                         previewLayer.removeFromSuperlayer()
                     } else {
@@ -510,5 +446,134 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         // If the heart rate calculated is too low, then it isn't valid
         let bpm = sampleProcessor.calculateBPM()
         return bpm >= 40 ? bpm : nil
+    }
+}
+
+/// The camera settings to use for the heart rate recorder.
+public struct CRFCameraSettings : Codable, RSDResult {
+    
+    /// The identifier associated with these Camera settings.
+    public var identifier: String = "cameraSettings"
+    
+    /// The result type is hardcoded as camera settings.
+    public let type: RSDResultType = "cameraSettings"
+    
+    /// The start date for these camera settings. This is a required property of `RSDResult`
+    /// but is ignored by the configuration.
+    public var startDate: Date = Date()
+    
+    /// The end date for these camera settings. This is a required property of `RSDResult`
+    /// but is ignored by the configuration.
+    public var endDate: Date = Date()
+    
+    /// Desired lens focal length. This number should be between `0.0 - 1.0` where "nearest" is `0`
+    /// and "farthest" is `1.0`. Default = `1.0`
+    public var focusLensPosition: Float = 1.0
+    
+    /// The exposure duration in seconds.
+    ///
+    /// Note that changes to this property may result in changes to `activeVideoMinFrameDuration`
+    /// and/or `activeVideoMaxFrameDuration`. Default = `1/125`
+    public var exposureDuration: TimeInterval = 1.0 / 125.0
+    
+    /// This property returns the sensor's sensitivity to light by means of a gain value applied to
+    /// the signal.
+    ///
+    /// Only ISO values between `minISO` and `maxISO` of the current device format are supported.
+    /// Higher values will result in noisier images.
+    ///
+    /// If the settings requests an ISO that is outside the bounds of the minimum and maximum,
+    /// then the actual value set will be bound by those values. Default = `minISO`
+    public var iso: Float = 0
+    
+    /// White balance is set using the temperature and tint. Default = (temperature: 3200K, tint: 0)
+    public var whiteBalance : WhiteBalance = WhiteBalance()
+    
+    /// Codable struct that can be converted to `AVCaptureDevice.WhiteBalanceTemperatureAndTintValues`.
+    public struct WhiteBalance : Codable {
+        
+        /// The temperature setting.
+        public var temperature: Float = 3200
+        
+        /// The tint setting.
+        public var tint: Float = 0
+        
+        fileprivate enum CodingKeys: String, CodingKey {
+            case temperature
+            case tint
+        }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case identifier
+        case focusLensPosition
+        case exposureDuration
+        case iso
+        case whiteBalance
+    }
+    
+    /// Default initializer
+    public init() {
+    }
+    
+    /// Initialize the struct using a step result that maps to a collection.
+    public init(stepResult: RSDCollectionResult) {
+        var wb = WhiteBalance()
+        for result in stepResult.inputResults {
+            let identifier = result.identifier.components(separatedBy: ".")
+            if let value = (result as? RSDAnswerResult)?.value as? NSNumber,
+                let key = CodingKeys(rawValue: identifier.first!) {
+                switch key {
+                case .focusLensPosition:
+                    self.focusLensPosition = value.floatValue
+                case .exposureDuration:
+                    self.exposureDuration = value.doubleValue
+                case .iso:
+                    self.iso = value.floatValue
+                case .whiteBalance:
+                    if let wbKey = WhiteBalance.CodingKeys(rawValue: identifier.last!) {
+                        switch wbKey {
+                        case .temperature:
+                            wb.temperature = value.floatValue
+                        case .tint:
+                            wb.tint = value.floatValue
+                        }
+                    }
+                default:
+                    break
+                }
+            }
+        }
+        self.whiteBalance = wb
+    }
+}
+
+public struct CRFHeartRateSample : RSDSampleRecord {
+    public let uptime: TimeInterval
+    public let timestamp: TimeInterval?
+    public let timestampDate: Date?
+    public let stepPath: String
+    
+    public let hue: Double?
+    public let saturation: Double?
+    public let brightness: Double?
+    public let red: Double?
+    public let green: Double?
+    public let blue: Double?
+    
+    public var bpm: Int?
+    
+    public init(uptime: TimeInterval, timestamp: TimeInterval, stepPath: String, hue: Double?, saturation: Double?, brightness: Double?, red: Double?, green: Double?, blue: Double?) {
+        self.uptime = uptime
+        self.timestamp = timestamp
+        self.stepPath = stepPath
+        self.bpm = nil
+        self.timestampDate = nil
+        self.hue = hue
+        self.saturation = saturation
+        self.brightness = brightness
+        self.red = red
+        self.green = green
+        self.blue = blue
     }
 }

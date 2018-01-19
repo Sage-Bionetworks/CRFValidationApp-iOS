@@ -29,6 +29,7 @@
 		80D5290C1FB26C2E007B9B26 /* TaskGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */; };
 		80D5290D1FB26C2E007B9B26 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5290B1FB26C2D007B9B26 /* Schedule.swift */; };
 		80E8D1BC1FB5460A00A695C5 /* OnboardingSurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */; };
+		F86B8756200E860B00772B6D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F86B8755200E860B00772B6D /* HealthKit.framework */; };
 		FF1CC78A1FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */; };
 		FF237EBE1FA9248D007E8A5F /* CRFTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */; };
 		FF2A1D571FB174570095044A /* CRFHeartRateRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */; };
@@ -63,7 +64,6 @@
 		FFA0E4561FD117B900C36AE7 /* ResearchSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; };
 		FFA0E4571FD117B900C36AE7 /* ResearchSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA0E43F1FD1179800C36AE7 /* ResearchSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FFA6078B1F705ED20034A4C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFA6078A1F705ED20034A4C0 /* Main.storyboard */; };
-		FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA6078D1F70745F0034A4C0 /* HealthKit.framework */; };
 		FFA607971F7074FB0034A4C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7A1321E89C76E00B123FA /* AppDelegate.swift */; };
 		FFA607A61F70774E0034A4C0 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */; };
 		FFA607AF1F707EF50034A4C0 /* HeartRate_Measurement.json in Resources */ = {isa = PBXBuildFile; fileRef = FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */; };
@@ -240,6 +240,7 @@
 		80D5290A1FB26C2D007B9B26 /* TaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroup.swift; sourceTree = "<group>"; };
 		80D5290B1FB26C2D007B9B26 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		80E8D1BB1FB5460A00A695C5 /* OnboardingSurvey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OnboardingSurvey.json; sourceTree = "<group>"; };
+		F86B8755200E860B00772B6D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		FF1CC7891FB3D20100EF03A1 /* CRFHeartRateStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateStepViewController.swift; sourceTree = "<group>"; };
 		FF237EBD1FA9248D007E8A5F /* CRFTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFTaskFactory.swift; sourceTree = "<group>"; };
 		FF2A1D561FB174570095044A /* CRFHeartRateRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRFHeartRateRecorder.swift; sourceTree = "<group>"; };
@@ -283,7 +284,6 @@
 		FF9D7F681FA8F957008506DB /* ActiveTaskSteps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActiveTaskSteps.storyboard; sourceTree = "<group>"; };
 		FFA6078A1F705ED20034A4C0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FFA6078C1F7074560034A4C0 /* CRFModuleValidation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CRFModuleValidation.entitlements; sourceTree = SOURCE_ROOT; };
-		FFA6078D1F70745F0034A4C0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		FFA6079C1F7076270034A4C0 /* CRFModuleValidation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CRFModuleValidation-Bridging-Header.h"; sourceTree = "<group>"; };
 		FFA607A51F70774E0034A4C0 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		FFA607AE1F707EF50034A4C0 /* HeartRate_Measurement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HeartRate_Measurement.json; sourceTree = "<group>"; };
@@ -304,12 +304,12 @@
 			files = (
 				FF4043FC1FBAA20C000EF2A0 /* CoreMotion.framework in Frameworks */,
 				FF4043FB1FBAA202000EF2A0 /* CoreLocation.framework in Frameworks */,
+				F86B8756200E860B00772B6D /* HealthKit.framework in Frameworks */,
 				FF4043FA1FBAA1F1000EF2A0 /* AVFoundation.framework in Frameworks */,
 				60056B0C1F9E9C9000FCE1BF /* SafariServices.framework in Frameworks */,
 				60F7A20F1E89D0B200B123FA /* ResearchKit.framework in Frameworks */,
 				60F7A2121E89D0B200B123FA /* ResearchUXFactory.framework in Frameworks */,
 				60F7A2171E89D0B200B123FA /* BridgeAppSDK.framework in Frameworks */,
-				FFA6078E1F70745F0034A4C0 /* HealthKit.framework in Frameworks */,
 				FFA0E4521FD117A400C36AE7 /* ResearchSuiteUI.framework in Frameworks */,
 				FFA0E4561FD117B900C36AE7 /* ResearchSuite.framework in Frameworks */,
 				60F7A2151E89D0B200B123FA /* BridgeSDK.framework in Frameworks */,
@@ -419,12 +419,12 @@
 		60F7A1F21E89CFEF00B123FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F86B8755200E860B00772B6D /* HealthKit.framework */,
 				FF6D6C721FD0A9AE002B514A /* MapKit.framework */,
 				FF4043F91FBAA18D000EF2A0 /* AVFoundation.framework */,
 				FF4043F81FBAA17B000EF2A0 /* CoreLocation.framework */,
 				FF4043F71FBAA170000EF2A0 /* CoreMotion.framework */,
 				60056B0B1F9E9C6300FCE1BF /* SafariServices.framework */,
-				FFA6078D1F70745F0034A4C0 /* HealthKit.framework */,
 				60F7A2141E89D0B200B123FA /* BridgeSDK.framework */,
 				60F7A2111E89D0B200B123FA /* ResearchUXFactory.framework */,
 				60F7A20E1E89D0B200B123FA /* ResearchKit.framework */,
@@ -643,10 +643,13 @@
 				TargetAttributes = {
 					60F7A12E1E89C76E00B123FA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = KA9Z8R6M6K;
+						DevelopmentTeam = 4B822CZK9N;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -1048,7 +1051,7 @@
 				CODE_SIGN_ENTITLEMENTS = CRFModuleValidation.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 35;
-				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CRFModuleValidation",
@@ -1057,10 +1060,10 @@
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.enterprise.CRF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d028ae9a-34ff-4554-9bf3-ed0cf75bb678";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.sagebase.crfModuleApp";
+				PROVISIONING_PROFILE = "5b9f681b-8cdc-4497-bdb1-57b04c20e23e";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.sagebase.enterprise.CRF";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1078,7 +1081,7 @@
 				CODE_SIGN_ENTITLEMENTS = CRFModuleValidation.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 35;
-				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				DEVELOPMENT_TEAM = 4B822CZK9N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CRFModuleValidation",
@@ -1087,10 +1090,10 @@
 				INFOPLIST_FILE = CRFModuleValidation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.crfModuleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.sagebase.enterprise.CRF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9059c83e-ff2e-4a3a-8207-50f3b3cccb8f";
-				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.crfModuleApp";
+				PROVISIONING_PROFILE = "fd5abaae-2a77-4cd5-9d06-75d827f6ef48";
+				PROVISIONING_PROFILE_SPECIFIER = "match Distribution org.sagebase.enterprise.CRF";
 				SWIFT_OBJC_BRIDGING_HEADER = "CRFModuleValidation/CRFModuleValidation-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
