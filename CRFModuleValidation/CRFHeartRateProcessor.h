@@ -48,11 +48,8 @@ struct CRFPixelSample {
     bool   isCoveringLens;
 };
 
-extern const NSTimeInterval CRFHeartRateSampleRate;
-extern const int CRFHeartRateFramesPerSecond;
 extern const int CRFHeartRateSettleSeconds;
 extern const int CRFHeartRateWindowSeconds;
-extern const int CRFHeartRateMinFrameCount;
 
 @class CRFHeartRateProcessor;
 
@@ -68,9 +65,11 @@ extern const int CRFHeartRateMinFrameCount;
 
 @interface CRFHeartRateProcessor : NSObject
 
+@property (nonatomic, readonly) int frameRate;
+
 @property (nonatomic, nullable, readonly) NSURL *videoURL;
 
-- (instancetype)initWithDelegate:(id<CRFHeartRateProcessorDelegate>)delegate callbackQueue:(dispatch_queue_t)queue NS_SWIFT_NAME(init(delegate:callbackQueue:));
+- (instancetype)initWithDelegate:(id<CRFHeartRateProcessorDelegate>)delegate frameRate:(int)frameRate callbackQueue:(dispatch_queue_t)queue NS_SWIFT_NAME(init(delegate:frameRate:callbackQueue:));
 
 - (void)startRecordingToURL:(NSURL *)url startTime:(CMTime)time formatDescription:(CMFormatDescriptionRef)formatDescription NS_SWIFT_NAME(prepareRecording(to:startTime:formatDescription:));
 

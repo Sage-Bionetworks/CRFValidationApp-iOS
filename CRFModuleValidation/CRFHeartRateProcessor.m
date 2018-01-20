@@ -43,11 +43,9 @@ typedef NS_ENUM(NSInteger, MovieRecorderStatus) {
     MovieRecorderStatusFailed        // terminal state
 }; // internal state machine
 
-const NSTimeInterval CRFHeartRateSampleRate = 1.0;
-const int CRFHeartRateFramesPerSecond = 60;
+
 const int CRFHeartRateSettleSeconds = 3;
 const int CRFHeartRateWindowSeconds = 10;
-const int CRFHeartRateMinFrameCount = (CRFHeartRateSettleSeconds + CRFHeartRateWindowSeconds) * CRFHeartRateFramesPerSecond;
 const int CRFHeartRateResolutionWidth = 192;    // lowest resolution on an iPhone 6
 const int CRFHeartRateResolutionHeight = 144;   // lowest resolution on an iPhone 6
 const float CRFRedThreshold = 40;
@@ -63,9 +61,11 @@ const float CRFRedThreshold = 40;
     
     __weak id<CRFHeartRateProcessorDelegate> _delegate;
     dispatch_queue_t _delegateCallbackQueue;
+    
+    int _minFrameCount;
 }
 
-- (instancetype)initWithDelegate:(id<CRFHeartRateProcessorDelegate>)delegate callbackQueue:(dispatch_queue_t)queue {
+- (instancetype)initWithDelegate:(id<CRFHeartRateProcessorDelegate>)delegate frameRate:(int)frameRate callbackQueue:(dispatch_queue_t)queue {
     NSParameterAssert(delegate != nil);
     NSParameterAssert(queue != nil);
     
@@ -75,6 +75,8 @@ const float CRFRedThreshold = 40;
         _delegateCallbackQueue = queue;
         _dataPointsHue = [NSMutableArray new];
         _processingQueue = dispatch_queue_create("org.sagebase.CRF.heartRateSample.processing", DISPATCH_QUEUE_SERIAL);
+        _frameRate = frameRate;
+        _minFrameCount = (CRFHeartRateSettleSeconds + CRFHeartRateWindowSeconds) * frameRate;
     }
     return self;
 }
@@ -278,17 +280,17 @@ const float CRFRedThreshold = 40;
 - (NSInteger)calculateBPM {
     
     // If a valid heart rate cannot be calculated then return -1 as an invalid marker
-    if (_dataPointsHue.count < CRFHeartRateMinFrameCount) {
+    if (_dataPointsHue.count < _minFrameCount) {
         return -1;
     }
     
     // Get a window of data points that is the length of the window we are looking at
-    NSUInteger len = CRFHeartRateWindowSeconds * CRFHeartRateFramesPerSecond;
+    NSUInteger len = CRFHeartRateWindowSeconds * _frameRate;
     NSArray *dataPoints = [_dataPointsHue subarrayWithRange:NSMakeRange(_dataPointsHue.count - len, len)];
     
     // If we have enough data points then remove from beginning
-    if (_dataPointsHue.count > CRFHeartRateMinFrameCount) {
-        NSInteger len = _dataPointsHue.count - CRFHeartRateMinFrameCount;
+    if (_dataPointsHue.count > _minFrameCount) {
+        NSInteger len = _dataPointsHue.count - _minFrameCount;
         [_dataPointsHue removeObjectsInRange:NSMakeRange(0, len)];
     }
     
@@ -300,14 +302,14 @@ const float CRFRedThreshold = 40;
 - (NSInteger)calculateBPMWithDataPoints:(NSArray *)dataPoints {
 
     // Get a window of data points that is the length of the window we are looking at
-    NSUInteger len = CRFHeartRateWindowSeconds * CRFHeartRateFramesPerSecond;
+    NSUInteger len = CRFHeartRateWindowSeconds * _frameRate;
     if (dataPoints.count < len) { return -1; }
     NSArray *inputPoints = [dataPoints subarrayWithRange:NSMakeRange(dataPoints.count - len, len)];
     
     NSArray *bandpassFilteredItems = [self butterworthBandpassFilter:inputPoints];
     NSArray *smoothedBandpassItems = [self medianSmoothing:bandpassFilteredItems];
     int peak = [self medianPeak:smoothedBandpassItems];
-    NSInteger heartRate = 60 * CRFHeartRateFramesPerSecond / peak;
+    NSInteger heartRate = 60 * _frameRate / peak;
     return heartRate;
 }
 
@@ -347,7 +349,7 @@ const float CRFRedThreshold = 40;
     const int NPOLES = 8;
     static float xv[NZEROS+1], yv[NPOLES+1];
     
-    // http://www-users.cs.york.ac.uk/~fisher/cgi-bin/mkfscript
+    // http://www-users.cs.york.ac.uk/~fisher/mkfilter/trad.html
     // Butterworth Bandpass filter
     // 4th order
     // sample rate - varies between possible camera frequencies. Either 30, 60, 120, or 240 FPS
@@ -356,10 +358,10 @@ const float CRFRedThreshold = 40;
     // Bandpass filter was chosen because it removes frequency noise outside of our target range (both higher and lower)
     
     double dGain;
-    switch (CRFHeartRateFramesPerSecond) {
-        case 60:
-            dGain = CRFHeartRateFramesPerSecond == 60; break;
-        default:    // 30 fps
+    switch (_frameRate) {
+        case 60: // fps
+            dGain = 3.700200091e+03; break;
+        default: // 30 fps
             dGain = 1.232232910e+02; break;
     }
 
@@ -373,7 +375,7 @@ const float CRFRedThreshold = 40;
         }
         xv[NZEROS] = input / dGain;
         
-        switch (CRFHeartRateFramesPerSecond) {
+        switch (_frameRate) {
             case 60:    // fps
                 yv[8] =   (xv[0] + xv[8]) - 4 * (xv[2] + xv[6]) + 6 * xv[4]
                 + ( -0.4807840433 * yv[0]) + (  4.1451027450 * yv[1])
@@ -587,8 +589,8 @@ const float CRFRedThreshold = 40;
     int bitsPerSecond = numPixels * bitsPerPixel;
     
     NSDictionary *compressionProperties = @{ AVVideoAverageBitRateKey : @(bitsPerSecond),
-                                             AVVideoExpectedSourceFrameRateKey : @(CRFHeartRateFramesPerSecond),
-                                             AVVideoMaxKeyFrameIntervalKey : @(CRFHeartRateFramesPerSecond) };
+                                             AVVideoExpectedSourceFrameRateKey : @(_frameRate),
+                                             AVVideoMaxKeyFrameIntervalKey : @(_frameRate) };
     
     NSDictionary *videoSettings = @{ AVVideoCodecKey : AVVideoCodecTypeH264,
                        AVVideoWidthKey : @(dimensions.width),

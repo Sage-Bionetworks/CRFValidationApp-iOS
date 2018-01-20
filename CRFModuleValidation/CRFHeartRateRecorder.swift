@@ -197,10 +197,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     private var _videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var _loggingSamples: [CRFHeartRateSample] = []
     
-    lazy var sampleProcessor: CRFHeartRateProcessor! = {
-        let processor = CRFHeartRateProcessor(delegate: self, callbackQueue: processingQueue)
-        return processor
-    }()
+    private var sampleProcessor: CRFHeartRateProcessor!
     
     deinit {
         _session?.stopRunning()
@@ -236,6 +233,8 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         }
         guard _session == nil else { return }
         
+
+
         // Create the session
         let session = AVCaptureSession()
         _session = session
@@ -256,7 +255,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         var currentFormat: AVCaptureDevice.Format!
         for format in captureDevice.formats {
             guard let frameRates = format.videoSupportedFrameRateRanges.first,
-                frameRates.maxFrameRate == Double(CRFHeartRateFramesPerSecond)
+                frameRates.maxFrameRate == Double(cameraSettings.frameRate)
                 else {
                     continue
             }
@@ -274,6 +273,9 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
                 currentFormat = format
             }
         }
+        
+        // Initialize the processor
+        sampleProcessor = CRFHeartRateProcessor(delegate: self, frameRate: Int32(cameraSettings.frameRate), callbackQueue: processingQueue)
 
         // Tell the device to use the max frame rate.
         try captureDevice.lockForConfiguration()
@@ -285,8 +287,8 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         captureDevice.activeFormat = currentFormat
         
         // Set the frame rate
-        captureDevice.activeVideoMinFrameDuration = CMTimeMake(1, CRFHeartRateFramesPerSecond)
-        captureDevice.activeVideoMaxFrameDuration = CMTimeMake(1, CRFHeartRateFramesPerSecond)
+        captureDevice.activeVideoMinFrameDuration = CMTimeMake(1, sampleProcessor.frameRate)
+        captureDevice.activeVideoMaxFrameDuration = CMTimeMake(1, sampleProcessor.frameRate)
         
         // Belt & suspenders. For currently supported devices, HDR is not supported for the lowest
         // resolution format (which is what this recorder uses), but in case a device comes out that
@@ -418,7 +420,7 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
                                         blue: sample.blue)
 
         // Only send UI updates once a second and only after min window of time
-        guard _loggingSamples.count >= CRFHeartRateFramesPerSecond else {
+        guard _loggingSamples.count >= sampleProcessor.frameRate else {
             // just save the samples in batch and send when the heart rate is updated
             _loggingSamples.append(sample)
             return
@@ -466,6 +468,9 @@ public struct CRFCameraSettings : Codable, RSDResult {
     /// but is ignored by the configuration.
     public var endDate: Date = Date()
     
+    /// The frame rate for taking video. Default = `60`
+    public var frameRate: Int = 60
+    
     /// Desired lens focal length. This number should be between `0.0 - 1.0` where "nearest" is `0`
     /// and "farthest" is `1.0`. Default = `1.0`
     public var focusLensPosition: Float = 1.0
@@ -473,9 +478,9 @@ public struct CRFCameraSettings : Codable, RSDResult {
     /// The exposure duration in seconds.
     ///
     /// Note that changes to this property may result in changes to `activeVideoMinFrameDuration`
-    /// and/or `activeVideoMaxFrameDuration`. Default = `1/125`
-    public var exposureDuration: TimeInterval = 1.0 / 125.0
-    
+    /// and/or `activeVideoMaxFrameDuration`. Default = `1/120`
+    public var exposureDuration: TimeInterval = 1.0 / 120.0
+
     /// This property returns the sensor's sensitivity to light by means of a gain value applied to
     /// the signal.
     ///
@@ -483,17 +488,17 @@ public struct CRFCameraSettings : Codable, RSDResult {
     /// Higher values will result in noisier images.
     ///
     /// If the settings requests an ISO that is outside the bounds of the minimum and maximum,
-    /// then the actual value set will be bound by those values. Default = `minISO`
-    public var iso: Float = 0
+    /// then the actual value set will be bound by those values. Default = `60`
+    public var iso: Float = 60
     
-    /// White balance is set using the temperature and tint. Default = (temperature: 3200K, tint: 0)
+    /// White balance is set using the temperature and tint. Default = (temperature: 5200K, tint: 0)
     public var whiteBalance : WhiteBalance = WhiteBalance()
     
     /// Codable struct that can be converted to `AVCaptureDevice.WhiteBalanceTemperatureAndTintValues`.
     public struct WhiteBalance : Codable {
         
         /// The temperature setting.
-        public var temperature: Float = 3200
+        public var temperature: Float = 5200
         
         /// The tint setting.
         public var tint: Float = 0
@@ -506,6 +511,7 @@ public struct CRFCameraSettings : Codable, RSDResult {
     
     private enum CodingKeys: String, CodingKey {
         case identifier
+        case frameRate
         case focusLensPosition
         case exposureDuration
         case iso

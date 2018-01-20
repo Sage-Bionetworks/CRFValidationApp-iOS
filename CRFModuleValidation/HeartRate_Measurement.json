@@ -43,7 +43,7 @@
                      "identifier": "exposureDuration",
                      "dataType": "decimal",
                      "prompt": "Exposure",
-                     "placeholder": "(shutter speed). Default = 1/125",
+                     "placeholder": "(shutter speed). Default = 1/120",
                      "uiHint": "textfield",
                      "optional": true
                      },
@@ -51,7 +51,7 @@
                      "identifier": "iso",
                      "dataType": "integer",
                      "prompt": "ISO",
-                     "placeholder": "Default = minISO",
+                     "placeholder": "Default = 60",
                      "uiHint": "textfield",
                      "optional": true
                      },
@@ -59,7 +59,7 @@
                      "identifier": "whiteBalance.temperature",
                      "dataType":"integer",
                      "prompt": "Temperature",
-                     "placeholder": "white balance temperature. Default = 3200K",
+                     "placeholder": "White balance. Default = 5200K",
                      "uiHint": "textfield",
                      "optional": true
                      },
@@ -67,7 +67,7 @@
                      "identifier": "whiteBalance.tint",
                      "dataType": "integer",
                      "prompt": "Tint",
-                     "placeholder": "white balance tint. Default = 0",
+                     "placeholder": "White balance. Default = 0",
                      "uiHint": "textfield",
                      "optional": true
                      }
