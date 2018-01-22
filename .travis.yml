@@ -17,6 +17,7 @@ script:
 deploy:
   skip_cleanup: true
   provider: s3
+  acl: public_read
   bucket: ios-apps.sagebridge.org
   local-dir: build
   upload-dir: ci/$TRAVIS_XCODE_SCHEME/$TRAVIS_BRANCH
