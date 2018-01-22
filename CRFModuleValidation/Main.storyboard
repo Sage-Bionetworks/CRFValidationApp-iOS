@@ -23,7 +23,19 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="iEd-w2-tre">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.0 (1), Participant SY0919" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9VG-kz-TOM">
+                                    <rect key="frame" x="43.5" y="23" width="233.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" red="0.36862745099999999" green="0.67843137249999996" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="9VG-kz-TOM" firstAttribute="centerX" secondItem="iEd-w2-tre" secondAttribute="centerX" id="8N2-Tf-S7M"/>
+                                <constraint firstItem="9VG-kz-TOM" firstAttribute="centerY" secondItem="iEd-w2-tre" secondAttribute="centerY" id="Alz-mt-rs2"/>
+                            </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="pTG-2u-cyF">
                             <rect key="frame" x="0.0" y="162" width="320" height="44"/>
@@ -70,6 +82,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Activity" id="eNx-C2-bCy"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="9VG-kz-TOM" id="lVx-ih-9z8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQF-8j-hC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
