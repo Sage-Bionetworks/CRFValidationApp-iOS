@@ -36,6 +36,17 @@ import BridgeAppSDK
 
 class ActivityTableViewController: SBAActivityTableViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let version = Bundle.main.versionString
+        let build = Bundle.main.appVersion()
+        let externalID = self.scheduledActivityManager.user.externalId ?? "Unknown"
+        self.titleLabel.text = Localization.localizedStringWithFormatKey("CRF %@ (%@), Participant %@", version, build, externalID)
+    }
+    
     @IBAction func fitbitButtonTapped(_ sender: Any) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         appDelegate.connectToFitbit()
