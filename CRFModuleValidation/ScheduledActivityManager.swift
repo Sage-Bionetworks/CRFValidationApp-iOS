@@ -309,6 +309,7 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
     
     public func archivableResults() -> [(String, SBAArchivableResult)]? {
         
+        var filemarkers = [String]()
         var archivableResults: [(String, SBAArchivableResult)] = []
         var answerMap: [String : Any] = [:]
         
@@ -318,7 +319,11 @@ extension RSDTaskResultObject : SBAScheduledActivityResult {
             for result in results {
 
                 if let archivableResult = result as? SBAArchivableResult {
-                    archivableResults.append((stepIdentifier, archivableResult))
+                    let filemarker = "\(stepIdentifier)_\(archivableResult.identifier)"
+                    if !filemarkers.contains(filemarker) {
+                        filemarkers.append(filemarker)
+                        archivableResults.append((stepIdentifier, archivableResult))
+                    }
                 }
                 else if let collection = result as? RSDCollectionResult {
                     recursiveAddFunc(sectionIdentifier, collection.identifier, collection.inputResults)
@@ -569,7 +574,8 @@ extension CRFCameraSettings : SBAArchivableResult {
         do {
             let encoder = RSDFactory.shared.createJSONEncoder()
             let data = try encoder.encode(self)
-            return ArchiveableResult(result: data as NSData, filename: self.identifier)
+            let filename = bridgifyFilename(self.identifier)
+            return ArchiveableResult(result: data as NSData, filename: filename)
         } catch let err {
             debugPrint("Error encoding result: \(err)")
             return nil
