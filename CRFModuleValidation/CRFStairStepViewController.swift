@@ -37,22 +37,35 @@ import ResearchSuite
 
 public class CRFStairStepViewController: RSDActiveStepViewController {
     
-    @IBOutlet open var commandLabel: UILabel?
+    /// The pointer to the audio player.
+    private var audioPlayer: AVAudioPlayer!
     
-    public var imageView: UIImageView! {
+    /// The image view that is used to show the animation.
+    private var animationView: UIImageView? {
         return (self.navigationHeader as? RSDStepHeaderView)?.imageView
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    /// Override `viewDidLoad()` to open the audio URL.
+    public override func viewDidLoad() {
+        super.viewDidLoad()
         
-        // stop the stair step animation until the accelerometers are ready
-        imageView.stopAnimating()
+        do {
+            let url = Bundle.main.url(forResource: "stairStepAudio", withExtension: "m4a")!
+            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch let error {
+            debugPrint("Failed to open audio file. \(error)")
+        }
     }
     
+    /// Override `viewWillAppear()` to stop the stair step animation until the accelerometers are ready.
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animationView?.stopAnimating()
+    }
+    
+    /// Override `performStartCommands()` to start the audio and animation after a delay.
+    /// This allows the view controller transition to finish before starting the step.
     public override func performStartCommands() {
-        self.instructionLabel?.text = self.uiStep?.text
-        
         // Use a delay to show the "Stand still" text for the instruction
         // to give the user a moment to prepare.
         let delay = DispatchTime.now() + .milliseconds(500)
@@ -63,77 +76,21 @@ public class CRFStairStepViewController: RSDActiveStepViewController {
     
     private func _finishStart() {
         guard self.isVisible else { return }
+        audioPlayer.play()
+        animationView?.startAnimating()
         super.performStartCommands()
-        imageView.startAnimating()
     }
     
+    /// Override `stop()` to stop the audio and animation.
     public override func stop() {
         super.stop()
-        imageView.stopAnimating()
+        self.audioPlayer.stop()
+        animationView?.stopAnimating()
     }
     
+    /// Override the timer interval and set to 96 beats per minute.
     public override var timerInterval: TimeInterval {
         return _metronomeInterval
     }
-
-    lazy public var firstInstruction: (TimeInterval, String)? = {
-        return self.spokenInstructions.first
-    }()
-    
-    lazy public var secondInstruction: (TimeInterval, String)? = {
-        return self.spokenInstructions.last
-    }()
-    
-    lazy public var spokenInstructions: [(TimeInterval, String)] = {
-        guard let instructions = (self.step as? RSDActiveUIStepObject)?.spokenInstructions else { return [] }
-        let sorted = instructions.sorted(by: { $0.key < $1.key })
-        return Array(sorted.prefix(2))
-    }()
-    
-    private var _speakCadenceOn: Bool = true
     private let _metronomeInterval: TimeInterval = 60 / 96
-    private let _speakCadenceDuration: TimeInterval = (60 / 96) * 4 * 4
-
-    /// Override `speakInstruction`. This method is called every time the timer is fired.
-    /// Repeat the "Up, Down" instructions for the first 5 cycles.
-    public override func speakInstruction(at duration: TimeInterval) {
-        
-        let cadence = Int(duration / _metronomeInterval) % 4
-        let upStep = cadence == 0 || cadence == 1
-        
-        // Do nothing if the first and second instruction aren't set.
-        guard let instructionText = (upStep ? firstInstruction : secondInstruction)?.1,
-            let stepDuration = self.activeStep?.duration
-            else {
-                return
-        }
-        
-        // Play metronome sound.
-        self.playSound(.tock)
-        
-        if _speakCadenceOn && duration > 0 && (cadence == 0 || cadence == 2) {
-
-            // If this is the start then repeat the up/down spoken cadence for the first
-            // few steps. After that, only play the metronome sound and follow the logic set up
-            // by the super class.
-            if !upStep && duration > _speakCadenceDuration {
-                _speakCadenceOn = false
-            }
-            
-            // Speak the up/down cadence.
-            self.speakInstruction(instructionText, at: duration, completion: nil)
-            self.commandLabel?.text = instructionText
-        }
-        else {
-            super.speakInstruction(at: duration)
-            if duration < stepDuration {
-                // Only the end step should write to the instruction label.
-                // Otherwise, should only show the animating person.
-                self.commandLabel?.text = ""
-            } else {
-                // TODO: syoung 01/03/2018 Localize
-                self.commandLabel?.text = "Stand Still"
-            }
-        }
-    }
 }

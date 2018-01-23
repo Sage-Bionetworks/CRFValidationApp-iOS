@@ -733,7 +733,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stairStepLarge1" translatesAutoresizingMaskIntoConstraints="NO" id="bFK-2n-tXR">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                                 <color key="backgroundColor" name="perrywinkleTwo"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fS4-Pb-RWv" userLabel="Header" customClass="RSDStepHeaderView" customModule="ResearchSuiteUI">
@@ -824,23 +824,15 @@
                                     <constraint firstAttribute="height" constant="80" id="y4z-qc-Y07"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stand Still" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49V-MX-D7Z">
-                                <rect key="frame" x="33.5" y="480" width="253.5" height="72"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <color key="textColor" name="white"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" name="perrywinkleTwo"/>
                         <constraints>
-                            <constraint firstItem="49V-MX-D7Z" firstAttribute="centerX" secondItem="ozR-fT-mKP" secondAttribute="centerX" id="0t4-yC-lcr"/>
                             <constraint firstAttribute="trailing" secondItem="fS4-Pb-RWv" secondAttribute="trailing" id="6Io-Fu-txe"/>
                             <constraint firstItem="fGe-04-ucY" firstAttribute="top" secondItem="fS4-Pb-RWv" secondAttribute="bottom" id="HnS-4T-lwr"/>
                             <constraint firstItem="fS4-Pb-RWv" firstAttribute="leading" secondItem="j2T-Rz-fes" secondAttribute="leading" id="NBl-bv-soa"/>
                             <constraint firstItem="bFK-2n-tXR" firstAttribute="trailing" secondItem="j2T-Rz-fes" secondAttribute="trailing" id="UV3-Xv-EEL"/>
-                            <constraint firstItem="j2T-Rz-fes" firstAttribute="bottom" secondItem="bFK-2n-tXR" secondAttribute="bottom" constant="100" id="VQO-jq-Akc"/>
+                            <constraint firstItem="j2T-Rz-fes" firstAttribute="bottom" secondItem="bFK-2n-tXR" secondAttribute="bottom" constant="40" id="VQO-jq-Akc"/>
                             <constraint firstItem="bFK-2n-tXR" firstAttribute="leading" secondItem="j2T-Rz-fes" secondAttribute="leading" id="ezh-L2-lh5"/>
-                            <constraint firstItem="j2T-Rz-fes" firstAttribute="bottom" secondItem="49V-MX-D7Z" secondAttribute="bottom" constant="16" id="g2g-08-pTU"/>
                             <constraint firstItem="j2T-Rz-fes" firstAttribute="trailing" secondItem="fGe-04-ucY" secondAttribute="trailing" id="gmp-uE-QLx"/>
                             <constraint firstItem="fGe-04-ucY" firstAttribute="leading" secondItem="j2T-Rz-fes" secondAttribute="leading" id="lEn-qG-oUb"/>
                             <constraint firstItem="bFK-2n-tXR" firstAttribute="top" secondItem="ozR-fT-mKP" secondAttribute="top" id="nTC-Qd-E4O"/>
@@ -849,7 +841,6 @@
                         <viewLayoutGuide key="safeArea" id="j2T-Rz-fes"/>
                     </view>
                     <connections>
-                        <outlet property="commandLabel" destination="49V-MX-D7Z" id="3KF-8B-4Ld"/>
                         <outlet property="countdownLabel" destination="0H1-a5-wRw" id="oJH-B0-JIz"/>
                         <outlet property="navigationHeader" destination="fS4-Pb-RWv" id="ayo-Ss-ECO"/>
                     </connections>
@@ -1261,7 +1252,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVD-qs-xxl" customClass="RSDRoundedButton" customModule="ResearchSuiteUI">
-                                        <rect key="frame" x="24" y="509" width="272" height="35"/>
+                                        <rect key="frame" x="24" y="492" width="272" height="52"/>
                                         <color key="backgroundColor" name="white"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <color key="tintColor" name="darkPastelGreenTwo"/>
@@ -1348,13 +1339,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="950" text="Your heart rate changed by" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-Jl-8y5">
-                                        <rect key="frame" x="24" y="310" width="272" height="86"/>
+                                        <rect key="frame" x="24" y="280" width="272" height="86"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <color key="textColor" name="white"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2w-IM-GMs">
-                                        <rect key="frame" x="83" y="414" width="155" height="98"/>
+                                        <rect key="frame" x="83" y="384" width="155" height="98"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="950" text="65" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAS-tv-vtl">
                                                 <rect key="frame" x="0.0" y="0.0" width="97.5" height="98"/>
@@ -1380,7 +1371,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOO-0a-utf" customClass="RSDRoundedButton" customModule="ResearchSuiteUI">
-                                        <rect key="frame" x="24" y="522" width="272" height="22"/>
+                                        <rect key="frame" x="24" y="492" width="272" height="52"/>
                                         <color key="backgroundColor" name="white"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <color key="tintColor" name="darkPastelGreenTwo"/>
