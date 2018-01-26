@@ -77,26 +77,26 @@ class ScheduleResultSource: NSObject, SBATaskResultSource {
 }
 
 struct Schedule {
-    
+
     public static let userInfoKeyTaskGroup = "userInfoKeyTaskGroup"
     static let timeOfDayKey = "timeOfDay"
     static let daysOfWeekKey = "daysOfWeek"
-    
+
     static let timeOfDayFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         return formatter
     }()
-    
+
     let taskGroup: TaskGroup
     let daysOfWeek: Set<Int>
     let timeOfDay: DateComponents?
     let hasData: Bool
-    
+
     var isDaily: Bool {
         return self.daysOfWeek == Set(1...7)
     }
-    
+
     var timeDate: Date? {
         guard self.timeOfDay != nil else { return nil }
         var dateComponents = self.timeOfDay!
@@ -105,55 +105,55 @@ struct Schedule {
         dateComponents.month = 1
         return Calendar.gregorian.date(from: dateComponents)
     }
-    
+
     var localizedString: String {
-        
+
         let dayOfWeekText: String = {
             guard !self.isDaily else { return Localization.localizedString("JP_SCHEDULE_DAILY") }
-            
+
             let weekdayFormatter = DateFormatter()
             weekdayFormatter.setLocalizedDateFormatFromTemplate("EEEE")
-            
+
             var dateComponents = DateComponents()
             dateComponents.calendar = Calendar.gregorian
             dateComponents.year = 2017
             dateComponents.month = 1
             dateComponents.weekdayOrdinal = 1
-            
+
             let daysText = self.daysOfWeek.map({ (weekday) -> String in
                 dateComponents.weekday = weekday
                 guard let weekDate = dateComponents.date else { return "" }
                 return weekdayFormatter.string(from: weekDate)
             })
-            
+
             return Localization.localizedJoin(textList: daysText)
         }()
-        
+
         guard let timeDate = self.timeDate else { return dayOfWeekText }
-        
+
         let timeFormatter = DateFormatter()
         timeFormatter.dateStyle = .none
         timeFormatter.timeStyle = .short
         let timeText = timeFormatter.string(from: timeDate)
-        
+
         return Localization.localizedStringWithFormatKey("JP_SCHEDULE_FORMAT_%@_at_%@", dayOfWeekText, timeText)
     }
-    
+
     init?(taskGroup: TaskGroup, date:Date, activities:[SBBScheduledActivity], dayOne:Date) {
-        
+
         guard let scheduleId = taskGroup.scheduleTaskIdentifier else { return nil }
-        
+
         self.taskGroup = taskGroup
-        
+
         // Look for client data
         let filtered = activities.filter({
             scheduleId.rawValue == $0.activityIdentifier &&
             $0.finishedOn != nil && $0.finishedOn <= date
         }).sorted { $0.finishedOn < $1.finishedOn }
         let json: [String : Any]? = filtered.last?.clientData as? [String : Any]
-        
+
         self.hasData = (filtered.count > 0)
-        
+
         self.timeOfDay = {
             guard let tod = json?[Schedule.timeOfDayKey] as? String else { return nil }
             let components = tod.components(separatedBy: ":")
@@ -161,7 +161,7 @@ struct Schedule {
             else {
                 return nil
             }
-            
+
             var dateComponents = DateComponents()
             dateComponents.hour = hour
             dateComponents.minute = minute
@@ -169,36 +169,36 @@ struct Schedule {
             dateComponents.calendar = Calendar.current
             return dateComponents
         }()
-        
+
         self.daysOfWeek = Schedule.parseDaysOfWeek(scheduleId: scheduleId, daysOfWeek: json?[Schedule.daysOfWeekKey] as? [Int], dayOne: dayOne)
     }
-    
+
     init?(scheduledActivity: SBBScheduledActivity, taskResult:ORKTaskResult, dayOne:Date) {
         guard let scheduleId = scheduledActivity.taskId,
             let taskGroup = ScheduleSection.scheduleGroups.first(where: {$0.scheduleTaskIdentifier == scheduleId })
         else {
             return nil
         }
-        
+
         self.taskGroup = taskGroup
-        
+
         let daysOfWeekResult = taskResult.stepResult(forStepIdentifier: Schedule.daysOfWeekKey)?.results?.first as? ORKChoiceQuestionResult
         self.daysOfWeek = Schedule.parseDaysOfWeek(scheduleId: scheduleId,
                                                    daysOfWeek: daysOfWeekResult?.choiceAnswers as? [Int],
                                                    dayOne: dayOne)
-        
+
         let timeOfDayResult = taskResult.stepResult(forStepIdentifier: Schedule.timeOfDayKey)?.results?.first as? ORKTimeOfDayQuestionResult
         self.timeOfDay = timeOfDayResult?.dateComponentsAnswer
         self.hasData = true
     }
-    
+
     static func parseDaysOfWeek(scheduleId: TaskIdentifier, daysOfWeek: [Int]?, dayOne:Date) -> Set<Int> {
         guard let dow = daysOfWeek else {
             return Set(1...7)
         }
         return Set(dow)
     }
-    
+
     func stepResult(with stepIdentifier: String) -> ORKStepResult? {
         if stepIdentifier == Schedule.timeOfDayKey, let dateComponents = self.timeOfDay {
             let result = ORKTimeOfDayQuestionResult(identifier: stepIdentifier)
@@ -211,43 +211,6 @@ struct Schedule {
             return ORKStepResult(stepIdentifier: stepIdentifier, results: [result])
         }
         return nil
-    }
-    
-    func scheduleReminder() {
-        guard let timeComponents = self.timeOfDay
-        else {
-            return
-        }
-
-        if isDaily {
-            addNotification(with: timeComponents)
-        }
-        else {
-            for weekday in self.daysOfWeek {
-                var dateComponents = timeComponents
-                dateComponents.weekday = weekday
-                addNotification(with: dateComponents)
-            }
-        }
-    }
-    
-    fileprivate func addNotification(with dateComponents: DateComponents) {
-        
-        let content = UNMutableNotificationContent()
-        content.body = "Don't forget to do your \(taskGroup.title) today!"
-        content.sound = UNNotificationSound.default()
-        content.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber;
-        content.categoryIdentifier = "org.sagebase.crfModuleApp.Schedule"
-        content.userInfo = [Schedule.userInfoKeyTaskGroup: taskGroup.identifier]
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let request = UNNotificationRequest(identifier: taskGroup.identifier, content: content, trigger: trigger)
-        
-        // Schedule the notification.
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if error != nil {
-                print("Failed to add notification for \(self.taskGroup.identifier). \(error!)")
-            }
-        }
     }
 }
 
