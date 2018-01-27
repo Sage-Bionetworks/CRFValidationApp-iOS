@@ -175,7 +175,7 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
         if self.scheduledActivityManager.allActivitiesCompleted && !isCompletedOnFirstLoad {
             _exitOnDidAppear = true
             
-            guard let schedule = clinicDay0Schedule else { return }
+            guard let schedule = clinicDay0Schedule, schedule.finishedOn == nil else { return }
             schedule.startedOn = Date()
             schedule.finishedOn = Date()
             self.scheduledActivityManager.sendUpdated(scheduledActivities: [schedule])
