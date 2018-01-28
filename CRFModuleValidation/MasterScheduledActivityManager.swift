@@ -50,7 +50,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     
     // Save a pointer to today's activities in case the paged group does not include them
     var scheduleSections: [ScheduleSection] = []
-    var schedules: [Schedule] = []
     
     var clinicDay0Schedule: SBBScheduledActivity?
     
@@ -116,13 +115,8 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         return todayItem.isCompleted
     }
     
-    func schedule(for taskGroup: TaskGroup) -> Schedule? {
-        return self.schedules.first(where: { $0.taskGroup == taskGroup })
-    }
-    
     override func resetData() {
         scheduleSections.removeAll()
-        schedules.removeAll()
         dayOne = nil
     }
     
@@ -151,10 +145,9 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
 
         // Update the schedules if this is a cache, there are no schedules or this is the full range
         if self.scheduleSections.count == 0 || self.loadingState == .fromServerForFullDateRange {
-            let (sections, schedules, startDate) = ScheduleSection.buildSchedule(with: scheduledActivities, enrollmentDate: enrollment, studyDuration: studyDuration)
+            let (sections, startDate) = ScheduleSection.buildSchedule(with: scheduledActivities, enrollmentDate: enrollment, studyDuration: studyDuration)
             self.dayOne = startDate
-            updateSchedules(newSchedules: schedules,
-                            newSections: sections,
+            updateSchedules(newSections: sections,
                             shouldResetNotifications: self.loadingState == .fromServerForFullDateRange)
         }
         
@@ -172,12 +165,11 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         })
     }
     
-    func updateSchedules(newSchedules: [Schedule], newSections: [ScheduleSection], shouldResetNotifications: Bool) {
+    func updateSchedules(newSections: [ScheduleSection], shouldResetNotifications: Bool) {
         DispatchQueue.main.async {
             
             // Set the new values
             self.scheduleSections = newSections
-            self.schedules = newSchedules
             
             // refresh the delegate
             self.delegate?.reloadFinished(self)
