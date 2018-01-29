@@ -73,6 +73,29 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
         // Do nothing - This isn't used for this module
     }
     
+    var clinicDay0Schedule: SBBScheduledActivity?
+    
+    override func load(scheduledActivities: [SBBScheduledActivity]) {
+        // Set the clinic day 0 schedule if found
+        if let dataGroups = SBAUser.shared.dataGroups,
+            let clinicIdentifier = dataGroups.first(where: { $0.hasPrefix("clinic") }),
+            let schedule = scheduledActivities.first(where: { $0.activityIdentifier == clinicIdentifier }) {
+            self.clinicDay0Schedule = schedule
+        }
+        super.load(scheduledActivities: scheduledActivities)
+    }
+    
+    override func sendUpdated(scheduledActivities: [SBBScheduledActivity]) {
+        var updatedSchedules = scheduledActivities
+        if scheduledActivities.contains(where: { $0.taskId == TaskIdentifier.backgroundSurvey}),
+            let schedule = clinicDay0Schedule, schedule.finishedOn == nil {
+            schedule.startedOn = Date()
+            schedule.finishedOn = Date()
+            updatedSchedules.append(schedule)
+        }
+        super.sendUpdated(scheduledActivities: updatedSchedules)
+    }
+    
     // MARK: ORKTask management
     
     override func createFactory(for schedule: SBBScheduledActivity, taskRef: SBATaskReference) -> SBASurveyFactory {
