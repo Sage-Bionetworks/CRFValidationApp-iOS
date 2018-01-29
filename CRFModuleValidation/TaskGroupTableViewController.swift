@@ -45,9 +45,7 @@ class BaseTaskGroupTableViewController: UITableViewController, SBAScheduledActiv
     lazy var scheduledActivityManager : GroupedScheduledActivityManager = {
         return GroupedScheduledActivityManager(delegate: self)
     }()
-    
-    var clinicDay0Schedule: SBBScheduledActivity?
-    
+        
     func reloadFinished(_ sender: Any?) {
         // reload table
         self.refreshControl?.endRefreshing()
@@ -174,12 +172,6 @@ class TaskGroupTableViewController: BaseTaskGroupTableViewController {
         isFirstAppearance = false
         if self.scheduledActivityManager.allActivitiesCompleted && !isCompletedOnFirstLoad {
             _exitOnDidAppear = true
-            
-            guard let schedule = clinicDay0Schedule, schedule.finishedOn == nil else { return }
-            schedule.startedOn = Date()
-            schedule.finishedOn = Date()
-            self.scheduledActivityManager.sendUpdated(scheduledActivities: [schedule])
-            MasterScheduledActivityManager.shared.forceReload()
         }
     }
     

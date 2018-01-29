@@ -509,8 +509,7 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             vc.scheduledActivityManager.taskGroup = taskGroup
             vc.scheduledActivityManager.date = date
             vc.scheduledActivityManager.activities = scheduledActivityManager.activities
-            
-            vc.clinicDay0Schedule = scheduledActivityManager.clinicDay0Schedule
+            vc.scheduledActivityManager.clinicDay0Schedule = scheduledActivityManager.clinicDay0Schedule
         }
     }
     

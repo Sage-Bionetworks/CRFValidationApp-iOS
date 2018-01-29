@@ -51,8 +51,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     // Save a pointer to today's activities in case the paged group does not include them
     var scheduleSections: [ScheduleSection] = []
     
-    var clinicDay0Schedule: SBBScheduledActivity?
-    
     let scheduleUpdatedNotificationName = Notification.Name("MasterScheduledActivityManager.scheduleUpdated")
     
     let studyDuration: DateComponents = {
@@ -134,14 +132,6 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     }
     
     override func load(scheduledActivities: [SBBScheduledActivity]) {
-
-        // Save the clinic scheduled activity for this user's data groups
-        guard let dataGroups = SBAUser.shared.dataGroups,
-            let clinicIdentifier = dataGroups.first(where: { $0.hasPrefix("clinic") })
-            else {
-                return
-        }
-        self.clinicDay0Schedule = scheduledActivities.first(where: { $0.activityIdentifier == clinicIdentifier })
 
         // Update the schedules if this is a cache, there are no schedules or this is the full range
         if self.scheduleSections.count == 0 || self.loadingState == .fromServerForFullDateRange {
