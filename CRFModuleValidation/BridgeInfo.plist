@@ -40,7 +40,7 @@
 			<string>Burden Scale</string>
 			<key>bridgeSurvey</key>
 			<true/>
-			<key>estimatedMinutes</key>
+			<key>activityMinutes</key>
 			<integer>5</integer>
 			<key>title</key>
 			<string>User Burden Scale Survey</string>
@@ -52,7 +52,7 @@
 			<string>Usability Scale</string>
 			<key>bridgeSurvey</key>
 			<true/>
-			<key>estimatedMinutes</key>
+			<key>activityMinutes</key>
 			<integer>5</integer>
 			<key>title</key>
 			<string>System Usability Scale Survey</string>
@@ -70,7 +70,7 @@
 			<string>Cardio Stress Test</string>
 			<key>resourceName</key>
 			<string>Cardio_Stress</string>
-			<key>estimatedMinutes</key>
+			<key>activityMinutes</key>
 			<integer>20</integer>
 			<key>title</key>
 			<string>Cardiovascular stress test</string>
@@ -84,7 +84,7 @@
 			<string>Cardio 12MT</string>
 			<key>resourceName</key>
 			<string>Cardio_12MT</string>
-			<key>estimatedMinutes</key>
+			<key>activityMinutes</key>
 			<integer>15</integer>
 			<key>title</key>
 			<string>12 minute test</string>
@@ -98,7 +98,7 @@
 			<string>Cardio Stair Step</string>
 			<key>resourceName</key>
 			<string>Cardio_Stair_Step</string>
-			<key>estimatedMinutes</key>
+			<key>activityMinutes</key>
 			<integer>5</integer>
 			<key>title</key>
 			<string>Stair Step</string>
@@ -112,7 +112,7 @@
 			<string>Background Survey</string>
 			<key>resourceName</key>
 			<string>Background_Survey</string>
-			<key>estimatedMinutes</key>
+			<key>activityMinutes</key>
 			<integer>3</integer>
 			<key>title</key>
 			<string>Background and health survey</string>

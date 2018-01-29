@@ -152,8 +152,26 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         // Set up the schedule management
         scheduleSections = newSchedules
         isFirstDay = Calendar.gregorian.isDateInToday(dayOne)
-        todaySectionIndex = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) ??
-                            scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date.addingNumberOfDays(1)) }) ?? 0
+        todaySectionIndex = {
+            if let inTodayIdx = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) {
+                // If there is an activity scheduled for today then include it as the today schedule.
+                return inTodayIdx
+            }
+            else if let inYesterdayIdx = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date.addingNumberOfDays(1)) })
+            {
+                // If there was a survey scheduled for yesterday, then look to see if the day is the overlap day
+                // such that the last clinic visit could be run *before* 14 days out.
+                if inYesterdayIdx == 1, scheduleSections[inYesterdayIdx].isCompleted {
+                    return 0
+                } else {
+                    return inYesterdayIdx
+                }
+            }
+            else {
+                // return day 14 (or first day if the other schedules aren't loaded)
+                return 0
+            }
+        }()
         
         // set up values associated with first load
         if isFirstLoad {
@@ -392,7 +410,11 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             headerCell.titleToDetail.constant = self.view.bounds.size.width < 375 ? 12 : 24
         }
         else if let dateCell = cell as? MyJourneyDateCell, let scheduleSection = self.scheduleSection(at: indexPath) {
-            if indexPath.section == self.todaySectionIndex &&
+            if scheduleSection.contains(taskGroup: .clinicDay14) || scheduleSection.contains(taskGroup: .clinicDay14alt) {
+                // Do not show date for the final clinc visit.
+                dateCell.dateLabel.text = ""
+            }
+            else if indexPath.section == self.todaySectionIndex &&
                 Calendar.gregorian.isDateInToday(scheduleSection.date) {
                 dateCell.dateLabel.text = Localization.localizedString("Today")
             }
