@@ -59,6 +59,13 @@ class AppDelegate: SBAAppDelegate {
         return super.application(application, willFinishLaunchingWithOptions: launchOptions)
     }
     
+    override func applicationDidBecomeActive(_ application: UIApplication) {
+        super.applicationDidBecomeActive(application)
+        
+        // Reset the badge icon on active
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         debugPrint("\(String(describing: userActivity.webpageURL))")
         guard let fitbitCompletionURL = userActivity.webpageURL else { return false }

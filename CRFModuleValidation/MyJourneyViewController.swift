@@ -392,7 +392,11 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             headerCell.titleToDetail.constant = self.view.bounds.size.width < 375 ? 12 : 24
         }
         else if let dateCell = cell as? MyJourneyDateCell, let scheduleSection = self.scheduleSection(at: indexPath) {
-            if indexPath.section == self.todaySectionIndex &&
+            if scheduleSection.contains(taskGroup: .clinicDay14) || scheduleSection.contains(taskGroup: .clinicDay14alt) {
+                // Do not show date for the final clinc visit.
+                dateCell.dateLabel.text = ""
+            }
+            else if indexPath.section == self.todaySectionIndex &&
                 Calendar.gregorian.isDateInToday(scheduleSection.date) {
                 dateCell.dateLabel.text = Localization.localizedString("Today")
             }
@@ -487,8 +491,7 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
             vc.scheduledActivityManager.taskGroup = taskGroup
             vc.scheduledActivityManager.date = date
             vc.scheduledActivityManager.activities = scheduledActivityManager.activities
-            
-            vc.clinicDay0Schedule = scheduledActivityManager.clinicDay0Schedule
+            vc.scheduledActivityManager.clinicDay0Schedule = scheduledActivityManager.clinicDay0Schedule
         }
     }
     
