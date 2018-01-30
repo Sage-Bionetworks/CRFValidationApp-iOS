@@ -247,12 +247,12 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     
     func taskController(_ taskController: RSDTaskController, didFinishWith reason: RSDTaskFinishReason, error: Error?) {
         
+        // fire upload of the task
+        let taskPath = taskController.taskPath.copy() as! RSDTaskPath
+        uploadIfNeeded(for: taskPath, reason: reason)
+        
         // dismiss the view controller
-        let outputDirectory = taskController.taskPath.outputDirectory
         (taskController as? UIViewController)?.dismiss(animated: true) {
-            self.offMainQueue.async {
-                self.deleteOutputDirectory(outputDirectory)
-            }
         }
         
         if let err = error {
@@ -261,37 +261,54 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     }
     
     func taskController(_ taskController: RSDTaskController, readyToSave taskPath: RSDTaskPath) {
+        uploadIfNeeded(for: taskPath, reason: .completed)
+    }
+    
+    private var _uploadedTasks: [UUID] = []
+    
+    func uploadIfNeeded(for taskPath: RSDTaskPath, reason: RSDTaskFinishReason) {
+        
+        // Exit early if the task path has already been uploaded
+        guard !_uploadedTasks.contains(taskPath.result.taskRunUUID) else { return }
+        _uploadedTasks.append(taskPath.result.taskRunUUID)
+        
+        debugPrint("Uploading \(taskPath)")
+        
         // Check if the results of this survey should be uploaded
         guard let schedule = scheduledActivity(with: taskPath.scheduleIdentifier)
             else {
+                self.offMainQueue.async {
+                    self.deleteOutputDirectory(taskPath.outputDirectory)
+                }
                 assertionFailure("Failed to find a schedule for this task. Cannot save.")
                 return
         }
         
         // TODO: syoung 10/30/2017 Handle subresults that point at a different schedule and schema
         // NOTE: Should not be required for this app.
-        let didExitEarly = taskPath.didExitEarly
         let taskResult = taskPath.result as! SBAScheduledActivityResult
-        schedule.startedOn = taskResult.startDate
-        schedule.finishedOn = taskResult.endDate
         
+        // Update the schedules if completed and not an early exit.
+        if !taskPath.didExitEarly && reason == .completed {
+            schedule.startedOn = taskResult.startDate
+            schedule.finishedOn = taskResult.endDate
+            
+            // send the updated schedule on the next loop of the main thread.
+            DispatchQueue.main.async {
+                self.sendUpdated(scheduledActivities: [schedule])
+            }
+        }
+        
+        // Archive, upload, and delete the directory on a serialized background queue.
         self.offMainQueue.async {
             
-            // Archive the result
-            if let archive = SBAActivityArchive(result: taskResult, schedule: schedule) {
-            
-                // Uncomment to save a copy of the test archive.
-                self.copyTestArchive(archive: archive, identifier: taskResult.identifier)
-                
+            // Archive the result if the task was completed.
+            if reason == .completed, let archive = SBAActivityArchive(result: taskResult, schedule: schedule) {
                 SBBDataArchive.encryptAndUploadArchives([archive])
             }
             
-            DispatchQueue.main.async {
-                // Send updates if not early exit
-                if !didExitEarly {
-                    self.sendUpdated(scheduledActivities: [schedule])
-                }
-            }
+            // Finally, delete the output directory
+            self.deleteOutputDirectory(taskPath.outputDirectory)
         }
     }
     

@@ -152,26 +152,8 @@ class MyJourneyViewController: UIViewController, SBALoadingViewPresenter, UITabl
         // Set up the schedule management
         scheduleSections = newSchedules
         isFirstDay = Calendar.gregorian.isDateInToday(dayOne)
-        todaySectionIndex = {
-            if let inTodayIdx = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) {
-                // If there is an activity scheduled for today then include it as the today schedule.
-                return inTodayIdx
-            }
-            else if let inYesterdayIdx = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date.addingNumberOfDays(1)) })
-            {
-                // If there was a survey scheduled for yesterday, then look to see if the day is the overlap day
-                // such that the last clinic visit could be run *before* 14 days out.
-                if inYesterdayIdx == 1, scheduleSections[inYesterdayIdx].isCompleted {
-                    return 0
-                } else {
-                    return inYesterdayIdx
-                }
-            }
-            else {
-                // return day 14 (or first day if the other schedules aren't loaded)
-                return 0
-            }
-        }()
+        todaySectionIndex = scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date) }) ??
+                            scheduleSections.index(where: { Calendar.gregorian.isDateInToday($0.date.addingNumberOfDays(1)) }) ?? 0
         
         // set up values associated with first load
         if isFirstLoad {
