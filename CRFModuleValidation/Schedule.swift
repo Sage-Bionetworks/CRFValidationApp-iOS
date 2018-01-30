@@ -138,14 +138,12 @@ struct ScheduleItem {
     }
 
     init?(taskGroup: TaskGroup, date:Date, activities:[SBBScheduledActivity], dayOne: Date, studyDuration:DateComponents) {
-        
-        let tasksFilter = taskGroup.tasksPredicate()
-        let finishedOnFilter = SBBScheduledActivity.completedPredicate()
-        let filter = NSCompoundPredicate(andPredicateWithSubpredicates: [tasksFilter, finishedOnFilter])
-        let filteredActivities = activities.filter { filter.evaluate(with: $0) }
-        
+
         // Special-case handling of clinic visit task groups:
         guard let dataGroups = SBAUser.shared.dataGroups else { return nil }
+        
+        // Get activities for this date
+        let filteredActivities = taskGroup.filtered(activities, on: date)
         
         if date.startOfDay() == dayOne.startOfDay() {
             // on day one, only the appropriate first clinic visit task group for their data group is valid
@@ -181,12 +179,14 @@ struct ScheduleItem {
             // on any other day, none of the clinic visit task groups are valid
             return nil
         }
-        else if taskGroup.filtered(activities, on: date).count == 0 {
+        else if filteredActivities.count == 0 {
             // On a non-clinic day, only show tasks scheduled on that day
             return nil
         }
         
-        let isCompleted = (taskGroup.taskIdentifiers.count == filteredActivities.count)
+        // The at-home tasks are available for 2 days so determining whether or not the item that
+        // *should* be valid for the given date is finished.
+        let isCompleted = filteredActivities.reduce(true, { $0 && ($1.finishedOn != nil) })
         
         self.date = date
         self.taskGroup = taskGroup
