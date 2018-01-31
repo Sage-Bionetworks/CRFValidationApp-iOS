@@ -38,12 +38,15 @@ import ResearchSuite
 public enum CRFMotionRecorderType : String, Codable {
     
     /// Raw accelerometer reading. `CMAccelerometerData` accelerometer.
+    /// - seealso: https://developer.apple.com/documentation/coremotion/getting_raw_accelerometer_events
     case accelerometer
     
     /// Raw gyroscope reading. `CMGyroData` rotationRate.
+    /// - seealso: https://developer.apple.com/documentation/coremotion/getting_raw_gyroscope_events
     case gyro
 
     /// Raw magnetometer reading. `CMMagnetometerData` magneticField.
+    /// - seealso: https://developer.apple.com/documentation/coremotion/cmmagnetometerdata
     case magnetometer
     
     /// Calculated orientation of the device using the gyro and magnetometer (if appropriate).
@@ -53,11 +56,15 @@ public enum CRFMotionRecorderType : String, Codable {
     /// - note: If the `magneticField` is included in the configuration's list of desired
     /// recorder types then the reference frame is `.xMagneticNorthZVertical`. Otherwise,
     /// the motion recorder will use `.xArbitraryZVertical`.
+    ///
+    /// - seealso: https://developer.apple.com/documentation/coremotion/getting_processed_device_motion_data
     case attitude
     
     /// Calculated vector for the direction of gravity in the coordinates of the device.
     ///
     /// This is included in the `CMDeviceMotion` data object.
+    ///
+    /// - seealso: https://developer.apple.com/documentation/coremotion/getting_processed_device_motion_data
     case gravity
     
     /// The magnetic field vector with respect to the device for devices with a magnetometer.
@@ -70,17 +77,23 @@ public enum CRFMotionRecorderType : String, Codable {
     /// - note: If this recorder type is included in the configuration, then the attitude
     /// reference frame will be set to `.xMagneticNorthZVertical`. Otherwise, the magnetic
     /// field vector will be returned as `{ 0, 0, 0 }`.
+    ///
+    /// - seealso: https://developer.apple.com/documentation/coremotion/getting_processed_device_motion_data
     case magneticField
     
     /// The rotation rate of the device for devices with a gyro.
     ///
     /// This is included in the `CMDeviceMotion` data object.
+    ///
+    /// - seealso: https://developer.apple.com/documentation/coremotion/getting_processed_device_motion_data
     case rotationRate
     
     /// Calculated vector for the user's acceleration in the coordinates of the device.
     /// This is the acceleration component after subtracting the gravity vector.
     ///
     /// This is included in the `CMDeviceMotion` data object.
+    ///
+    /// - seealso: https://developer.apple.com/documentation/coremotion/getting_processed_device_motion_data
     case userAcceleration
     
     public static func allTypes() -> [CRFMotionRecorderType] {
