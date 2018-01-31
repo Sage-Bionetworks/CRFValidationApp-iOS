@@ -81,7 +81,7 @@ open class CRFCameraStepViewController: RSDStepViewController, UIImagePickerCont
 
         var url: URL?
         do {
-            if let imageData = UIImageJPEGRepresentation(chosenImage, 1.0) {
+            if let imageData = UIImageJPEGRepresentation(chosenImage, 0.5) {
                 url = try RSDFileResultUtility.createFileURL(identifier: self.step.identifier, ext: "jpeg", outputDirectory: self.taskController.taskPath.outputDirectory)
                 save(imageData, to: url!)
             }

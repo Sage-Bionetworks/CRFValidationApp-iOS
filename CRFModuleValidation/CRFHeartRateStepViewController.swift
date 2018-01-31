@@ -127,7 +127,7 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         }
         
         // Create a motion recorder
-        var motionConfig = CRFMotionRecorderConfiguration(identifier: "motion", recorderTypes: [.accelerometer, .gravity, .gyro, .userAcceleration])
+        var motionConfig = CRFMotionRecorderConfiguration(identifier: "motion", recorderTypes: [.accelerometer, .gyro])
         motionConfig.stopStepIdentifier = self.step.identifier
         motionRecorder = CRFMotionRecorder(configuration: motionConfig, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
         

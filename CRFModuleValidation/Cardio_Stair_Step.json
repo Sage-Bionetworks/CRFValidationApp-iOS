@@ -94,11 +94,7 @@
                                                   "startStepIdentifier"     : "countdown",
                                                   "requiresBackgroundAudio" : true,
                                                   "recorderTypes"           : ["accelerometer",
-                                                                               "attitude",
-                                                                               "gravity",
-                                                                               "gyro",
-                                                                               "magnetometer",
-                                                                               "userAcceleration"]
+                                                                               "gyro"]
                                                   }
                                                   ],
                            "steps"          : [
