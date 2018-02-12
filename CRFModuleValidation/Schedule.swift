@@ -140,7 +140,7 @@ struct ScheduleItem {
     init?(taskGroup: TaskGroup, date:Date, activities:[SBBScheduledActivity], dayOne: Date, studyDuration:DateComponents) {
         
         let tasksFilter = taskGroup.tasksPredicate()
-        let finishedOnFilter = SBBScheduledActivity.finishedPredicate(on: date)
+        let finishedOnFilter = SBBScheduledActivity.completedPredicate()
         let filter = NSCompoundPredicate(andPredicateWithSubpredicates: [tasksFilter, finishedOnFilter])
         let filteredActivities = activities.filter { filter.evaluate(with: $0) }
         
