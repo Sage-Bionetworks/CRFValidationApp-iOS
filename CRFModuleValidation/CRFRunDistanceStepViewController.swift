@@ -46,6 +46,10 @@ public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
     override public func start() {
         super.start()
         
+        // TODO: syoung 12/11/2017 Implement UI/UX for alerting the user that they do not have the required permission and must
+        // change this from the Settings app.
+        // TODO: syoung 12/11/2017 Implement UI/UX for the case where the user has **only** given permission when in use.
+        
         // TODO: syoung 11/07/2017 Improve messaging to the user in the case where the GPS failed to start or
         // isn't authorized to get updates in the background. (The permission for requesting alway on location
         // is confusing and I suspect this will be a problem.)
