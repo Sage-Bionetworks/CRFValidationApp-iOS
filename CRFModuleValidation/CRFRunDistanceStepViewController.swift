@@ -39,8 +39,8 @@ public class CRFRunDistanceStepViewController: RSDActiveStepViewController {
     
     private var _distanceObserver: NSKeyValueObservation?
     
-    public var locationRecorder: CRFLocationRecorder? {
-        return self.taskController.currentAsyncControllers.first(where: { $0 is CRFLocationRecorder }) as? CRFLocationRecorder
+    public var locationRecorder: RSDDistanceRecorder? {
+        return self.taskController.currentAsyncControllers.first(where: { $0 is RSDDistanceRecorder }) as? RSDDistanceRecorder
     }
     
     override public func start() {
