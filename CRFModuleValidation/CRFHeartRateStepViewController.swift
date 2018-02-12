@@ -50,7 +50,7 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
     public private(set) var bpmRecorder: CRFHeartRateRecorder?
     
     /// The motion recorder
-    public private(set) var motionRecorder: CRFMotionRecorder?
+    public private(set) var motionRecorder: RSDMotionRecorder?
     
     /// This step has multiple results so use a collection result to store them.
     public private(set) var collectionResult: RSDCollectionResult?
@@ -127,9 +127,9 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
         }
         
         // Create a motion recorder
-        var motionConfig = CRFMotionRecorderConfiguration(identifier: "motion", recorderTypes: [.accelerometer, .gyro])
+        var motionConfig = RSDMotionRecorderConfiguration(identifier: "motion", recorderTypes: [.accelerometer, .gyro])
         motionConfig.stopStepIdentifier = self.step.identifier
-        motionRecorder = CRFMotionRecorder(configuration: motionConfig, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
+        motionRecorder = RSDMotionRecorder(configuration: motionConfig, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
         
         // start the recorders
         self.taskController.startAsyncActions(for: [bpmRecorder!, motionRecorder!], showLoading: false, completion:{})

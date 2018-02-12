@@ -10,7 +10,7 @@
     "asyncActions"      : [
                            {
                            "identifier"             : "location",
-                           "type"                   : "location",
+                           "type"                   : "distance",
                            "startStepIdentifier"    : "heartRate.before",
                            "stopStepIdentifier"     : "heartRate.after",
                            "motionStepIdentifier"   : "runDistance"
