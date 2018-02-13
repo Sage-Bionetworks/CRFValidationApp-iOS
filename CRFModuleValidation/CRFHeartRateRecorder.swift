@@ -154,6 +154,15 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
         
         updateStatus(to: .processingResults, error: nil)
         
+        // Force turning off the flash
+        if let captureDevice = _captureDevice {
+            do {
+                try captureDevice.lockForConfiguration()
+                captureDevice.torchMode = .auto
+                captureDevice.unlockForConfiguration()
+            } catch {}
+        }
+        
         // Append the camera settings
         if let settings = self.heartRateConfiguration?.cameraSettings {
             self.appendResults(settings)
@@ -196,8 +205,13 @@ public class CRFHeartRateRecorder : RSDSampleRecorder, CRFHeartRateProcessorDele
     private var _captureDevice: AVCaptureDevice?
     private var _videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var _loggingSamples: [CRFHeartRateSample] = []
+    private var _previousSettings: CRFCameraSettings?
     
     private var sampleProcessor: CRFHeartRateProcessor!
+    
+    private struct StoredDeviceSettings {
+        var lensPosition: Float
+    }
     
     deinit {
         _session?.stopRunning()
