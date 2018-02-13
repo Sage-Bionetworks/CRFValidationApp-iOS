@@ -248,7 +248,7 @@ class ScheduledActivityManager: SBABaseScheduledActivityManager, SBAScheduledAct
     func taskController(_ taskController: RSDTaskController, didFinishWith reason: RSDTaskFinishReason, error: Error?) {
         
         // fire upload of the task
-        let taskPath = taskController.taskPath.copy() as! RSDTaskPath
+        let taskPath = (taskController as! RSDTaskUIController).taskPath.copy() as! RSDTaskPath
         uploadIfNeeded(for: taskPath, reason: reason)
         
         // dismiss the view controller
@@ -491,7 +491,7 @@ extension RSDAnswerResultType {
             return "Text"
         case .integer:
             return "Integer"
-        case .decimal, .timeInterval:
+        case .decimal:
             return "Decimal"
         case .date:
             if self.dateFormat == "HH:mm:ss" || self.dateFormat == "HH:mm" {
@@ -518,7 +518,7 @@ extension RSDAnswerResultType {
             return "booleanAnswer"
         case .string, .data:
             return "textAnswer"
-        case .integer, .decimal, .timeInterval:
+        case .integer, .decimal:
             return "numericAnswer"
         case .date:
             if self.dateFormat == "HH:mm:ss" || self.dateFormat == "HH:mm" {

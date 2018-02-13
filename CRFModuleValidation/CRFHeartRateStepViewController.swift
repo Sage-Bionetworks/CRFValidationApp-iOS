@@ -50,7 +50,7 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
     public private(set) var bpmRecorder: CRFHeartRateRecorder?
     
     /// The motion recorder
-    public private(set) var motionRecorder: CRFMotionRecorder?
+    public private(set) var motionRecorder: RSDMotionRecorder?
     
     /// This step has multiple results so use a collection result to store them.
     public private(set) var collectionResult: RSDCollectionResult?
@@ -116,20 +116,18 @@ public class CRFHeartRateStepViewController: RSDActiveStepViewController, RSDAsy
             self?._handleLensCoveredOnMainQueue(recorder.isCoveringLens)
         })
         
-        // If the user is trying for 10 seconds to cover the lens and it isn't recognized,
-        // then show a skip button.
-        let delay = DispatchTime.now() + .seconds(10)
+        // If the user is trying for 5 seconds to cover the lens and it isn't recognized,
+        // then just keep going. The result might be a 0 heart rate measurement, but we will
+        // still capture the data and can analyze it later.
+        let delay = DispatchTime.now() + .seconds(5)
         DispatchQueue.main.asyncAfter(deadline: delay) { [weak self] in
-            guard let strongSelf = self else { return }
-            if strongSelf.startUptime == nil {
-                strongSelf.skipButton.isHidden = false
-            }
+            self?._startCountdownIfNeeded()
         }
         
         // Create a motion recorder
-        var motionConfig = CRFMotionRecorderConfiguration(identifier: "motion", recorderTypes: [.accelerometer, .gyro])
+        var motionConfig = RSDMotionRecorderConfiguration(identifier: "motion", recorderTypes: [.accelerometer, .gyro])
         motionConfig.stopStepIdentifier = self.step.identifier
-        motionRecorder = CRFMotionRecorder(configuration: motionConfig, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
+        motionRecorder = RSDMotionRecorder(configuration: motionConfig, taskPath: taskPath, outputDirectory: taskPath.outputDirectory)
         
         // start the recorders
         self.taskController.startAsyncActions(for: [bpmRecorder!, motionRecorder!], showLoading: false, completion:{})
