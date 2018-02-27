@@ -85,7 +85,7 @@ struct ScheduleSection {
         guard activities.count > 0 else { return ([], enrollmentDate) }
         
         // Look a the schedules and start on the first day that has something finished or today
-        let sortedSchedules = activities.filter({ $0.finishedOn != nil }).sorted { $0.finishedOn < $1.finishedOn }
+        let sortedSchedules = activities.filter({ $0.finishedOn != nil }).sorted { $0.finishedOn! < $1.finishedOn! }
         let dayOne = Calendar.gregorian.startOfDay(for: sortedSchedules.first?.finishedOn ?? Date())
         let endDate = dayOne.adding(studyDuration).endOfDay()
         
