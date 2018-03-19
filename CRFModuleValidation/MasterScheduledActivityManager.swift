@@ -260,6 +260,36 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         }
     }
     
+    override func sendUpdated(scheduledActivities: [SBBScheduledActivity]) {
+        
+        if let schedule = scheduledActivities.first,
+            let section = self.scheduleSections.first(where: { $0.date.isToday }),
+            let item = section.items.first,
+            let dayOne = self.dayOne,
+            let idx = self.activities.index(where: { $0.guid == schedule.guid }) {
+            
+            // Replace the activity
+            var activities = self.activities
+            activities.remove(at: idx)
+            activities.insert(schedule, at: idx)
+            self.activities = activities
+        
+            // Replace the section
+            if let newItem = ScheduleItem(taskGroup: item.taskGroup, date: item.date, activities: activities, dayOne: dayOne, studyDuration: self.studyDuration),
+                let sectionIdx = self.scheduleSections.index(where: { $0.date.isToday }) {
+                let newSection = ScheduleSection(items: [newItem])
+                var sections = self.scheduleSections
+                sections.remove(at: sectionIdx)
+                sections.insert(newSection, at: sectionIdx)
+                self.scheduleSections = sections
+            }
+            
+            self.delegate?.reloadFinished(self)
+        }
+        
+        super.sendUpdated(scheduledActivities: scheduledActivities)
+    }
+    
     /**
      If the task is available right away, the callback will be invoked
      Otherwise, we will save the callback to be executed later when today's task is available
