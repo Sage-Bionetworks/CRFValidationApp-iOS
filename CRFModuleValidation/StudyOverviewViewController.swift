@@ -89,8 +89,11 @@ class StudyOverviewViewController: UIViewController, ORKTaskViewControllerDelega
         fitbitStep.iconImage = #imageLiteral(resourceName: "fitbitLogo")
         fitbitStep.learnMoreAction = SkipLearnMoreAction(dictionaryRepresentation: ["learnMoreButtonText": "skip"])
 
-        let steps = [externalIDStep] + onboardingSurveySteps + [permissionsStep, fitbitStep]
-        let task = SBANavigableOrderedTask(identifier: "registration", steps: steps)
+        var steps: [ORKStep] = [externalIDStep]
+        steps.append(contentsOf: onboardingSurveySteps)
+        steps.append(permissionsStep)
+        steps.append(fitbitStep)
+        let task = OnboardingTask(identifier: "registration", steps: steps)
         let vc = SBATaskViewController(task: task, taskRun: nil)
         vc.delegate = self
         self.present(vc, animated: true, completion: nil)
