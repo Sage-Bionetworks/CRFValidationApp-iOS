@@ -95,9 +95,14 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
     override init(delegate: SBAScheduledActivityManagerDelegate?) {
         super.init(delegate: delegate)
         
-        // Set days behind and days ahead to only cache today's activities
+        // Set days behind and days ahead to only cache today's activities.
         self.daysBehind = 0
         self.daysAhead = 15
+        
+        // Add an observer to reload the data whenever the app returns to the foreground.
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) { [weak self] (_) in
+            self?.reloadData()
+        }
     }
     
     func completedCount(for taskGroup: TaskGroup) -> Int {
@@ -258,6 +263,36 @@ class MasterScheduledActivityManager: ScheduledActivityManager {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: self.scheduleUpdatedNotificationName, object: nil)
         }
+    }
+    
+    override func sendUpdated(scheduledActivities: [SBBScheduledActivity]) {
+        
+        if let schedule = scheduledActivities.first,
+            let section = self.scheduleSections.first(where: { $0.date.isToday }),
+            let item = section.items.first,
+            let dayOne = self.dayOne,
+            let idx = self.activities.index(where: { $0.guid == schedule.guid }) {
+            
+            // Replace the activity
+            var activities = self.activities
+            activities.remove(at: idx)
+            activities.insert(schedule, at: idx)
+            self.activities = activities
+        
+            // Replace the section
+            if let newItem = ScheduleItem(taskGroup: item.taskGroup, date: item.date, activities: activities, dayOne: dayOne, studyDuration: self.studyDuration),
+                let sectionIdx = self.scheduleSections.index(where: { $0.date.isToday }) {
+                let newSection = ScheduleSection(items: [newItem])
+                var sections = self.scheduleSections
+                sections.remove(at: sectionIdx)
+                sections.insert(newSection, at: sectionIdx)
+                self.scheduleSections = sections
+            }
+            
+            self.delegate?.reloadFinished(self)
+        }
+        
+        super.sendUpdated(scheduledActivities: scheduledActivities)
     }
     
     /**
